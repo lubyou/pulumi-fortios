@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFederatedUpgrade struct {
@@ -136,12 +135,6 @@ func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradeOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradeOutput)
 }
 
-func (i *SystemFederatedUpgrade) ToOutput(ctx context.Context) pulumix.Output[*SystemFederatedUpgrade] {
-	return pulumix.Output[*SystemFederatedUpgrade]{
-		OutputState: i.ToSystemFederatedUpgradeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemFederatedUpgradeArrayInput is an input type that accepts SystemFederatedUpgradeArray and SystemFederatedUpgradeArrayOutput values.
 // You can construct a concrete instance of `SystemFederatedUpgradeArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i SystemFederatedUpgradeArray) ToSystemFederatedUpgradeArrayOutput() Syste
 
 func (i SystemFederatedUpgradeArray) ToSystemFederatedUpgradeArrayOutputWithContext(ctx context.Context) SystemFederatedUpgradeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradeArrayOutput)
-}
-
-func (i SystemFederatedUpgradeArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFederatedUpgrade] {
-	return pulumix.Output[[]*SystemFederatedUpgrade]{
-		OutputState: i.ToSystemFederatedUpgradeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemFederatedUpgradeMapInput is an input type that accepts SystemFederatedUpgradeMap and SystemFederatedUpgradeMapOutput values.
@@ -198,12 +185,6 @@ func (i SystemFederatedUpgradeMap) ToSystemFederatedUpgradeMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradeMapOutput)
 }
 
-func (i SystemFederatedUpgradeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFederatedUpgrade] {
-	return pulumix.Output[map[string]*SystemFederatedUpgrade]{
-		OutputState: i.ToSystemFederatedUpgradeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemFederatedUpgradeOutput struct{ *pulumi.OutputState }
 
 func (SystemFederatedUpgradeOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradeOutput() SystemFed
 
 func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradeOutputWithContext(ctx context.Context) SystemFederatedUpgradeOutput {
 	return o
-}
-
-func (o SystemFederatedUpgradeOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFederatedUpgrade] {
-	return pulumix.Output[*SystemFederatedUpgrade]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFederatedUpgradeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -278,12 +253,6 @@ func (o SystemFederatedUpgradeArrayOutput) ToSystemFederatedUpgradeArrayOutputWi
 	return o
 }
 
-func (o SystemFederatedUpgradeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFederatedUpgrade] {
-	return pulumix.Output[[]*SystemFederatedUpgrade]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemFederatedUpgradeArrayOutput) Index(i pulumi.IntInput) SystemFederatedUpgradeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFederatedUpgrade {
 		return vs[0].([]*SystemFederatedUpgrade)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o SystemFederatedUpgradeMapOutput) ToSystemFederatedUpgradeMapOutput() Sys
 
 func (o SystemFederatedUpgradeMapOutput) ToSystemFederatedUpgradeMapOutputWithContext(ctx context.Context) SystemFederatedUpgradeMapOutput {
 	return o
-}
-
-func (o SystemFederatedUpgradeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFederatedUpgrade] {
-	return pulumix.Output[map[string]*SystemFederatedUpgrade]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFederatedUpgradeMapOutput) MapIndex(k pulumi.StringInput) SystemFederatedUpgradeOutput {

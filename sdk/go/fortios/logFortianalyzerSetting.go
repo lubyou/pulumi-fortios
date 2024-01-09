@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzerSetting struct {
@@ -246,12 +245,6 @@ func (i *LogFortianalyzerSetting) ToLogFortianalyzerSettingOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerSettingOutput)
 }
 
-func (i *LogFortianalyzerSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerSetting] {
-	return pulumix.Output[*LogFortianalyzerSetting]{
-		OutputState: i.ToLogFortianalyzerSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortianalyzerSettingArrayInput is an input type that accepts LogFortianalyzerSettingArray and LogFortianalyzerSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerSettingArrayInput` via:
 //
@@ -275,12 +268,6 @@ func (i LogFortianalyzerSettingArray) ToLogFortianalyzerSettingArrayOutput() Log
 
 func (i LogFortianalyzerSettingArray) ToLogFortianalyzerSettingArrayOutputWithContext(ctx context.Context) LogFortianalyzerSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerSettingArrayOutput)
-}
-
-func (i LogFortianalyzerSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerSetting] {
-	return pulumix.Output[[]*LogFortianalyzerSetting]{
-		OutputState: i.ToLogFortianalyzerSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortianalyzerSettingMapInput is an input type that accepts LogFortianalyzerSettingMap and LogFortianalyzerSettingMapOutput values.
@@ -308,12 +295,6 @@ func (i LogFortianalyzerSettingMap) ToLogFortianalyzerSettingMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerSettingMapOutput)
 }
 
-func (i LogFortianalyzerSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerSetting] {
-	return pulumix.Output[map[string]*LogFortianalyzerSetting]{
-		OutputState: i.ToLogFortianalyzerSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortianalyzerSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerSettingOutput) ElementType() reflect.Type {
@@ -326,12 +307,6 @@ func (o LogFortianalyzerSettingOutput) ToLogFortianalyzerSettingOutput() LogFort
 
 func (o LogFortianalyzerSettingOutput) ToLogFortianalyzerSettingOutputWithContext(ctx context.Context) LogFortianalyzerSettingOutput {
 	return o
-}
-
-func (o LogFortianalyzerSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerSetting] {
-	return pulumix.Output[*LogFortianalyzerSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzerSettingOutput) __changeIp() pulumi.IntOutput {
@@ -476,12 +451,6 @@ func (o LogFortianalyzerSettingArrayOutput) ToLogFortianalyzerSettingArrayOutput
 	return o
 }
 
-func (o LogFortianalyzerSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerSetting] {
-	return pulumix.Output[[]*LogFortianalyzerSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortianalyzerSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerSetting {
 		return vs[0].([]*LogFortianalyzerSetting)[vs[1].(int)]
@@ -500,12 +469,6 @@ func (o LogFortianalyzerSettingMapOutput) ToLogFortianalyzerSettingMapOutput() L
 
 func (o LogFortianalyzerSettingMapOutput) ToLogFortianalyzerSettingMapOutputWithContext(ctx context.Context) LogFortianalyzerSettingMapOutput {
 	return o
-}
-
-func (o LogFortianalyzerSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerSetting] {
-	return pulumix.Output[map[string]*LogFortianalyzerSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzerSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerSettingOutput {

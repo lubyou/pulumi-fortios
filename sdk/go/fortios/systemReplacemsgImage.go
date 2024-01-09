@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgImage struct {
@@ -106,12 +105,6 @@ func (i *SystemReplacemsgImage) ToSystemReplacemsgImageOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgImageOutput)
 }
 
-func (i *SystemReplacemsgImage) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgImage] {
-	return pulumix.Output[*SystemReplacemsgImage]{
-		OutputState: i.ToSystemReplacemsgImageOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemReplacemsgImageArrayInput is an input type that accepts SystemReplacemsgImageArray and SystemReplacemsgImageArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgImageArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i SystemReplacemsgImageArray) ToSystemReplacemsgImageArrayOutput() SystemR
 
 func (i SystemReplacemsgImageArray) ToSystemReplacemsgImageArrayOutputWithContext(ctx context.Context) SystemReplacemsgImageArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgImageArrayOutput)
-}
-
-func (i SystemReplacemsgImageArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgImage] {
-	return pulumix.Output[[]*SystemReplacemsgImage]{
-		OutputState: i.ToSystemReplacemsgImageArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemReplacemsgImageMapInput is an input type that accepts SystemReplacemsgImageMap and SystemReplacemsgImageMapOutput values.
@@ -168,12 +155,6 @@ func (i SystemReplacemsgImageMap) ToSystemReplacemsgImageMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgImageMapOutput)
 }
 
-func (i SystemReplacemsgImageMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgImage] {
-	return pulumix.Output[map[string]*SystemReplacemsgImage]{
-		OutputState: i.ToSystemReplacemsgImageMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemReplacemsgImageOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgImageOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o SystemReplacemsgImageOutput) ToSystemReplacemsgImageOutput() SystemRepla
 
 func (o SystemReplacemsgImageOutput) ToSystemReplacemsgImageOutputWithContext(ctx context.Context) SystemReplacemsgImageOutput {
 	return o
-}
-
-func (o SystemReplacemsgImageOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgImage] {
-	return pulumix.Output[*SystemReplacemsgImage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgImageOutput) ImageBase64() pulumi.StringPtrOutput {
@@ -224,12 +199,6 @@ func (o SystemReplacemsgImageArrayOutput) ToSystemReplacemsgImageArrayOutputWith
 	return o
 }
 
-func (o SystemReplacemsgImageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgImage] {
-	return pulumix.Output[[]*SystemReplacemsgImage]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemReplacemsgImageArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgImageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgImage {
 		return vs[0].([]*SystemReplacemsgImage)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o SystemReplacemsgImageMapOutput) ToSystemReplacemsgImageMapOutput() Syste
 
 func (o SystemReplacemsgImageMapOutput) ToSystemReplacemsgImageMapOutputWithContext(ctx context.Context) SystemReplacemsgImageMapOutput {
 	return o
-}
-
-func (o SystemReplacemsgImageMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgImage] {
-	return pulumix.Output[map[string]*SystemReplacemsgImage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgImageMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgImageOutput {

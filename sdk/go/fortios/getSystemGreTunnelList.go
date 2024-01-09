@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemGreTunnelList(ctx *pulumi.Context, args *GetSystemGreTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemGreTunnelListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemGreTunnelListResultOutput) ToGetSystemGreTunnelListResultOutput
 
 func (o GetSystemGreTunnelListResultOutput) ToGetSystemGreTunnelListResultOutputWithContext(ctx context.Context) GetSystemGreTunnelListResultOutput {
 	return o
-}
-
-func (o GetSystemGreTunnelListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemGreTunnelListResult] {
-	return pulumix.Output[GetSystemGreTunnelListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemGreTunnelListResultOutput) Filter() pulumi.StringPtrOutput {

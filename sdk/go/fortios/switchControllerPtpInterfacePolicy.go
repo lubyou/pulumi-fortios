@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerPtpInterfacePolicy struct {
@@ -111,12 +110,6 @@ func (i *SwitchControllerPtpInterfacePolicy) ToSwitchControllerPtpInterfacePolic
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpInterfacePolicyOutput)
 }
 
-func (i *SwitchControllerPtpInterfacePolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerPtpInterfacePolicy] {
-	return pulumix.Output[*SwitchControllerPtpInterfacePolicy]{
-		OutputState: i.ToSwitchControllerPtpInterfacePolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerPtpInterfacePolicyArrayInput is an input type that accepts SwitchControllerPtpInterfacePolicyArray and SwitchControllerPtpInterfacePolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpInterfacePolicyArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SwitchControllerPtpInterfacePolicyArray) ToSwitchControllerPtpInterfaceP
 
 func (i SwitchControllerPtpInterfacePolicyArray) ToSwitchControllerPtpInterfacePolicyArrayOutputWithContext(ctx context.Context) SwitchControllerPtpInterfacePolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpInterfacePolicyArrayOutput)
-}
-
-func (i SwitchControllerPtpInterfacePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerPtpInterfacePolicy] {
-	return pulumix.Output[[]*SwitchControllerPtpInterfacePolicy]{
-		OutputState: i.ToSwitchControllerPtpInterfacePolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerPtpInterfacePolicyMapInput is an input type that accepts SwitchControllerPtpInterfacePolicyMap and SwitchControllerPtpInterfacePolicyMapOutput values.
@@ -173,12 +160,6 @@ func (i SwitchControllerPtpInterfacePolicyMap) ToSwitchControllerPtpInterfacePol
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpInterfacePolicyMapOutput)
 }
 
-func (i SwitchControllerPtpInterfacePolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerPtpInterfacePolicy] {
-	return pulumix.Output[map[string]*SwitchControllerPtpInterfacePolicy]{
-		OutputState: i.ToSwitchControllerPtpInterfacePolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerPtpInterfacePolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerPtpInterfacePolicyOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SwitchControllerPtpInterfacePolicyOutput) ToSwitchControllerPtpInterface
 
 func (o SwitchControllerPtpInterfacePolicyOutput) ToSwitchControllerPtpInterfacePolicyOutputWithContext(ctx context.Context) SwitchControllerPtpInterfacePolicyOutput {
 	return o
-}
-
-func (o SwitchControllerPtpInterfacePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerPtpInterfacePolicy] {
-	return pulumix.Output[*SwitchControllerPtpInterfacePolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerPtpInterfacePolicyOutput) Description() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o SwitchControllerPtpInterfacePolicyArrayOutput) ToSwitchControllerPtpInte
 	return o
 }
 
-func (o SwitchControllerPtpInterfacePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerPtpInterfacePolicy] {
-	return pulumix.Output[[]*SwitchControllerPtpInterfacePolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerPtpInterfacePolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerPtpInterfacePolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerPtpInterfacePolicy {
 		return vs[0].([]*SwitchControllerPtpInterfacePolicy)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SwitchControllerPtpInterfacePolicyMapOutput) ToSwitchControllerPtpInterf
 
 func (o SwitchControllerPtpInterfacePolicyMapOutput) ToSwitchControllerPtpInterfacePolicyMapOutputWithContext(ctx context.Context) SwitchControllerPtpInterfacePolicyMapOutput {
 	return o
-}
-
-func (o SwitchControllerPtpInterfacePolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerPtpInterfacePolicy] {
-	return pulumix.Output[map[string]*SwitchControllerPtpInterfacePolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerPtpInterfacePolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerPtpInterfacePolicyOutput {

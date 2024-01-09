@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ExtensionControllerFortigate struct {
@@ -131,12 +130,6 @@ func (i *ExtensionControllerFortigate) ToExtensionControllerFortigateOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerFortigateOutput)
 }
 
-func (i *ExtensionControllerFortigate) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerFortigate] {
-	return pulumix.Output[*ExtensionControllerFortigate]{
-		OutputState: i.ToExtensionControllerFortigateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExtensionControllerFortigateArrayInput is an input type that accepts ExtensionControllerFortigateArray and ExtensionControllerFortigateArrayOutput values.
 // You can construct a concrete instance of `ExtensionControllerFortigateArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i ExtensionControllerFortigateArray) ToExtensionControllerFortigateArrayOu
 
 func (i ExtensionControllerFortigateArray) ToExtensionControllerFortigateArrayOutputWithContext(ctx context.Context) ExtensionControllerFortigateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerFortigateArrayOutput)
-}
-
-func (i ExtensionControllerFortigateArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerFortigate] {
-	return pulumix.Output[[]*ExtensionControllerFortigate]{
-		OutputState: i.ToExtensionControllerFortigateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExtensionControllerFortigateMapInput is an input type that accepts ExtensionControllerFortigateMap and ExtensionControllerFortigateMapOutput values.
@@ -193,12 +180,6 @@ func (i ExtensionControllerFortigateMap) ToExtensionControllerFortigateMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerFortigateMapOutput)
 }
 
-func (i ExtensionControllerFortigateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerFortigate] {
-	return pulumix.Output[map[string]*ExtensionControllerFortigate]{
-		OutputState: i.ToExtensionControllerFortigateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExtensionControllerFortigateOutput struct{ *pulumi.OutputState }
 
 func (ExtensionControllerFortigateOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o ExtensionControllerFortigateOutput) ToExtensionControllerFortigateOutput
 
 func (o ExtensionControllerFortigateOutput) ToExtensionControllerFortigateOutputWithContext(ctx context.Context) ExtensionControllerFortigateOutput {
 	return o
-}
-
-func (o ExtensionControllerFortigateOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerFortigate] {
-	return pulumix.Output[*ExtensionControllerFortigate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerFortigateOutput) Authorized() pulumi.StringOutput {
@@ -269,12 +244,6 @@ func (o ExtensionControllerFortigateArrayOutput) ToExtensionControllerFortigateA
 	return o
 }
 
-func (o ExtensionControllerFortigateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerFortigate] {
-	return pulumix.Output[[]*ExtensionControllerFortigate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExtensionControllerFortigateArrayOutput) Index(i pulumi.IntInput) ExtensionControllerFortigateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtensionControllerFortigate {
 		return vs[0].([]*ExtensionControllerFortigate)[vs[1].(int)]
@@ -293,12 +262,6 @@ func (o ExtensionControllerFortigateMapOutput) ToExtensionControllerFortigateMap
 
 func (o ExtensionControllerFortigateMapOutput) ToExtensionControllerFortigateMapOutputWithContext(ctx context.Context) ExtensionControllerFortigateMapOutput {
 	return o
-}
-
-func (o ExtensionControllerFortigateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerFortigate] {
-	return pulumix.Output[map[string]*ExtensionControllerFortigate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerFortigateMapOutput) MapIndex(k pulumi.StringInput) ExtensionControllerFortigateOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemDscpBasedPriorityList(ctx *pulumi.Context, args *GetSystemDscpBasedPriorityListArgs, opts ...pulumi.InvokeOption) (*GetSystemDscpBasedPriorityListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemDscpBasedPriorityListResultOutput) ToGetSystemDscpBasedPriority
 
 func (o GetSystemDscpBasedPriorityListResultOutput) ToGetSystemDscpBasedPriorityListResultOutputWithContext(ctx context.Context) GetSystemDscpBasedPriorityListResultOutput {
 	return o
-}
-
-func (o GetSystemDscpBasedPriorityListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemDscpBasedPriorityListResult] {
-	return pulumix.Output[GetSystemDscpBasedPriorityListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemDscpBasedPriorityListResultOutput) Filter() pulumi.StringPtrOutput {

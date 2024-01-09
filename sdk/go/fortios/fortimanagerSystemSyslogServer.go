@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemSyslogServer struct {
@@ -101,12 +100,6 @@ func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerOutput)
 }
 
-func (i *FortimanagerSystemSyslogServer) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemSyslogServer] {
-	return pulumix.Output[*FortimanagerSystemSyslogServer]{
-		OutputState: i.ToFortimanagerSystemSyslogServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerSystemSyslogServerArrayInput is an input type that accepts FortimanagerSystemSyslogServerArray and FortimanagerSystemSyslogServerArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemSyslogServerArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i FortimanagerSystemSyslogServerArray) ToFortimanagerSystemSyslogServerArr
 
 func (i FortimanagerSystemSyslogServerArray) ToFortimanagerSystemSyslogServerArrayOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerArrayOutput)
-}
-
-func (i FortimanagerSystemSyslogServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemSyslogServer] {
-	return pulumix.Output[[]*FortimanagerSystemSyslogServer]{
-		OutputState: i.ToFortimanagerSystemSyslogServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerSystemSyslogServerMapInput is an input type that accepts FortimanagerSystemSyslogServerMap and FortimanagerSystemSyslogServerMapOutput values.
@@ -163,12 +150,6 @@ func (i FortimanagerSystemSyslogServerMap) ToFortimanagerSystemSyslogServerMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerMapOutput)
 }
 
-func (i FortimanagerSystemSyslogServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemSyslogServer] {
-	return pulumix.Output[map[string]*FortimanagerSystemSyslogServer]{
-		OutputState: i.ToFortimanagerSystemSyslogServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerSystemSyslogServerOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemSyslogServerOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerOu
 
 func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerOutput {
 	return o
-}
-
-func (o FortimanagerSystemSyslogServerOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemSyslogServer] {
-	return pulumix.Output[*FortimanagerSystemSyslogServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemSyslogServerOutput) Ip() pulumi.StringPtrOutput {
@@ -215,12 +190,6 @@ func (o FortimanagerSystemSyslogServerArrayOutput) ToFortimanagerSystemSyslogSer
 	return o
 }
 
-func (o FortimanagerSystemSyslogServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemSyslogServer] {
-	return pulumix.Output[[]*FortimanagerSystemSyslogServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerSystemSyslogServerArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemSyslogServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemSyslogServer {
 		return vs[0].([]*FortimanagerSystemSyslogServer)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o FortimanagerSystemSyslogServerMapOutput) ToFortimanagerSystemSyslogServe
 
 func (o FortimanagerSystemSyslogServerMapOutput) ToFortimanagerSystemSyslogServerMapOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerMapOutput {
 	return o
-}
-
-func (o FortimanagerSystemSyslogServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemSyslogServer] {
-	return pulumix.Output[map[string]*FortimanagerSystemSyslogServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemSyslogServerMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemSyslogServerOutput {

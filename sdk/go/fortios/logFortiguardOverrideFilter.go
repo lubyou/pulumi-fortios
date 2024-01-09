@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortiguardOverrideFilter struct {
@@ -186,12 +185,6 @@ func (i *LogFortiguardOverrideFilter) ToLogFortiguardOverrideFilterOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterOutput)
 }
 
-func (i *LogFortiguardOverrideFilter) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardOverrideFilter] {
-	return pulumix.Output[*LogFortiguardOverrideFilter]{
-		OutputState: i.ToLogFortiguardOverrideFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortiguardOverrideFilterArrayInput is an input type that accepts LogFortiguardOverrideFilterArray and LogFortiguardOverrideFilterArrayOutput values.
 // You can construct a concrete instance of `LogFortiguardOverrideFilterArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i LogFortiguardOverrideFilterArray) ToLogFortiguardOverrideFilterArrayOutp
 
 func (i LogFortiguardOverrideFilterArray) ToLogFortiguardOverrideFilterArrayOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterArrayOutput)
-}
-
-func (i LogFortiguardOverrideFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardOverrideFilter] {
-	return pulumix.Output[[]*LogFortiguardOverrideFilter]{
-		OutputState: i.ToLogFortiguardOverrideFilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortiguardOverrideFilterMapInput is an input type that accepts LogFortiguardOverrideFilterMap and LogFortiguardOverrideFilterMapOutput values.
@@ -248,12 +235,6 @@ func (i LogFortiguardOverrideFilterMap) ToLogFortiguardOverrideFilterMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterMapOutput)
 }
 
-func (i LogFortiguardOverrideFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardOverrideFilter] {
-	return pulumix.Output[map[string]*LogFortiguardOverrideFilter]{
-		OutputState: i.ToLogFortiguardOverrideFilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortiguardOverrideFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideFilterOutput) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o LogFortiguardOverrideFilterOutput) ToLogFortiguardOverrideFilterOutput()
 
 func (o LogFortiguardOverrideFilterOutput) ToLogFortiguardOverrideFilterOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterOutput {
 	return o
-}
-
-func (o LogFortiguardOverrideFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardOverrideFilter] {
-	return pulumix.Output[*LogFortiguardOverrideFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortiguardOverrideFilterOutput) Anomaly() pulumi.StringOutput {
@@ -370,12 +345,6 @@ func (o LogFortiguardOverrideFilterArrayOutput) ToLogFortiguardOverrideFilterArr
 	return o
 }
 
-func (o LogFortiguardOverrideFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardOverrideFilter] {
-	return pulumix.Output[[]*LogFortiguardOverrideFilter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortiguardOverrideFilterArrayOutput) Index(i pulumi.IntInput) LogFortiguardOverrideFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardOverrideFilter {
 		return vs[0].([]*LogFortiguardOverrideFilter)[vs[1].(int)]
@@ -394,12 +363,6 @@ func (o LogFortiguardOverrideFilterMapOutput) ToLogFortiguardOverrideFilterMapOu
 
 func (o LogFortiguardOverrideFilterMapOutput) ToLogFortiguardOverrideFilterMapOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterMapOutput {
 	return o
-}
-
-func (o LogFortiguardOverrideFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardOverrideFilter] {
-	return pulumix.Output[map[string]*LogFortiguardOverrideFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortiguardOverrideFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardOverrideFilterOutput {

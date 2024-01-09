@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemEmailServer struct {
@@ -168,12 +167,6 @@ func (i *SystemEmailServer) ToSystemEmailServerOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerOutput)
 }
 
-func (i *SystemEmailServer) ToOutput(ctx context.Context) pulumix.Output[*SystemEmailServer] {
-	return pulumix.Output[*SystemEmailServer]{
-		OutputState: i.ToSystemEmailServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemEmailServerArrayInput is an input type that accepts SystemEmailServerArray and SystemEmailServerArrayOutput values.
 // You can construct a concrete instance of `SystemEmailServerArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i SystemEmailServerArray) ToSystemEmailServerArrayOutput() SystemEmailServ
 
 func (i SystemEmailServerArray) ToSystemEmailServerArrayOutputWithContext(ctx context.Context) SystemEmailServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerArrayOutput)
-}
-
-func (i SystemEmailServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemEmailServer] {
-	return pulumix.Output[[]*SystemEmailServer]{
-		OutputState: i.ToSystemEmailServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemEmailServerMapInput is an input type that accepts SystemEmailServerMap and SystemEmailServerMapOutput values.
@@ -230,12 +217,6 @@ func (i SystemEmailServerMap) ToSystemEmailServerMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerMapOutput)
 }
 
-func (i SystemEmailServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemEmailServer] {
-	return pulumix.Output[map[string]*SystemEmailServer]{
-		OutputState: i.ToSystemEmailServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemEmailServerOutput struct{ *pulumi.OutputState }
 
 func (SystemEmailServerOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o SystemEmailServerOutput) ToSystemEmailServerOutput() SystemEmailServerOu
 
 func (o SystemEmailServerOutput) ToSystemEmailServerOutputWithContext(ctx context.Context) SystemEmailServerOutput {
 	return o
-}
-
-func (o SystemEmailServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemEmailServer] {
-	return pulumix.Output[*SystemEmailServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemEmailServerOutput) Authenticate() pulumi.StringOutput {
@@ -330,12 +305,6 @@ func (o SystemEmailServerArrayOutput) ToSystemEmailServerArrayOutputWithContext(
 	return o
 }
 
-func (o SystemEmailServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemEmailServer] {
-	return pulumix.Output[[]*SystemEmailServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemEmailServerArrayOutput) Index(i pulumi.IntInput) SystemEmailServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemEmailServer {
 		return vs[0].([]*SystemEmailServer)[vs[1].(int)]
@@ -354,12 +323,6 @@ func (o SystemEmailServerMapOutput) ToSystemEmailServerMapOutput() SystemEmailSe
 
 func (o SystemEmailServerMapOutput) ToSystemEmailServerMapOutputWithContext(ctx context.Context) SystemEmailServerMapOutput {
 	return o
-}
-
-func (o SystemEmailServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemEmailServer] {
-	return pulumix.Output[map[string]*SystemEmailServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemEmailServerMapOutput) MapIndex(k pulumi.StringInput) SystemEmailServerOutput {

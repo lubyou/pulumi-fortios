@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallMulticastAddress struct {
@@ -151,12 +150,6 @@ func (i *FirewallMulticastAddress) ToFirewallMulticastAddressOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddressOutput)
 }
 
-func (i *FirewallMulticastAddress) ToOutput(ctx context.Context) pulumix.Output[*FirewallMulticastAddress] {
-	return pulumix.Output[*FirewallMulticastAddress]{
-		OutputState: i.ToFirewallMulticastAddressOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallMulticastAddressArrayInput is an input type that accepts FirewallMulticastAddressArray and FirewallMulticastAddressArrayOutput values.
 // You can construct a concrete instance of `FirewallMulticastAddressArrayInput` via:
 //
@@ -180,12 +173,6 @@ func (i FirewallMulticastAddressArray) ToFirewallMulticastAddressArrayOutput() F
 
 func (i FirewallMulticastAddressArray) ToFirewallMulticastAddressArrayOutputWithContext(ctx context.Context) FirewallMulticastAddressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddressArrayOutput)
-}
-
-func (i FirewallMulticastAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallMulticastAddress] {
-	return pulumix.Output[[]*FirewallMulticastAddress]{
-		OutputState: i.ToFirewallMulticastAddressArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallMulticastAddressMapInput is an input type that accepts FirewallMulticastAddressMap and FirewallMulticastAddressMapOutput values.
@@ -213,12 +200,6 @@ func (i FirewallMulticastAddressMap) ToFirewallMulticastAddressMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddressMapOutput)
 }
 
-func (i FirewallMulticastAddressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallMulticastAddress] {
-	return pulumix.Output[map[string]*FirewallMulticastAddress]{
-		OutputState: i.ToFirewallMulticastAddressMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallMulticastAddressOutput struct{ *pulumi.OutputState }
 
 func (FirewallMulticastAddressOutput) ElementType() reflect.Type {
@@ -231,12 +212,6 @@ func (o FirewallMulticastAddressOutput) ToFirewallMulticastAddressOutput() Firew
 
 func (o FirewallMulticastAddressOutput) ToFirewallMulticastAddressOutputWithContext(ctx context.Context) FirewallMulticastAddressOutput {
 	return o
-}
-
-func (o FirewallMulticastAddressOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallMulticastAddress] {
-	return pulumix.Output[*FirewallMulticastAddress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallMulticastAddressOutput) AssociatedInterface() pulumi.StringOutput {
@@ -305,12 +280,6 @@ func (o FirewallMulticastAddressArrayOutput) ToFirewallMulticastAddressArrayOutp
 	return o
 }
 
-func (o FirewallMulticastAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallMulticastAddress] {
-	return pulumix.Output[[]*FirewallMulticastAddress]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallMulticastAddressArrayOutput) Index(i pulumi.IntInput) FirewallMulticastAddressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallMulticastAddress {
 		return vs[0].([]*FirewallMulticastAddress)[vs[1].(int)]
@@ -329,12 +298,6 @@ func (o FirewallMulticastAddressMapOutput) ToFirewallMulticastAddressMapOutput()
 
 func (o FirewallMulticastAddressMapOutput) ToFirewallMulticastAddressMapOutputWithContext(ctx context.Context) FirewallMulticastAddressMapOutput {
 	return o
-}
-
-func (o FirewallMulticastAddressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallMulticastAddress] {
-	return pulumix.Output[map[string]*FirewallMulticastAddress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallMulticastAddressMapOutput) MapIndex(k pulumi.StringInput) FirewallMulticastAddressOutput {

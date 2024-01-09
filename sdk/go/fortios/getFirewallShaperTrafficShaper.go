@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallShaperTrafficShaper(ctx *pulumi.Context, args *LookupFirewallShaperTrafficShaperArgs, opts ...pulumi.InvokeOption) (*LookupFirewallShaperTrafficShaperResult, error) {
@@ -90,12 +89,6 @@ func (o LookupFirewallShaperTrafficShaperResultOutput) ToLookupFirewallShaperTra
 
 func (o LookupFirewallShaperTrafficShaperResultOutput) ToLookupFirewallShaperTrafficShaperResultOutputWithContext(ctx context.Context) LookupFirewallShaperTrafficShaperResultOutput {
 	return o
-}
-
-func (o LookupFirewallShaperTrafficShaperResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallShaperTrafficShaperResult] {
-	return pulumix.Output[LookupFirewallShaperTrafficShaperResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFirewallShaperTrafficShaperResultOutput) BandwidthUnit() pulumi.StringOutput {

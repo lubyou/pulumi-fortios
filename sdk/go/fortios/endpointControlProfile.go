@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlProfile struct {
@@ -156,12 +155,6 @@ func (i *EndpointControlProfile) ToEndpointControlProfileOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfileOutput)
 }
 
-func (i *EndpointControlProfile) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlProfile] {
-	return pulumix.Output[*EndpointControlProfile]{
-		OutputState: i.ToEndpointControlProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EndpointControlProfileArrayInput is an input type that accepts EndpointControlProfileArray and EndpointControlProfileArrayOutput values.
 // You can construct a concrete instance of `EndpointControlProfileArrayInput` via:
 //
@@ -185,12 +178,6 @@ func (i EndpointControlProfileArray) ToEndpointControlProfileArrayOutput() Endpo
 
 func (i EndpointControlProfileArray) ToEndpointControlProfileArrayOutputWithContext(ctx context.Context) EndpointControlProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfileArrayOutput)
-}
-
-func (i EndpointControlProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlProfile] {
-	return pulumix.Output[[]*EndpointControlProfile]{
-		OutputState: i.ToEndpointControlProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EndpointControlProfileMapInput is an input type that accepts EndpointControlProfileMap and EndpointControlProfileMapOutput values.
@@ -218,12 +205,6 @@ func (i EndpointControlProfileMap) ToEndpointControlProfileMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfileMapOutput)
 }
 
-func (i EndpointControlProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlProfile] {
-	return pulumix.Output[map[string]*EndpointControlProfile]{
-		OutputState: i.ToEndpointControlProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EndpointControlProfileOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlProfileOutput) ElementType() reflect.Type {
@@ -236,12 +217,6 @@ func (o EndpointControlProfileOutput) ToEndpointControlProfileOutput() EndpointC
 
 func (o EndpointControlProfileOutput) ToEndpointControlProfileOutputWithContext(ctx context.Context) EndpointControlProfileOutput {
 	return o
-}
-
-func (o EndpointControlProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlProfile] {
-	return pulumix.Output[*EndpointControlProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointControlProfileOutput) Description() pulumi.StringPtrOutput {
@@ -320,12 +295,6 @@ func (o EndpointControlProfileArrayOutput) ToEndpointControlProfileArrayOutputWi
 	return o
 }
 
-func (o EndpointControlProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlProfile] {
-	return pulumix.Output[[]*EndpointControlProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EndpointControlProfileArrayOutput) Index(i pulumi.IntInput) EndpointControlProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlProfile {
 		return vs[0].([]*EndpointControlProfile)[vs[1].(int)]
@@ -344,12 +313,6 @@ func (o EndpointControlProfileMapOutput) ToEndpointControlProfileMapOutput() End
 
 func (o EndpointControlProfileMapOutput) ToEndpointControlProfileMapOutputWithContext(ctx context.Context) EndpointControlProfileMapOutput {
 	return o
-}
-
-func (o EndpointControlProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlProfile] {
-	return pulumix.Output[map[string]*EndpointControlProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointControlProfileMapOutput) MapIndex(k pulumi.StringInput) EndpointControlProfileOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemSmsServerList(ctx *pulumi.Context, args *GetSystemSmsServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemSmsServerListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemSmsServerListResultOutput) ToGetSystemSmsServerListResultOutput
 
 func (o GetSystemSmsServerListResultOutput) ToGetSystemSmsServerListResultOutputWithContext(ctx context.Context) GetSystemSmsServerListResultOutput {
 	return o
-}
-
-func (o GetSystemSmsServerListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemSmsServerListResult] {
-	return pulumix.Output[GetSystemSmsServerListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemSmsServerListResultOutput) Filter() pulumi.StringPtrOutput {

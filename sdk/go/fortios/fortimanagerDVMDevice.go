@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerDVMDevice struct {
@@ -121,12 +120,6 @@ func (i *FortimanagerDVMDevice) ToFortimanagerDVMDeviceOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMDeviceOutput)
 }
 
-func (i *FortimanagerDVMDevice) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMDevice] {
-	return pulumix.Output[*FortimanagerDVMDevice]{
-		OutputState: i.ToFortimanagerDVMDeviceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerDVMDeviceArrayInput is an input type that accepts FortimanagerDVMDeviceArray and FortimanagerDVMDeviceArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMDeviceArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i FortimanagerDVMDeviceArray) ToFortimanagerDVMDeviceArrayOutput() Fortima
 
 func (i FortimanagerDVMDeviceArray) ToFortimanagerDVMDeviceArrayOutputWithContext(ctx context.Context) FortimanagerDVMDeviceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMDeviceArrayOutput)
-}
-
-func (i FortimanagerDVMDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMDevice] {
-	return pulumix.Output[[]*FortimanagerDVMDevice]{
-		OutputState: i.ToFortimanagerDVMDeviceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerDVMDeviceMapInput is an input type that accepts FortimanagerDVMDeviceMap and FortimanagerDVMDeviceMapOutput values.
@@ -183,12 +170,6 @@ func (i FortimanagerDVMDeviceMap) ToFortimanagerDVMDeviceMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMDeviceMapOutput)
 }
 
-func (i FortimanagerDVMDeviceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMDevice] {
-	return pulumix.Output[map[string]*FortimanagerDVMDevice]{
-		OutputState: i.ToFortimanagerDVMDeviceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerDVMDeviceOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMDeviceOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o FortimanagerDVMDeviceOutput) ToFortimanagerDVMDeviceOutput() Fortimanage
 
 func (o FortimanagerDVMDeviceOutput) ToFortimanagerDVMDeviceOutputWithContext(ctx context.Context) FortimanagerDVMDeviceOutput {
 	return o
-}
-
-func (o FortimanagerDVMDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMDevice] {
-	return pulumix.Output[*FortimanagerDVMDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerDVMDeviceOutput) Adom() pulumi.StringPtrOutput {
@@ -243,12 +218,6 @@ func (o FortimanagerDVMDeviceArrayOutput) ToFortimanagerDVMDeviceArrayOutputWith
 	return o
 }
 
-func (o FortimanagerDVMDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMDevice] {
-	return pulumix.Output[[]*FortimanagerDVMDevice]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerDVMDeviceArrayOutput) Index(i pulumi.IntInput) FortimanagerDVMDeviceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerDVMDevice {
 		return vs[0].([]*FortimanagerDVMDevice)[vs[1].(int)]
@@ -267,12 +236,6 @@ func (o FortimanagerDVMDeviceMapOutput) ToFortimanagerDVMDeviceMapOutput() Forti
 
 func (o FortimanagerDVMDeviceMapOutput) ToFortimanagerDVMDeviceMapOutputWithContext(ctx context.Context) FortimanagerDVMDeviceMapOutput {
 	return o
-}
-
-func (o FortimanagerDVMDeviceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMDevice] {
-	return pulumix.Output[map[string]*FortimanagerDVMDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerDVMDeviceMapOutput) MapIndex(k pulumi.StringInput) FortimanagerDVMDeviceOutput {

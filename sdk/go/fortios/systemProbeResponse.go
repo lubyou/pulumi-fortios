@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemProbeResponse struct {
@@ -133,12 +132,6 @@ func (i *SystemProbeResponse) ToSystemProbeResponseOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponseOutput)
 }
 
-func (i *SystemProbeResponse) ToOutput(ctx context.Context) pulumix.Output[*SystemProbeResponse] {
-	return pulumix.Output[*SystemProbeResponse]{
-		OutputState: i.ToSystemProbeResponseOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemProbeResponseArrayInput is an input type that accepts SystemProbeResponseArray and SystemProbeResponseArrayOutput values.
 // You can construct a concrete instance of `SystemProbeResponseArrayInput` via:
 //
@@ -162,12 +155,6 @@ func (i SystemProbeResponseArray) ToSystemProbeResponseArrayOutput() SystemProbe
 
 func (i SystemProbeResponseArray) ToSystemProbeResponseArrayOutputWithContext(ctx context.Context) SystemProbeResponseArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponseArrayOutput)
-}
-
-func (i SystemProbeResponseArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemProbeResponse] {
-	return pulumix.Output[[]*SystemProbeResponse]{
-		OutputState: i.ToSystemProbeResponseArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemProbeResponseMapInput is an input type that accepts SystemProbeResponseMap and SystemProbeResponseMapOutput values.
@@ -195,12 +182,6 @@ func (i SystemProbeResponseMap) ToSystemProbeResponseMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponseMapOutput)
 }
 
-func (i SystemProbeResponseMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemProbeResponse] {
-	return pulumix.Output[map[string]*SystemProbeResponse]{
-		OutputState: i.ToSystemProbeResponseMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemProbeResponseOutput struct{ *pulumi.OutputState }
 
 func (SystemProbeResponseOutput) ElementType() reflect.Type {
@@ -213,12 +194,6 @@ func (o SystemProbeResponseOutput) ToSystemProbeResponseOutput() SystemProbeResp
 
 func (o SystemProbeResponseOutput) ToSystemProbeResponseOutputWithContext(ctx context.Context) SystemProbeResponseOutput {
 	return o
-}
-
-func (o SystemProbeResponseOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemProbeResponse] {
-	return pulumix.Output[*SystemProbeResponse]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemProbeResponseOutput) HttpProbeValue() pulumi.StringOutput {
@@ -267,12 +242,6 @@ func (o SystemProbeResponseArrayOutput) ToSystemProbeResponseArrayOutputWithCont
 	return o
 }
 
-func (o SystemProbeResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemProbeResponse] {
-	return pulumix.Output[[]*SystemProbeResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemProbeResponseArrayOutput) Index(i pulumi.IntInput) SystemProbeResponseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemProbeResponse {
 		return vs[0].([]*SystemProbeResponse)[vs[1].(int)]
@@ -291,12 +260,6 @@ func (o SystemProbeResponseMapOutput) ToSystemProbeResponseMapOutput() SystemPro
 
 func (o SystemProbeResponseMapOutput) ToSystemProbeResponseMapOutputWithContext(ctx context.Context) SystemProbeResponseMapOutput {
 	return o
-}
-
-func (o SystemProbeResponseMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemProbeResponse] {
-	return pulumix.Output[map[string]*SystemProbeResponse]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemProbeResponseMapOutput) MapIndex(k pulumi.StringInput) SystemProbeResponseOutput {

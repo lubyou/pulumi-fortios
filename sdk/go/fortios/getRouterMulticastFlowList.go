@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetRouterMulticastFlowList(ctx *pulumi.Context, args *GetRouterMulticastFlowListArgs, opts ...pulumi.InvokeOption) (*GetRouterMulticastFlowListResult, error) {
@@ -73,12 +72,6 @@ func (o GetRouterMulticastFlowListResultOutput) ToGetRouterMulticastFlowListResu
 
 func (o GetRouterMulticastFlowListResultOutput) ToGetRouterMulticastFlowListResultOutputWithContext(ctx context.Context) GetRouterMulticastFlowListResultOutput {
 	return o
-}
-
-func (o GetRouterMulticastFlowListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRouterMulticastFlowListResult] {
-	return pulumix.Output[GetRouterMulticastFlowListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRouterMulticastFlowListResultOutput) Filter() pulumi.StringPtrOutput {

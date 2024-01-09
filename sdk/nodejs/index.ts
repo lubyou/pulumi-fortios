@@ -2180,6 +2180,11 @@ export const getUserSamlList: typeof import("./getUserSamlList").getUserSamlList
 export const getUserSamlListOutput: typeof import("./getUserSamlList").getUserSamlListOutput = null as any;
 utilities.lazyLoad(exports, ["getUserSamlList","getUserSamlListOutput"], () => require("./getUserSamlList"));
 
+export { GetVpnSslSettingsArgs, GetVpnSslSettingsResult, GetVpnSslSettingsOutputArgs } from "./getVpnSslSettings";
+export const getVpnSslSettings: typeof import("./getVpnSslSettings").getVpnSslSettings = null as any;
+export const getVpnSslSettingsOutput: typeof import("./getVpnSslSettings").getVpnSslSettingsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpnSslSettings","getVpnSslSettingsOutput"], () => require("./getVpnSslSettings"));
+
 export { IcapProfileArgs, IcapProfileState } from "./icapProfile";
 export type IcapProfile = import("./icapProfile").IcapProfile;
 export const IcapProfile: typeof import("./icapProfile").IcapProfile = null as any;

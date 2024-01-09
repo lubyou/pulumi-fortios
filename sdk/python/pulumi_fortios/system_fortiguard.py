@@ -38,6 +38,7 @@ class SystemFortiguardArgs:
                  fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
@@ -126,6 +127,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
         if fortiguard_anycast_source is not None:
             pulumi.set(__self__, "fortiguard_anycast_source", fortiguard_anycast_source)
+        if gui_prompt_auto_upgrade is not None:
+            pulumi.set(__self__, "gui_prompt_auto_upgrade", gui_prompt_auto_upgrade)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -422,6 +425,15 @@ class SystemFortiguardArgs:
     @fortiguard_anycast_source.setter
     def fortiguard_anycast_source(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortiguard_anycast_source", value)
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
+
+    @gui_prompt_auto_upgrade.setter
+    def gui_prompt_auto_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_prompt_auto_upgrade", value)
 
     @property
     @pulumi.getter
@@ -809,6 +821,7 @@ class _SystemFortiguardState:
                  fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
@@ -898,6 +911,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
         if fortiguard_anycast_source is not None:
             pulumi.set(__self__, "fortiguard_anycast_source", fortiguard_anycast_source)
+        if gui_prompt_auto_upgrade is not None:
+            pulumi.set(__self__, "gui_prompt_auto_upgrade", gui_prompt_auto_upgrade)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -1180,6 +1195,15 @@ class _SystemFortiguardState:
     @fortiguard_anycast_source.setter
     def fortiguard_anycast_source(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortiguard_anycast_source", value)
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
+
+    @gui_prompt_auto_upgrade.setter
+    def gui_prompt_auto_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_prompt_auto_upgrade", value)
 
     @property
     @pulumi.getter
@@ -1587,6 +1611,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
@@ -1680,6 +1705,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
@@ -1755,6 +1781,7 @@ class SystemFortiguard(pulumi.CustomResource):
             __props__.__dict__["fds_license_expiring_days"] = fds_license_expiring_days
             __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
             __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
+            __props__.__dict__["gui_prompt_auto_upgrade"] = gui_prompt_auto_upgrade
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["load_balance_servers"] = load_balance_servers
@@ -1835,6 +1862,7 @@ class SystemFortiguard(pulumi.CustomResource):
             fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
             fortiguard_anycast: Optional[pulumi.Input[str]] = None,
             fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+            gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             load_balance_servers: Optional[pulumi.Input[int]] = None,
@@ -1911,6 +1939,7 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["fds_license_expiring_days"] = fds_license_expiring_days
         __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
         __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
+        __props__.__dict__["gui_prompt_auto_upgrade"] = gui_prompt_auto_upgrade
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["load_balance_servers"] = load_balance_servers
@@ -2064,6 +2093,11 @@ class SystemFortiguard(pulumi.CustomResource):
     @pulumi.getter(name="fortiguardAnycastSource")
     def fortiguard_anycast_source(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fortiguard_anycast_source")
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
 
     @property
     @pulumi.getter

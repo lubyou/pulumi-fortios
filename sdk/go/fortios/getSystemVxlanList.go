@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemVxlanList(ctx *pulumi.Context, args *GetSystemVxlanListArgs, opts ...pulumi.InvokeOption) (*GetSystemVxlanListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemVxlanListResultOutput) ToGetSystemVxlanListResultOutput() GetSy
 
 func (o GetSystemVxlanListResultOutput) ToGetSystemVxlanListResultOutputWithContext(ctx context.Context) GetSystemVxlanListResultOutput {
 	return o
-}
-
-func (o GetSystemVxlanListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemVxlanListResult] {
-	return pulumix.Output[GetSystemVxlanListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemVxlanListResultOutput) Filter() pulumi.StringPtrOutput {

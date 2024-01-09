@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerSnmp struct {
@@ -131,12 +130,6 @@ func (i *WirelessControllerSnmp) ToWirelessControllerSnmpOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpOutput)
 }
 
-func (i *WirelessControllerSnmp) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerSnmp] {
-	return pulumix.Output[*WirelessControllerSnmp]{
-		OutputState: i.ToWirelessControllerSnmpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerSnmpArrayInput is an input type that accepts WirelessControllerSnmpArray and WirelessControllerSnmpArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSnmpArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i WirelessControllerSnmpArray) ToWirelessControllerSnmpArrayOutput() Wirel
 
 func (i WirelessControllerSnmpArray) ToWirelessControllerSnmpArrayOutputWithContext(ctx context.Context) WirelessControllerSnmpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpArrayOutput)
-}
-
-func (i WirelessControllerSnmpArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerSnmp] {
-	return pulumix.Output[[]*WirelessControllerSnmp]{
-		OutputState: i.ToWirelessControllerSnmpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerSnmpMapInput is an input type that accepts WirelessControllerSnmpMap and WirelessControllerSnmpMapOutput values.
@@ -193,12 +180,6 @@ func (i WirelessControllerSnmpMap) ToWirelessControllerSnmpMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpMapOutput)
 }
 
-func (i WirelessControllerSnmpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerSnmp] {
-	return pulumix.Output[map[string]*WirelessControllerSnmp]{
-		OutputState: i.ToWirelessControllerSnmpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerSnmpOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSnmpOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o WirelessControllerSnmpOutput) ToWirelessControllerSnmpOutput() WirelessC
 
 func (o WirelessControllerSnmpOutput) ToWirelessControllerSnmpOutputWithContext(ctx context.Context) WirelessControllerSnmpOutput {
 	return o
-}
-
-func (o WirelessControllerSnmpOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerSnmp] {
-	return pulumix.Output[*WirelessControllerSnmp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerSnmpOutput) Communities() WirelessControllerSnmpCommunityArrayOutput {
@@ -269,12 +244,6 @@ func (o WirelessControllerSnmpArrayOutput) ToWirelessControllerSnmpArrayOutputWi
 	return o
 }
 
-func (o WirelessControllerSnmpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerSnmp] {
-	return pulumix.Output[[]*WirelessControllerSnmp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerSnmpArrayOutput) Index(i pulumi.IntInput) WirelessControllerSnmpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerSnmp {
 		return vs[0].([]*WirelessControllerSnmp)[vs[1].(int)]
@@ -293,12 +262,6 @@ func (o WirelessControllerSnmpMapOutput) ToWirelessControllerSnmpMapOutput() Wir
 
 func (o WirelessControllerSnmpMapOutput) ToWirelessControllerSnmpMapOutputWithContext(ctx context.Context) WirelessControllerSnmpMapOutput {
 	return o
-}
-
-func (o WirelessControllerSnmpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerSnmp] {
-	return pulumix.Output[map[string]*WirelessControllerSnmp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerSnmpMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerSnmpOutput {

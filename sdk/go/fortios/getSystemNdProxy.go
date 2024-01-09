@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemNdProxy(ctx *pulumi.Context, args *LookupSystemNdProxyArgs, opts ...pulumi.InvokeOption) (*LookupSystemNdProxyResult, error) {
@@ -71,12 +70,6 @@ func (o LookupSystemNdProxyResultOutput) ToLookupSystemNdProxyResultOutput() Loo
 
 func (o LookupSystemNdProxyResultOutput) ToLookupSystemNdProxyResultOutputWithContext(ctx context.Context) LookupSystemNdProxyResultOutput {
 	return o
-}
-
-func (o LookupSystemNdProxyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemNdProxyResult] {
-	return pulumix.Output[LookupSystemNdProxyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

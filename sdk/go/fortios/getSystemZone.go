@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemZone(ctx *pulumi.Context, args *LookupSystemZoneArgs, opts ...pulumi.InvokeOption) (*LookupSystemZoneResult, error) {
@@ -76,12 +75,6 @@ func (o LookupSystemZoneResultOutput) ToLookupSystemZoneResultOutput() LookupSys
 
 func (o LookupSystemZoneResultOutput) ToLookupSystemZoneResultOutputWithContext(ctx context.Context) LookupSystemZoneResultOutput {
 	return o
-}
-
-func (o LookupSystemZoneResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemZoneResult] {
-	return pulumix.Output[LookupSystemZoneResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemZoneResultOutput) Description() pulumi.StringOutput {

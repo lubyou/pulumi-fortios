@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogNullDeviceSetting struct {
@@ -100,12 +99,6 @@ func (i *LogNullDeviceSetting) ToLogNullDeviceSettingOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingOutput)
 }
 
-func (i *LogNullDeviceSetting) ToOutput(ctx context.Context) pulumix.Output[*LogNullDeviceSetting] {
-	return pulumix.Output[*LogNullDeviceSetting]{
-		OutputState: i.ToLogNullDeviceSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogNullDeviceSettingArrayInput is an input type that accepts LogNullDeviceSettingArray and LogNullDeviceSettingArrayOutput values.
 // You can construct a concrete instance of `LogNullDeviceSettingArrayInput` via:
 //
@@ -129,12 +122,6 @@ func (i LogNullDeviceSettingArray) ToLogNullDeviceSettingArrayOutput() LogNullDe
 
 func (i LogNullDeviceSettingArray) ToLogNullDeviceSettingArrayOutputWithContext(ctx context.Context) LogNullDeviceSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingArrayOutput)
-}
-
-func (i LogNullDeviceSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogNullDeviceSetting] {
-	return pulumix.Output[[]*LogNullDeviceSetting]{
-		OutputState: i.ToLogNullDeviceSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogNullDeviceSettingMapInput is an input type that accepts LogNullDeviceSettingMap and LogNullDeviceSettingMapOutput values.
@@ -162,12 +149,6 @@ func (i LogNullDeviceSettingMap) ToLogNullDeviceSettingMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingMapOutput)
 }
 
-func (i LogNullDeviceSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogNullDeviceSetting] {
-	return pulumix.Output[map[string]*LogNullDeviceSetting]{
-		OutputState: i.ToLogNullDeviceSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogNullDeviceSettingOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceSettingOutput) ElementType() reflect.Type {
@@ -180,12 +161,6 @@ func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingOutput() LogNullDevice
 
 func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingOutputWithContext(ctx context.Context) LogNullDeviceSettingOutput {
 	return o
-}
-
-func (o LogNullDeviceSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogNullDeviceSetting] {
-	return pulumix.Output[*LogNullDeviceSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogNullDeviceSettingOutput) Status() pulumi.StringOutput {
@@ -210,12 +185,6 @@ func (o LogNullDeviceSettingArrayOutput) ToLogNullDeviceSettingArrayOutputWithCo
 	return o
 }
 
-func (o LogNullDeviceSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogNullDeviceSetting] {
-	return pulumix.Output[[]*LogNullDeviceSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogNullDeviceSettingArrayOutput) Index(i pulumi.IntInput) LogNullDeviceSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogNullDeviceSetting {
 		return vs[0].([]*LogNullDeviceSetting)[vs[1].(int)]
@@ -234,12 +203,6 @@ func (o LogNullDeviceSettingMapOutput) ToLogNullDeviceSettingMapOutput() LogNull
 
 func (o LogNullDeviceSettingMapOutput) ToLogNullDeviceSettingMapOutputWithContext(ctx context.Context) LogNullDeviceSettingMapOutput {
 	return o
-}
-
-func (o LogNullDeviceSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogNullDeviceSetting] {
-	return pulumix.Output[map[string]*LogNullDeviceSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogNullDeviceSettingMapOutput) MapIndex(k pulumi.StringInput) LogNullDeviceSettingOutput {

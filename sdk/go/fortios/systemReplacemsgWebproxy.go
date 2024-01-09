@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgWebproxy struct {
@@ -115,12 +114,6 @@ func (i *SystemReplacemsgWebproxy) ToSystemReplacemsgWebproxyOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyOutput)
 }
 
-func (i *SystemReplacemsgWebproxy) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgWebproxy] {
-	return pulumix.Output[*SystemReplacemsgWebproxy]{
-		OutputState: i.ToSystemReplacemsgWebproxyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemReplacemsgWebproxyArrayInput is an input type that accepts SystemReplacemsgWebproxyArray and SystemReplacemsgWebproxyArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgWebproxyArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i SystemReplacemsgWebproxyArray) ToSystemReplacemsgWebproxyArrayOutput() S
 
 func (i SystemReplacemsgWebproxyArray) ToSystemReplacemsgWebproxyArrayOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyArrayOutput)
-}
-
-func (i SystemReplacemsgWebproxyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgWebproxy] {
-	return pulumix.Output[[]*SystemReplacemsgWebproxy]{
-		OutputState: i.ToSystemReplacemsgWebproxyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemReplacemsgWebproxyMapInput is an input type that accepts SystemReplacemsgWebproxyMap and SystemReplacemsgWebproxyMapOutput values.
@@ -177,12 +164,6 @@ func (i SystemReplacemsgWebproxyMap) ToSystemReplacemsgWebproxyMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyMapOutput)
 }
 
-func (i SystemReplacemsgWebproxyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgWebproxy] {
-	return pulumix.Output[map[string]*SystemReplacemsgWebproxy]{
-		OutputState: i.ToSystemReplacemsgWebproxyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemReplacemsgWebproxyOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgWebproxyOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o SystemReplacemsgWebproxyOutput) ToSystemReplacemsgWebproxyOutput() Syste
 
 func (o SystemReplacemsgWebproxyOutput) ToSystemReplacemsgWebproxyOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyOutput {
 	return o
-}
-
-func (o SystemReplacemsgWebproxyOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgWebproxy] {
-	return pulumix.Output[*SystemReplacemsgWebproxy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgWebproxyOutput) Buffer() pulumi.StringPtrOutput {
@@ -237,12 +212,6 @@ func (o SystemReplacemsgWebproxyArrayOutput) ToSystemReplacemsgWebproxyArrayOutp
 	return o
 }
 
-func (o SystemReplacemsgWebproxyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgWebproxy] {
-	return pulumix.Output[[]*SystemReplacemsgWebproxy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemReplacemsgWebproxyArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgWebproxyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgWebproxy {
 		return vs[0].([]*SystemReplacemsgWebproxy)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o SystemReplacemsgWebproxyMapOutput) ToSystemReplacemsgWebproxyMapOutput()
 
 func (o SystemReplacemsgWebproxyMapOutput) ToSystemReplacemsgWebproxyMapOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyMapOutput {
 	return o
-}
-
-func (o SystemReplacemsgWebproxyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgWebproxy] {
-	return pulumix.Output[map[string]*SystemReplacemsgWebproxy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgWebproxyMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgWebproxyOutput {

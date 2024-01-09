@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnIpsecFec struct {
@@ -111,12 +110,6 @@ func (i *VpnIpsecFec) ToVpnIpsecFecOutputWithContext(ctx context.Context) VpnIps
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecOutput)
 }
 
-func (i *VpnIpsecFec) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecFec] {
-	return pulumix.Output[*VpnIpsecFec]{
-		OutputState: i.ToVpnIpsecFecOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnIpsecFecArrayInput is an input type that accepts VpnIpsecFecArray and VpnIpsecFecArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecFecArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i VpnIpsecFecArray) ToVpnIpsecFecArrayOutput() VpnIpsecFecArrayOutput {
 
 func (i VpnIpsecFecArray) ToVpnIpsecFecArrayOutputWithContext(ctx context.Context) VpnIpsecFecArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecArrayOutput)
-}
-
-func (i VpnIpsecFecArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecFec] {
-	return pulumix.Output[[]*VpnIpsecFec]{
-		OutputState: i.ToVpnIpsecFecArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnIpsecFecMapInput is an input type that accepts VpnIpsecFecMap and VpnIpsecFecMapOutput values.
@@ -173,12 +160,6 @@ func (i VpnIpsecFecMap) ToVpnIpsecFecMapOutputWithContext(ctx context.Context) V
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecMapOutput)
 }
 
-func (i VpnIpsecFecMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecFec] {
-	return pulumix.Output[map[string]*VpnIpsecFec]{
-		OutputState: i.ToVpnIpsecFecMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnIpsecFecOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecFecOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o VpnIpsecFecOutput) ToVpnIpsecFecOutput() VpnIpsecFecOutput {
 
 func (o VpnIpsecFecOutput) ToVpnIpsecFecOutputWithContext(ctx context.Context) VpnIpsecFecOutput {
 	return o
-}
-
-func (o VpnIpsecFecOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecFec] {
-	return pulumix.Output[*VpnIpsecFec]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnIpsecFecOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o VpnIpsecFecArrayOutput) ToVpnIpsecFecArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o VpnIpsecFecArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecFec] {
-	return pulumix.Output[[]*VpnIpsecFec]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnIpsecFecArrayOutput) Index(i pulumi.IntInput) VpnIpsecFecOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecFec {
 		return vs[0].([]*VpnIpsecFec)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o VpnIpsecFecMapOutput) ToVpnIpsecFecMapOutput() VpnIpsecFecMapOutput {
 
 func (o VpnIpsecFecMapOutput) ToVpnIpsecFecMapOutputWithContext(ctx context.Context) VpnIpsecFecMapOutput {
 	return o
-}
-
-func (o VpnIpsecFecMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecFec] {
-	return pulumix.Output[map[string]*VpnIpsecFec]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnIpsecFecMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecFecOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CertificateCrl struct {
@@ -168,12 +167,6 @@ func (i *CertificateCrl) ToCertificateCrlOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlOutput)
 }
 
-func (i *CertificateCrl) ToOutput(ctx context.Context) pulumix.Output[*CertificateCrl] {
-	return pulumix.Output[*CertificateCrl]{
-		OutputState: i.ToCertificateCrlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CertificateCrlArrayInput is an input type that accepts CertificateCrlArray and CertificateCrlArrayOutput values.
 // You can construct a concrete instance of `CertificateCrlArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i CertificateCrlArray) ToCertificateCrlArrayOutput() CertificateCrlArrayOu
 
 func (i CertificateCrlArray) ToCertificateCrlArrayOutputWithContext(ctx context.Context) CertificateCrlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlArrayOutput)
-}
-
-func (i CertificateCrlArray) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateCrl] {
-	return pulumix.Output[[]*CertificateCrl]{
-		OutputState: i.ToCertificateCrlArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CertificateCrlMapInput is an input type that accepts CertificateCrlMap and CertificateCrlMapOutput values.
@@ -230,12 +217,6 @@ func (i CertificateCrlMap) ToCertificateCrlMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlMapOutput)
 }
 
-func (i CertificateCrlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateCrl] {
-	return pulumix.Output[map[string]*CertificateCrl]{
-		OutputState: i.ToCertificateCrlMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CertificateCrlOutput struct{ *pulumi.OutputState }
 
 func (CertificateCrlOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o CertificateCrlOutput) ToCertificateCrlOutput() CertificateCrlOutput {
 
 func (o CertificateCrlOutput) ToCertificateCrlOutputWithContext(ctx context.Context) CertificateCrlOutput {
 	return o
-}
-
-func (o CertificateCrlOutput) ToOutput(ctx context.Context) pulumix.Output[*CertificateCrl] {
-	return pulumix.Output[*CertificateCrl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CertificateCrlOutput) Crl() pulumi.StringOutput {
@@ -330,12 +305,6 @@ func (o CertificateCrlArrayOutput) ToCertificateCrlArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o CertificateCrlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateCrl] {
-	return pulumix.Output[[]*CertificateCrl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CertificateCrlArrayOutput) Index(i pulumi.IntInput) CertificateCrlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateCrl {
 		return vs[0].([]*CertificateCrl)[vs[1].(int)]
@@ -354,12 +323,6 @@ func (o CertificateCrlMapOutput) ToCertificateCrlMapOutput() CertificateCrlMapOu
 
 func (o CertificateCrlMapOutput) ToCertificateCrlMapOutputWithContext(ctx context.Context) CertificateCrlMapOutput {
 	return o
-}
-
-func (o CertificateCrlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateCrl] {
-	return pulumix.Output[map[string]*CertificateCrl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CertificateCrlMapOutput) MapIndex(k pulumi.StringInput) CertificateCrlOutput {

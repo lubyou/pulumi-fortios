@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSmsServer struct {
@@ -105,12 +104,6 @@ func (i *SystemSmsServer) ToSystemSmsServerOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerOutput)
 }
 
-func (i *SystemSmsServer) ToOutput(ctx context.Context) pulumix.Output[*SystemSmsServer] {
-	return pulumix.Output[*SystemSmsServer]{
-		OutputState: i.ToSystemSmsServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSmsServerArrayInput is an input type that accepts SystemSmsServerArray and SystemSmsServerArrayOutput values.
 // You can construct a concrete instance of `SystemSmsServerArrayInput` via:
 //
@@ -134,12 +127,6 @@ func (i SystemSmsServerArray) ToSystemSmsServerArrayOutput() SystemSmsServerArra
 
 func (i SystemSmsServerArray) ToSystemSmsServerArrayOutputWithContext(ctx context.Context) SystemSmsServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerArrayOutput)
-}
-
-func (i SystemSmsServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSmsServer] {
-	return pulumix.Output[[]*SystemSmsServer]{
-		OutputState: i.ToSystemSmsServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSmsServerMapInput is an input type that accepts SystemSmsServerMap and SystemSmsServerMapOutput values.
@@ -167,12 +154,6 @@ func (i SystemSmsServerMap) ToSystemSmsServerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerMapOutput)
 }
 
-func (i SystemSmsServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSmsServer] {
-	return pulumix.Output[map[string]*SystemSmsServer]{
-		OutputState: i.ToSystemSmsServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSmsServerOutput struct{ *pulumi.OutputState }
 
 func (SystemSmsServerOutput) ElementType() reflect.Type {
@@ -185,12 +166,6 @@ func (o SystemSmsServerOutput) ToSystemSmsServerOutput() SystemSmsServerOutput {
 
 func (o SystemSmsServerOutput) ToSystemSmsServerOutputWithContext(ctx context.Context) SystemSmsServerOutput {
 	return o
-}
-
-func (o SystemSmsServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSmsServer] {
-	return pulumix.Output[*SystemSmsServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSmsServerOutput) MailServer() pulumi.StringOutput {
@@ -219,12 +194,6 @@ func (o SystemSmsServerArrayOutput) ToSystemSmsServerArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemSmsServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSmsServer] {
-	return pulumix.Output[[]*SystemSmsServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSmsServerArrayOutput) Index(i pulumi.IntInput) SystemSmsServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSmsServer {
 		return vs[0].([]*SystemSmsServer)[vs[1].(int)]
@@ -243,12 +212,6 @@ func (o SystemSmsServerMapOutput) ToSystemSmsServerMapOutput() SystemSmsServerMa
 
 func (o SystemSmsServerMapOutput) ToSystemSmsServerMapOutputWithContext(ctx context.Context) SystemSmsServerMapOutput {
 	return o
-}
-
-func (o SystemSmsServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSmsServer] {
-	return pulumix.Output[map[string]*SystemSmsServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSmsServerMapOutput) MapIndex(k pulumi.StringInput) SystemSmsServerOutput {

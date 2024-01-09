@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzer2OverrideFilter struct {
@@ -186,12 +185,6 @@ func (i *LogFortianalyzer2OverrideFilter) ToLogFortianalyzer2OverrideFilterOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2OverrideFilterOutput)
 }
 
-func (i *LogFortianalyzer2OverrideFilter) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzer2OverrideFilter] {
-	return pulumix.Output[*LogFortianalyzer2OverrideFilter]{
-		OutputState: i.ToLogFortianalyzer2OverrideFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortianalyzer2OverrideFilterArrayInput is an input type that accepts LogFortianalyzer2OverrideFilterArray and LogFortianalyzer2OverrideFilterArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzer2OverrideFilterArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i LogFortianalyzer2OverrideFilterArray) ToLogFortianalyzer2OverrideFilterA
 
 func (i LogFortianalyzer2OverrideFilterArray) ToLogFortianalyzer2OverrideFilterArrayOutputWithContext(ctx context.Context) LogFortianalyzer2OverrideFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2OverrideFilterArrayOutput)
-}
-
-func (i LogFortianalyzer2OverrideFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzer2OverrideFilter] {
-	return pulumix.Output[[]*LogFortianalyzer2OverrideFilter]{
-		OutputState: i.ToLogFortianalyzer2OverrideFilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortianalyzer2OverrideFilterMapInput is an input type that accepts LogFortianalyzer2OverrideFilterMap and LogFortianalyzer2OverrideFilterMapOutput values.
@@ -248,12 +235,6 @@ func (i LogFortianalyzer2OverrideFilterMap) ToLogFortianalyzer2OverrideFilterMap
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2OverrideFilterMapOutput)
 }
 
-func (i LogFortianalyzer2OverrideFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzer2OverrideFilter] {
-	return pulumix.Output[map[string]*LogFortianalyzer2OverrideFilter]{
-		OutputState: i.ToLogFortianalyzer2OverrideFilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortianalyzer2OverrideFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzer2OverrideFilterOutput) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o LogFortianalyzer2OverrideFilterOutput) ToLogFortianalyzer2OverrideFilter
 
 func (o LogFortianalyzer2OverrideFilterOutput) ToLogFortianalyzer2OverrideFilterOutputWithContext(ctx context.Context) LogFortianalyzer2OverrideFilterOutput {
 	return o
-}
-
-func (o LogFortianalyzer2OverrideFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzer2OverrideFilter] {
-	return pulumix.Output[*LogFortianalyzer2OverrideFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzer2OverrideFilterOutput) Anomaly() pulumi.StringOutput {
@@ -370,12 +345,6 @@ func (o LogFortianalyzer2OverrideFilterArrayOutput) ToLogFortianalyzer2OverrideF
 	return o
 }
 
-func (o LogFortianalyzer2OverrideFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzer2OverrideFilter] {
-	return pulumix.Output[[]*LogFortianalyzer2OverrideFilter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortianalyzer2OverrideFilterArrayOutput) Index(i pulumi.IntInput) LogFortianalyzer2OverrideFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzer2OverrideFilter {
 		return vs[0].([]*LogFortianalyzer2OverrideFilter)[vs[1].(int)]
@@ -394,12 +363,6 @@ func (o LogFortianalyzer2OverrideFilterMapOutput) ToLogFortianalyzer2OverrideFil
 
 func (o LogFortianalyzer2OverrideFilterMapOutput) ToLogFortianalyzer2OverrideFilterMapOutputWithContext(ctx context.Context) LogFortianalyzer2OverrideFilterMapOutput {
 	return o
-}
-
-func (o LogFortianalyzer2OverrideFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzer2OverrideFilter] {
-	return pulumix.Output[map[string]*LogFortianalyzer2OverrideFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzer2OverrideFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzer2OverrideFilterOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemCentralManagement(ctx *pulumi.Context, args *LookupSystemCentralManagementArgs, opts ...pulumi.InvokeOption) (*LookupSystemCentralManagementResult, error) {
@@ -91,12 +90,6 @@ func (o LookupSystemCentralManagementResultOutput) ToLookupSystemCentralManageme
 
 func (o LookupSystemCentralManagementResultOutput) ToLookupSystemCentralManagementResultOutputWithContext(ctx context.Context) LookupSystemCentralManagementResultOutput {
 	return o
-}
-
-func (o LookupSystemCentralManagementResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemCentralManagementResult] {
-	return pulumix.Output[LookupSystemCentralManagementResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemCentralManagementResultOutput) AllowMonitor() pulumi.StringOutput {

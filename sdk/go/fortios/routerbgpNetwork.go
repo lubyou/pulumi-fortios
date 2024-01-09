@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterbgpNetwork struct {
@@ -120,12 +119,6 @@ func (i *RouterbgpNetwork) ToRouterbgpNetworkOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetworkOutput)
 }
 
-func (i *RouterbgpNetwork) ToOutput(ctx context.Context) pulumix.Output[*RouterbgpNetwork] {
-	return pulumix.Output[*RouterbgpNetwork]{
-		OutputState: i.ToRouterbgpNetworkOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterbgpNetworkArrayInput is an input type that accepts RouterbgpNetworkArray and RouterbgpNetworkArrayOutput values.
 // You can construct a concrete instance of `RouterbgpNetworkArrayInput` via:
 //
@@ -149,12 +142,6 @@ func (i RouterbgpNetworkArray) ToRouterbgpNetworkArrayOutput() RouterbgpNetworkA
 
 func (i RouterbgpNetworkArray) ToRouterbgpNetworkArrayOutputWithContext(ctx context.Context) RouterbgpNetworkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetworkArrayOutput)
-}
-
-func (i RouterbgpNetworkArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterbgpNetwork] {
-	return pulumix.Output[[]*RouterbgpNetwork]{
-		OutputState: i.ToRouterbgpNetworkArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterbgpNetworkMapInput is an input type that accepts RouterbgpNetworkMap and RouterbgpNetworkMapOutput values.
@@ -182,12 +169,6 @@ func (i RouterbgpNetworkMap) ToRouterbgpNetworkMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetworkMapOutput)
 }
 
-func (i RouterbgpNetworkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterbgpNetwork] {
-	return pulumix.Output[map[string]*RouterbgpNetwork]{
-		OutputState: i.ToRouterbgpNetworkMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterbgpNetworkOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNetworkOutput) ElementType() reflect.Type {
@@ -200,12 +181,6 @@ func (o RouterbgpNetworkOutput) ToRouterbgpNetworkOutput() RouterbgpNetworkOutpu
 
 func (o RouterbgpNetworkOutput) ToRouterbgpNetworkOutputWithContext(ctx context.Context) RouterbgpNetworkOutput {
 	return o
-}
-
-func (o RouterbgpNetworkOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterbgpNetwork] {
-	return pulumix.Output[*RouterbgpNetwork]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterbgpNetworkOutput) Backdoor() pulumi.StringOutput {
@@ -246,12 +221,6 @@ func (o RouterbgpNetworkArrayOutput) ToRouterbgpNetworkArrayOutputWithContext(ct
 	return o
 }
 
-func (o RouterbgpNetworkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterbgpNetwork] {
-	return pulumix.Output[[]*RouterbgpNetwork]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterbgpNetworkArrayOutput) Index(i pulumi.IntInput) RouterbgpNetworkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterbgpNetwork {
 		return vs[0].([]*RouterbgpNetwork)[vs[1].(int)]
@@ -270,12 +239,6 @@ func (o RouterbgpNetworkMapOutput) ToRouterbgpNetworkMapOutput() RouterbgpNetwor
 
 func (o RouterbgpNetworkMapOutput) ToRouterbgpNetworkMapOutputWithContext(ctx context.Context) RouterbgpNetworkMapOutput {
 	return o
-}
-
-func (o RouterbgpNetworkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterbgpNetwork] {
-	return pulumix.Output[map[string]*RouterbgpNetwork]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterbgpNetworkMapOutput) MapIndex(k pulumi.StringInput) RouterbgpNetworkOutput {

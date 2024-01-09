@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerAclGroup struct {
@@ -111,12 +110,6 @@ func (i *SwitchControllerAclGroup) ToSwitchControllerAclGroupOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAclGroupOutput)
 }
 
-func (i *SwitchControllerAclGroup) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerAclGroup] {
-	return pulumix.Output[*SwitchControllerAclGroup]{
-		OutputState: i.ToSwitchControllerAclGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerAclGroupArrayInput is an input type that accepts SwitchControllerAclGroupArray and SwitchControllerAclGroupArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerAclGroupArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SwitchControllerAclGroupArray) ToSwitchControllerAclGroupArrayOutput() S
 
 func (i SwitchControllerAclGroupArray) ToSwitchControllerAclGroupArrayOutputWithContext(ctx context.Context) SwitchControllerAclGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAclGroupArrayOutput)
-}
-
-func (i SwitchControllerAclGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerAclGroup] {
-	return pulumix.Output[[]*SwitchControllerAclGroup]{
-		OutputState: i.ToSwitchControllerAclGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerAclGroupMapInput is an input type that accepts SwitchControllerAclGroupMap and SwitchControllerAclGroupMapOutput values.
@@ -173,12 +160,6 @@ func (i SwitchControllerAclGroupMap) ToSwitchControllerAclGroupMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAclGroupMapOutput)
 }
 
-func (i SwitchControllerAclGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerAclGroup] {
-	return pulumix.Output[map[string]*SwitchControllerAclGroup]{
-		OutputState: i.ToSwitchControllerAclGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerAclGroupOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAclGroupOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SwitchControllerAclGroupOutput) ToSwitchControllerAclGroupOutput() Switc
 
 func (o SwitchControllerAclGroupOutput) ToSwitchControllerAclGroupOutputWithContext(ctx context.Context) SwitchControllerAclGroupOutput {
 	return o
-}
-
-func (o SwitchControllerAclGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerAclGroup] {
-	return pulumix.Output[*SwitchControllerAclGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerAclGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o SwitchControllerAclGroupArrayOutput) ToSwitchControllerAclGroupArrayOutp
 	return o
 }
 
-func (o SwitchControllerAclGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerAclGroup] {
-	return pulumix.Output[[]*SwitchControllerAclGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerAclGroupArrayOutput) Index(i pulumi.IntInput) SwitchControllerAclGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerAclGroup {
 		return vs[0].([]*SwitchControllerAclGroup)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SwitchControllerAclGroupMapOutput) ToSwitchControllerAclGroupMapOutput()
 
 func (o SwitchControllerAclGroupMapOutput) ToSwitchControllerAclGroupMapOutputWithContext(ctx context.Context) SwitchControllerAclGroupMapOutput {
 	return o
-}
-
-func (o SwitchControllerAclGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerAclGroup] {
-	return pulumix.Output[map[string]*SwitchControllerAclGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerAclGroupMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerAclGroupOutput {

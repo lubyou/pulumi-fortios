@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallIppool6 struct {
@@ -128,12 +127,6 @@ func (i *FirewallIppool6) ToFirewallIppool6OutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6Output)
 }
 
-func (i *FirewallIppool6) ToOutput(ctx context.Context) pulumix.Output[*FirewallIppool6] {
-	return pulumix.Output[*FirewallIppool6]{
-		OutputState: i.ToFirewallIppool6OutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallIppool6ArrayInput is an input type that accepts FirewallIppool6Array and FirewallIppool6ArrayOutput values.
 // You can construct a concrete instance of `FirewallIppool6ArrayInput` via:
 //
@@ -157,12 +150,6 @@ func (i FirewallIppool6Array) ToFirewallIppool6ArrayOutput() FirewallIppool6Arra
 
 func (i FirewallIppool6Array) ToFirewallIppool6ArrayOutputWithContext(ctx context.Context) FirewallIppool6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6ArrayOutput)
-}
-
-func (i FirewallIppool6Array) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIppool6] {
-	return pulumix.Output[[]*FirewallIppool6]{
-		OutputState: i.ToFirewallIppool6ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallIppool6MapInput is an input type that accepts FirewallIppool6Map and FirewallIppool6MapOutput values.
@@ -190,12 +177,6 @@ func (i FirewallIppool6Map) ToFirewallIppool6MapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6MapOutput)
 }
 
-func (i FirewallIppool6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIppool6] {
-	return pulumix.Output[map[string]*FirewallIppool6]{
-		OutputState: i.ToFirewallIppool6MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallIppool6Output struct{ *pulumi.OutputState }
 
 func (FirewallIppool6Output) ElementType() reflect.Type {
@@ -208,12 +189,6 @@ func (o FirewallIppool6Output) ToFirewallIppool6Output() FirewallIppool6Output {
 
 func (o FirewallIppool6Output) ToFirewallIppool6OutputWithContext(ctx context.Context) FirewallIppool6Output {
 	return o
-}
-
-func (o FirewallIppool6Output) ToOutput(ctx context.Context) pulumix.Output[*FirewallIppool6] {
-	return pulumix.Output[*FirewallIppool6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallIppool6Output) AddNat46Route() pulumi.StringOutput {
@@ -258,12 +233,6 @@ func (o FirewallIppool6ArrayOutput) ToFirewallIppool6ArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallIppool6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIppool6] {
-	return pulumix.Output[[]*FirewallIppool6]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallIppool6ArrayOutput) Index(i pulumi.IntInput) FirewallIppool6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIppool6 {
 		return vs[0].([]*FirewallIppool6)[vs[1].(int)]
@@ -282,12 +251,6 @@ func (o FirewallIppool6MapOutput) ToFirewallIppool6MapOutput() FirewallIppool6Ma
 
 func (o FirewallIppool6MapOutput) ToFirewallIppool6MapOutputWithContext(ctx context.Context) FirewallIppool6MapOutput {
 	return o
-}
-
-func (o FirewallIppool6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIppool6] {
-	return pulumix.Output[map[string]*FirewallIppool6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallIppool6MapOutput) MapIndex(k pulumi.StringInput) FirewallIppool6Output {

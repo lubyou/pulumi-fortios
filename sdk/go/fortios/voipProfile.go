@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VoipProfile struct {
@@ -126,12 +125,6 @@ func (i *VoipProfile) ToVoipProfileOutputWithContext(ctx context.Context) VoipPr
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileOutput)
 }
 
-func (i *VoipProfile) ToOutput(ctx context.Context) pulumix.Output[*VoipProfile] {
-	return pulumix.Output[*VoipProfile]{
-		OutputState: i.ToVoipProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VoipProfileArrayInput is an input type that accepts VoipProfileArray and VoipProfileArrayOutput values.
 // You can construct a concrete instance of `VoipProfileArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i VoipProfileArray) ToVoipProfileArrayOutput() VoipProfileArrayOutput {
 
 func (i VoipProfileArray) ToVoipProfileArrayOutputWithContext(ctx context.Context) VoipProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileArrayOutput)
-}
-
-func (i VoipProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*VoipProfile] {
-	return pulumix.Output[[]*VoipProfile]{
-		OutputState: i.ToVoipProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VoipProfileMapInput is an input type that accepts VoipProfileMap and VoipProfileMapOutput values.
@@ -188,12 +175,6 @@ func (i VoipProfileMap) ToVoipProfileMapOutputWithContext(ctx context.Context) V
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMapOutput)
 }
 
-func (i VoipProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VoipProfile] {
-	return pulumix.Output[map[string]*VoipProfile]{
-		OutputState: i.ToVoipProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VoipProfileOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o VoipProfileOutput) ToVoipProfileOutput() VoipProfileOutput {
 
 func (o VoipProfileOutput) ToVoipProfileOutputWithContext(ctx context.Context) VoipProfileOutput {
 	return o
-}
-
-func (o VoipProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*VoipProfile] {
-	return pulumix.Output[*VoipProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VoipProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -260,12 +235,6 @@ func (o VoipProfileArrayOutput) ToVoipProfileArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o VoipProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VoipProfile] {
-	return pulumix.Output[[]*VoipProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VoipProfileArrayOutput) Index(i pulumi.IntInput) VoipProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VoipProfile {
 		return vs[0].([]*VoipProfile)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o VoipProfileMapOutput) ToVoipProfileMapOutput() VoipProfileMapOutput {
 
 func (o VoipProfileMapOutput) ToVoipProfileMapOutputWithContext(ctx context.Context) VoipProfileMapOutput {
 	return o
-}
-
-func (o VoipProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VoipProfile] {
-	return pulumix.Output[map[string]*VoipProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VoipProfileMapOutput) MapIndex(k pulumi.StringInput) VoipProfileOutput {

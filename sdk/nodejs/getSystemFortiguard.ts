@@ -46,6 +46,7 @@ export interface GetSystemFortiguardResult {
     readonly fdsLicenseExpiringDays: number;
     readonly fortiguardAnycast: string;
     readonly fortiguardAnycastSource: string;
+    readonly guiPromptAutoUpgrade: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

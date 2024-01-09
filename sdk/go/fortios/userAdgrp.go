@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserAdgrp struct {
@@ -111,12 +110,6 @@ func (i *UserAdgrp) ToUserAdgrpOutputWithContext(ctx context.Context) UserAdgrpO
 	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpOutput)
 }
 
-func (i *UserAdgrp) ToOutput(ctx context.Context) pulumix.Output[*UserAdgrp] {
-	return pulumix.Output[*UserAdgrp]{
-		OutputState: i.ToUserAdgrpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserAdgrpArrayInput is an input type that accepts UserAdgrpArray and UserAdgrpArrayOutput values.
 // You can construct a concrete instance of `UserAdgrpArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i UserAdgrpArray) ToUserAdgrpArrayOutput() UserAdgrpArrayOutput {
 
 func (i UserAdgrpArray) ToUserAdgrpArrayOutputWithContext(ctx context.Context) UserAdgrpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpArrayOutput)
-}
-
-func (i UserAdgrpArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserAdgrp] {
-	return pulumix.Output[[]*UserAdgrp]{
-		OutputState: i.ToUserAdgrpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserAdgrpMapInput is an input type that accepts UserAdgrpMap and UserAdgrpMapOutput values.
@@ -173,12 +160,6 @@ func (i UserAdgrpMap) ToUserAdgrpMapOutputWithContext(ctx context.Context) UserA
 	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpMapOutput)
 }
 
-func (i UserAdgrpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserAdgrp] {
-	return pulumix.Output[map[string]*UserAdgrp]{
-		OutputState: i.ToUserAdgrpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserAdgrpOutput struct{ *pulumi.OutputState }
 
 func (UserAdgrpOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o UserAdgrpOutput) ToUserAdgrpOutput() UserAdgrpOutput {
 
 func (o UserAdgrpOutput) ToUserAdgrpOutputWithContext(ctx context.Context) UserAdgrpOutput {
 	return o
-}
-
-func (o UserAdgrpOutput) ToOutput(ctx context.Context) pulumix.Output[*UserAdgrp] {
-	return pulumix.Output[*UserAdgrp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserAdgrpOutput) ConnectorSource() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o UserAdgrpArrayOutput) ToUserAdgrpArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o UserAdgrpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserAdgrp] {
-	return pulumix.Output[[]*UserAdgrp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserAdgrpArrayOutput) Index(i pulumi.IntInput) UserAdgrpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserAdgrp {
 		return vs[0].([]*UserAdgrp)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o UserAdgrpMapOutput) ToUserAdgrpMapOutput() UserAdgrpMapOutput {
 
 func (o UserAdgrpMapOutput) ToUserAdgrpMapOutputWithContext(ctx context.Context) UserAdgrpMapOutput {
 	return o
-}
-
-func (o UserAdgrpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserAdgrp] {
-	return pulumix.Output[map[string]*UserAdgrp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserAdgrpMapOutput) MapIndex(k pulumi.StringInput) UserAdgrpOutput {

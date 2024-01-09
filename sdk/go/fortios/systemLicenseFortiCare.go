@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemLicenseFortiCare struct {
@@ -95,12 +94,6 @@ func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCareOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCareOutput)
 }
 
-func (i *SystemLicenseFortiCare) ToOutput(ctx context.Context) pulumix.Output[*SystemLicenseFortiCare] {
-	return pulumix.Output[*SystemLicenseFortiCare]{
-		OutputState: i.ToSystemLicenseFortiCareOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemLicenseFortiCareArrayInput is an input type that accepts SystemLicenseFortiCareArray and SystemLicenseFortiCareArrayOutput values.
 // You can construct a concrete instance of `SystemLicenseFortiCareArrayInput` via:
 //
@@ -124,12 +117,6 @@ func (i SystemLicenseFortiCareArray) ToSystemLicenseFortiCareArrayOutput() Syste
 
 func (i SystemLicenseFortiCareArray) ToSystemLicenseFortiCareArrayOutputWithContext(ctx context.Context) SystemLicenseFortiCareArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCareArrayOutput)
-}
-
-func (i SystemLicenseFortiCareArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLicenseFortiCare] {
-	return pulumix.Output[[]*SystemLicenseFortiCare]{
-		OutputState: i.ToSystemLicenseFortiCareArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemLicenseFortiCareMapInput is an input type that accepts SystemLicenseFortiCareMap and SystemLicenseFortiCareMapOutput values.
@@ -157,12 +144,6 @@ func (i SystemLicenseFortiCareMap) ToSystemLicenseFortiCareMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCareMapOutput)
 }
 
-func (i SystemLicenseFortiCareMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLicenseFortiCare] {
-	return pulumix.Output[map[string]*SystemLicenseFortiCare]{
-		OutputState: i.ToSystemLicenseFortiCareMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemLicenseFortiCareOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseFortiCareOutput) ElementType() reflect.Type {
@@ -175,12 +156,6 @@ func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCareOutput() SystemLic
 
 func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCareOutputWithContext(ctx context.Context) SystemLicenseFortiCareOutput {
 	return o
-}
-
-func (o SystemLicenseFortiCareOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemLicenseFortiCare] {
-	return pulumix.Output[*SystemLicenseFortiCare]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemLicenseFortiCareOutput) RegistrationCode() pulumi.StringOutput {
@@ -201,12 +176,6 @@ func (o SystemLicenseFortiCareArrayOutput) ToSystemLicenseFortiCareArrayOutputWi
 	return o
 }
 
-func (o SystemLicenseFortiCareArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLicenseFortiCare] {
-	return pulumix.Output[[]*SystemLicenseFortiCare]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemLicenseFortiCareArrayOutput) Index(i pulumi.IntInput) SystemLicenseFortiCareOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLicenseFortiCare {
 		return vs[0].([]*SystemLicenseFortiCare)[vs[1].(int)]
@@ -225,12 +194,6 @@ func (o SystemLicenseFortiCareMapOutput) ToSystemLicenseFortiCareMapOutput() Sys
 
 func (o SystemLicenseFortiCareMapOutput) ToSystemLicenseFortiCareMapOutputWithContext(ctx context.Context) SystemLicenseFortiCareMapOutput {
 	return o
-}
-
-func (o SystemLicenseFortiCareMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLicenseFortiCare] {
-	return pulumix.Output[map[string]*SystemLicenseFortiCare]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemLicenseFortiCareMapOutput) MapIndex(k pulumi.StringInput) SystemLicenseFortiCareOutput {

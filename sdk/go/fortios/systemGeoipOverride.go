@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemGeoipOverride struct {
@@ -126,12 +125,6 @@ func (i *SystemGeoipOverride) ToSystemGeoipOverrideOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipOverrideOutput)
 }
 
-func (i *SystemGeoipOverride) ToOutput(ctx context.Context) pulumix.Output[*SystemGeoipOverride] {
-	return pulumix.Output[*SystemGeoipOverride]{
-		OutputState: i.ToSystemGeoipOverrideOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemGeoipOverrideArrayInput is an input type that accepts SystemGeoipOverrideArray and SystemGeoipOverrideArrayOutput values.
 // You can construct a concrete instance of `SystemGeoipOverrideArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i SystemGeoipOverrideArray) ToSystemGeoipOverrideArrayOutput() SystemGeoip
 
 func (i SystemGeoipOverrideArray) ToSystemGeoipOverrideArrayOutputWithContext(ctx context.Context) SystemGeoipOverrideArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipOverrideArrayOutput)
-}
-
-func (i SystemGeoipOverrideArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGeoipOverride] {
-	return pulumix.Output[[]*SystemGeoipOverride]{
-		OutputState: i.ToSystemGeoipOverrideArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemGeoipOverrideMapInput is an input type that accepts SystemGeoipOverrideMap and SystemGeoipOverrideMapOutput values.
@@ -188,12 +175,6 @@ func (i SystemGeoipOverrideMap) ToSystemGeoipOverrideMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipOverrideMapOutput)
 }
 
-func (i SystemGeoipOverrideMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGeoipOverride] {
-	return pulumix.Output[map[string]*SystemGeoipOverride]{
-		OutputState: i.ToSystemGeoipOverrideMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemGeoipOverrideOutput struct{ *pulumi.OutputState }
 
 func (SystemGeoipOverrideOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o SystemGeoipOverrideOutput) ToSystemGeoipOverrideOutput() SystemGeoipOver
 
 func (o SystemGeoipOverrideOutput) ToSystemGeoipOverrideOutputWithContext(ctx context.Context) SystemGeoipOverrideOutput {
 	return o
-}
-
-func (o SystemGeoipOverrideOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemGeoipOverride] {
-	return pulumix.Output[*SystemGeoipOverride]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemGeoipOverrideOutput) CountryId() pulumi.StringOutput {
@@ -260,12 +235,6 @@ func (o SystemGeoipOverrideArrayOutput) ToSystemGeoipOverrideArrayOutputWithCont
 	return o
 }
 
-func (o SystemGeoipOverrideArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGeoipOverride] {
-	return pulumix.Output[[]*SystemGeoipOverride]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemGeoipOverrideArrayOutput) Index(i pulumi.IntInput) SystemGeoipOverrideOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGeoipOverride {
 		return vs[0].([]*SystemGeoipOverride)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o SystemGeoipOverrideMapOutput) ToSystemGeoipOverrideMapOutput() SystemGeo
 
 func (o SystemGeoipOverrideMapOutput) ToSystemGeoipOverrideMapOutputWithContext(ctx context.Context) SystemGeoipOverrideMapOutput {
 	return o
-}
-
-func (o SystemGeoipOverrideMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGeoipOverride] {
-	return pulumix.Output[map[string]*SystemGeoipOverride]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemGeoipOverrideMapOutput) MapIndex(k pulumi.StringInput) SystemGeoipOverrideOutput {

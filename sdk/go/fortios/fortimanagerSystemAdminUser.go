@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemAdminUser struct {
@@ -140,12 +139,6 @@ func (i *FortimanagerSystemAdminUser) ToFortimanagerSystemAdminUserOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminUserOutput)
 }
 
-func (i *FortimanagerSystemAdminUser) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdminUser] {
-	return pulumix.Output[*FortimanagerSystemAdminUser]{
-		OutputState: i.ToFortimanagerSystemAdminUserOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerSystemAdminUserArrayInput is an input type that accepts FortimanagerSystemAdminUserArray and FortimanagerSystemAdminUserArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminUserArrayInput` via:
 //
@@ -169,12 +162,6 @@ func (i FortimanagerSystemAdminUserArray) ToFortimanagerSystemAdminUserArrayOutp
 
 func (i FortimanagerSystemAdminUserArray) ToFortimanagerSystemAdminUserArrayOutputWithContext(ctx context.Context) FortimanagerSystemAdminUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminUserArrayOutput)
-}
-
-func (i FortimanagerSystemAdminUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdminUser] {
-	return pulumix.Output[[]*FortimanagerSystemAdminUser]{
-		OutputState: i.ToFortimanagerSystemAdminUserArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerSystemAdminUserMapInput is an input type that accepts FortimanagerSystemAdminUserMap and FortimanagerSystemAdminUserMapOutput values.
@@ -202,12 +189,6 @@ func (i FortimanagerSystemAdminUserMap) ToFortimanagerSystemAdminUserMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminUserMapOutput)
 }
 
-func (i FortimanagerSystemAdminUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdminUser] {
-	return pulumix.Output[map[string]*FortimanagerSystemAdminUser]{
-		OutputState: i.ToFortimanagerSystemAdminUserMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerSystemAdminUserOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdminUserOutput) ElementType() reflect.Type {
@@ -220,12 +201,6 @@ func (o FortimanagerSystemAdminUserOutput) ToFortimanagerSystemAdminUserOutput()
 
 func (o FortimanagerSystemAdminUserOutput) ToFortimanagerSystemAdminUserOutputWithContext(ctx context.Context) FortimanagerSystemAdminUserOutput {
 	return o
-}
-
-func (o FortimanagerSystemAdminUserOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdminUser] {
-	return pulumix.Output[*FortimanagerSystemAdminUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemAdminUserOutput) Description() pulumi.StringPtrOutput {
@@ -282,12 +257,6 @@ func (o FortimanagerSystemAdminUserArrayOutput) ToFortimanagerSystemAdminUserArr
 	return o
 }
 
-func (o FortimanagerSystemAdminUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdminUser] {
-	return pulumix.Output[[]*FortimanagerSystemAdminUser]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerSystemAdminUserArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemAdminUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemAdminUser {
 		return vs[0].([]*FortimanagerSystemAdminUser)[vs[1].(int)]
@@ -306,12 +275,6 @@ func (o FortimanagerSystemAdminUserMapOutput) ToFortimanagerSystemAdminUserMapOu
 
 func (o FortimanagerSystemAdminUserMapOutput) ToFortimanagerSystemAdminUserMapOutputWithContext(ctx context.Context) FortimanagerSystemAdminUserMapOutput {
 	return o
-}
-
-func (o FortimanagerSystemAdminUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdminUser] {
-	return pulumix.Output[map[string]*FortimanagerSystemAdminUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemAdminUserMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemAdminUserOutput {

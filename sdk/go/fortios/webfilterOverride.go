@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterOverride struct {
@@ -159,12 +158,6 @@ func (i *WebfilterOverride) ToWebfilterOverrideOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverrideOutput)
 }
 
-func (i *WebfilterOverride) ToOutput(ctx context.Context) pulumix.Output[*WebfilterOverride] {
-	return pulumix.Output[*WebfilterOverride]{
-		OutputState: i.ToWebfilterOverrideOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebfilterOverrideArrayInput is an input type that accepts WebfilterOverrideArray and WebfilterOverrideArrayOutput values.
 // You can construct a concrete instance of `WebfilterOverrideArrayInput` via:
 //
@@ -188,12 +181,6 @@ func (i WebfilterOverrideArray) ToWebfilterOverrideArrayOutput() WebfilterOverri
 
 func (i WebfilterOverrideArray) ToWebfilterOverrideArrayOutputWithContext(ctx context.Context) WebfilterOverrideArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverrideArrayOutput)
-}
-
-func (i WebfilterOverrideArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterOverride] {
-	return pulumix.Output[[]*WebfilterOverride]{
-		OutputState: i.ToWebfilterOverrideArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebfilterOverrideMapInput is an input type that accepts WebfilterOverrideMap and WebfilterOverrideMapOutput values.
@@ -221,12 +208,6 @@ func (i WebfilterOverrideMap) ToWebfilterOverrideMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverrideMapOutput)
 }
 
-func (i WebfilterOverrideMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterOverride] {
-	return pulumix.Output[map[string]*WebfilterOverride]{
-		OutputState: i.ToWebfilterOverrideMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebfilterOverrideOutput struct{ *pulumi.OutputState }
 
 func (WebfilterOverrideOutput) ElementType() reflect.Type {
@@ -239,12 +220,6 @@ func (o WebfilterOverrideOutput) ToWebfilterOverrideOutput() WebfilterOverrideOu
 
 func (o WebfilterOverrideOutput) ToWebfilterOverrideOutputWithContext(ctx context.Context) WebfilterOverrideOutput {
 	return o
-}
-
-func (o WebfilterOverrideOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterOverride] {
-	return pulumix.Output[*WebfilterOverride]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterOverrideOutput) Expires() pulumi.StringOutput {
@@ -309,12 +284,6 @@ func (o WebfilterOverrideArrayOutput) ToWebfilterOverrideArrayOutputWithContext(
 	return o
 }
 
-func (o WebfilterOverrideArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterOverride] {
-	return pulumix.Output[[]*WebfilterOverride]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebfilterOverrideArrayOutput) Index(i pulumi.IntInput) WebfilterOverrideOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterOverride {
 		return vs[0].([]*WebfilterOverride)[vs[1].(int)]
@@ -333,12 +302,6 @@ func (o WebfilterOverrideMapOutput) ToWebfilterOverrideMapOutput() WebfilterOver
 
 func (o WebfilterOverrideMapOutput) ToWebfilterOverrideMapOutputWithContext(ctx context.Context) WebfilterOverrideMapOutput {
 	return o
-}
-
-func (o WebfilterOverrideMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterOverride] {
-	return pulumix.Output[map[string]*WebfilterOverride]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterOverrideMapOutput) MapIndex(k pulumi.StringInput) WebfilterOverrideOutput {

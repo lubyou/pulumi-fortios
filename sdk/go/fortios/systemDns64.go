@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDns64 struct {
@@ -106,12 +105,6 @@ func (i *SystemDns64) ToSystemDns64OutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDns64Output)
 }
 
-func (i *SystemDns64) ToOutput(ctx context.Context) pulumix.Output[*SystemDns64] {
-	return pulumix.Output[*SystemDns64]{
-		OutputState: i.ToSystemDns64OutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemDns64ArrayInput is an input type that accepts SystemDns64Array and SystemDns64ArrayOutput values.
 // You can construct a concrete instance of `SystemDns64ArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i SystemDns64Array) ToSystemDns64ArrayOutput() SystemDns64ArrayOutput {
 
 func (i SystemDns64Array) ToSystemDns64ArrayOutputWithContext(ctx context.Context) SystemDns64ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDns64ArrayOutput)
-}
-
-func (i SystemDns64Array) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDns64] {
-	return pulumix.Output[[]*SystemDns64]{
-		OutputState: i.ToSystemDns64ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemDns64MapInput is an input type that accepts SystemDns64Map and SystemDns64MapOutput values.
@@ -168,12 +155,6 @@ func (i SystemDns64Map) ToSystemDns64MapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDns64MapOutput)
 }
 
-func (i SystemDns64Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDns64] {
-	return pulumix.Output[map[string]*SystemDns64]{
-		OutputState: i.ToSystemDns64MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemDns64Output struct{ *pulumi.OutputState }
 
 func (SystemDns64Output) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o SystemDns64Output) ToSystemDns64Output() SystemDns64Output {
 
 func (o SystemDns64Output) ToSystemDns64OutputWithContext(ctx context.Context) SystemDns64Output {
 	return o
-}
-
-func (o SystemDns64Output) ToOutput(ctx context.Context) pulumix.Output[*SystemDns64] {
-	return pulumix.Output[*SystemDns64]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDns64Output) AlwaysSynthesizeAaaaRecord() pulumi.StringOutput {
@@ -224,12 +199,6 @@ func (o SystemDns64ArrayOutput) ToSystemDns64ArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemDns64ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDns64] {
-	return pulumix.Output[[]*SystemDns64]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemDns64ArrayOutput) Index(i pulumi.IntInput) SystemDns64Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDns64 {
 		return vs[0].([]*SystemDns64)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o SystemDns64MapOutput) ToSystemDns64MapOutput() SystemDns64MapOutput {
 
 func (o SystemDns64MapOutput) ToSystemDns64MapOutputWithContext(ctx context.Context) SystemDns64MapOutput {
 	return o
-}
-
-func (o SystemDns64MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDns64] {
-	return pulumix.Output[map[string]*SystemDns64]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDns64MapOutput) MapIndex(k pulumi.StringInput) SystemDns64Output {

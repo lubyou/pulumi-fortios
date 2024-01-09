@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIke struct {
@@ -216,12 +215,6 @@ func (i *SystemIke) ToSystemIkeOutputWithContext(ctx context.Context) SystemIkeO
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIkeOutput)
 }
 
-func (i *SystemIke) ToOutput(ctx context.Context) pulumix.Output[*SystemIke] {
-	return pulumix.Output[*SystemIke]{
-		OutputState: i.ToSystemIkeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemIkeArrayInput is an input type that accepts SystemIkeArray and SystemIkeArrayOutput values.
 // You can construct a concrete instance of `SystemIkeArrayInput` via:
 //
@@ -245,12 +238,6 @@ func (i SystemIkeArray) ToSystemIkeArrayOutput() SystemIkeArrayOutput {
 
 func (i SystemIkeArray) ToSystemIkeArrayOutputWithContext(ctx context.Context) SystemIkeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIkeArrayOutput)
-}
-
-func (i SystemIkeArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIke] {
-	return pulumix.Output[[]*SystemIke]{
-		OutputState: i.ToSystemIkeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemIkeMapInput is an input type that accepts SystemIkeMap and SystemIkeMapOutput values.
@@ -278,12 +265,6 @@ func (i SystemIkeMap) ToSystemIkeMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIkeMapOutput)
 }
 
-func (i SystemIkeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIke] {
-	return pulumix.Output[map[string]*SystemIke]{
-		OutputState: i.ToSystemIkeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemIkeOutput struct{ *pulumi.OutputState }
 
 func (SystemIkeOutput) ElementType() reflect.Type {
@@ -296,12 +277,6 @@ func (o SystemIkeOutput) ToSystemIkeOutput() SystemIkeOutput {
 
 func (o SystemIkeOutput) ToSystemIkeOutputWithContext(ctx context.Context) SystemIkeOutput {
 	return o
-}
-
-func (o SystemIkeOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemIke] {
-	return pulumix.Output[*SystemIke]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIkeOutput) DhGroup1() SystemIkeDhGroup1Output {
@@ -422,12 +397,6 @@ func (o SystemIkeArrayOutput) ToSystemIkeArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemIkeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIke] {
-	return pulumix.Output[[]*SystemIke]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemIkeArrayOutput) Index(i pulumi.IntInput) SystemIkeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIke {
 		return vs[0].([]*SystemIke)[vs[1].(int)]
@@ -446,12 +415,6 @@ func (o SystemIkeMapOutput) ToSystemIkeMapOutput() SystemIkeMapOutput {
 
 func (o SystemIkeMapOutput) ToSystemIkeMapOutputWithContext(ctx context.Context) SystemIkeMapOutput {
 	return o
-}
-
-func (o SystemIkeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIke] {
-	return pulumix.Output[map[string]*SystemIke]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIkeMapOutput) MapIndex(k pulumi.StringInput) SystemIkeOutput {

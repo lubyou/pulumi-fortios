@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserDevice struct {
@@ -146,12 +145,6 @@ func (i *UserDevice) ToUserDeviceOutputWithContext(ctx context.Context) UserDevi
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceOutput)
 }
 
-func (i *UserDevice) ToOutput(ctx context.Context) pulumix.Output[*UserDevice] {
-	return pulumix.Output[*UserDevice]{
-		OutputState: i.ToUserDeviceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserDeviceArrayInput is an input type that accepts UserDeviceArray and UserDeviceArrayOutput values.
 // You can construct a concrete instance of `UserDeviceArrayInput` via:
 //
@@ -175,12 +168,6 @@ func (i UserDeviceArray) ToUserDeviceArrayOutput() UserDeviceArrayOutput {
 
 func (i UserDeviceArray) ToUserDeviceArrayOutputWithContext(ctx context.Context) UserDeviceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceArrayOutput)
-}
-
-func (i UserDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserDevice] {
-	return pulumix.Output[[]*UserDevice]{
-		OutputState: i.ToUserDeviceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserDeviceMapInput is an input type that accepts UserDeviceMap and UserDeviceMapOutput values.
@@ -208,12 +195,6 @@ func (i UserDeviceMap) ToUserDeviceMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceMapOutput)
 }
 
-func (i UserDeviceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserDevice] {
-	return pulumix.Output[map[string]*UserDevice]{
-		OutputState: i.ToUserDeviceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserDeviceOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceOutput) ElementType() reflect.Type {
@@ -226,12 +207,6 @@ func (o UserDeviceOutput) ToUserDeviceOutput() UserDeviceOutput {
 
 func (o UserDeviceOutput) ToUserDeviceOutputWithContext(ctx context.Context) UserDeviceOutput {
 	return o
-}
-
-func (o UserDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[*UserDevice] {
-	return pulumix.Output[*UserDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserDeviceOutput) Alias() pulumi.StringOutput {
@@ -296,12 +271,6 @@ func (o UserDeviceArrayOutput) ToUserDeviceArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o UserDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserDevice] {
-	return pulumix.Output[[]*UserDevice]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserDeviceArrayOutput) Index(i pulumi.IntInput) UserDeviceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDevice {
 		return vs[0].([]*UserDevice)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o UserDeviceMapOutput) ToUserDeviceMapOutput() UserDeviceMapOutput {
 
 func (o UserDeviceMapOutput) ToUserDeviceMapOutputWithContext(ctx context.Context) UserDeviceMapOutput {
 	return o
-}
-
-func (o UserDeviceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserDevice] {
-	return pulumix.Output[map[string]*UserDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserDeviceMapOutput) MapIndex(k pulumi.StringInput) UserDeviceOutput {

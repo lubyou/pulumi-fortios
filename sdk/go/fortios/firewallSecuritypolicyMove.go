@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSecuritypolicyMove struct {
@@ -126,12 +125,6 @@ func (i *FirewallSecuritypolicyMove) ToFirewallSecuritypolicyMoveOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecuritypolicyMoveOutput)
 }
 
-func (i *FirewallSecuritypolicyMove) ToOutput(ctx context.Context) pulumix.Output[*FirewallSecuritypolicyMove] {
-	return pulumix.Output[*FirewallSecuritypolicyMove]{
-		OutputState: i.ToFirewallSecuritypolicyMoveOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallSecuritypolicyMoveArrayInput is an input type that accepts FirewallSecuritypolicyMoveArray and FirewallSecuritypolicyMoveArrayOutput values.
 // You can construct a concrete instance of `FirewallSecuritypolicyMoveArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i FirewallSecuritypolicyMoveArray) ToFirewallSecuritypolicyMoveArrayOutput
 
 func (i FirewallSecuritypolicyMoveArray) ToFirewallSecuritypolicyMoveArrayOutputWithContext(ctx context.Context) FirewallSecuritypolicyMoveArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecuritypolicyMoveArrayOutput)
-}
-
-func (i FirewallSecuritypolicyMoveArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSecuritypolicyMove] {
-	return pulumix.Output[[]*FirewallSecuritypolicyMove]{
-		OutputState: i.ToFirewallSecuritypolicyMoveArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallSecuritypolicyMoveMapInput is an input type that accepts FirewallSecuritypolicyMoveMap and FirewallSecuritypolicyMoveMapOutput values.
@@ -188,12 +175,6 @@ func (i FirewallSecuritypolicyMoveMap) ToFirewallSecuritypolicyMoveMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecuritypolicyMoveMapOutput)
 }
 
-func (i FirewallSecuritypolicyMoveMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSecuritypolicyMove] {
-	return pulumix.Output[map[string]*FirewallSecuritypolicyMove]{
-		OutputState: i.ToFirewallSecuritypolicyMoveMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallSecuritypolicyMoveOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecuritypolicyMoveOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o FirewallSecuritypolicyMoveOutput) ToFirewallSecuritypolicyMoveOutput() F
 
 func (o FirewallSecuritypolicyMoveOutput) ToFirewallSecuritypolicyMoveOutputWithContext(ctx context.Context) FirewallSecuritypolicyMoveOutput {
 	return o
-}
-
-func (o FirewallSecuritypolicyMoveOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSecuritypolicyMove] {
-	return pulumix.Output[*FirewallSecuritypolicyMove]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSecuritypolicyMoveOutput) Comment() pulumi.StringPtrOutput {
@@ -252,12 +227,6 @@ func (o FirewallSecuritypolicyMoveArrayOutput) ToFirewallSecuritypolicyMoveArray
 	return o
 }
 
-func (o FirewallSecuritypolicyMoveArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSecuritypolicyMove] {
-	return pulumix.Output[[]*FirewallSecuritypolicyMove]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallSecuritypolicyMoveArrayOutput) Index(i pulumi.IntInput) FirewallSecuritypolicyMoveOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecuritypolicyMove {
 		return vs[0].([]*FirewallSecuritypolicyMove)[vs[1].(int)]
@@ -276,12 +245,6 @@ func (o FirewallSecuritypolicyMoveMapOutput) ToFirewallSecuritypolicyMoveMapOutp
 
 func (o FirewallSecuritypolicyMoveMapOutput) ToFirewallSecuritypolicyMoveMapOutputWithContext(ctx context.Context) FirewallSecuritypolicyMoveMapOutput {
 	return o
-}
-
-func (o FirewallSecuritypolicyMoveMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSecuritypolicyMove] {
-	return pulumix.Output[map[string]*FirewallSecuritypolicyMove]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSecuritypolicyMoveMapOutput) MapIndex(k pulumi.StringInput) FirewallSecuritypolicyMoveOutput {

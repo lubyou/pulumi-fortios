@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslWebHostCheckSoftware struct {
@@ -131,12 +130,6 @@ func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwareOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareOutput)
 }
 
-func (i *VpnSslWebHostCheckSoftware) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebHostCheckSoftware] {
-	return pulumix.Output[*VpnSslWebHostCheckSoftware]{
-		OutputState: i.ToVpnSslWebHostCheckSoftwareOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnSslWebHostCheckSoftwareArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareArray and VpnSslWebHostCheckSoftwareArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebHostCheckSoftwareArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i VpnSslWebHostCheckSoftwareArray) ToVpnSslWebHostCheckSoftwareArrayOutput
 
 func (i VpnSslWebHostCheckSoftwareArray) ToVpnSslWebHostCheckSoftwareArrayOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareArrayOutput)
-}
-
-func (i VpnSslWebHostCheckSoftwareArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebHostCheckSoftware] {
-	return pulumix.Output[[]*VpnSslWebHostCheckSoftware]{
-		OutputState: i.ToVpnSslWebHostCheckSoftwareArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnSslWebHostCheckSoftwareMapInput is an input type that accepts VpnSslWebHostCheckSoftwareMap and VpnSslWebHostCheckSoftwareMapOutput values.
@@ -193,12 +180,6 @@ func (i VpnSslWebHostCheckSoftwareMap) ToVpnSslWebHostCheckSoftwareMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareMapOutput)
 }
 
-func (i VpnSslWebHostCheckSoftwareMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebHostCheckSoftware] {
-	return pulumix.Output[map[string]*VpnSslWebHostCheckSoftware]{
-		OutputState: i.ToVpnSslWebHostCheckSoftwareMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnSslWebHostCheckSoftwareOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebHostCheckSoftwareOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwareOutput() V
 
 func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwareOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareOutput {
 	return o
-}
-
-func (o VpnSslWebHostCheckSoftwareOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebHostCheckSoftware] {
-	return pulumix.Output[*VpnSslWebHostCheckSoftware]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebHostCheckSoftwareOutput) CheckItemLists() VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
@@ -271,12 +246,6 @@ func (o VpnSslWebHostCheckSoftwareArrayOutput) ToVpnSslWebHostCheckSoftwareArray
 	return o
 }
 
-func (o VpnSslWebHostCheckSoftwareArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebHostCheckSoftware] {
-	return pulumix.Output[[]*VpnSslWebHostCheckSoftware]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnSslWebHostCheckSoftwareArrayOutput) Index(i pulumi.IntInput) VpnSslWebHostCheckSoftwareOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebHostCheckSoftware {
 		return vs[0].([]*VpnSslWebHostCheckSoftware)[vs[1].(int)]
@@ -295,12 +264,6 @@ func (o VpnSslWebHostCheckSoftwareMapOutput) ToVpnSslWebHostCheckSoftwareMapOutp
 
 func (o VpnSslWebHostCheckSoftwareMapOutput) ToVpnSslWebHostCheckSoftwareMapOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareMapOutput {
 	return o
-}
-
-func (o VpnSslWebHostCheckSoftwareMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebHostCheckSoftware] {
-	return pulumix.Output[map[string]*VpnSslWebHostCheckSoftware]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebHostCheckSoftwareMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebHostCheckSoftwareOutput {

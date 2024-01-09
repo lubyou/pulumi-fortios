@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallPolicySort struct {
@@ -131,12 +130,6 @@ func (i *FirewallPolicySort) ToFirewallPolicySortOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicySortOutput)
 }
 
-func (i *FirewallPolicySort) ToOutput(ctx context.Context) pulumix.Output[*FirewallPolicySort] {
-	return pulumix.Output[*FirewallPolicySort]{
-		OutputState: i.ToFirewallPolicySortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallPolicySortArrayInput is an input type that accepts FirewallPolicySortArray and FirewallPolicySortArrayOutput values.
 // You can construct a concrete instance of `FirewallPolicySortArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i FirewallPolicySortArray) ToFirewallPolicySortArrayOutput() FirewallPolic
 
 func (i FirewallPolicySortArray) ToFirewallPolicySortArrayOutputWithContext(ctx context.Context) FirewallPolicySortArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicySortArrayOutput)
-}
-
-func (i FirewallPolicySortArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallPolicySort] {
-	return pulumix.Output[[]*FirewallPolicySort]{
-		OutputState: i.ToFirewallPolicySortArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallPolicySortMapInput is an input type that accepts FirewallPolicySortMap and FirewallPolicySortMapOutput values.
@@ -193,12 +180,6 @@ func (i FirewallPolicySortMap) ToFirewallPolicySortMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicySortMapOutput)
 }
 
-func (i FirewallPolicySortMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallPolicySort] {
-	return pulumix.Output[map[string]*FirewallPolicySort]{
-		OutputState: i.ToFirewallPolicySortMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallPolicySortOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicySortOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o FirewallPolicySortOutput) ToFirewallPolicySortOutput() FirewallPolicySor
 
 func (o FirewallPolicySortOutput) ToFirewallPolicySortOutputWithContext(ctx context.Context) FirewallPolicySortOutput {
 	return o
-}
-
-func (o FirewallPolicySortOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallPolicySort] {
-	return pulumix.Output[*FirewallPolicySort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallPolicySortOutput) Comment() pulumi.StringPtrOutput {
@@ -265,12 +240,6 @@ func (o FirewallPolicySortArrayOutput) ToFirewallPolicySortArrayOutputWithContex
 	return o
 }
 
-func (o FirewallPolicySortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallPolicySort] {
-	return pulumix.Output[[]*FirewallPolicySort]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallPolicySortArrayOutput) Index(i pulumi.IntInput) FirewallPolicySortOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallPolicySort {
 		return vs[0].([]*FirewallPolicySort)[vs[1].(int)]
@@ -289,12 +258,6 @@ func (o FirewallPolicySortMapOutput) ToFirewallPolicySortMapOutput() FirewallPol
 
 func (o FirewallPolicySortMapOutput) ToFirewallPolicySortMapOutputWithContext(ctx context.Context) FirewallPolicySortMapOutput {
 	return o
-}
-
-func (o FirewallPolicySortMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallPolicySort] {
-	return pulumix.Output[map[string]*FirewallPolicySort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallPolicySortMapOutput) MapIndex(k pulumi.StringInput) FirewallPolicySortOutput {

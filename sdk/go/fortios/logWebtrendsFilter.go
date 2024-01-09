@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogWebtrendsFilter struct {
@@ -181,12 +180,6 @@ func (i *LogWebtrendsFilter) ToLogWebtrendsFilterOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterOutput)
 }
 
-func (i *LogWebtrendsFilter) ToOutput(ctx context.Context) pulumix.Output[*LogWebtrendsFilter] {
-	return pulumix.Output[*LogWebtrendsFilter]{
-		OutputState: i.ToLogWebtrendsFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogWebtrendsFilterArrayInput is an input type that accepts LogWebtrendsFilterArray and LogWebtrendsFilterArrayOutput values.
 // You can construct a concrete instance of `LogWebtrendsFilterArrayInput` via:
 //
@@ -210,12 +203,6 @@ func (i LogWebtrendsFilterArray) ToLogWebtrendsFilterArrayOutput() LogWebtrendsF
 
 func (i LogWebtrendsFilterArray) ToLogWebtrendsFilterArrayOutputWithContext(ctx context.Context) LogWebtrendsFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterArrayOutput)
-}
-
-func (i LogWebtrendsFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogWebtrendsFilter] {
-	return pulumix.Output[[]*LogWebtrendsFilter]{
-		OutputState: i.ToLogWebtrendsFilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogWebtrendsFilterMapInput is an input type that accepts LogWebtrendsFilterMap and LogWebtrendsFilterMapOutput values.
@@ -243,12 +230,6 @@ func (i LogWebtrendsFilterMap) ToLogWebtrendsFilterMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterMapOutput)
 }
 
-func (i LogWebtrendsFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogWebtrendsFilter] {
-	return pulumix.Output[map[string]*LogWebtrendsFilter]{
-		OutputState: i.ToLogWebtrendsFilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogWebtrendsFilterOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsFilterOutput) ElementType() reflect.Type {
@@ -261,12 +242,6 @@ func (o LogWebtrendsFilterOutput) ToLogWebtrendsFilterOutput() LogWebtrendsFilte
 
 func (o LogWebtrendsFilterOutput) ToLogWebtrendsFilterOutputWithContext(ctx context.Context) LogWebtrendsFilterOutput {
 	return o
-}
-
-func (o LogWebtrendsFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogWebtrendsFilter] {
-	return pulumix.Output[*LogWebtrendsFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogWebtrendsFilterOutput) Anomaly() pulumi.StringOutput {
@@ -359,12 +334,6 @@ func (o LogWebtrendsFilterArrayOutput) ToLogWebtrendsFilterArrayOutputWithContex
 	return o
 }
 
-func (o LogWebtrendsFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogWebtrendsFilter] {
-	return pulumix.Output[[]*LogWebtrendsFilter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogWebtrendsFilterArrayOutput) Index(i pulumi.IntInput) LogWebtrendsFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogWebtrendsFilter {
 		return vs[0].([]*LogWebtrendsFilter)[vs[1].(int)]
@@ -383,12 +352,6 @@ func (o LogWebtrendsFilterMapOutput) ToLogWebtrendsFilterMapOutput() LogWebtrend
 
 func (o LogWebtrendsFilterMapOutput) ToLogWebtrendsFilterMapOutputWithContext(ctx context.Context) LogWebtrendsFilterMapOutput {
 	return o
-}
-
-func (o LogWebtrendsFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogWebtrendsFilter] {
-	return pulumix.Output[map[string]*LogWebtrendsFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogWebtrendsFilterMapOutput) MapIndex(k pulumi.StringInput) LogWebtrendsFilterOutput {

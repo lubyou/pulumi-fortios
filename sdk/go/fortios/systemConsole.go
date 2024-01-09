@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemConsole struct {
@@ -116,12 +115,6 @@ func (i *SystemConsole) ToSystemConsoleOutputWithContext(ctx context.Context) Sy
 	return pulumi.ToOutputWithContext(ctx, i).(SystemConsoleOutput)
 }
 
-func (i *SystemConsole) ToOutput(ctx context.Context) pulumix.Output[*SystemConsole] {
-	return pulumix.Output[*SystemConsole]{
-		OutputState: i.ToSystemConsoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemConsoleArrayInput is an input type that accepts SystemConsoleArray and SystemConsoleArrayOutput values.
 // You can construct a concrete instance of `SystemConsoleArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i SystemConsoleArray) ToSystemConsoleArrayOutput() SystemConsoleArrayOutpu
 
 func (i SystemConsoleArray) ToSystemConsoleArrayOutputWithContext(ctx context.Context) SystemConsoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemConsoleArrayOutput)
-}
-
-func (i SystemConsoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemConsole] {
-	return pulumix.Output[[]*SystemConsole]{
-		OutputState: i.ToSystemConsoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemConsoleMapInput is an input type that accepts SystemConsoleMap and SystemConsoleMapOutput values.
@@ -178,12 +165,6 @@ func (i SystemConsoleMap) ToSystemConsoleMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemConsoleMapOutput)
 }
 
-func (i SystemConsoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemConsole] {
-	return pulumix.Output[map[string]*SystemConsole]{
-		OutputState: i.ToSystemConsoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemConsoleOutput struct{ *pulumi.OutputState }
 
 func (SystemConsoleOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o SystemConsoleOutput) ToSystemConsoleOutput() SystemConsoleOutput {
 
 func (o SystemConsoleOutput) ToSystemConsoleOutputWithContext(ctx context.Context) SystemConsoleOutput {
 	return o
-}
-
-func (o SystemConsoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemConsole] {
-	return pulumix.Output[*SystemConsole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemConsoleOutput) Baudrate() pulumi.StringOutput {
@@ -242,12 +217,6 @@ func (o SystemConsoleArrayOutput) ToSystemConsoleArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemConsoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemConsole] {
-	return pulumix.Output[[]*SystemConsole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemConsoleArrayOutput) Index(i pulumi.IntInput) SystemConsoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemConsole {
 		return vs[0].([]*SystemConsole)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o SystemConsoleMapOutput) ToSystemConsoleMapOutput() SystemConsoleMapOutpu
 
 func (o SystemConsoleMapOutput) ToSystemConsoleMapOutputWithContext(ctx context.Context) SystemConsoleMapOutput {
 	return o
-}
-
-func (o SystemConsoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemConsole] {
-	return pulumix.Output[map[string]*SystemConsole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemConsoleMapOutput) MapIndex(k pulumi.StringInput) SystemConsoleOutput {

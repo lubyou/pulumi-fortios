@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerTimers struct {
@@ -196,12 +195,6 @@ func (i *WirelessControllerTimers) ToWirelessControllerTimersOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerTimersOutput)
 }
 
-func (i *WirelessControllerTimers) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerTimers] {
-	return pulumix.Output[*WirelessControllerTimers]{
-		OutputState: i.ToWirelessControllerTimersOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerTimersArrayInput is an input type that accepts WirelessControllerTimersArray and WirelessControllerTimersArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerTimersArrayInput` via:
 //
@@ -225,12 +218,6 @@ func (i WirelessControllerTimersArray) ToWirelessControllerTimersArrayOutput() W
 
 func (i WirelessControllerTimersArray) ToWirelessControllerTimersArrayOutputWithContext(ctx context.Context) WirelessControllerTimersArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerTimersArrayOutput)
-}
-
-func (i WirelessControllerTimersArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerTimers] {
-	return pulumix.Output[[]*WirelessControllerTimers]{
-		OutputState: i.ToWirelessControllerTimersArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerTimersMapInput is an input type that accepts WirelessControllerTimersMap and WirelessControllerTimersMapOutput values.
@@ -258,12 +245,6 @@ func (i WirelessControllerTimersMap) ToWirelessControllerTimersMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerTimersMapOutput)
 }
 
-func (i WirelessControllerTimersMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerTimers] {
-	return pulumix.Output[map[string]*WirelessControllerTimers]{
-		OutputState: i.ToWirelessControllerTimersMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerTimersOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerTimersOutput) ElementType() reflect.Type {
@@ -276,12 +257,6 @@ func (o WirelessControllerTimersOutput) ToWirelessControllerTimersOutput() Wirel
 
 func (o WirelessControllerTimersOutput) ToWirelessControllerTimersOutputWithContext(ctx context.Context) WirelessControllerTimersOutput {
 	return o
-}
-
-func (o WirelessControllerTimersOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerTimers] {
-	return pulumix.Output[*WirelessControllerTimers]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerTimersOutput) AuthTimeout() pulumi.IntOutput {
@@ -386,12 +361,6 @@ func (o WirelessControllerTimersArrayOutput) ToWirelessControllerTimersArrayOutp
 	return o
 }
 
-func (o WirelessControllerTimersArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerTimers] {
-	return pulumix.Output[[]*WirelessControllerTimers]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerTimersArrayOutput) Index(i pulumi.IntInput) WirelessControllerTimersOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerTimers {
 		return vs[0].([]*WirelessControllerTimers)[vs[1].(int)]
@@ -410,12 +379,6 @@ func (o WirelessControllerTimersMapOutput) ToWirelessControllerTimersMapOutput()
 
 func (o WirelessControllerTimersMapOutput) ToWirelessControllerTimersMapOutputWithContext(ctx context.Context) WirelessControllerTimersMapOutput {
 	return o
-}
-
-func (o WirelessControllerTimersMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerTimers] {
-	return pulumix.Output[map[string]*WirelessControllerTimers]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerTimersMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerTimersOutput {

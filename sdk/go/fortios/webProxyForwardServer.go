@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyForwardServer struct {
@@ -158,12 +157,6 @@ func (i *WebProxyForwardServer) ToWebProxyForwardServerOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyForwardServerOutput)
 }
 
-func (i *WebProxyForwardServer) ToOutput(ctx context.Context) pulumix.Output[*WebProxyForwardServer] {
-	return pulumix.Output[*WebProxyForwardServer]{
-		OutputState: i.ToWebProxyForwardServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebProxyForwardServerArrayInput is an input type that accepts WebProxyForwardServerArray and WebProxyForwardServerArrayOutput values.
 // You can construct a concrete instance of `WebProxyForwardServerArrayInput` via:
 //
@@ -187,12 +180,6 @@ func (i WebProxyForwardServerArray) ToWebProxyForwardServerArrayOutput() WebProx
 
 func (i WebProxyForwardServerArray) ToWebProxyForwardServerArrayOutputWithContext(ctx context.Context) WebProxyForwardServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyForwardServerArrayOutput)
-}
-
-func (i WebProxyForwardServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyForwardServer] {
-	return pulumix.Output[[]*WebProxyForwardServer]{
-		OutputState: i.ToWebProxyForwardServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebProxyForwardServerMapInput is an input type that accepts WebProxyForwardServerMap and WebProxyForwardServerMapOutput values.
@@ -220,12 +207,6 @@ func (i WebProxyForwardServerMap) ToWebProxyForwardServerMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyForwardServerMapOutput)
 }
 
-func (i WebProxyForwardServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyForwardServer] {
-	return pulumix.Output[map[string]*WebProxyForwardServer]{
-		OutputState: i.ToWebProxyForwardServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebProxyForwardServerOutput struct{ *pulumi.OutputState }
 
 func (WebProxyForwardServerOutput) ElementType() reflect.Type {
@@ -238,12 +219,6 @@ func (o WebProxyForwardServerOutput) ToWebProxyForwardServerOutput() WebProxyFor
 
 func (o WebProxyForwardServerOutput) ToWebProxyForwardServerOutputWithContext(ctx context.Context) WebProxyForwardServerOutput {
 	return o
-}
-
-func (o WebProxyForwardServerOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyForwardServer] {
-	return pulumix.Output[*WebProxyForwardServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyForwardServerOutput) AddrType() pulumi.StringOutput {
@@ -312,12 +287,6 @@ func (o WebProxyForwardServerArrayOutput) ToWebProxyForwardServerArrayOutputWith
 	return o
 }
 
-func (o WebProxyForwardServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyForwardServer] {
-	return pulumix.Output[[]*WebProxyForwardServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebProxyForwardServerArrayOutput) Index(i pulumi.IntInput) WebProxyForwardServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyForwardServer {
 		return vs[0].([]*WebProxyForwardServer)[vs[1].(int)]
@@ -336,12 +305,6 @@ func (o WebProxyForwardServerMapOutput) ToWebProxyForwardServerMapOutput() WebPr
 
 func (o WebProxyForwardServerMapOutput) ToWebProxyForwardServerMapOutputWithContext(ctx context.Context) WebProxyForwardServerMapOutput {
 	return o
-}
-
-func (o WebProxyForwardServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyForwardServer] {
-	return pulumix.Output[map[string]*WebProxyForwardServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyForwardServerMapOutput) MapIndex(k pulumi.StringInput) WebProxyForwardServerOutput {

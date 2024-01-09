@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceList struct {
@@ -101,12 +100,6 @@ func (i *FirewallInternetServiceList) ToFirewallInternetServiceListOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceListOutput)
 }
 
-func (i *FirewallInternetServiceList) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceList] {
-	return pulumix.Output[*FirewallInternetServiceList]{
-		OutputState: i.ToFirewallInternetServiceListOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallInternetServiceListArrayInput is an input type that accepts FirewallInternetServiceListArray and FirewallInternetServiceListArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceListArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i FirewallInternetServiceListArray) ToFirewallInternetServiceListArrayOutp
 
 func (i FirewallInternetServiceListArray) ToFirewallInternetServiceListArrayOutputWithContext(ctx context.Context) FirewallInternetServiceListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceListArrayOutput)
-}
-
-func (i FirewallInternetServiceListArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceList] {
-	return pulumix.Output[[]*FirewallInternetServiceList]{
-		OutputState: i.ToFirewallInternetServiceListArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallInternetServiceListMapInput is an input type that accepts FirewallInternetServiceListMap and FirewallInternetServiceListMapOutput values.
@@ -163,12 +150,6 @@ func (i FirewallInternetServiceListMap) ToFirewallInternetServiceListMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceListMapOutput)
 }
 
-func (i FirewallInternetServiceListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceList] {
-	return pulumix.Output[map[string]*FirewallInternetServiceList]{
-		OutputState: i.ToFirewallInternetServiceListMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallInternetServiceListOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceListOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o FirewallInternetServiceListOutput) ToFirewallInternetServiceListOutput()
 
 func (o FirewallInternetServiceListOutput) ToFirewallInternetServiceListOutputWithContext(ctx context.Context) FirewallInternetServiceListOutput {
 	return o
-}
-
-func (o FirewallInternetServiceListOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceList] {
-	return pulumix.Output[*FirewallInternetServiceList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallInternetServiceListOutput) Fosid() pulumi.IntOutput {
@@ -215,12 +190,6 @@ func (o FirewallInternetServiceListArrayOutput) ToFirewallInternetServiceListArr
 	return o
 }
 
-func (o FirewallInternetServiceListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceList] {
-	return pulumix.Output[[]*FirewallInternetServiceList]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallInternetServiceListArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceList {
 		return vs[0].([]*FirewallInternetServiceList)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o FirewallInternetServiceListMapOutput) ToFirewallInternetServiceListMapOu
 
 func (o FirewallInternetServiceListMapOutput) ToFirewallInternetServiceListMapOutputWithContext(ctx context.Context) FirewallInternetServiceListMapOutput {
 	return o
-}
-
-func (o FirewallInternetServiceListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceList] {
-	return pulumix.Output[map[string]*FirewallInternetServiceList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallInternetServiceListMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceListOutput {

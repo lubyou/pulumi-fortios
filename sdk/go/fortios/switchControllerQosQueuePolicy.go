@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerQosQueuePolicy struct {
@@ -128,12 +127,6 @@ func (i *SwitchControllerQosQueuePolicy) ToSwitchControllerQosQueuePolicyOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyOutput)
 }
 
-func (i *SwitchControllerQosQueuePolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosQueuePolicy] {
-	return pulumix.Output[*SwitchControllerQosQueuePolicy]{
-		OutputState: i.ToSwitchControllerQosQueuePolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerQosQueuePolicyArrayInput is an input type that accepts SwitchControllerQosQueuePolicyArray and SwitchControllerQosQueuePolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosQueuePolicyArrayInput` via:
 //
@@ -157,12 +150,6 @@ func (i SwitchControllerQosQueuePolicyArray) ToSwitchControllerQosQueuePolicyArr
 
 func (i SwitchControllerQosQueuePolicyArray) ToSwitchControllerQosQueuePolicyArrayOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyArrayOutput)
-}
-
-func (i SwitchControllerQosQueuePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosQueuePolicy] {
-	return pulumix.Output[[]*SwitchControllerQosQueuePolicy]{
-		OutputState: i.ToSwitchControllerQosQueuePolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerQosQueuePolicyMapInput is an input type that accepts SwitchControllerQosQueuePolicyMap and SwitchControllerQosQueuePolicyMapOutput values.
@@ -190,12 +177,6 @@ func (i SwitchControllerQosQueuePolicyMap) ToSwitchControllerQosQueuePolicyMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyMapOutput)
 }
 
-func (i SwitchControllerQosQueuePolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosQueuePolicy] {
-	return pulumix.Output[map[string]*SwitchControllerQosQueuePolicy]{
-		OutputState: i.ToSwitchControllerQosQueuePolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerQosQueuePolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQueuePolicyOutput) ElementType() reflect.Type {
@@ -208,12 +189,6 @@ func (o SwitchControllerQosQueuePolicyOutput) ToSwitchControllerQosQueuePolicyOu
 
 func (o SwitchControllerQosQueuePolicyOutput) ToSwitchControllerQosQueuePolicyOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyOutput {
 	return o
-}
-
-func (o SwitchControllerQosQueuePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosQueuePolicy] {
-	return pulumix.Output[*SwitchControllerQosQueuePolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerQosQueuePolicyOutput) CosQueues() SwitchControllerQosQueuePolicyCosQueueArrayOutput {
@@ -260,12 +235,6 @@ func (o SwitchControllerQosQueuePolicyArrayOutput) ToSwitchControllerQosQueuePol
 	return o
 }
 
-func (o SwitchControllerQosQueuePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosQueuePolicy] {
-	return pulumix.Output[[]*SwitchControllerQosQueuePolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerQosQueuePolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosQueuePolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosQueuePolicy {
 		return vs[0].([]*SwitchControllerQosQueuePolicy)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o SwitchControllerQosQueuePolicyMapOutput) ToSwitchControllerQosQueuePolic
 
 func (o SwitchControllerQosQueuePolicyMapOutput) ToSwitchControllerQosQueuePolicyMapOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyMapOutput {
 	return o
-}
-
-func (o SwitchControllerQosQueuePolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosQueuePolicy] {
-	return pulumix.Output[map[string]*SwitchControllerQosQueuePolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerQosQueuePolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosQueuePolicyOutput {

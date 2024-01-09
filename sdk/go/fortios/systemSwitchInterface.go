@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSwitchInterface struct {
@@ -151,12 +150,6 @@ func (i *SystemSwitchInterface) ToSystemSwitchInterfaceOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfaceOutput)
 }
 
-func (i *SystemSwitchInterface) ToOutput(ctx context.Context) pulumix.Output[*SystemSwitchInterface] {
-	return pulumix.Output[*SystemSwitchInterface]{
-		OutputState: i.ToSystemSwitchInterfaceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSwitchInterfaceArrayInput is an input type that accepts SystemSwitchInterfaceArray and SystemSwitchInterfaceArrayOutput values.
 // You can construct a concrete instance of `SystemSwitchInterfaceArrayInput` via:
 //
@@ -180,12 +173,6 @@ func (i SystemSwitchInterfaceArray) ToSystemSwitchInterfaceArrayOutput() SystemS
 
 func (i SystemSwitchInterfaceArray) ToSystemSwitchInterfaceArrayOutputWithContext(ctx context.Context) SystemSwitchInterfaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfaceArrayOutput)
-}
-
-func (i SystemSwitchInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSwitchInterface] {
-	return pulumix.Output[[]*SystemSwitchInterface]{
-		OutputState: i.ToSystemSwitchInterfaceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSwitchInterfaceMapInput is an input type that accepts SystemSwitchInterfaceMap and SystemSwitchInterfaceMapOutput values.
@@ -213,12 +200,6 @@ func (i SystemSwitchInterfaceMap) ToSystemSwitchInterfaceMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfaceMapOutput)
 }
 
-func (i SystemSwitchInterfaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSwitchInterface] {
-	return pulumix.Output[map[string]*SystemSwitchInterface]{
-		OutputState: i.ToSystemSwitchInterfaceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSwitchInterfaceOutput struct{ *pulumi.OutputState }
 
 func (SystemSwitchInterfaceOutput) ElementType() reflect.Type {
@@ -231,12 +212,6 @@ func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfaceOutput() SystemSwitc
 
 func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfaceOutputWithContext(ctx context.Context) SystemSwitchInterfaceOutput {
 	return o
-}
-
-func (o SystemSwitchInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSwitchInterface] {
-	return pulumix.Output[*SystemSwitchInterface]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSwitchInterfaceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -307,12 +282,6 @@ func (o SystemSwitchInterfaceArrayOutput) ToSystemSwitchInterfaceArrayOutputWith
 	return o
 }
 
-func (o SystemSwitchInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSwitchInterface] {
-	return pulumix.Output[[]*SystemSwitchInterface]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSwitchInterfaceArrayOutput) Index(i pulumi.IntInput) SystemSwitchInterfaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSwitchInterface {
 		return vs[0].([]*SystemSwitchInterface)[vs[1].(int)]
@@ -331,12 +300,6 @@ func (o SystemSwitchInterfaceMapOutput) ToSystemSwitchInterfaceMapOutput() Syste
 
 func (o SystemSwitchInterfaceMapOutput) ToSystemSwitchInterfaceMapOutputWithContext(ctx context.Context) SystemSwitchInterfaceMapOutput {
 	return o
-}
-
-func (o SystemSwitchInterfaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSwitchInterface] {
-	return pulumix.Output[map[string]*SystemSwitchInterface]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSwitchInterfaceMapOutput) MapIndex(k pulumi.StringInput) SystemSwitchInterfaceOutput {

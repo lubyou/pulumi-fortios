@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserSaml struct {
@@ -202,12 +201,6 @@ func (i *UserSaml) ToUserSamlOutputWithContext(ctx context.Context) UserSamlOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserSamlOutput)
 }
 
-func (i *UserSaml) ToOutput(ctx context.Context) pulumix.Output[*UserSaml] {
-	return pulumix.Output[*UserSaml]{
-		OutputState: i.ToUserSamlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserSamlArrayInput is an input type that accepts UserSamlArray and UserSamlArrayOutput values.
 // You can construct a concrete instance of `UserSamlArrayInput` via:
 //
@@ -231,12 +224,6 @@ func (i UserSamlArray) ToUserSamlArrayOutput() UserSamlArrayOutput {
 
 func (i UserSamlArray) ToUserSamlArrayOutputWithContext(ctx context.Context) UserSamlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSamlArrayOutput)
-}
-
-func (i UserSamlArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserSaml] {
-	return pulumix.Output[[]*UserSaml]{
-		OutputState: i.ToUserSamlArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserSamlMapInput is an input type that accepts UserSamlMap and UserSamlMapOutput values.
@@ -264,12 +251,6 @@ func (i UserSamlMap) ToUserSamlMapOutputWithContext(ctx context.Context) UserSam
 	return pulumi.ToOutputWithContext(ctx, i).(UserSamlMapOutput)
 }
 
-func (i UserSamlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSaml] {
-	return pulumix.Output[map[string]*UserSaml]{
-		OutputState: i.ToUserSamlMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserSamlOutput struct{ *pulumi.OutputState }
 
 func (UserSamlOutput) ElementType() reflect.Type {
@@ -282,12 +263,6 @@ func (o UserSamlOutput) ToUserSamlOutput() UserSamlOutput {
 
 func (o UserSamlOutput) ToUserSamlOutputWithContext(ctx context.Context) UserSamlOutput {
 	return o
-}
-
-func (o UserSamlOutput) ToOutput(ctx context.Context) pulumix.Output[*UserSaml] {
-	return pulumix.Output[*UserSaml]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserSamlOutput) AdfsClaim() pulumi.StringOutput {
@@ -384,12 +359,6 @@ func (o UserSamlArrayOutput) ToUserSamlArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o UserSamlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserSaml] {
-	return pulumix.Output[[]*UserSaml]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserSamlArrayOutput) Index(i pulumi.IntInput) UserSamlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSaml {
 		return vs[0].([]*UserSaml)[vs[1].(int)]
@@ -408,12 +377,6 @@ func (o UserSamlMapOutput) ToUserSamlMapOutput() UserSamlMapOutput {
 
 func (o UserSamlMapOutput) ToUserSamlMapOutputWithContext(ctx context.Context) UserSamlMapOutput {
 	return o
-}
-
-func (o UserSamlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSaml] {
-	return pulumix.Output[map[string]*UserSaml]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserSamlMapOutput) MapIndex(k pulumi.StringInput) UserSamlOutput {

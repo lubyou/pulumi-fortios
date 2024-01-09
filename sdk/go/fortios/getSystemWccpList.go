@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemWccpList(ctx *pulumi.Context, args *GetSystemWccpListArgs, opts ...pulumi.InvokeOption) (*GetSystemWccpListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemWccpListResultOutput) ToGetSystemWccpListResultOutput() GetSyst
 
 func (o GetSystemWccpListResultOutput) ToGetSystemWccpListResultOutputWithContext(ctx context.Context) GetSystemWccpListResultOutput {
 	return o
-}
-
-func (o GetSystemWccpListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemWccpListResult] {
-	return pulumix.Output[GetSystemWccpListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemWccpListResultOutput) Filter() pulumi.StringPtrOutput {

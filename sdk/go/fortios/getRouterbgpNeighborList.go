@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetRouterbgpNeighborList(ctx *pulumi.Context, args *GetRouterbgpNeighborListArgs, opts ...pulumi.InvokeOption) (*GetRouterbgpNeighborListResult, error) {
@@ -73,12 +72,6 @@ func (o GetRouterbgpNeighborListResultOutput) ToGetRouterbgpNeighborListResultOu
 
 func (o GetRouterbgpNeighborListResultOutput) ToGetRouterbgpNeighborListResultOutputWithContext(ctx context.Context) GetRouterbgpNeighborListResultOutput {
 	return o
-}
-
-func (o GetRouterbgpNeighborListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRouterbgpNeighborListResult] {
-	return pulumix.Output[GetRouterbgpNeighborListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRouterbgpNeighborListResultOutput) Filter() pulumi.StringPtrOutput {

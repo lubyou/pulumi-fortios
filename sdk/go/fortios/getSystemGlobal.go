@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemGlobal(ctx *pulumi.Context, args *LookupSystemGlobalArgs, opts ...pulumi.InvokeOption) (*LookupSystemGlobalResult, error) {
@@ -345,12 +344,6 @@ func (o LookupSystemGlobalResultOutput) ToLookupSystemGlobalResultOutput() Looku
 
 func (o LookupSystemGlobalResultOutput) ToLookupSystemGlobalResultOutputWithContext(ctx context.Context) LookupSystemGlobalResultOutput {
 	return o
-}
-
-func (o LookupSystemGlobalResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemGlobalResult] {
-	return pulumix.Output[LookupSystemGlobalResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemGlobalResultOutput) AdminConcurrent() pulumi.StringOutput {

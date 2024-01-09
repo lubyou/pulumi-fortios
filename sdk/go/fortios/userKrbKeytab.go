@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserKrbKeytab struct {
@@ -133,12 +132,6 @@ func (i *UserKrbKeytab) ToUserKrbKeytabOutputWithContext(ctx context.Context) Us
 	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabOutput)
 }
 
-func (i *UserKrbKeytab) ToOutput(ctx context.Context) pulumix.Output[*UserKrbKeytab] {
-	return pulumix.Output[*UserKrbKeytab]{
-		OutputState: i.ToUserKrbKeytabOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserKrbKeytabArrayInput is an input type that accepts UserKrbKeytabArray and UserKrbKeytabArrayOutput values.
 // You can construct a concrete instance of `UserKrbKeytabArrayInput` via:
 //
@@ -162,12 +155,6 @@ func (i UserKrbKeytabArray) ToUserKrbKeytabArrayOutput() UserKrbKeytabArrayOutpu
 
 func (i UserKrbKeytabArray) ToUserKrbKeytabArrayOutputWithContext(ctx context.Context) UserKrbKeytabArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabArrayOutput)
-}
-
-func (i UserKrbKeytabArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserKrbKeytab] {
-	return pulumix.Output[[]*UserKrbKeytab]{
-		OutputState: i.ToUserKrbKeytabArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserKrbKeytabMapInput is an input type that accepts UserKrbKeytabMap and UserKrbKeytabMapOutput values.
@@ -195,12 +182,6 @@ func (i UserKrbKeytabMap) ToUserKrbKeytabMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabMapOutput)
 }
 
-func (i UserKrbKeytabMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserKrbKeytab] {
-	return pulumix.Output[map[string]*UserKrbKeytab]{
-		OutputState: i.ToUserKrbKeytabMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserKrbKeytabOutput struct{ *pulumi.OutputState }
 
 func (UserKrbKeytabOutput) ElementType() reflect.Type {
@@ -213,12 +194,6 @@ func (o UserKrbKeytabOutput) ToUserKrbKeytabOutput() UserKrbKeytabOutput {
 
 func (o UserKrbKeytabOutput) ToUserKrbKeytabOutputWithContext(ctx context.Context) UserKrbKeytabOutput {
 	return o
-}
-
-func (o UserKrbKeytabOutput) ToOutput(ctx context.Context) pulumix.Output[*UserKrbKeytab] {
-	return pulumix.Output[*UserKrbKeytab]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserKrbKeytabOutput) Keytab() pulumi.StringOutput {
@@ -259,12 +234,6 @@ func (o UserKrbKeytabArrayOutput) ToUserKrbKeytabArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o UserKrbKeytabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserKrbKeytab] {
-	return pulumix.Output[[]*UserKrbKeytab]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserKrbKeytabArrayOutput) Index(i pulumi.IntInput) UserKrbKeytabOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserKrbKeytab {
 		return vs[0].([]*UserKrbKeytab)[vs[1].(int)]
@@ -283,12 +252,6 @@ func (o UserKrbKeytabMapOutput) ToUserKrbKeytabMapOutput() UserKrbKeytabMapOutpu
 
 func (o UserKrbKeytabMapOutput) ToUserKrbKeytabMapOutputWithContext(ctx context.Context) UserKrbKeytabMapOutput {
 	return o
-}
-
-func (o UserKrbKeytabMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserKrbKeytab] {
-	return pulumix.Output[map[string]*UserKrbKeytab]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserKrbKeytabMapOutput) MapIndex(k pulumi.StringInput) UserKrbKeytabOutput {

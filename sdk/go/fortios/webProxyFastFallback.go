@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyFastFallback struct {
@@ -116,12 +115,6 @@ func (i *WebProxyFastFallback) ToWebProxyFastFallbackOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyFastFallbackOutput)
 }
 
-func (i *WebProxyFastFallback) ToOutput(ctx context.Context) pulumix.Output[*WebProxyFastFallback] {
-	return pulumix.Output[*WebProxyFastFallback]{
-		OutputState: i.ToWebProxyFastFallbackOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebProxyFastFallbackArrayInput is an input type that accepts WebProxyFastFallbackArray and WebProxyFastFallbackArrayOutput values.
 // You can construct a concrete instance of `WebProxyFastFallbackArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i WebProxyFastFallbackArray) ToWebProxyFastFallbackArrayOutput() WebProxyF
 
 func (i WebProxyFastFallbackArray) ToWebProxyFastFallbackArrayOutputWithContext(ctx context.Context) WebProxyFastFallbackArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyFastFallbackArrayOutput)
-}
-
-func (i WebProxyFastFallbackArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyFastFallback] {
-	return pulumix.Output[[]*WebProxyFastFallback]{
-		OutputState: i.ToWebProxyFastFallbackArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebProxyFastFallbackMapInput is an input type that accepts WebProxyFastFallbackMap and WebProxyFastFallbackMapOutput values.
@@ -178,12 +165,6 @@ func (i WebProxyFastFallbackMap) ToWebProxyFastFallbackMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyFastFallbackMapOutput)
 }
 
-func (i WebProxyFastFallbackMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyFastFallback] {
-	return pulumix.Output[map[string]*WebProxyFastFallback]{
-		OutputState: i.ToWebProxyFastFallbackMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebProxyFastFallbackOutput struct{ *pulumi.OutputState }
 
 func (WebProxyFastFallbackOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o WebProxyFastFallbackOutput) ToWebProxyFastFallbackOutput() WebProxyFastF
 
 func (o WebProxyFastFallbackOutput) ToWebProxyFastFallbackOutputWithContext(ctx context.Context) WebProxyFastFallbackOutput {
 	return o
-}
-
-func (o WebProxyFastFallbackOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyFastFallback] {
-	return pulumix.Output[*WebProxyFastFallback]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyFastFallbackOutput) ConnectionMode() pulumi.StringOutput {
@@ -242,12 +217,6 @@ func (o WebProxyFastFallbackArrayOutput) ToWebProxyFastFallbackArrayOutputWithCo
 	return o
 }
 
-func (o WebProxyFastFallbackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyFastFallback] {
-	return pulumix.Output[[]*WebProxyFastFallback]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebProxyFastFallbackArrayOutput) Index(i pulumi.IntInput) WebProxyFastFallbackOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyFastFallback {
 		return vs[0].([]*WebProxyFastFallback)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o WebProxyFastFallbackMapOutput) ToWebProxyFastFallbackMapOutput() WebProx
 
 func (o WebProxyFastFallbackMapOutput) ToWebProxyFastFallbackMapOutputWithContext(ctx context.Context) WebProxyFastFallbackMapOutput {
 	return o
-}
-
-func (o WebProxyFastFallbackMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyFastFallback] {
-	return pulumix.Output[map[string]*WebProxyFastFallback]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyFastFallbackMapOutput) MapIndex(k pulumi.StringInput) WebProxyFastFallbackOutput {

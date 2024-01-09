@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSessionTtl struct {
@@ -111,12 +110,6 @@ func (i *SystemSessionTtl) ToSystemSessionTtlOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlOutput)
 }
 
-func (i *SystemSessionTtl) ToOutput(ctx context.Context) pulumix.Output[*SystemSessionTtl] {
-	return pulumix.Output[*SystemSessionTtl]{
-		OutputState: i.ToSystemSessionTtlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSessionTtlArrayInput is an input type that accepts SystemSessionTtlArray and SystemSessionTtlArrayOutput values.
 // You can construct a concrete instance of `SystemSessionTtlArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SystemSessionTtlArray) ToSystemSessionTtlArrayOutput() SystemSessionTtlA
 
 func (i SystemSessionTtlArray) ToSystemSessionTtlArrayOutputWithContext(ctx context.Context) SystemSessionTtlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlArrayOutput)
-}
-
-func (i SystemSessionTtlArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSessionTtl] {
-	return pulumix.Output[[]*SystemSessionTtl]{
-		OutputState: i.ToSystemSessionTtlArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSessionTtlMapInput is an input type that accepts SystemSessionTtlMap and SystemSessionTtlMapOutput values.
@@ -173,12 +160,6 @@ func (i SystemSessionTtlMap) ToSystemSessionTtlMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlMapOutput)
 }
 
-func (i SystemSessionTtlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSessionTtl] {
-	return pulumix.Output[map[string]*SystemSessionTtl]{
-		OutputState: i.ToSystemSessionTtlMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSessionTtlOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionTtlOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SystemSessionTtlOutput) ToSystemSessionTtlOutput() SystemSessionTtlOutpu
 
 func (o SystemSessionTtlOutput) ToSystemSessionTtlOutputWithContext(ctx context.Context) SystemSessionTtlOutput {
 	return o
-}
-
-func (o SystemSessionTtlOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSessionTtl] {
-	return pulumix.Output[*SystemSessionTtl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSessionTtlOutput) Default() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o SystemSessionTtlArrayOutput) ToSystemSessionTtlArrayOutputWithContext(ct
 	return o
 }
 
-func (o SystemSessionTtlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSessionTtl] {
-	return pulumix.Output[[]*SystemSessionTtl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSessionTtlArrayOutput) Index(i pulumi.IntInput) SystemSessionTtlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSessionTtl {
 		return vs[0].([]*SystemSessionTtl)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SystemSessionTtlMapOutput) ToSystemSessionTtlMapOutput() SystemSessionTt
 
 func (o SystemSessionTtlMapOutput) ToSystemSessionTtlMapOutputWithContext(ctx context.Context) SystemSessionTtlMapOutput {
 	return o
-}
-
-func (o SystemSessionTtlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSessionTtl] {
-	return pulumix.Output[map[string]*SystemSessionTtl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSessionTtlMapOutput) MapIndex(k pulumi.StringInput) SystemSessionTtlOutput {

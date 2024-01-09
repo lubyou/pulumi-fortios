@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceSubapp struct {
@@ -111,12 +110,6 @@ func (i *FirewallInternetServiceSubapp) ToFirewallInternetServiceSubappOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceSubappOutput)
 }
 
-func (i *FirewallInternetServiceSubapp) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceSubapp] {
-	return pulumix.Output[*FirewallInternetServiceSubapp]{
-		OutputState: i.ToFirewallInternetServiceSubappOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallInternetServiceSubappArrayInput is an input type that accepts FirewallInternetServiceSubappArray and FirewallInternetServiceSubappArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceSubappArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i FirewallInternetServiceSubappArray) ToFirewallInternetServiceSubappArray
 
 func (i FirewallInternetServiceSubappArray) ToFirewallInternetServiceSubappArrayOutputWithContext(ctx context.Context) FirewallInternetServiceSubappArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceSubappArrayOutput)
-}
-
-func (i FirewallInternetServiceSubappArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceSubapp] {
-	return pulumix.Output[[]*FirewallInternetServiceSubapp]{
-		OutputState: i.ToFirewallInternetServiceSubappArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallInternetServiceSubappMapInput is an input type that accepts FirewallInternetServiceSubappMap and FirewallInternetServiceSubappMapOutput values.
@@ -173,12 +160,6 @@ func (i FirewallInternetServiceSubappMap) ToFirewallInternetServiceSubappMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceSubappMapOutput)
 }
 
-func (i FirewallInternetServiceSubappMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceSubapp] {
-	return pulumix.Output[map[string]*FirewallInternetServiceSubapp]{
-		OutputState: i.ToFirewallInternetServiceSubappMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallInternetServiceSubappOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceSubappOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o FirewallInternetServiceSubappOutput) ToFirewallInternetServiceSubappOutp
 
 func (o FirewallInternetServiceSubappOutput) ToFirewallInternetServiceSubappOutputWithContext(ctx context.Context) FirewallInternetServiceSubappOutput {
 	return o
-}
-
-func (o FirewallInternetServiceSubappOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceSubapp] {
-	return pulumix.Output[*FirewallInternetServiceSubapp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallInternetServiceSubappOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -235,12 +210,6 @@ func (o FirewallInternetServiceSubappArrayOutput) ToFirewallInternetServiceSubap
 	return o
 }
 
-func (o FirewallInternetServiceSubappArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceSubapp] {
-	return pulumix.Output[[]*FirewallInternetServiceSubapp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallInternetServiceSubappArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceSubappOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceSubapp {
 		return vs[0].([]*FirewallInternetServiceSubapp)[vs[1].(int)]
@@ -259,12 +228,6 @@ func (o FirewallInternetServiceSubappMapOutput) ToFirewallInternetServiceSubappM
 
 func (o FirewallInternetServiceSubappMapOutput) ToFirewallInternetServiceSubappMapOutputWithContext(ctx context.Context) FirewallInternetServiceSubappMapOutput {
 	return o
-}
-
-func (o FirewallInternetServiceSubappMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceSubapp] {
-	return pulumix.Output[map[string]*FirewallInternetServiceSubapp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallInternetServiceSubappMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceSubappOutput {

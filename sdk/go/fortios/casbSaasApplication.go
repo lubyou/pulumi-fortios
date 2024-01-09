@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CasbSaasApplication struct {
@@ -131,12 +130,6 @@ func (i *CasbSaasApplication) ToCasbSaasApplicationOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CasbSaasApplicationOutput)
 }
 
-func (i *CasbSaasApplication) ToOutput(ctx context.Context) pulumix.Output[*CasbSaasApplication] {
-	return pulumix.Output[*CasbSaasApplication]{
-		OutputState: i.ToCasbSaasApplicationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CasbSaasApplicationArrayInput is an input type that accepts CasbSaasApplicationArray and CasbSaasApplicationArrayOutput values.
 // You can construct a concrete instance of `CasbSaasApplicationArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i CasbSaasApplicationArray) ToCasbSaasApplicationArrayOutput() CasbSaasApp
 
 func (i CasbSaasApplicationArray) ToCasbSaasApplicationArrayOutputWithContext(ctx context.Context) CasbSaasApplicationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CasbSaasApplicationArrayOutput)
-}
-
-func (i CasbSaasApplicationArray) ToOutput(ctx context.Context) pulumix.Output[[]*CasbSaasApplication] {
-	return pulumix.Output[[]*CasbSaasApplication]{
-		OutputState: i.ToCasbSaasApplicationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CasbSaasApplicationMapInput is an input type that accepts CasbSaasApplicationMap and CasbSaasApplicationMapOutput values.
@@ -193,12 +180,6 @@ func (i CasbSaasApplicationMap) ToCasbSaasApplicationMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CasbSaasApplicationMapOutput)
 }
 
-func (i CasbSaasApplicationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CasbSaasApplication] {
-	return pulumix.Output[map[string]*CasbSaasApplication]{
-		OutputState: i.ToCasbSaasApplicationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CasbSaasApplicationOutput struct{ *pulumi.OutputState }
 
 func (CasbSaasApplicationOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o CasbSaasApplicationOutput) ToCasbSaasApplicationOutput() CasbSaasApplica
 
 func (o CasbSaasApplicationOutput) ToCasbSaasApplicationOutputWithContext(ctx context.Context) CasbSaasApplicationOutput {
 	return o
-}
-
-func (o CasbSaasApplicationOutput) ToOutput(ctx context.Context) pulumix.Output[*CasbSaasApplication] {
-	return pulumix.Output[*CasbSaasApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CasbSaasApplicationOutput) CasbName() pulumi.StringOutput {
@@ -269,12 +244,6 @@ func (o CasbSaasApplicationArrayOutput) ToCasbSaasApplicationArrayOutputWithCont
 	return o
 }
 
-func (o CasbSaasApplicationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CasbSaasApplication] {
-	return pulumix.Output[[]*CasbSaasApplication]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CasbSaasApplicationArrayOutput) Index(i pulumi.IntInput) CasbSaasApplicationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CasbSaasApplication {
 		return vs[0].([]*CasbSaasApplication)[vs[1].(int)]
@@ -293,12 +262,6 @@ func (o CasbSaasApplicationMapOutput) ToCasbSaasApplicationMapOutput() CasbSaasA
 
 func (o CasbSaasApplicationMapOutput) ToCasbSaasApplicationMapOutputWithContext(ctx context.Context) CasbSaasApplicationMapOutput {
 	return o
-}
-
-func (o CasbSaasApplicationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CasbSaasApplication] {
-	return pulumix.Output[map[string]*CasbSaasApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CasbSaasApplicationMapOutput) MapIndex(k pulumi.StringInput) CasbSaasApplicationOutput {

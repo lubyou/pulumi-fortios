@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSwitchGroup struct {
@@ -121,12 +120,6 @@ func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupOutput)
 }
 
-func (i *SwitchControllerSwitchGroup) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSwitchGroup] {
-	return pulumix.Output[*SwitchControllerSwitchGroup]{
-		OutputState: i.ToSwitchControllerSwitchGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerSwitchGroupArrayInput is an input type that accepts SwitchControllerSwitchGroupArray and SwitchControllerSwitchGroupArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchGroupArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i SwitchControllerSwitchGroupArray) ToSwitchControllerSwitchGroupArrayOutp
 
 func (i SwitchControllerSwitchGroupArray) ToSwitchControllerSwitchGroupArrayOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupArrayOutput)
-}
-
-func (i SwitchControllerSwitchGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSwitchGroup] {
-	return pulumix.Output[[]*SwitchControllerSwitchGroup]{
-		OutputState: i.ToSwitchControllerSwitchGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerSwitchGroupMapInput is an input type that accepts SwitchControllerSwitchGroupMap and SwitchControllerSwitchGroupMapOutput values.
@@ -183,12 +170,6 @@ func (i SwitchControllerSwitchGroupMap) ToSwitchControllerSwitchGroupMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupMapOutput)
 }
 
-func (i SwitchControllerSwitchGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSwitchGroup] {
-	return pulumix.Output[map[string]*SwitchControllerSwitchGroup]{
-		OutputState: i.ToSwitchControllerSwitchGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerSwitchGroupOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchGroupOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupOutput()
 
 func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupOutput {
 	return o
-}
-
-func (o SwitchControllerSwitchGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSwitchGroup] {
-	return pulumix.Output[*SwitchControllerSwitchGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSwitchGroupOutput) Description() pulumi.StringOutput {
@@ -251,12 +226,6 @@ func (o SwitchControllerSwitchGroupArrayOutput) ToSwitchControllerSwitchGroupArr
 	return o
 }
 
-func (o SwitchControllerSwitchGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSwitchGroup] {
-	return pulumix.Output[[]*SwitchControllerSwitchGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerSwitchGroupArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchGroup {
 		return vs[0].([]*SwitchControllerSwitchGroup)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o SwitchControllerSwitchGroupMapOutput) ToSwitchControllerSwitchGroupMapOu
 
 func (o SwitchControllerSwitchGroupMapOutput) ToSwitchControllerSwitchGroupMapOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupMapOutput {
 	return o
-}
-
-func (o SwitchControllerSwitchGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSwitchGroup] {
-	return pulumix.Output[map[string]*SwitchControllerSwitchGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSwitchGroupMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchGroupOutput {

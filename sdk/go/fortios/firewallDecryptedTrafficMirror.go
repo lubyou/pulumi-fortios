@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallDecryptedTrafficMirror struct {
@@ -126,12 +125,6 @@ func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorOutput)
 }
 
-func (i *FirewallDecryptedTrafficMirror) ToOutput(ctx context.Context) pulumix.Output[*FirewallDecryptedTrafficMirror] {
-	return pulumix.Output[*FirewallDecryptedTrafficMirror]{
-		OutputState: i.ToFirewallDecryptedTrafficMirrorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallDecryptedTrafficMirrorArrayInput is an input type that accepts FirewallDecryptedTrafficMirrorArray and FirewallDecryptedTrafficMirrorArrayOutput values.
 // You can construct a concrete instance of `FirewallDecryptedTrafficMirrorArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i FirewallDecryptedTrafficMirrorArray) ToFirewallDecryptedTrafficMirrorArr
 
 func (i FirewallDecryptedTrafficMirrorArray) ToFirewallDecryptedTrafficMirrorArrayOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorArrayOutput)
-}
-
-func (i FirewallDecryptedTrafficMirrorArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallDecryptedTrafficMirror] {
-	return pulumix.Output[[]*FirewallDecryptedTrafficMirror]{
-		OutputState: i.ToFirewallDecryptedTrafficMirrorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallDecryptedTrafficMirrorMapInput is an input type that accepts FirewallDecryptedTrafficMirrorMap and FirewallDecryptedTrafficMirrorMapOutput values.
@@ -188,12 +175,6 @@ func (i FirewallDecryptedTrafficMirrorMap) ToFirewallDecryptedTrafficMirrorMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorMapOutput)
 }
 
-func (i FirewallDecryptedTrafficMirrorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallDecryptedTrafficMirror] {
-	return pulumix.Output[map[string]*FirewallDecryptedTrafficMirror]{
-		OutputState: i.ToFirewallDecryptedTrafficMirrorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallDecryptedTrafficMirrorOutput struct{ *pulumi.OutputState }
 
 func (FirewallDecryptedTrafficMirrorOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorOu
 
 func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorOutput {
 	return o
-}
-
-func (o FirewallDecryptedTrafficMirrorOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallDecryptedTrafficMirror] {
-	return pulumix.Output[*FirewallDecryptedTrafficMirror]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallDecryptedTrafficMirrorOutput) Dstmac() pulumi.StringOutput {
@@ -262,12 +237,6 @@ func (o FirewallDecryptedTrafficMirrorArrayOutput) ToFirewallDecryptedTrafficMir
 	return o
 }
 
-func (o FirewallDecryptedTrafficMirrorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallDecryptedTrafficMirror] {
-	return pulumix.Output[[]*FirewallDecryptedTrafficMirror]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallDecryptedTrafficMirrorArrayOutput) Index(i pulumi.IntInput) FirewallDecryptedTrafficMirrorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallDecryptedTrafficMirror {
 		return vs[0].([]*FirewallDecryptedTrafficMirror)[vs[1].(int)]
@@ -286,12 +255,6 @@ func (o FirewallDecryptedTrafficMirrorMapOutput) ToFirewallDecryptedTrafficMirro
 
 func (o FirewallDecryptedTrafficMirrorMapOutput) ToFirewallDecryptedTrafficMirrorMapOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorMapOutput {
 	return o
-}
-
-func (o FirewallDecryptedTrafficMirrorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallDecryptedTrafficMirror] {
-	return pulumix.Output[map[string]*FirewallDecryptedTrafficMirror]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallDecryptedTrafficMirrorMapOutput) MapIndex(k pulumi.StringInput) FirewallDecryptedTrafficMirrorOutput {

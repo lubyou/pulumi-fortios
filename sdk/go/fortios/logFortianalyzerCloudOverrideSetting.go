@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzerCloudOverrideSetting struct {
@@ -96,12 +95,6 @@ func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSe
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingOutput)
 }
 
-func (i *LogFortianalyzerCloudOverrideSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerCloudOverrideSetting] {
-	return pulumix.Output[*LogFortianalyzerCloudOverrideSetting]{
-		OutputState: i.ToLogFortianalyzerCloudOverrideSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortianalyzerCloudOverrideSettingArrayInput is an input type that accepts LogFortianalyzerCloudOverrideSettingArray and LogFortianalyzerCloudOverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudOverrideSettingArrayInput` via:
 //
@@ -125,12 +118,6 @@ func (i LogFortianalyzerCloudOverrideSettingArray) ToLogFortianalyzerCloudOverri
 
 func (i LogFortianalyzerCloudOverrideSettingArray) ToLogFortianalyzerCloudOverrideSettingArrayOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingArrayOutput)
-}
-
-func (i LogFortianalyzerCloudOverrideSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerCloudOverrideSetting] {
-	return pulumix.Output[[]*LogFortianalyzerCloudOverrideSetting]{
-		OutputState: i.ToLogFortianalyzerCloudOverrideSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortianalyzerCloudOverrideSettingMapInput is an input type that accepts LogFortianalyzerCloudOverrideSettingMap and LogFortianalyzerCloudOverrideSettingMapOutput values.
@@ -158,12 +145,6 @@ func (i LogFortianalyzerCloudOverrideSettingMap) ToLogFortianalyzerCloudOverride
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingMapOutput)
 }
 
-func (i LogFortianalyzerCloudOverrideSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerCloudOverrideSetting] {
-	return pulumix.Output[map[string]*LogFortianalyzerCloudOverrideSetting]{
-		OutputState: i.ToLogFortianalyzerCloudOverrideSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortianalyzerCloudOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideSettingOutput) ElementType() reflect.Type {
@@ -176,12 +157,6 @@ func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverr
 
 func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverrideSettingOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingOutput {
 	return o
-}
-
-func (o LogFortianalyzerCloudOverrideSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerCloudOverrideSetting] {
-	return pulumix.Output[*LogFortianalyzerCloudOverrideSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzerCloudOverrideSettingOutput) Status() pulumi.StringOutput {
@@ -206,12 +181,6 @@ func (o LogFortianalyzerCloudOverrideSettingArrayOutput) ToLogFortianalyzerCloud
 	return o
 }
 
-func (o LogFortianalyzerCloudOverrideSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerCloudOverrideSetting] {
-	return pulumix.Output[[]*LogFortianalyzerCloudOverrideSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortianalyzerCloudOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudOverrideSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudOverrideSetting {
 		return vs[0].([]*LogFortianalyzerCloudOverrideSetting)[vs[1].(int)]
@@ -230,12 +199,6 @@ func (o LogFortianalyzerCloudOverrideSettingMapOutput) ToLogFortianalyzerCloudOv
 
 func (o LogFortianalyzerCloudOverrideSettingMapOutput) ToLogFortianalyzerCloudOverrideSettingMapOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingMapOutput {
 	return o
-}
-
-func (o LogFortianalyzerCloudOverrideSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerCloudOverrideSetting] {
-	return pulumix.Output[map[string]*LogFortianalyzerCloudOverrideSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzerCloudOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudOverrideSettingOutput {

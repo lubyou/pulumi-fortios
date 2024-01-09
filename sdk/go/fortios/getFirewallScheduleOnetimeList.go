@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallScheduleOnetimeList(ctx *pulumi.Context, args *GetFirewallScheduleOnetimeListArgs, opts ...pulumi.InvokeOption) (*GetFirewallScheduleOnetimeListResult, error) {
@@ -73,12 +72,6 @@ func (o GetFirewallScheduleOnetimeListResultOutput) ToGetFirewallScheduleOnetime
 
 func (o GetFirewallScheduleOnetimeListResultOutput) ToGetFirewallScheduleOnetimeListResultOutputWithContext(ctx context.Context) GetFirewallScheduleOnetimeListResultOutput {
 	return o
-}
-
-func (o GetFirewallScheduleOnetimeListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallScheduleOnetimeListResult] {
-	return pulumix.Output[GetFirewallScheduleOnetimeListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetFirewallScheduleOnetimeListResultOutput) Filter() pulumi.StringPtrOutput {

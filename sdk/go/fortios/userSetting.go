@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserSetting struct {
@@ -211,12 +210,6 @@ func (i *UserSetting) ToUserSettingOutputWithContext(ctx context.Context) UserSe
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingOutput)
 }
 
-func (i *UserSetting) ToOutput(ctx context.Context) pulumix.Output[*UserSetting] {
-	return pulumix.Output[*UserSetting]{
-		OutputState: i.ToUserSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserSettingArrayInput is an input type that accepts UserSettingArray and UserSettingArrayOutput values.
 // You can construct a concrete instance of `UserSettingArrayInput` via:
 //
@@ -240,12 +233,6 @@ func (i UserSettingArray) ToUserSettingArrayOutput() UserSettingArrayOutput {
 
 func (i UserSettingArray) ToUserSettingArrayOutputWithContext(ctx context.Context) UserSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingArrayOutput)
-}
-
-func (i UserSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserSetting] {
-	return pulumix.Output[[]*UserSetting]{
-		OutputState: i.ToUserSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserSettingMapInput is an input type that accepts UserSettingMap and UserSettingMapOutput values.
@@ -273,12 +260,6 @@ func (i UserSettingMap) ToUserSettingMapOutputWithContext(ctx context.Context) U
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingMapOutput)
 }
 
-func (i UserSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSetting] {
-	return pulumix.Output[map[string]*UserSetting]{
-		OutputState: i.ToUserSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserSettingOutput struct{ *pulumi.OutputState }
 
 func (UserSettingOutput) ElementType() reflect.Type {
@@ -291,12 +272,6 @@ func (o UserSettingOutput) ToUserSettingOutput() UserSettingOutput {
 
 func (o UserSettingOutput) ToUserSettingOutputWithContext(ctx context.Context) UserSettingOutput {
 	return o
-}
-
-func (o UserSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*UserSetting] {
-	return pulumix.Output[*UserSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserSettingOutput) AuthBlackoutTime() pulumi.IntOutput {
@@ -413,12 +388,6 @@ func (o UserSettingArrayOutput) ToUserSettingArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o UserSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserSetting] {
-	return pulumix.Output[[]*UserSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserSettingArrayOutput) Index(i pulumi.IntInput) UserSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSetting {
 		return vs[0].([]*UserSetting)[vs[1].(int)]
@@ -437,12 +406,6 @@ func (o UserSettingMapOutput) ToUserSettingMapOutput() UserSettingMapOutput {
 
 func (o UserSettingMapOutput) ToUserSettingMapOutputWithContext(ctx context.Context) UserSettingMapOutput {
 	return o
-}
-
-func (o UserSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSetting] {
-	return pulumix.Output[map[string]*UserSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserSettingMapOutput) MapIndex(k pulumi.StringInput) UserSettingOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyDebugUrl struct {
@@ -115,12 +114,6 @@ func (i *WebProxyDebugUrl) ToWebProxyDebugUrlOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyDebugUrlOutput)
 }
 
-func (i *WebProxyDebugUrl) ToOutput(ctx context.Context) pulumix.Output[*WebProxyDebugUrl] {
-	return pulumix.Output[*WebProxyDebugUrl]{
-		OutputState: i.ToWebProxyDebugUrlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebProxyDebugUrlArrayInput is an input type that accepts WebProxyDebugUrlArray and WebProxyDebugUrlArrayOutput values.
 // You can construct a concrete instance of `WebProxyDebugUrlArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i WebProxyDebugUrlArray) ToWebProxyDebugUrlArrayOutput() WebProxyDebugUrlA
 
 func (i WebProxyDebugUrlArray) ToWebProxyDebugUrlArrayOutputWithContext(ctx context.Context) WebProxyDebugUrlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyDebugUrlArrayOutput)
-}
-
-func (i WebProxyDebugUrlArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyDebugUrl] {
-	return pulumix.Output[[]*WebProxyDebugUrl]{
-		OutputState: i.ToWebProxyDebugUrlArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebProxyDebugUrlMapInput is an input type that accepts WebProxyDebugUrlMap and WebProxyDebugUrlMapOutput values.
@@ -177,12 +164,6 @@ func (i WebProxyDebugUrlMap) ToWebProxyDebugUrlMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyDebugUrlMapOutput)
 }
 
-func (i WebProxyDebugUrlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyDebugUrl] {
-	return pulumix.Output[map[string]*WebProxyDebugUrl]{
-		OutputState: i.ToWebProxyDebugUrlMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebProxyDebugUrlOutput struct{ *pulumi.OutputState }
 
 func (WebProxyDebugUrlOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o WebProxyDebugUrlOutput) ToWebProxyDebugUrlOutput() WebProxyDebugUrlOutpu
 
 func (o WebProxyDebugUrlOutput) ToWebProxyDebugUrlOutputWithContext(ctx context.Context) WebProxyDebugUrlOutput {
 	return o
-}
-
-func (o WebProxyDebugUrlOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyDebugUrl] {
-	return pulumix.Output[*WebProxyDebugUrl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyDebugUrlOutput) Exact() pulumi.StringOutput {
@@ -237,12 +212,6 @@ func (o WebProxyDebugUrlArrayOutput) ToWebProxyDebugUrlArrayOutputWithContext(ct
 	return o
 }
 
-func (o WebProxyDebugUrlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyDebugUrl] {
-	return pulumix.Output[[]*WebProxyDebugUrl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebProxyDebugUrlArrayOutput) Index(i pulumi.IntInput) WebProxyDebugUrlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyDebugUrl {
 		return vs[0].([]*WebProxyDebugUrl)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o WebProxyDebugUrlMapOutput) ToWebProxyDebugUrlMapOutput() WebProxyDebugUr
 
 func (o WebProxyDebugUrlMapOutput) ToWebProxyDebugUrlMapOutputWithContext(ctx context.Context) WebProxyDebugUrlMapOutput {
 	return o
-}
-
-func (o WebProxyDebugUrlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyDebugUrl] {
-	return pulumix.Output[map[string]*WebProxyDebugUrl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyDebugUrlMapOutput) MapIndex(k pulumi.StringInput) WebProxyDebugUrlOutput {

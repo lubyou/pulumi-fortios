@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemGreTunnel(ctx *pulumi.Context, args *LookupSystemGreTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemGreTunnelResult, error) {
@@ -89,12 +88,6 @@ func (o LookupSystemGreTunnelResultOutput) ToLookupSystemGreTunnelResultOutput()
 
 func (o LookupSystemGreTunnelResultOutput) ToLookupSystemGreTunnelResultOutputWithContext(ctx context.Context) LookupSystemGreTunnelResultOutput {
 	return o
-}
-
-func (o LookupSystemGreTunnelResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemGreTunnelResult] {
-	return pulumix.Output[LookupSystemGreTunnelResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemGreTunnelResultOutput) ChecksumReception() pulumi.StringOutput {

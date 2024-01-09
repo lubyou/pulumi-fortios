@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AntivirusProfile struct {
@@ -311,12 +310,6 @@ func (i *AntivirusProfile) ToAntivirusProfileOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileOutput)
 }
 
-func (i *AntivirusProfile) ToOutput(ctx context.Context) pulumix.Output[*AntivirusProfile] {
-	return pulumix.Output[*AntivirusProfile]{
-		OutputState: i.ToAntivirusProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AntivirusProfileArrayInput is an input type that accepts AntivirusProfileArray and AntivirusProfileArrayOutput values.
 // You can construct a concrete instance of `AntivirusProfileArrayInput` via:
 //
@@ -340,12 +333,6 @@ func (i AntivirusProfileArray) ToAntivirusProfileArrayOutput() AntivirusProfileA
 
 func (i AntivirusProfileArray) ToAntivirusProfileArrayOutputWithContext(ctx context.Context) AntivirusProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileArrayOutput)
-}
-
-func (i AntivirusProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusProfile] {
-	return pulumix.Output[[]*AntivirusProfile]{
-		OutputState: i.ToAntivirusProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AntivirusProfileMapInput is an input type that accepts AntivirusProfileMap and AntivirusProfileMapOutput values.
@@ -373,12 +360,6 @@ func (i AntivirusProfileMap) ToAntivirusProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileMapOutput)
 }
 
-func (i AntivirusProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusProfile] {
-	return pulumix.Output[map[string]*AntivirusProfile]{
-		OutputState: i.ToAntivirusProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AntivirusProfileOutput struct{ *pulumi.OutputState }
 
 func (AntivirusProfileOutput) ElementType() reflect.Type {
@@ -391,12 +372,6 @@ func (o AntivirusProfileOutput) ToAntivirusProfileOutput() AntivirusProfileOutpu
 
 func (o AntivirusProfileOutput) ToAntivirusProfileOutputWithContext(ctx context.Context) AntivirusProfileOutput {
 	return o
-}
-
-func (o AntivirusProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*AntivirusProfile] {
-	return pulumix.Output[*AntivirusProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AntivirusProfileOutput) AnalyticsAcceptFiletype() pulumi.IntOutput {
@@ -593,12 +568,6 @@ func (o AntivirusProfileArrayOutput) ToAntivirusProfileArrayOutputWithContext(ct
 	return o
 }
 
-func (o AntivirusProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusProfile] {
-	return pulumix.Output[[]*AntivirusProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AntivirusProfileArrayOutput) Index(i pulumi.IntInput) AntivirusProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusProfile {
 		return vs[0].([]*AntivirusProfile)[vs[1].(int)]
@@ -617,12 +586,6 @@ func (o AntivirusProfileMapOutput) ToAntivirusProfileMapOutput() AntivirusProfil
 
 func (o AntivirusProfileMapOutput) ToAntivirusProfileMapOutputWithContext(ctx context.Context) AntivirusProfileMapOutput {
 	return o
-}
-
-func (o AntivirusProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusProfile] {
-	return pulumix.Output[map[string]*AntivirusProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AntivirusProfileMapOutput) MapIndex(k pulumi.StringInput) AntivirusProfileOutput {

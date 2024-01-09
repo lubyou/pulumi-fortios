@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerInitialConfigTemplate struct {
@@ -121,12 +120,6 @@ func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigT
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplateOutput)
 }
 
-func (i *SwitchControllerInitialConfigTemplate) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerInitialConfigTemplate] {
-	return pulumix.Output[*SwitchControllerInitialConfigTemplate]{
-		OutputState: i.ToSwitchControllerInitialConfigTemplateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerInitialConfigTemplateArrayInput is an input type that accepts SwitchControllerInitialConfigTemplateArray and SwitchControllerInitialConfigTemplateArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerInitialConfigTemplateArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i SwitchControllerInitialConfigTemplateArray) ToSwitchControllerInitialCon
 
 func (i SwitchControllerInitialConfigTemplateArray) ToSwitchControllerInitialConfigTemplateArrayOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplateArrayOutput)
-}
-
-func (i SwitchControllerInitialConfigTemplateArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerInitialConfigTemplate] {
-	return pulumix.Output[[]*SwitchControllerInitialConfigTemplate]{
-		OutputState: i.ToSwitchControllerInitialConfigTemplateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerInitialConfigTemplateMapInput is an input type that accepts SwitchControllerInitialConfigTemplateMap and SwitchControllerInitialConfigTemplateMapOutput values.
@@ -183,12 +170,6 @@ func (i SwitchControllerInitialConfigTemplateMap) ToSwitchControllerInitialConfi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplateMapOutput)
 }
 
-func (i SwitchControllerInitialConfigTemplateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerInitialConfigTemplate] {
-	return pulumix.Output[map[string]*SwitchControllerInitialConfigTemplate]{
-		OutputState: i.ToSwitchControllerInitialConfigTemplateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerInitialConfigTemplateOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigTemplateOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialCo
 
 func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialConfigTemplateOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplateOutput {
 	return o
-}
-
-func (o SwitchControllerInitialConfigTemplateOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerInitialConfigTemplate] {
-	return pulumix.Output[*SwitchControllerInitialConfigTemplate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerInitialConfigTemplateOutput) Allowaccess() pulumi.StringOutput {
@@ -251,12 +226,6 @@ func (o SwitchControllerInitialConfigTemplateArrayOutput) ToSwitchControllerInit
 	return o
 }
 
-func (o SwitchControllerInitialConfigTemplateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerInitialConfigTemplate] {
-	return pulumix.Output[[]*SwitchControllerInitialConfigTemplate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerInitialConfigTemplateArrayOutput) Index(i pulumi.IntInput) SwitchControllerInitialConfigTemplateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerInitialConfigTemplate {
 		return vs[0].([]*SwitchControllerInitialConfigTemplate)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o SwitchControllerInitialConfigTemplateMapOutput) ToSwitchControllerInitia
 
 func (o SwitchControllerInitialConfigTemplateMapOutput) ToSwitchControllerInitialConfigTemplateMapOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplateMapOutput {
 	return o
-}
-
-func (o SwitchControllerInitialConfigTemplateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerInitialConfigTemplate] {
-	return pulumix.Output[map[string]*SwitchControllerInitialConfigTemplate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerInitialConfigTemplateMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerInitialConfigTemplateOutput {

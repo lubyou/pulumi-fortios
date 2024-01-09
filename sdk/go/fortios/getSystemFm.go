@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFm(ctx *pulumi.Context, args *LookupSystemFmArgs, opts ...pulumi.InvokeOption) (*LookupSystemFmResult, error) {
@@ -76,12 +75,6 @@ func (o LookupSystemFmResultOutput) ToLookupSystemFmResultOutput() LookupSystemF
 
 func (o LookupSystemFmResultOutput) ToLookupSystemFmResultOutputWithContext(ctx context.Context) LookupSystemFmResultOutput {
 	return o
-}
-
-func (o LookupSystemFmResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFmResult] {
-	return pulumix.Output[LookupSystemFmResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemFmResultOutput) AutoBackup() pulumi.StringOutput {

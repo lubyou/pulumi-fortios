@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemIpv6NeighborCache(ctx *pulumi.Context, args *LookupSystemIpv6NeighborCacheArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpv6NeighborCacheResult, error) {
@@ -75,12 +74,6 @@ func (o LookupSystemIpv6NeighborCacheResultOutput) ToLookupSystemIpv6NeighborCac
 
 func (o LookupSystemIpv6NeighborCacheResultOutput) ToLookupSystemIpv6NeighborCacheResultOutputWithContext(ctx context.Context) LookupSystemIpv6NeighborCacheResultOutput {
 	return o
-}
-
-func (o LookupSystemIpv6NeighborCacheResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemIpv6NeighborCacheResult] {
-	return pulumix.Output[LookupSystemIpv6NeighborCacheResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemIpv6NeighborCacheResultOutput) Fosid() pulumi.IntOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetUserSamlList(ctx *pulumi.Context, args *GetUserSamlListArgs, opts ...pulumi.InvokeOption) (*GetUserSamlListResult, error) {
@@ -73,12 +72,6 @@ func (o GetUserSamlListResultOutput) ToGetUserSamlListResultOutput() GetUserSaml
 
 func (o GetUserSamlListResultOutput) ToGetUserSamlListResultOutputWithContext(ctx context.Context) GetUserSamlListResultOutput {
 	return o
-}
-
-func (o GetUserSamlListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetUserSamlListResult] {
-	return pulumix.Output[GetUserSamlListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetUserSamlListResultOutput) Filter() pulumi.StringPtrOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemReplacemsgGroupList(ctx *pulumi.Context, args *GetSystemReplacemsgGroupListArgs, opts ...pulumi.InvokeOption) (*GetSystemReplacemsgGroupListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemReplacemsgGroupListResultOutput) ToGetSystemReplacemsgGroupList
 
 func (o GetSystemReplacemsgGroupListResultOutput) ToGetSystemReplacemsgGroupListResultOutputWithContext(ctx context.Context) GetSystemReplacemsgGroupListResultOutput {
 	return o
-}
-
-func (o GetSystemReplacemsgGroupListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemReplacemsgGroupListResult] {
-	return pulumix.Output[GetSystemReplacemsgGroupListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemReplacemsgGroupListResultOutput) Filter() pulumi.StringPtrOutput {

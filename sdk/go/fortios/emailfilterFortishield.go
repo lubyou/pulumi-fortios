@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EmailfilterFortishield struct {
@@ -106,12 +105,6 @@ func (i *EmailfilterFortishield) ToEmailfilterFortishieldOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterFortishieldOutput)
 }
 
-func (i *EmailfilterFortishield) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterFortishield] {
-	return pulumix.Output[*EmailfilterFortishield]{
-		OutputState: i.ToEmailfilterFortishieldOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EmailfilterFortishieldArrayInput is an input type that accepts EmailfilterFortishieldArray and EmailfilterFortishieldArrayOutput values.
 // You can construct a concrete instance of `EmailfilterFortishieldArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i EmailfilterFortishieldArray) ToEmailfilterFortishieldArrayOutput() Email
 
 func (i EmailfilterFortishieldArray) ToEmailfilterFortishieldArrayOutputWithContext(ctx context.Context) EmailfilterFortishieldArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterFortishieldArrayOutput)
-}
-
-func (i EmailfilterFortishieldArray) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterFortishield] {
-	return pulumix.Output[[]*EmailfilterFortishield]{
-		OutputState: i.ToEmailfilterFortishieldArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EmailfilterFortishieldMapInput is an input type that accepts EmailfilterFortishieldMap and EmailfilterFortishieldMapOutput values.
@@ -168,12 +155,6 @@ func (i EmailfilterFortishieldMap) ToEmailfilterFortishieldMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterFortishieldMapOutput)
 }
 
-func (i EmailfilterFortishieldMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterFortishield] {
-	return pulumix.Output[map[string]*EmailfilterFortishield]{
-		OutputState: i.ToEmailfilterFortishieldMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EmailfilterFortishieldOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterFortishieldOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o EmailfilterFortishieldOutput) ToEmailfilterFortishieldOutput() Emailfilt
 
 func (o EmailfilterFortishieldOutput) ToEmailfilterFortishieldOutputWithContext(ctx context.Context) EmailfilterFortishieldOutput {
 	return o
-}
-
-func (o EmailfilterFortishieldOutput) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterFortishield] {
-	return pulumix.Output[*EmailfilterFortishield]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EmailfilterFortishieldOutput) SpamSubmitForce() pulumi.StringOutput {
@@ -224,12 +199,6 @@ func (o EmailfilterFortishieldArrayOutput) ToEmailfilterFortishieldArrayOutputWi
 	return o
 }
 
-func (o EmailfilterFortishieldArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterFortishield] {
-	return pulumix.Output[[]*EmailfilterFortishield]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EmailfilterFortishieldArrayOutput) Index(i pulumi.IntInput) EmailfilterFortishieldOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterFortishield {
 		return vs[0].([]*EmailfilterFortishield)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o EmailfilterFortishieldMapOutput) ToEmailfilterFortishieldMapOutput() Ema
 
 func (o EmailfilterFortishieldMapOutput) ToEmailfilterFortishieldMapOutputWithContext(ctx context.Context) EmailfilterFortishieldMapOutput {
 	return o
-}
-
-func (o EmailfilterFortishieldMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterFortishield] {
-	return pulumix.Output[map[string]*EmailfilterFortishield]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EmailfilterFortishieldMapOutput) MapIndex(k pulumi.StringInput) EmailfilterFortishieldOutput {

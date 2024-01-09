@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallObjectService struct {
@@ -158,12 +157,6 @@ func (i *FirewallObjectService) ToFirewallObjectServiceOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceOutput)
 }
 
-func (i *FirewallObjectService) ToOutput(ctx context.Context) pulumix.Output[*FirewallObjectService] {
-	return pulumix.Output[*FirewallObjectService]{
-		OutputState: i.ToFirewallObjectServiceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallObjectServiceArrayInput is an input type that accepts FirewallObjectServiceArray and FirewallObjectServiceArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceArrayInput` via:
 //
@@ -187,12 +180,6 @@ func (i FirewallObjectServiceArray) ToFirewallObjectServiceArrayOutput() Firewal
 
 func (i FirewallObjectServiceArray) ToFirewallObjectServiceArrayOutputWithContext(ctx context.Context) FirewallObjectServiceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceArrayOutput)
-}
-
-func (i FirewallObjectServiceArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallObjectService] {
-	return pulumix.Output[[]*FirewallObjectService]{
-		OutputState: i.ToFirewallObjectServiceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallObjectServiceMapInput is an input type that accepts FirewallObjectServiceMap and FirewallObjectServiceMapOutput values.
@@ -220,12 +207,6 @@ func (i FirewallObjectServiceMap) ToFirewallObjectServiceMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceMapOutput)
 }
 
-func (i FirewallObjectServiceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallObjectService] {
-	return pulumix.Output[map[string]*FirewallObjectService]{
-		OutputState: i.ToFirewallObjectServiceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallObjectServiceOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectServiceOutput) ElementType() reflect.Type {
@@ -238,12 +219,6 @@ func (o FirewallObjectServiceOutput) ToFirewallObjectServiceOutput() FirewallObj
 
 func (o FirewallObjectServiceOutput) ToFirewallObjectServiceOutputWithContext(ctx context.Context) FirewallObjectServiceOutput {
 	return o
-}
-
-func (o FirewallObjectServiceOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallObjectService] {
-	return pulumix.Output[*FirewallObjectService]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallObjectServiceOutput) Category() pulumi.StringOutput {
@@ -312,12 +287,6 @@ func (o FirewallObjectServiceArrayOutput) ToFirewallObjectServiceArrayOutputWith
 	return o
 }
 
-func (o FirewallObjectServiceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallObjectService] {
-	return pulumix.Output[[]*FirewallObjectService]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallObjectServiceArrayOutput) Index(i pulumi.IntInput) FirewallObjectServiceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallObjectService {
 		return vs[0].([]*FirewallObjectService)[vs[1].(int)]
@@ -336,12 +305,6 @@ func (o FirewallObjectServiceMapOutput) ToFirewallObjectServiceMapOutput() Firew
 
 func (o FirewallObjectServiceMapOutput) ToFirewallObjectServiceMapOutputWithContext(ctx context.Context) FirewallObjectServiceMapOutput {
 	return o
-}
-
-func (o FirewallObjectServiceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallObjectService] {
-	return pulumix.Output[map[string]*FirewallObjectService]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallObjectServiceMapOutput) MapIndex(k pulumi.StringInput) FirewallObjectServiceOutput {

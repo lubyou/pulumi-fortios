@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsSettings struct {
@@ -111,12 +110,6 @@ func (i *IpsSettings) ToIpsSettingsOutputWithContext(ctx context.Context) IpsSet
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsOutput)
 }
 
-func (i *IpsSettings) ToOutput(ctx context.Context) pulumix.Output[*IpsSettings] {
-	return pulumix.Output[*IpsSettings]{
-		OutputState: i.ToIpsSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IpsSettingsArrayInput is an input type that accepts IpsSettingsArray and IpsSettingsArrayOutput values.
 // You can construct a concrete instance of `IpsSettingsArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i IpsSettingsArray) ToIpsSettingsArrayOutput() IpsSettingsArrayOutput {
 
 func (i IpsSettingsArray) ToIpsSettingsArrayOutputWithContext(ctx context.Context) IpsSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsArrayOutput)
-}
-
-func (i IpsSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsSettings] {
-	return pulumix.Output[[]*IpsSettings]{
-		OutputState: i.ToIpsSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IpsSettingsMapInput is an input type that accepts IpsSettingsMap and IpsSettingsMapOutput values.
@@ -173,12 +160,6 @@ func (i IpsSettingsMap) ToIpsSettingsMapOutputWithContext(ctx context.Context) I
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsMapOutput)
 }
 
-func (i IpsSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsSettings] {
-	return pulumix.Output[map[string]*IpsSettings]{
-		OutputState: i.ToIpsSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IpsSettingsOutput struct{ *pulumi.OutputState }
 
 func (IpsSettingsOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o IpsSettingsOutput) ToIpsSettingsOutput() IpsSettingsOutput {
 
 func (o IpsSettingsOutput) ToIpsSettingsOutputWithContext(ctx context.Context) IpsSettingsOutput {
 	return o
-}
-
-func (o IpsSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsSettings] {
-	return pulumix.Output[*IpsSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsSettingsOutput) IpsPacketQuota() pulumi.IntOutput {
@@ -233,12 +208,6 @@ func (o IpsSettingsArrayOutput) ToIpsSettingsArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o IpsSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsSettings] {
-	return pulumix.Output[[]*IpsSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IpsSettingsArrayOutput) Index(i pulumi.IntInput) IpsSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsSettings {
 		return vs[0].([]*IpsSettings)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o IpsSettingsMapOutput) ToIpsSettingsMapOutput() IpsSettingsMapOutput {
 
 func (o IpsSettingsMapOutput) ToIpsSettingsMapOutputWithContext(ctx context.Context) IpsSettingsMapOutput {
 	return o
-}
-
-func (o IpsSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsSettings] {
-	return pulumix.Output[map[string]*IpsSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsSettingsMapOutput) MapIndex(k pulumi.StringInput) IpsSettingsOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AutomationSetting struct {
@@ -101,12 +100,6 @@ func (i *AutomationSetting) ToAutomationSettingOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AutomationSettingOutput)
 }
 
-func (i *AutomationSetting) ToOutput(ctx context.Context) pulumix.Output[*AutomationSetting] {
-	return pulumix.Output[*AutomationSetting]{
-		OutputState: i.ToAutomationSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AutomationSettingArrayInput is an input type that accepts AutomationSettingArray and AutomationSettingArrayOutput values.
 // You can construct a concrete instance of `AutomationSettingArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i AutomationSettingArray) ToAutomationSettingArrayOutput() AutomationSetti
 
 func (i AutomationSettingArray) ToAutomationSettingArrayOutputWithContext(ctx context.Context) AutomationSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AutomationSettingArrayOutput)
-}
-
-func (i AutomationSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*AutomationSetting] {
-	return pulumix.Output[[]*AutomationSetting]{
-		OutputState: i.ToAutomationSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AutomationSettingMapInput is an input type that accepts AutomationSettingMap and AutomationSettingMapOutput values.
@@ -163,12 +150,6 @@ func (i AutomationSettingMap) ToAutomationSettingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AutomationSettingMapOutput)
 }
 
-func (i AutomationSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AutomationSetting] {
-	return pulumix.Output[map[string]*AutomationSetting]{
-		OutputState: i.ToAutomationSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AutomationSettingOutput struct{ *pulumi.OutputState }
 
 func (AutomationSettingOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o AutomationSettingOutput) ToAutomationSettingOutput() AutomationSettingOu
 
 func (o AutomationSettingOutput) ToAutomationSettingOutputWithContext(ctx context.Context) AutomationSettingOutput {
 	return o
-}
-
-func (o AutomationSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*AutomationSetting] {
-	return pulumix.Output[*AutomationSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AutomationSettingOutput) FabricSync() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o AutomationSettingArrayOutput) ToAutomationSettingArrayOutputWithContext(
 	return o
 }
 
-func (o AutomationSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AutomationSetting] {
-	return pulumix.Output[[]*AutomationSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AutomationSettingArrayOutput) Index(i pulumi.IntInput) AutomationSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AutomationSetting {
 		return vs[0].([]*AutomationSetting)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o AutomationSettingMapOutput) ToAutomationSettingMapOutput() AutomationSet
 
 func (o AutomationSettingMapOutput) ToAutomationSettingMapOutputWithContext(ctx context.Context) AutomationSettingMapOutput {
 	return o
-}
-
-func (o AutomationSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AutomationSetting] {
-	return pulumix.Output[map[string]*AutomationSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AutomationSettingMapOutput) MapIndex(k pulumi.StringInput) AutomationSettingOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EmailfilterBlockAllowList struct {
@@ -121,12 +120,6 @@ func (i *EmailfilterBlockAllowList) ToEmailfilterBlockAllowListOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBlockAllowListOutput)
 }
 
-func (i *EmailfilterBlockAllowList) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterBlockAllowList] {
-	return pulumix.Output[*EmailfilterBlockAllowList]{
-		OutputState: i.ToEmailfilterBlockAllowListOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EmailfilterBlockAllowListArrayInput is an input type that accepts EmailfilterBlockAllowListArray and EmailfilterBlockAllowListArrayOutput values.
 // You can construct a concrete instance of `EmailfilterBlockAllowListArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i EmailfilterBlockAllowListArray) ToEmailfilterBlockAllowListArrayOutput()
 
 func (i EmailfilterBlockAllowListArray) ToEmailfilterBlockAllowListArrayOutputWithContext(ctx context.Context) EmailfilterBlockAllowListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBlockAllowListArrayOutput)
-}
-
-func (i EmailfilterBlockAllowListArray) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterBlockAllowList] {
-	return pulumix.Output[[]*EmailfilterBlockAllowList]{
-		OutputState: i.ToEmailfilterBlockAllowListArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EmailfilterBlockAllowListMapInput is an input type that accepts EmailfilterBlockAllowListMap and EmailfilterBlockAllowListMapOutput values.
@@ -183,12 +170,6 @@ func (i EmailfilterBlockAllowListMap) ToEmailfilterBlockAllowListMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBlockAllowListMapOutput)
 }
 
-func (i EmailfilterBlockAllowListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterBlockAllowList] {
-	return pulumix.Output[map[string]*EmailfilterBlockAllowList]{
-		OutputState: i.ToEmailfilterBlockAllowListMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EmailfilterBlockAllowListOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterBlockAllowListOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o EmailfilterBlockAllowListOutput) ToEmailfilterBlockAllowListOutput() Ema
 
 func (o EmailfilterBlockAllowListOutput) ToEmailfilterBlockAllowListOutputWithContext(ctx context.Context) EmailfilterBlockAllowListOutput {
 	return o
-}
-
-func (o EmailfilterBlockAllowListOutput) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterBlockAllowList] {
-	return pulumix.Output[*EmailfilterBlockAllowList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EmailfilterBlockAllowListOutput) Comment() pulumi.StringPtrOutput {
@@ -251,12 +226,6 @@ func (o EmailfilterBlockAllowListArrayOutput) ToEmailfilterBlockAllowListArrayOu
 	return o
 }
 
-func (o EmailfilterBlockAllowListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterBlockAllowList] {
-	return pulumix.Output[[]*EmailfilterBlockAllowList]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EmailfilterBlockAllowListArrayOutput) Index(i pulumi.IntInput) EmailfilterBlockAllowListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterBlockAllowList {
 		return vs[0].([]*EmailfilterBlockAllowList)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o EmailfilterBlockAllowListMapOutput) ToEmailfilterBlockAllowListMapOutput
 
 func (o EmailfilterBlockAllowListMapOutput) ToEmailfilterBlockAllowListMapOutputWithContext(ctx context.Context) EmailfilterBlockAllowListMapOutput {
 	return o
-}
-
-func (o EmailfilterBlockAllowListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterBlockAllowList] {
-	return pulumix.Output[map[string]*EmailfilterBlockAllowList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EmailfilterBlockAllowListMapOutput) MapIndex(k pulumi.StringInput) EmailfilterBlockAllowListOutput {

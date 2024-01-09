@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSpeedTestServer struct {
@@ -116,12 +115,6 @@ func (i *SystemSpeedTestServer) ToSystemSpeedTestServerOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerOutput)
 }
 
-func (i *SystemSpeedTestServer) ToOutput(ctx context.Context) pulumix.Output[*SystemSpeedTestServer] {
-	return pulumix.Output[*SystemSpeedTestServer]{
-		OutputState: i.ToSystemSpeedTestServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSpeedTestServerArrayInput is an input type that accepts SystemSpeedTestServerArray and SystemSpeedTestServerArrayOutput values.
 // You can construct a concrete instance of `SystemSpeedTestServerArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i SystemSpeedTestServerArray) ToSystemSpeedTestServerArrayOutput() SystemS
 
 func (i SystemSpeedTestServerArray) ToSystemSpeedTestServerArrayOutputWithContext(ctx context.Context) SystemSpeedTestServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerArrayOutput)
-}
-
-func (i SystemSpeedTestServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSpeedTestServer] {
-	return pulumix.Output[[]*SystemSpeedTestServer]{
-		OutputState: i.ToSystemSpeedTestServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSpeedTestServerMapInput is an input type that accepts SystemSpeedTestServerMap and SystemSpeedTestServerMapOutput values.
@@ -178,12 +165,6 @@ func (i SystemSpeedTestServerMap) ToSystemSpeedTestServerMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerMapOutput)
 }
 
-func (i SystemSpeedTestServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSpeedTestServer] {
-	return pulumix.Output[map[string]*SystemSpeedTestServer]{
-		OutputState: i.ToSystemSpeedTestServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSpeedTestServerOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestServerOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutput() SystemSpeed
 
 func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutputWithContext(ctx context.Context) SystemSpeedTestServerOutput {
 	return o
-}
-
-func (o SystemSpeedTestServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSpeedTestServer] {
-	return pulumix.Output[*SystemSpeedTestServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSpeedTestServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -242,12 +217,6 @@ func (o SystemSpeedTestServerArrayOutput) ToSystemSpeedTestServerArrayOutputWith
 	return o
 }
 
-func (o SystemSpeedTestServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSpeedTestServer] {
-	return pulumix.Output[[]*SystemSpeedTestServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSpeedTestServerArrayOutput) Index(i pulumi.IntInput) SystemSpeedTestServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSpeedTestServer {
 		return vs[0].([]*SystemSpeedTestServer)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o SystemSpeedTestServerMapOutput) ToSystemSpeedTestServerMapOutput() Syste
 
 func (o SystemSpeedTestServerMapOutput) ToSystemSpeedTestServerMapOutputWithContext(ctx context.Context) SystemSpeedTestServerMapOutput {
 	return o
-}
-
-func (o SystemSpeedTestServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSpeedTestServer] {
-	return pulumix.Output[map[string]*SystemSpeedTestServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSpeedTestServerMapOutput) MapIndex(k pulumi.StringInput) SystemSpeedTestServerOutput {

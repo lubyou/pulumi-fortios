@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ExtensionControllerExtender struct {
@@ -191,12 +190,6 @@ func (i *ExtensionControllerExtender) ToExtensionControllerExtenderOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerExtenderOutput)
 }
 
-func (i *ExtensionControllerExtender) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerExtender] {
-	return pulumix.Output[*ExtensionControllerExtender]{
-		OutputState: i.ToExtensionControllerExtenderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExtensionControllerExtenderArrayInput is an input type that accepts ExtensionControllerExtenderArray and ExtensionControllerExtenderArrayOutput values.
 // You can construct a concrete instance of `ExtensionControllerExtenderArrayInput` via:
 //
@@ -220,12 +213,6 @@ func (i ExtensionControllerExtenderArray) ToExtensionControllerExtenderArrayOutp
 
 func (i ExtensionControllerExtenderArray) ToExtensionControllerExtenderArrayOutputWithContext(ctx context.Context) ExtensionControllerExtenderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerExtenderArrayOutput)
-}
-
-func (i ExtensionControllerExtenderArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerExtender] {
-	return pulumix.Output[[]*ExtensionControllerExtender]{
-		OutputState: i.ToExtensionControllerExtenderArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExtensionControllerExtenderMapInput is an input type that accepts ExtensionControllerExtenderMap and ExtensionControllerExtenderMapOutput values.
@@ -253,12 +240,6 @@ func (i ExtensionControllerExtenderMap) ToExtensionControllerExtenderMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerExtenderMapOutput)
 }
 
-func (i ExtensionControllerExtenderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerExtender] {
-	return pulumix.Output[map[string]*ExtensionControllerExtender]{
-		OutputState: i.ToExtensionControllerExtenderMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExtensionControllerExtenderOutput struct{ *pulumi.OutputState }
 
 func (ExtensionControllerExtenderOutput) ElementType() reflect.Type {
@@ -271,12 +252,6 @@ func (o ExtensionControllerExtenderOutput) ToExtensionControllerExtenderOutput()
 
 func (o ExtensionControllerExtenderOutput) ToExtensionControllerExtenderOutputWithContext(ctx context.Context) ExtensionControllerExtenderOutput {
 	return o
-}
-
-func (o ExtensionControllerExtenderOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerExtender] {
-	return pulumix.Output[*ExtensionControllerExtender]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerExtenderOutput) Allowaccess() pulumi.StringOutput {
@@ -379,12 +354,6 @@ func (o ExtensionControllerExtenderArrayOutput) ToExtensionControllerExtenderArr
 	return o
 }
 
-func (o ExtensionControllerExtenderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerExtender] {
-	return pulumix.Output[[]*ExtensionControllerExtender]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExtensionControllerExtenderArrayOutput) Index(i pulumi.IntInput) ExtensionControllerExtenderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtensionControllerExtender {
 		return vs[0].([]*ExtensionControllerExtender)[vs[1].(int)]
@@ -403,12 +372,6 @@ func (o ExtensionControllerExtenderMapOutput) ToExtensionControllerExtenderMapOu
 
 func (o ExtensionControllerExtenderMapOutput) ToExtensionControllerExtenderMapOutputWithContext(ctx context.Context) ExtensionControllerExtenderMapOutput {
 	return o
-}
-
-func (o ExtensionControllerExtenderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerExtender] {
-	return pulumix.Output[map[string]*ExtensionControllerExtender]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerExtenderMapOutput) MapIndex(k pulumi.StringInput) ExtensionControllerExtenderOutput {

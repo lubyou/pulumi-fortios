@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerObjectAdomRevision struct {
@@ -111,12 +110,6 @@ func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionOutput)
 }
 
-func (i *FortimanagerObjectAdomRevision) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerObjectAdomRevision] {
-	return pulumix.Output[*FortimanagerObjectAdomRevision]{
-		OutputState: i.ToFortimanagerObjectAdomRevisionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerObjectAdomRevisionArrayInput is an input type that accepts FortimanagerObjectAdomRevisionArray and FortimanagerObjectAdomRevisionArrayOutput values.
 // You can construct a concrete instance of `FortimanagerObjectAdomRevisionArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i FortimanagerObjectAdomRevisionArray) ToFortimanagerObjectAdomRevisionArr
 
 func (i FortimanagerObjectAdomRevisionArray) ToFortimanagerObjectAdomRevisionArrayOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionArrayOutput)
-}
-
-func (i FortimanagerObjectAdomRevisionArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerObjectAdomRevision] {
-	return pulumix.Output[[]*FortimanagerObjectAdomRevision]{
-		OutputState: i.ToFortimanagerObjectAdomRevisionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerObjectAdomRevisionMapInput is an input type that accepts FortimanagerObjectAdomRevisionMap and FortimanagerObjectAdomRevisionMapOutput values.
@@ -173,12 +160,6 @@ func (i FortimanagerObjectAdomRevisionMap) ToFortimanagerObjectAdomRevisionMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionMapOutput)
 }
 
-func (i FortimanagerObjectAdomRevisionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerObjectAdomRevision] {
-	return pulumix.Output[map[string]*FortimanagerObjectAdomRevision]{
-		OutputState: i.ToFortimanagerObjectAdomRevisionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerObjectAdomRevisionOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerObjectAdomRevisionOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionOu
 
 func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionOutput {
 	return o
-}
-
-func (o FortimanagerObjectAdomRevisionOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerObjectAdomRevision] {
-	return pulumix.Output[*FortimanagerObjectAdomRevision]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerObjectAdomRevisionOutput) Adom() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o FortimanagerObjectAdomRevisionArrayOutput) ToFortimanagerObjectAdomRevis
 	return o
 }
 
-func (o FortimanagerObjectAdomRevisionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerObjectAdomRevision] {
-	return pulumix.Output[[]*FortimanagerObjectAdomRevision]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerObjectAdomRevisionArrayOutput) Index(i pulumi.IntInput) FortimanagerObjectAdomRevisionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerObjectAdomRevision {
 		return vs[0].([]*FortimanagerObjectAdomRevision)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o FortimanagerObjectAdomRevisionMapOutput) ToFortimanagerObjectAdomRevisio
 
 func (o FortimanagerObjectAdomRevisionMapOutput) ToFortimanagerObjectAdomRevisionMapOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionMapOutput {
 	return o
-}
-
-func (o FortimanagerObjectAdomRevisionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerObjectAdomRevision] {
-	return pulumix.Output[map[string]*FortimanagerObjectAdomRevision]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerObjectAdomRevisionMapOutput) MapIndex(k pulumi.StringInput) FortimanagerObjectAdomRevisionOutput {

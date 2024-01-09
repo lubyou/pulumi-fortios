@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterKeyChain struct {
@@ -111,12 +110,6 @@ func (i *RouterKeyChain) ToRouterKeyChainOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainOutput)
 }
 
-func (i *RouterKeyChain) ToOutput(ctx context.Context) pulumix.Output[*RouterKeyChain] {
-	return pulumix.Output[*RouterKeyChain]{
-		OutputState: i.ToRouterKeyChainOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterKeyChainArrayInput is an input type that accepts RouterKeyChainArray and RouterKeyChainArrayOutput values.
 // You can construct a concrete instance of `RouterKeyChainArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i RouterKeyChainArray) ToRouterKeyChainArrayOutput() RouterKeyChainArrayOu
 
 func (i RouterKeyChainArray) ToRouterKeyChainArrayOutputWithContext(ctx context.Context) RouterKeyChainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainArrayOutput)
-}
-
-func (i RouterKeyChainArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterKeyChain] {
-	return pulumix.Output[[]*RouterKeyChain]{
-		OutputState: i.ToRouterKeyChainArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterKeyChainMapInput is an input type that accepts RouterKeyChainMap and RouterKeyChainMapOutput values.
@@ -173,12 +160,6 @@ func (i RouterKeyChainMap) ToRouterKeyChainMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainMapOutput)
 }
 
-func (i RouterKeyChainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterKeyChain] {
-	return pulumix.Output[map[string]*RouterKeyChain]{
-		OutputState: i.ToRouterKeyChainMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterKeyChainOutput struct{ *pulumi.OutputState }
 
 func (RouterKeyChainOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o RouterKeyChainOutput) ToRouterKeyChainOutput() RouterKeyChainOutput {
 
 func (o RouterKeyChainOutput) ToRouterKeyChainOutputWithContext(ctx context.Context) RouterKeyChainOutput {
 	return o
-}
-
-func (o RouterKeyChainOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterKeyChain] {
-	return pulumix.Output[*RouterKeyChain]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterKeyChainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o RouterKeyChainArrayOutput) ToRouterKeyChainArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o RouterKeyChainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterKeyChain] {
-	return pulumix.Output[[]*RouterKeyChain]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterKeyChainArrayOutput) Index(i pulumi.IntInput) RouterKeyChainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterKeyChain {
 		return vs[0].([]*RouterKeyChain)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o RouterKeyChainMapOutput) ToRouterKeyChainMapOutput() RouterKeyChainMapOu
 
 func (o RouterKeyChainMapOutput) ToRouterKeyChainMapOutputWithContext(ctx context.Context) RouterKeyChainMapOutput {
 	return o
-}
-
-func (o RouterKeyChainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterKeyChain] {
-	return pulumix.Output[map[string]*RouterKeyChain]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterKeyChainMapOutput) MapIndex(k pulumi.StringInput) RouterKeyChainOutput {

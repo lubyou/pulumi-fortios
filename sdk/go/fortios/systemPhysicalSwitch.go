@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemPhysicalSwitch struct {
@@ -106,12 +105,6 @@ func (i *SystemPhysicalSwitch) ToSystemPhysicalSwitchOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPhysicalSwitchOutput)
 }
 
-func (i *SystemPhysicalSwitch) ToOutput(ctx context.Context) pulumix.Output[*SystemPhysicalSwitch] {
-	return pulumix.Output[*SystemPhysicalSwitch]{
-		OutputState: i.ToSystemPhysicalSwitchOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemPhysicalSwitchArrayInput is an input type that accepts SystemPhysicalSwitchArray and SystemPhysicalSwitchArrayOutput values.
 // You can construct a concrete instance of `SystemPhysicalSwitchArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i SystemPhysicalSwitchArray) ToSystemPhysicalSwitchArrayOutput() SystemPhy
 
 func (i SystemPhysicalSwitchArray) ToSystemPhysicalSwitchArrayOutputWithContext(ctx context.Context) SystemPhysicalSwitchArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPhysicalSwitchArrayOutput)
-}
-
-func (i SystemPhysicalSwitchArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPhysicalSwitch] {
-	return pulumix.Output[[]*SystemPhysicalSwitch]{
-		OutputState: i.ToSystemPhysicalSwitchArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemPhysicalSwitchMapInput is an input type that accepts SystemPhysicalSwitchMap and SystemPhysicalSwitchMapOutput values.
@@ -168,12 +155,6 @@ func (i SystemPhysicalSwitchMap) ToSystemPhysicalSwitchMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPhysicalSwitchMapOutput)
 }
 
-func (i SystemPhysicalSwitchMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPhysicalSwitch] {
-	return pulumix.Output[map[string]*SystemPhysicalSwitch]{
-		OutputState: i.ToSystemPhysicalSwitchMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemPhysicalSwitchOutput struct{ *pulumi.OutputState }
 
 func (SystemPhysicalSwitchOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o SystemPhysicalSwitchOutput) ToSystemPhysicalSwitchOutput() SystemPhysica
 
 func (o SystemPhysicalSwitchOutput) ToSystemPhysicalSwitchOutputWithContext(ctx context.Context) SystemPhysicalSwitchOutput {
 	return o
-}
-
-func (o SystemPhysicalSwitchOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemPhysicalSwitch] {
-	return pulumix.Output[*SystemPhysicalSwitch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemPhysicalSwitchOutput) AgeEnable() pulumi.StringOutput {
@@ -224,12 +199,6 @@ func (o SystemPhysicalSwitchArrayOutput) ToSystemPhysicalSwitchArrayOutputWithCo
 	return o
 }
 
-func (o SystemPhysicalSwitchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPhysicalSwitch] {
-	return pulumix.Output[[]*SystemPhysicalSwitch]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemPhysicalSwitchArrayOutput) Index(i pulumi.IntInput) SystemPhysicalSwitchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPhysicalSwitch {
 		return vs[0].([]*SystemPhysicalSwitch)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o SystemPhysicalSwitchMapOutput) ToSystemPhysicalSwitchMapOutput() SystemP
 
 func (o SystemPhysicalSwitchMapOutput) ToSystemPhysicalSwitchMapOutputWithContext(ctx context.Context) SystemPhysicalSwitchMapOutput {
 	return o
-}
-
-func (o SystemPhysicalSwitchMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPhysicalSwitch] {
-	return pulumix.Output[map[string]*SystemPhysicalSwitch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemPhysicalSwitchMapOutput) MapIndex(k pulumi.StringInput) SystemPhysicalSwitchOutput {

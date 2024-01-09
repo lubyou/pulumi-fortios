@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerAddress struct {
@@ -106,12 +105,6 @@ func (i *WirelessControllerAddress) ToWirelessControllerAddressOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddressOutput)
 }
 
-func (i *WirelessControllerAddress) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerAddress] {
-	return pulumix.Output[*WirelessControllerAddress]{
-		OutputState: i.ToWirelessControllerAddressOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerAddressArrayInput is an input type that accepts WirelessControllerAddressArray and WirelessControllerAddressArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAddressArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i WirelessControllerAddressArray) ToWirelessControllerAddressArrayOutput()
 
 func (i WirelessControllerAddressArray) ToWirelessControllerAddressArrayOutputWithContext(ctx context.Context) WirelessControllerAddressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddressArrayOutput)
-}
-
-func (i WirelessControllerAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerAddress] {
-	return pulumix.Output[[]*WirelessControllerAddress]{
-		OutputState: i.ToWirelessControllerAddressArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerAddressMapInput is an input type that accepts WirelessControllerAddressMap and WirelessControllerAddressMapOutput values.
@@ -168,12 +155,6 @@ func (i WirelessControllerAddressMap) ToWirelessControllerAddressMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddressMapOutput)
 }
 
-func (i WirelessControllerAddressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerAddress] {
-	return pulumix.Output[map[string]*WirelessControllerAddress]{
-		OutputState: i.ToWirelessControllerAddressMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerAddressOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAddressOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o WirelessControllerAddressOutput) ToWirelessControllerAddressOutput() Wir
 
 func (o WirelessControllerAddressOutput) ToWirelessControllerAddressOutputWithContext(ctx context.Context) WirelessControllerAddressOutput {
 	return o
-}
-
-func (o WirelessControllerAddressOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerAddress] {
-	return pulumix.Output[*WirelessControllerAddress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerAddressOutput) Fosid() pulumi.StringOutput {
@@ -224,12 +199,6 @@ func (o WirelessControllerAddressArrayOutput) ToWirelessControllerAddressArrayOu
 	return o
 }
 
-func (o WirelessControllerAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerAddress] {
-	return pulumix.Output[[]*WirelessControllerAddress]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerAddressArrayOutput) Index(i pulumi.IntInput) WirelessControllerAddressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerAddress {
 		return vs[0].([]*WirelessControllerAddress)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o WirelessControllerAddressMapOutput) ToWirelessControllerAddressMapOutput
 
 func (o WirelessControllerAddressMapOutput) ToWirelessControllerAddressMapOutputWithContext(ctx context.Context) WirelessControllerAddressMapOutput {
 	return o
-}
-
-func (o WirelessControllerAddressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerAddress] {
-	return pulumix.Output[map[string]*WirelessControllerAddress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerAddressMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerAddressOutput {

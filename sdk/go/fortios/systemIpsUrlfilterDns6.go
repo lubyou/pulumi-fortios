@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIpsUrlfilterDns6 struct {
@@ -101,12 +100,6 @@ func (i *SystemIpsUrlfilterDns6) ToSystemIpsUrlfilterDns6OutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDns6Output)
 }
 
-func (i *SystemIpsUrlfilterDns6) ToOutput(ctx context.Context) pulumix.Output[*SystemIpsUrlfilterDns6] {
-	return pulumix.Output[*SystemIpsUrlfilterDns6]{
-		OutputState: i.ToSystemIpsUrlfilterDns6OutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemIpsUrlfilterDns6ArrayInput is an input type that accepts SystemIpsUrlfilterDns6Array and SystemIpsUrlfilterDns6ArrayOutput values.
 // You can construct a concrete instance of `SystemIpsUrlfilterDns6ArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i SystemIpsUrlfilterDns6Array) ToSystemIpsUrlfilterDns6ArrayOutput() Syste
 
 func (i SystemIpsUrlfilterDns6Array) ToSystemIpsUrlfilterDns6ArrayOutputWithContext(ctx context.Context) SystemIpsUrlfilterDns6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDns6ArrayOutput)
-}
-
-func (i SystemIpsUrlfilterDns6Array) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpsUrlfilterDns6] {
-	return pulumix.Output[[]*SystemIpsUrlfilterDns6]{
-		OutputState: i.ToSystemIpsUrlfilterDns6ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemIpsUrlfilterDns6MapInput is an input type that accepts SystemIpsUrlfilterDns6Map and SystemIpsUrlfilterDns6MapOutput values.
@@ -163,12 +150,6 @@ func (i SystemIpsUrlfilterDns6Map) ToSystemIpsUrlfilterDns6MapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDns6MapOutput)
 }
 
-func (i SystemIpsUrlfilterDns6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpsUrlfilterDns6] {
-	return pulumix.Output[map[string]*SystemIpsUrlfilterDns6]{
-		OutputState: i.ToSystemIpsUrlfilterDns6MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemIpsUrlfilterDns6Output struct{ *pulumi.OutputState }
 
 func (SystemIpsUrlfilterDns6Output) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o SystemIpsUrlfilterDns6Output) ToSystemIpsUrlfilterDns6Output() SystemIps
 
 func (o SystemIpsUrlfilterDns6Output) ToSystemIpsUrlfilterDns6OutputWithContext(ctx context.Context) SystemIpsUrlfilterDns6Output {
 	return o
-}
-
-func (o SystemIpsUrlfilterDns6Output) ToOutput(ctx context.Context) pulumix.Output[*SystemIpsUrlfilterDns6] {
-	return pulumix.Output[*SystemIpsUrlfilterDns6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIpsUrlfilterDns6Output) Address6() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o SystemIpsUrlfilterDns6ArrayOutput) ToSystemIpsUrlfilterDns6ArrayOutputWi
 	return o
 }
 
-func (o SystemIpsUrlfilterDns6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpsUrlfilterDns6] {
-	return pulumix.Output[[]*SystemIpsUrlfilterDns6]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemIpsUrlfilterDns6ArrayOutput) Index(i pulumi.IntInput) SystemIpsUrlfilterDns6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpsUrlfilterDns6 {
 		return vs[0].([]*SystemIpsUrlfilterDns6)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o SystemIpsUrlfilterDns6MapOutput) ToSystemIpsUrlfilterDns6MapOutput() Sys
 
 func (o SystemIpsUrlfilterDns6MapOutput) ToSystemIpsUrlfilterDns6MapOutputWithContext(ctx context.Context) SystemIpsUrlfilterDns6MapOutput {
 	return o
-}
-
-func (o SystemIpsUrlfilterDns6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpsUrlfilterDns6] {
-	return pulumix.Output[map[string]*SystemIpsUrlfilterDns6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIpsUrlfilterDns6MapOutput) MapIndex(k pulumi.StringInput) SystemIpsUrlfilterDns6Output {

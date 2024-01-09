@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AntivirusQuarantine struct {
@@ -156,12 +155,6 @@ func (i *AntivirusQuarantine) ToAntivirusQuarantineOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantineOutput)
 }
 
-func (i *AntivirusQuarantine) ToOutput(ctx context.Context) pulumix.Output[*AntivirusQuarantine] {
-	return pulumix.Output[*AntivirusQuarantine]{
-		OutputState: i.ToAntivirusQuarantineOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AntivirusQuarantineArrayInput is an input type that accepts AntivirusQuarantineArray and AntivirusQuarantineArrayOutput values.
 // You can construct a concrete instance of `AntivirusQuarantineArrayInput` via:
 //
@@ -185,12 +178,6 @@ func (i AntivirusQuarantineArray) ToAntivirusQuarantineArrayOutput() AntivirusQu
 
 func (i AntivirusQuarantineArray) ToAntivirusQuarantineArrayOutputWithContext(ctx context.Context) AntivirusQuarantineArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantineArrayOutput)
-}
-
-func (i AntivirusQuarantineArray) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusQuarantine] {
-	return pulumix.Output[[]*AntivirusQuarantine]{
-		OutputState: i.ToAntivirusQuarantineArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AntivirusQuarantineMapInput is an input type that accepts AntivirusQuarantineMap and AntivirusQuarantineMapOutput values.
@@ -218,12 +205,6 @@ func (i AntivirusQuarantineMap) ToAntivirusQuarantineMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantineMapOutput)
 }
 
-func (i AntivirusQuarantineMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusQuarantine] {
-	return pulumix.Output[map[string]*AntivirusQuarantine]{
-		OutputState: i.ToAntivirusQuarantineMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AntivirusQuarantineOutput struct{ *pulumi.OutputState }
 
 func (AntivirusQuarantineOutput) ElementType() reflect.Type {
@@ -236,12 +217,6 @@ func (o AntivirusQuarantineOutput) ToAntivirusQuarantineOutput() AntivirusQuaran
 
 func (o AntivirusQuarantineOutput) ToAntivirusQuarantineOutputWithContext(ctx context.Context) AntivirusQuarantineOutput {
 	return o
-}
-
-func (o AntivirusQuarantineOutput) ToOutput(ctx context.Context) pulumix.Output[*AntivirusQuarantine] {
-	return pulumix.Output[*AntivirusQuarantine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AntivirusQuarantineOutput) Agelimit() pulumi.IntOutput {
@@ -314,12 +289,6 @@ func (o AntivirusQuarantineArrayOutput) ToAntivirusQuarantineArrayOutputWithCont
 	return o
 }
 
-func (o AntivirusQuarantineArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusQuarantine] {
-	return pulumix.Output[[]*AntivirusQuarantine]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AntivirusQuarantineArrayOutput) Index(i pulumi.IntInput) AntivirusQuarantineOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusQuarantine {
 		return vs[0].([]*AntivirusQuarantine)[vs[1].(int)]
@@ -338,12 +307,6 @@ func (o AntivirusQuarantineMapOutput) ToAntivirusQuarantineMapOutput() Antivirus
 
 func (o AntivirusQuarantineMapOutput) ToAntivirusQuarantineMapOutputWithContext(ctx context.Context) AntivirusQuarantineMapOutput {
 	return o
-}
-
-func (o AntivirusQuarantineMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusQuarantine] {
-	return pulumix.Output[map[string]*AntivirusQuarantine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AntivirusQuarantineMapOutput) MapIndex(k pulumi.StringInput) AntivirusQuarantineOutput {

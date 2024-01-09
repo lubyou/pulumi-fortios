@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VideofilterYoutubeChannelFilter struct {
@@ -136,12 +135,6 @@ func (i *VideofilterYoutubeChannelFilter) ToVideofilterYoutubeChannelFilterOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterOutput)
 }
 
-func (i *VideofilterYoutubeChannelFilter) ToOutput(ctx context.Context) pulumix.Output[*VideofilterYoutubeChannelFilter] {
-	return pulumix.Output[*VideofilterYoutubeChannelFilter]{
-		OutputState: i.ToVideofilterYoutubeChannelFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VideofilterYoutubeChannelFilterArrayInput is an input type that accepts VideofilterYoutubeChannelFilterArray and VideofilterYoutubeChannelFilterArrayOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeChannelFilterArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i VideofilterYoutubeChannelFilterArray) ToVideofilterYoutubeChannelFilterA
 
 func (i VideofilterYoutubeChannelFilterArray) ToVideofilterYoutubeChannelFilterArrayOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterArrayOutput)
-}
-
-func (i VideofilterYoutubeChannelFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*VideofilterYoutubeChannelFilter] {
-	return pulumix.Output[[]*VideofilterYoutubeChannelFilter]{
-		OutputState: i.ToVideofilterYoutubeChannelFilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VideofilterYoutubeChannelFilterMapInput is an input type that accepts VideofilterYoutubeChannelFilterMap and VideofilterYoutubeChannelFilterMapOutput values.
@@ -198,12 +185,6 @@ func (i VideofilterYoutubeChannelFilterMap) ToVideofilterYoutubeChannelFilterMap
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterMapOutput)
 }
 
-func (i VideofilterYoutubeChannelFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VideofilterYoutubeChannelFilter] {
-	return pulumix.Output[map[string]*VideofilterYoutubeChannelFilter]{
-		OutputState: i.ToVideofilterYoutubeChannelFilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VideofilterYoutubeChannelFilterOutput struct{ *pulumi.OutputState }
 
 func (VideofilterYoutubeChannelFilterOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o VideofilterYoutubeChannelFilterOutput) ToVideofilterYoutubeChannelFilter
 
 func (o VideofilterYoutubeChannelFilterOutput) ToVideofilterYoutubeChannelFilterOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterOutput {
 	return o
-}
-
-func (o VideofilterYoutubeChannelFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*VideofilterYoutubeChannelFilter] {
-	return pulumix.Output[*VideofilterYoutubeChannelFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VideofilterYoutubeChannelFilterOutput) Comment() pulumi.StringPtrOutput {
@@ -280,12 +255,6 @@ func (o VideofilterYoutubeChannelFilterArrayOutput) ToVideofilterYoutubeChannelF
 	return o
 }
 
-func (o VideofilterYoutubeChannelFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VideofilterYoutubeChannelFilter] {
-	return pulumix.Output[[]*VideofilterYoutubeChannelFilter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VideofilterYoutubeChannelFilterArrayOutput) Index(i pulumi.IntInput) VideofilterYoutubeChannelFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VideofilterYoutubeChannelFilter {
 		return vs[0].([]*VideofilterYoutubeChannelFilter)[vs[1].(int)]
@@ -304,12 +273,6 @@ func (o VideofilterYoutubeChannelFilterMapOutput) ToVideofilterYoutubeChannelFil
 
 func (o VideofilterYoutubeChannelFilterMapOutput) ToVideofilterYoutubeChannelFilterMapOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterMapOutput {
 	return o
-}
-
-func (o VideofilterYoutubeChannelFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VideofilterYoutubeChannelFilter] {
-	return pulumix.Output[map[string]*VideofilterYoutubeChannelFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VideofilterYoutubeChannelFilterMapOutput) MapIndex(k pulumi.StringInput) VideofilterYoutubeChannelFilterOutput {

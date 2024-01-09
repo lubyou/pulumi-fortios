@@ -21,7 +21,7 @@ class GetSystemFortiguardResult:
     """
     A collection of values returned by GetSystemFortiguard.
     """
-    def __init__(__self__, antispam_cache=None, antispam_cache_mpercent=None, antispam_cache_mpermille=None, antispam_cache_ttl=None, antispam_expiration=None, antispam_force_off=None, antispam_license=None, antispam_timeout=None, anycast_sdns_server_ip=None, anycast_sdns_server_port=None, auto_firmware_upgrade=None, auto_firmware_upgrade_day=None, auto_firmware_upgrade_delay=None, auto_firmware_upgrade_end_hour=None, auto_firmware_upgrade_start_hour=None, auto_join_forticloud=None, ddns_server_ip=None, ddns_server_ip6=None, ddns_server_port=None, fds_license_expiring_days=None, fortiguard_anycast=None, fortiguard_anycast_source=None, id=None, interface=None, interface_select_method=None, load_balance_servers=None, outbreak_prevention_cache=None, outbreak_prevention_cache_mpercent=None, outbreak_prevention_cache_mpermille=None, outbreak_prevention_cache_ttl=None, outbreak_prevention_expiration=None, outbreak_prevention_force_off=None, outbreak_prevention_license=None, outbreak_prevention_timeout=None, persistent_connection=None, port=None, protocol=None, proxy_password=None, proxy_server_ip=None, proxy_server_port=None, proxy_username=None, sandbox_inline_scan=None, sandbox_region=None, sdns_options=None, sdns_server_ip=None, sdns_server_port=None, service_account_id=None, source_ip=None, source_ip6=None, update_build_proxy=None, update_dldb=None, update_extdb=None, update_ffdb=None, update_server_location=None, update_uwdb=None, vdom=None, vdomparam=None, videofilter_expiration=None, videofilter_license=None, webfilter_cache=None, webfilter_cache_ttl=None, webfilter_expiration=None, webfilter_force_off=None, webfilter_license=None, webfilter_timeout=None):
+    def __init__(__self__, antispam_cache=None, antispam_cache_mpercent=None, antispam_cache_mpermille=None, antispam_cache_ttl=None, antispam_expiration=None, antispam_force_off=None, antispam_license=None, antispam_timeout=None, anycast_sdns_server_ip=None, anycast_sdns_server_port=None, auto_firmware_upgrade=None, auto_firmware_upgrade_day=None, auto_firmware_upgrade_delay=None, auto_firmware_upgrade_end_hour=None, auto_firmware_upgrade_start_hour=None, auto_join_forticloud=None, ddns_server_ip=None, ddns_server_ip6=None, ddns_server_port=None, fds_license_expiring_days=None, fortiguard_anycast=None, fortiguard_anycast_source=None, gui_prompt_auto_upgrade=None, id=None, interface=None, interface_select_method=None, load_balance_servers=None, outbreak_prevention_cache=None, outbreak_prevention_cache_mpercent=None, outbreak_prevention_cache_mpermille=None, outbreak_prevention_cache_ttl=None, outbreak_prevention_expiration=None, outbreak_prevention_force_off=None, outbreak_prevention_license=None, outbreak_prevention_timeout=None, persistent_connection=None, port=None, protocol=None, proxy_password=None, proxy_server_ip=None, proxy_server_port=None, proxy_username=None, sandbox_inline_scan=None, sandbox_region=None, sdns_options=None, sdns_server_ip=None, sdns_server_port=None, service_account_id=None, source_ip=None, source_ip6=None, update_build_proxy=None, update_dldb=None, update_extdb=None, update_ffdb=None, update_server_location=None, update_uwdb=None, vdom=None, vdomparam=None, videofilter_expiration=None, videofilter_license=None, webfilter_cache=None, webfilter_cache_ttl=None, webfilter_expiration=None, webfilter_force_off=None, webfilter_license=None, webfilter_timeout=None):
         if antispam_cache and not isinstance(antispam_cache, str):
             raise TypeError("Expected argument 'antispam_cache' to be a str")
         pulumi.set(__self__, "antispam_cache", antispam_cache)
@@ -88,6 +88,9 @@ class GetSystemFortiguardResult:
         if fortiguard_anycast_source and not isinstance(fortiguard_anycast_source, str):
             raise TypeError("Expected argument 'fortiguard_anycast_source' to be a str")
         pulumi.set(__self__, "fortiguard_anycast_source", fortiguard_anycast_source)
+        if gui_prompt_auto_upgrade and not isinstance(gui_prompt_auto_upgrade, str):
+            raise TypeError("Expected argument 'gui_prompt_auto_upgrade' to be a str")
+        pulumi.set(__self__, "gui_prompt_auto_upgrade", gui_prompt_auto_upgrade)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -327,6 +330,11 @@ class GetSystemFortiguardResult:
     @pulumi.getter(name="fortiguardAnycastSource")
     def fortiguard_anycast_source(self) -> str:
         return pulumi.get(self, "fortiguard_anycast_source")
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> str:
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
 
     @property
     @pulumi.getter
@@ -575,6 +583,7 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             fds_license_expiring_days=self.fds_license_expiring_days,
             fortiguard_anycast=self.fortiguard_anycast,
             fortiguard_anycast_source=self.fortiguard_anycast_source,
+            gui_prompt_auto_upgrade=self.gui_prompt_auto_upgrade,
             id=self.id,
             interface=self.interface,
             interface_select_method=self.interface_select_method,
@@ -653,6 +662,7 @@ def get_system_fortiguard(vdomparam: Optional[str] = None,
         fds_license_expiring_days=pulumi.get(__ret__, 'fds_license_expiring_days'),
         fortiguard_anycast=pulumi.get(__ret__, 'fortiguard_anycast'),
         fortiguard_anycast_source=pulumi.get(__ret__, 'fortiguard_anycast_source'),
+        gui_prompt_auto_upgrade=pulumi.get(__ret__, 'gui_prompt_auto_upgrade'),
         id=pulumi.get(__ret__, 'id'),
         interface=pulumi.get(__ret__, 'interface'),
         interface_select_method=pulumi.get(__ret__, 'interface_select_method'),

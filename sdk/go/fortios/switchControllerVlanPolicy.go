@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerVlanPolicy struct {
@@ -141,12 +140,6 @@ func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyOutput)
 }
 
-func (i *SwitchControllerVlanPolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerVlanPolicy] {
-	return pulumix.Output[*SwitchControllerVlanPolicy]{
-		OutputState: i.ToSwitchControllerVlanPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerVlanPolicyArrayInput is an input type that accepts SwitchControllerVlanPolicyArray and SwitchControllerVlanPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerVlanPolicyArrayInput` via:
 //
@@ -170,12 +163,6 @@ func (i SwitchControllerVlanPolicyArray) ToSwitchControllerVlanPolicyArrayOutput
 
 func (i SwitchControllerVlanPolicyArray) ToSwitchControllerVlanPolicyArrayOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyArrayOutput)
-}
-
-func (i SwitchControllerVlanPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerVlanPolicy] {
-	return pulumix.Output[[]*SwitchControllerVlanPolicy]{
-		OutputState: i.ToSwitchControllerVlanPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerVlanPolicyMapInput is an input type that accepts SwitchControllerVlanPolicyMap and SwitchControllerVlanPolicyMapOutput values.
@@ -203,12 +190,6 @@ func (i SwitchControllerVlanPolicyMap) ToSwitchControllerVlanPolicyMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyMapOutput)
 }
 
-func (i SwitchControllerVlanPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerVlanPolicy] {
-	return pulumix.Output[map[string]*SwitchControllerVlanPolicy]{
-		OutputState: i.ToSwitchControllerVlanPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerVlanPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanPolicyOutput) ElementType() reflect.Type {
@@ -221,12 +202,6 @@ func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyOutput() S
 
 func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyOutput {
 	return o
-}
-
-func (o SwitchControllerVlanPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerVlanPolicy] {
-	return pulumix.Output[*SwitchControllerVlanPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerVlanPolicyOutput) AllowedVlans() SwitchControllerVlanPolicyAllowedVlanArrayOutput {
@@ -291,12 +266,6 @@ func (o SwitchControllerVlanPolicyArrayOutput) ToSwitchControllerVlanPolicyArray
 	return o
 }
 
-func (o SwitchControllerVlanPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerVlanPolicy] {
-	return pulumix.Output[[]*SwitchControllerVlanPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerVlanPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerVlanPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerVlanPolicy {
 		return vs[0].([]*SwitchControllerVlanPolicy)[vs[1].(int)]
@@ -315,12 +284,6 @@ func (o SwitchControllerVlanPolicyMapOutput) ToSwitchControllerVlanPolicyMapOutp
 
 func (o SwitchControllerVlanPolicyMapOutput) ToSwitchControllerVlanPolicyMapOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyMapOutput {
 	return o
-}
-
-func (o SwitchControllerVlanPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerVlanPolicy] {
-	return pulumix.Output[map[string]*SwitchControllerVlanPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerVlanPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerVlanPolicyOutput {

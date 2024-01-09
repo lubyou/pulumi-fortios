@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutomationAction struct {
@@ -396,12 +395,6 @@ func (i *SystemAutomationAction) ToSystemAutomationActionOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionOutput)
 }
 
-func (i *SystemAutomationAction) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationAction] {
-	return pulumix.Output[*SystemAutomationAction]{
-		OutputState: i.ToSystemAutomationActionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAutomationActionArrayInput is an input type that accepts SystemAutomationActionArray and SystemAutomationActionArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationActionArrayInput` via:
 //
@@ -425,12 +418,6 @@ func (i SystemAutomationActionArray) ToSystemAutomationActionArrayOutput() Syste
 
 func (i SystemAutomationActionArray) ToSystemAutomationActionArrayOutputWithContext(ctx context.Context) SystemAutomationActionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionArrayOutput)
-}
-
-func (i SystemAutomationActionArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationAction] {
-	return pulumix.Output[[]*SystemAutomationAction]{
-		OutputState: i.ToSystemAutomationActionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAutomationActionMapInput is an input type that accepts SystemAutomationActionMap and SystemAutomationActionMapOutput values.
@@ -458,12 +445,6 @@ func (i SystemAutomationActionMap) ToSystemAutomationActionMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionMapOutput)
 }
 
-func (i SystemAutomationActionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationAction] {
-	return pulumix.Output[map[string]*SystemAutomationAction]{
-		OutputState: i.ToSystemAutomationActionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAutomationActionOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationActionOutput) ElementType() reflect.Type {
@@ -476,12 +457,6 @@ func (o SystemAutomationActionOutput) ToSystemAutomationActionOutput() SystemAut
 
 func (o SystemAutomationActionOutput) ToSystemAutomationActionOutputWithContext(ctx context.Context) SystemAutomationActionOutput {
 	return o
-}
-
-func (o SystemAutomationActionOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationAction] {
-	return pulumix.Output[*SystemAutomationAction]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutomationActionOutput) Accprofile() pulumi.StringOutput {
@@ -734,12 +709,6 @@ func (o SystemAutomationActionArrayOutput) ToSystemAutomationActionArrayOutputWi
 	return o
 }
 
-func (o SystemAutomationActionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationAction] {
-	return pulumix.Output[[]*SystemAutomationAction]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAutomationActionArrayOutput) Index(i pulumi.IntInput) SystemAutomationActionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationAction {
 		return vs[0].([]*SystemAutomationAction)[vs[1].(int)]
@@ -758,12 +727,6 @@ func (o SystemAutomationActionMapOutput) ToSystemAutomationActionMapOutput() Sys
 
 func (o SystemAutomationActionMapOutput) ToSystemAutomationActionMapOutputWithContext(ctx context.Context) SystemAutomationActionMapOutput {
 	return o
-}
-
-func (o SystemAutomationActionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationAction] {
-	return pulumix.Output[map[string]*SystemAutomationAction]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutomationActionMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationActionOutput {

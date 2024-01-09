@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterStatic struct {
@@ -216,12 +215,6 @@ func (i *RouterStatic) ToRouterStaticOutputWithContext(ctx context.Context) Rout
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticOutput)
 }
 
-func (i *RouterStatic) ToOutput(ctx context.Context) pulumix.Output[*RouterStatic] {
-	return pulumix.Output[*RouterStatic]{
-		OutputState: i.ToRouterStaticOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterStaticArrayInput is an input type that accepts RouterStaticArray and RouterStaticArrayOutput values.
 // You can construct a concrete instance of `RouterStaticArrayInput` via:
 //
@@ -245,12 +238,6 @@ func (i RouterStaticArray) ToRouterStaticArrayOutput() RouterStaticArrayOutput {
 
 func (i RouterStaticArray) ToRouterStaticArrayOutputWithContext(ctx context.Context) RouterStaticArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticArrayOutput)
-}
-
-func (i RouterStaticArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterStatic] {
-	return pulumix.Output[[]*RouterStatic]{
-		OutputState: i.ToRouterStaticArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterStaticMapInput is an input type that accepts RouterStaticMap and RouterStaticMapOutput values.
@@ -278,12 +265,6 @@ func (i RouterStaticMap) ToRouterStaticMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticMapOutput)
 }
 
-func (i RouterStaticMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterStatic] {
-	return pulumix.Output[map[string]*RouterStatic]{
-		OutputState: i.ToRouterStaticMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterStaticOutput struct{ *pulumi.OutputState }
 
 func (RouterStaticOutput) ElementType() reflect.Type {
@@ -296,12 +277,6 @@ func (o RouterStaticOutput) ToRouterStaticOutput() RouterStaticOutput {
 
 func (o RouterStaticOutput) ToRouterStaticOutputWithContext(ctx context.Context) RouterStaticOutput {
 	return o
-}
-
-func (o RouterStaticOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterStatic] {
-	return pulumix.Output[*RouterStatic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterStaticOutput) Bfd() pulumi.StringOutput {
@@ -422,12 +397,6 @@ func (o RouterStaticArrayOutput) ToRouterStaticArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o RouterStaticArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterStatic] {
-	return pulumix.Output[[]*RouterStatic]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterStaticArrayOutput) Index(i pulumi.IntInput) RouterStaticOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterStatic {
 		return vs[0].([]*RouterStatic)[vs[1].(int)]
@@ -446,12 +415,6 @@ func (o RouterStaticMapOutput) ToRouterStaticMapOutput() RouterStaticMapOutput {
 
 func (o RouterStaticMapOutput) ToRouterStaticMapOutputWithContext(ctx context.Context) RouterStaticMapOutput {
 	return o
-}
-
-func (o RouterStaticMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterStatic] {
-	return pulumix.Output[map[string]*RouterStatic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterStaticMapOutput) MapIndex(k pulumi.StringInput) RouterStaticOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemMobileTunnel struct {
@@ -214,12 +213,6 @@ func (i *SystemMobileTunnel) ToSystemMobileTunnelOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelOutput)
 }
 
-func (i *SystemMobileTunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemMobileTunnel] {
-	return pulumix.Output[*SystemMobileTunnel]{
-		OutputState: i.ToSystemMobileTunnelOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemMobileTunnelArrayInput is an input type that accepts SystemMobileTunnelArray and SystemMobileTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemMobileTunnelArrayInput` via:
 //
@@ -243,12 +236,6 @@ func (i SystemMobileTunnelArray) ToSystemMobileTunnelArrayOutput() SystemMobileT
 
 func (i SystemMobileTunnelArray) ToSystemMobileTunnelArrayOutputWithContext(ctx context.Context) SystemMobileTunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelArrayOutput)
-}
-
-func (i SystemMobileTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemMobileTunnel] {
-	return pulumix.Output[[]*SystemMobileTunnel]{
-		OutputState: i.ToSystemMobileTunnelArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemMobileTunnelMapInput is an input type that accepts SystemMobileTunnelMap and SystemMobileTunnelMapOutput values.
@@ -276,12 +263,6 @@ func (i SystemMobileTunnelMap) ToSystemMobileTunnelMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelMapOutput)
 }
 
-func (i SystemMobileTunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemMobileTunnel] {
-	return pulumix.Output[map[string]*SystemMobileTunnel]{
-		OutputState: i.ToSystemMobileTunnelMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemMobileTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemMobileTunnelOutput) ElementType() reflect.Type {
@@ -294,12 +275,6 @@ func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutput() SystemMobileTunne
 
 func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutputWithContext(ctx context.Context) SystemMobileTunnelOutput {
 	return o
-}
-
-func (o SystemMobileTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemMobileTunnel] {
-	return pulumix.Output[*SystemMobileTunnel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemMobileTunnelOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -388,12 +363,6 @@ func (o SystemMobileTunnelArrayOutput) ToSystemMobileTunnelArrayOutputWithContex
 	return o
 }
 
-func (o SystemMobileTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemMobileTunnel] {
-	return pulumix.Output[[]*SystemMobileTunnel]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemMobileTunnelArrayOutput) Index(i pulumi.IntInput) SystemMobileTunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemMobileTunnel {
 		return vs[0].([]*SystemMobileTunnel)[vs[1].(int)]
@@ -412,12 +381,6 @@ func (o SystemMobileTunnelMapOutput) ToSystemMobileTunnelMapOutput() SystemMobil
 
 func (o SystemMobileTunnelMapOutput) ToSystemMobileTunnelMapOutputWithContext(ctx context.Context) SystemMobileTunnelMapOutput {
 	return o
-}
-
-func (o SystemMobileTunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemMobileTunnel] {
-	return pulumix.Output[map[string]*SystemMobileTunnel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemMobileTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemMobileTunnelOutput {

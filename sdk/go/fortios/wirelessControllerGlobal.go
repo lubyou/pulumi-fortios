@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerGlobal struct {
@@ -201,12 +200,6 @@ func (i *WirelessControllerGlobal) ToWirelessControllerGlobalOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalOutput)
 }
 
-func (i *WirelessControllerGlobal) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerGlobal] {
-	return pulumix.Output[*WirelessControllerGlobal]{
-		OutputState: i.ToWirelessControllerGlobalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerGlobalArrayInput is an input type that accepts WirelessControllerGlobalArray and WirelessControllerGlobalArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerGlobalArrayInput` via:
 //
@@ -230,12 +223,6 @@ func (i WirelessControllerGlobalArray) ToWirelessControllerGlobalArrayOutput() W
 
 func (i WirelessControllerGlobalArray) ToWirelessControllerGlobalArrayOutputWithContext(ctx context.Context) WirelessControllerGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalArrayOutput)
-}
-
-func (i WirelessControllerGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerGlobal] {
-	return pulumix.Output[[]*WirelessControllerGlobal]{
-		OutputState: i.ToWirelessControllerGlobalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerGlobalMapInput is an input type that accepts WirelessControllerGlobalMap and WirelessControllerGlobalMapOutput values.
@@ -263,12 +250,6 @@ func (i WirelessControllerGlobalMap) ToWirelessControllerGlobalMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalMapOutput)
 }
 
-func (i WirelessControllerGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerGlobal] {
-	return pulumix.Output[map[string]*WirelessControllerGlobal]{
-		OutputState: i.ToWirelessControllerGlobalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerGlobalOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerGlobalOutput) ElementType() reflect.Type {
@@ -281,12 +262,6 @@ func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalOutput() Wirel
 
 func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalOutputWithContext(ctx context.Context) WirelessControllerGlobalOutput {
 	return o
-}
-
-func (o WirelessControllerGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerGlobal] {
-	return pulumix.Output[*WirelessControllerGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerGlobalOutput) AcdProcessCount() pulumi.IntOutput {
@@ -395,12 +370,6 @@ func (o WirelessControllerGlobalArrayOutput) ToWirelessControllerGlobalArrayOutp
 	return o
 }
 
-func (o WirelessControllerGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerGlobal] {
-	return pulumix.Output[[]*WirelessControllerGlobal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerGlobalArrayOutput) Index(i pulumi.IntInput) WirelessControllerGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerGlobal {
 		return vs[0].([]*WirelessControllerGlobal)[vs[1].(int)]
@@ -419,12 +388,6 @@ func (o WirelessControllerGlobalMapOutput) ToWirelessControllerGlobalMapOutput()
 
 func (o WirelessControllerGlobalMapOutput) ToWirelessControllerGlobalMapOutputWithContext(ctx context.Context) WirelessControllerGlobalMapOutput {
 	return o
-}
-
-func (o WirelessControllerGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerGlobal] {
-	return pulumix.Output[map[string]*WirelessControllerGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerGlobalMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerGlobalOutput {

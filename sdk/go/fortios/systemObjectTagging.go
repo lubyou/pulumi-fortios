@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemObjectTagging struct {
@@ -136,12 +135,6 @@ func (i *SystemObjectTagging) ToSystemObjectTaggingOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingOutput)
 }
 
-func (i *SystemObjectTagging) ToOutput(ctx context.Context) pulumix.Output[*SystemObjectTagging] {
-	return pulumix.Output[*SystemObjectTagging]{
-		OutputState: i.ToSystemObjectTaggingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemObjectTaggingArrayInput is an input type that accepts SystemObjectTaggingArray and SystemObjectTaggingArrayOutput values.
 // You can construct a concrete instance of `SystemObjectTaggingArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i SystemObjectTaggingArray) ToSystemObjectTaggingArrayOutput() SystemObjec
 
 func (i SystemObjectTaggingArray) ToSystemObjectTaggingArrayOutputWithContext(ctx context.Context) SystemObjectTaggingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingArrayOutput)
-}
-
-func (i SystemObjectTaggingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemObjectTagging] {
-	return pulumix.Output[[]*SystemObjectTagging]{
-		OutputState: i.ToSystemObjectTaggingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemObjectTaggingMapInput is an input type that accepts SystemObjectTaggingMap and SystemObjectTaggingMapOutput values.
@@ -198,12 +185,6 @@ func (i SystemObjectTaggingMap) ToSystemObjectTaggingMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingMapOutput)
 }
 
-func (i SystemObjectTaggingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemObjectTagging] {
-	return pulumix.Output[map[string]*SystemObjectTagging]{
-		OutputState: i.ToSystemObjectTaggingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemObjectTaggingOutput struct{ *pulumi.OutputState }
 
 func (SystemObjectTaggingOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o SystemObjectTaggingOutput) ToSystemObjectTaggingOutput() SystemObjectTag
 
 func (o SystemObjectTaggingOutput) ToSystemObjectTaggingOutputWithContext(ctx context.Context) SystemObjectTaggingOutput {
 	return o
-}
-
-func (o SystemObjectTaggingOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemObjectTagging] {
-	return pulumix.Output[*SystemObjectTagging]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemObjectTaggingOutput) Address() pulumi.StringOutput {
@@ -278,12 +253,6 @@ func (o SystemObjectTaggingArrayOutput) ToSystemObjectTaggingArrayOutputWithCont
 	return o
 }
 
-func (o SystemObjectTaggingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemObjectTagging] {
-	return pulumix.Output[[]*SystemObjectTagging]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemObjectTaggingArrayOutput) Index(i pulumi.IntInput) SystemObjectTaggingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemObjectTagging {
 		return vs[0].([]*SystemObjectTagging)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o SystemObjectTaggingMapOutput) ToSystemObjectTaggingMapOutput() SystemObj
 
 func (o SystemObjectTaggingMapOutput) ToSystemObjectTaggingMapOutputWithContext(ctx context.Context) SystemObjectTaggingMapOutput {
 	return o
-}
-
-func (o SystemObjectTaggingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemObjectTagging] {
-	return pulumix.Output[map[string]*SystemObjectTagging]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemObjectTaggingMapOutput) MapIndex(k pulumi.StringInput) SystemObjectTaggingOutput {

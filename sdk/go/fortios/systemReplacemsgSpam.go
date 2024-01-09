@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgSpam struct {
@@ -115,12 +114,6 @@ func (i *SystemReplacemsgSpam) ToSystemReplacemsgSpamOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSpamOutput)
 }
 
-func (i *SystemReplacemsgSpam) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgSpam] {
-	return pulumix.Output[*SystemReplacemsgSpam]{
-		OutputState: i.ToSystemReplacemsgSpamOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemReplacemsgSpamArrayInput is an input type that accepts SystemReplacemsgSpamArray and SystemReplacemsgSpamArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgSpamArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i SystemReplacemsgSpamArray) ToSystemReplacemsgSpamArrayOutput() SystemRep
 
 func (i SystemReplacemsgSpamArray) ToSystemReplacemsgSpamArrayOutputWithContext(ctx context.Context) SystemReplacemsgSpamArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSpamArrayOutput)
-}
-
-func (i SystemReplacemsgSpamArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgSpam] {
-	return pulumix.Output[[]*SystemReplacemsgSpam]{
-		OutputState: i.ToSystemReplacemsgSpamArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemReplacemsgSpamMapInput is an input type that accepts SystemReplacemsgSpamMap and SystemReplacemsgSpamMapOutput values.
@@ -177,12 +164,6 @@ func (i SystemReplacemsgSpamMap) ToSystemReplacemsgSpamMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSpamMapOutput)
 }
 
-func (i SystemReplacemsgSpamMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgSpam] {
-	return pulumix.Output[map[string]*SystemReplacemsgSpam]{
-		OutputState: i.ToSystemReplacemsgSpamMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemReplacemsgSpamOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgSpamOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o SystemReplacemsgSpamOutput) ToSystemReplacemsgSpamOutput() SystemReplace
 
 func (o SystemReplacemsgSpamOutput) ToSystemReplacemsgSpamOutputWithContext(ctx context.Context) SystemReplacemsgSpamOutput {
 	return o
-}
-
-func (o SystemReplacemsgSpamOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgSpam] {
-	return pulumix.Output[*SystemReplacemsgSpam]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgSpamOutput) Buffer() pulumi.StringPtrOutput {
@@ -237,12 +212,6 @@ func (o SystemReplacemsgSpamArrayOutput) ToSystemReplacemsgSpamArrayOutputWithCo
 	return o
 }
 
-func (o SystemReplacemsgSpamArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgSpam] {
-	return pulumix.Output[[]*SystemReplacemsgSpam]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemReplacemsgSpamArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgSpamOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgSpam {
 		return vs[0].([]*SystemReplacemsgSpam)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o SystemReplacemsgSpamMapOutput) ToSystemReplacemsgSpamMapOutput() SystemR
 
 func (o SystemReplacemsgSpamMapOutput) ToSystemReplacemsgSpamMapOutputWithContext(ctx context.Context) SystemReplacemsgSpamMapOutput {
 	return o
-}
-
-func (o SystemReplacemsgSpamMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgSpam] {
-	return pulumix.Output[map[string]*SystemReplacemsgSpam]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgSpamMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgSpamOutput {

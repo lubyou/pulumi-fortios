@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemGeoipCountry struct {
@@ -101,12 +100,6 @@ func (i *SystemGeoipCountry) ToSystemGeoipCountryOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryOutput)
 }
 
-func (i *SystemGeoipCountry) ToOutput(ctx context.Context) pulumix.Output[*SystemGeoipCountry] {
-	return pulumix.Output[*SystemGeoipCountry]{
-		OutputState: i.ToSystemGeoipCountryOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemGeoipCountryArrayInput is an input type that accepts SystemGeoipCountryArray and SystemGeoipCountryArrayOutput values.
 // You can construct a concrete instance of `SystemGeoipCountryArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i SystemGeoipCountryArray) ToSystemGeoipCountryArrayOutput() SystemGeoipCo
 
 func (i SystemGeoipCountryArray) ToSystemGeoipCountryArrayOutputWithContext(ctx context.Context) SystemGeoipCountryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryArrayOutput)
-}
-
-func (i SystemGeoipCountryArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGeoipCountry] {
-	return pulumix.Output[[]*SystemGeoipCountry]{
-		OutputState: i.ToSystemGeoipCountryArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemGeoipCountryMapInput is an input type that accepts SystemGeoipCountryMap and SystemGeoipCountryMapOutput values.
@@ -163,12 +150,6 @@ func (i SystemGeoipCountryMap) ToSystemGeoipCountryMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryMapOutput)
 }
 
-func (i SystemGeoipCountryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGeoipCountry] {
-	return pulumix.Output[map[string]*SystemGeoipCountry]{
-		OutputState: i.ToSystemGeoipCountryMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemGeoipCountryOutput struct{ *pulumi.OutputState }
 
 func (SystemGeoipCountryOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o SystemGeoipCountryOutput) ToSystemGeoipCountryOutput() SystemGeoipCountr
 
 func (o SystemGeoipCountryOutput) ToSystemGeoipCountryOutputWithContext(ctx context.Context) SystemGeoipCountryOutput {
 	return o
-}
-
-func (o SystemGeoipCountryOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemGeoipCountry] {
-	return pulumix.Output[*SystemGeoipCountry]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemGeoipCountryOutput) Fosid() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o SystemGeoipCountryArrayOutput) ToSystemGeoipCountryArrayOutputWithContex
 	return o
 }
 
-func (o SystemGeoipCountryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGeoipCountry] {
-	return pulumix.Output[[]*SystemGeoipCountry]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemGeoipCountryArrayOutput) Index(i pulumi.IntInput) SystemGeoipCountryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGeoipCountry {
 		return vs[0].([]*SystemGeoipCountry)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o SystemGeoipCountryMapOutput) ToSystemGeoipCountryMapOutput() SystemGeoip
 
 func (o SystemGeoipCountryMapOutput) ToSystemGeoipCountryMapOutputWithContext(ctx context.Context) SystemGeoipCountryMapOutput {
 	return o
-}
-
-func (o SystemGeoipCountryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGeoipCountry] {
-	return pulumix.Output[map[string]*SystemGeoipCountry]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemGeoipCountryMapOutput) MapIndex(k pulumi.StringInput) SystemGeoipCountryOutput {

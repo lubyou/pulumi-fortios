@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WafSignature struct {
@@ -101,12 +100,6 @@ func (i *WafSignature) ToWafSignatureOutputWithContext(ctx context.Context) WafS
 	return pulumi.ToOutputWithContext(ctx, i).(WafSignatureOutput)
 }
 
-func (i *WafSignature) ToOutput(ctx context.Context) pulumix.Output[*WafSignature] {
-	return pulumix.Output[*WafSignature]{
-		OutputState: i.ToWafSignatureOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WafSignatureArrayInput is an input type that accepts WafSignatureArray and WafSignatureArrayOutput values.
 // You can construct a concrete instance of `WafSignatureArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i WafSignatureArray) ToWafSignatureArrayOutput() WafSignatureArrayOutput {
 
 func (i WafSignatureArray) ToWafSignatureArrayOutputWithContext(ctx context.Context) WafSignatureArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafSignatureArrayOutput)
-}
-
-func (i WafSignatureArray) ToOutput(ctx context.Context) pulumix.Output[[]*WafSignature] {
-	return pulumix.Output[[]*WafSignature]{
-		OutputState: i.ToWafSignatureArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WafSignatureMapInput is an input type that accepts WafSignatureMap and WafSignatureMapOutput values.
@@ -163,12 +150,6 @@ func (i WafSignatureMap) ToWafSignatureMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(WafSignatureMapOutput)
 }
 
-func (i WafSignatureMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafSignature] {
-	return pulumix.Output[map[string]*WafSignature]{
-		OutputState: i.ToWafSignatureMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WafSignatureOutput struct{ *pulumi.OutputState }
 
 func (WafSignatureOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o WafSignatureOutput) ToWafSignatureOutput() WafSignatureOutput {
 
 func (o WafSignatureOutput) ToWafSignatureOutputWithContext(ctx context.Context) WafSignatureOutput {
 	return o
-}
-
-func (o WafSignatureOutput) ToOutput(ctx context.Context) pulumix.Output[*WafSignature] {
-	return pulumix.Output[*WafSignature]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WafSignatureOutput) Desc() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o WafSignatureArrayOutput) ToWafSignatureArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o WafSignatureArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WafSignature] {
-	return pulumix.Output[[]*WafSignature]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WafSignatureArrayOutput) Index(i pulumi.IntInput) WafSignatureOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafSignature {
 		return vs[0].([]*WafSignature)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o WafSignatureMapOutput) ToWafSignatureMapOutput() WafSignatureMapOutput {
 
 func (o WafSignatureMapOutput) ToWafSignatureMapOutputWithContext(ctx context.Context) WafSignatureMapOutput {
 	return o
-}
-
-func (o WafSignatureMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafSignature] {
-	return pulumix.Output[map[string]*WafSignature]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WafSignatureMapOutput) MapIndex(k pulumi.StringInput) WafSignatureOutput {

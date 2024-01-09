@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFortindr struct {
@@ -111,12 +110,6 @@ func (i *SystemFortindr) ToSystemFortindrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortindrOutput)
 }
 
-func (i *SystemFortindr) ToOutput(ctx context.Context) pulumix.Output[*SystemFortindr] {
-	return pulumix.Output[*SystemFortindr]{
-		OutputState: i.ToSystemFortindrOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemFortindrArrayInput is an input type that accepts SystemFortindrArray and SystemFortindrArrayOutput values.
 // You can construct a concrete instance of `SystemFortindrArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SystemFortindrArray) ToSystemFortindrArrayOutput() SystemFortindrArrayOu
 
 func (i SystemFortindrArray) ToSystemFortindrArrayOutputWithContext(ctx context.Context) SystemFortindrArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortindrArrayOutput)
-}
-
-func (i SystemFortindrArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortindr] {
-	return pulumix.Output[[]*SystemFortindr]{
-		OutputState: i.ToSystemFortindrArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemFortindrMapInput is an input type that accepts SystemFortindrMap and SystemFortindrMapOutput values.
@@ -173,12 +160,6 @@ func (i SystemFortindrMap) ToSystemFortindrMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortindrMapOutput)
 }
 
-func (i SystemFortindrMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortindr] {
-	return pulumix.Output[map[string]*SystemFortindr]{
-		OutputState: i.ToSystemFortindrMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemFortindrOutput struct{ *pulumi.OutputState }
 
 func (SystemFortindrOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SystemFortindrOutput) ToSystemFortindrOutput() SystemFortindrOutput {
 
 func (o SystemFortindrOutput) ToSystemFortindrOutputWithContext(ctx context.Context) SystemFortindrOutput {
 	return o
-}
-
-func (o SystemFortindrOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFortindr] {
-	return pulumix.Output[*SystemFortindr]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFortindrOutput) Interface() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o SystemFortindrArrayOutput) ToSystemFortindrArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemFortindrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortindr] {
-	return pulumix.Output[[]*SystemFortindr]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemFortindrArrayOutput) Index(i pulumi.IntInput) SystemFortindrOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortindr {
 		return vs[0].([]*SystemFortindr)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SystemFortindrMapOutput) ToSystemFortindrMapOutput() SystemFortindrMapOu
 
 func (o SystemFortindrMapOutput) ToSystemFortindrMapOutputWithContext(ctx context.Context) SystemFortindrMapOutput {
 	return o
-}
-
-func (o SystemFortindrMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortindr] {
-	return pulumix.Output[map[string]*SystemFortindr]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFortindrMapOutput) MapIndex(k pulumi.StringInput) SystemFortindrOutput {

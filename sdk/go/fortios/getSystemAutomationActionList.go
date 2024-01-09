@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemAutomationActionList(ctx *pulumi.Context, args *GetSystemAutomationActionListArgs, opts ...pulumi.InvokeOption) (*GetSystemAutomationActionListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemAutomationActionListResultOutput) ToGetSystemAutomationActionLi
 
 func (o GetSystemAutomationActionListResultOutput) ToGetSystemAutomationActionListResultOutputWithContext(ctx context.Context) GetSystemAutomationActionListResultOutput {
 	return o
-}
-
-func (o GetSystemAutomationActionListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemAutomationActionListResult] {
-	return pulumix.Output[GetSystemAutomationActionListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemAutomationActionListResultOutput) Filter() pulumi.StringPtrOutput {

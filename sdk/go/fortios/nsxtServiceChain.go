@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type NsxtServiceChain struct {
@@ -116,12 +115,6 @@ func (i *NsxtServiceChain) ToNsxtServiceChainOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainOutput)
 }
 
-func (i *NsxtServiceChain) ToOutput(ctx context.Context) pulumix.Output[*NsxtServiceChain] {
-	return pulumix.Output[*NsxtServiceChain]{
-		OutputState: i.ToNsxtServiceChainOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NsxtServiceChainArrayInput is an input type that accepts NsxtServiceChainArray and NsxtServiceChainArrayOutput values.
 // You can construct a concrete instance of `NsxtServiceChainArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i NsxtServiceChainArray) ToNsxtServiceChainArrayOutput() NsxtServiceChainA
 
 func (i NsxtServiceChainArray) ToNsxtServiceChainArrayOutputWithContext(ctx context.Context) NsxtServiceChainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainArrayOutput)
-}
-
-func (i NsxtServiceChainArray) ToOutput(ctx context.Context) pulumix.Output[[]*NsxtServiceChain] {
-	return pulumix.Output[[]*NsxtServiceChain]{
-		OutputState: i.ToNsxtServiceChainArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NsxtServiceChainMapInput is an input type that accepts NsxtServiceChainMap and NsxtServiceChainMapOutput values.
@@ -178,12 +165,6 @@ func (i NsxtServiceChainMap) ToNsxtServiceChainMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainMapOutput)
 }
 
-func (i NsxtServiceChainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NsxtServiceChain] {
-	return pulumix.Output[map[string]*NsxtServiceChain]{
-		OutputState: i.ToNsxtServiceChainMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NsxtServiceChainOutput struct{ *pulumi.OutputState }
 
 func (NsxtServiceChainOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o NsxtServiceChainOutput) ToNsxtServiceChainOutput() NsxtServiceChainOutpu
 
 func (o NsxtServiceChainOutput) ToNsxtServiceChainOutputWithContext(ctx context.Context) NsxtServiceChainOutput {
 	return o
-}
-
-func (o NsxtServiceChainOutput) ToOutput(ctx context.Context) pulumix.Output[*NsxtServiceChain] {
-	return pulumix.Output[*NsxtServiceChain]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NsxtServiceChainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -242,12 +217,6 @@ func (o NsxtServiceChainArrayOutput) ToNsxtServiceChainArrayOutputWithContext(ct
 	return o
 }
 
-func (o NsxtServiceChainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NsxtServiceChain] {
-	return pulumix.Output[[]*NsxtServiceChain]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NsxtServiceChainArrayOutput) Index(i pulumi.IntInput) NsxtServiceChainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NsxtServiceChain {
 		return vs[0].([]*NsxtServiceChain)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o NsxtServiceChainMapOutput) ToNsxtServiceChainMapOutput() NsxtServiceChai
 
 func (o NsxtServiceChainMapOutput) ToNsxtServiceChainMapOutputWithContext(ctx context.Context) NsxtServiceChainMapOutput {
 	return o
-}
-
-func (o NsxtServiceChainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NsxtServiceChain] {
-	return pulumix.Output[map[string]*NsxtServiceChain]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NsxtServiceChainMapOutput) MapIndex(k pulumi.StringInput) NsxtServiceChainOutput {

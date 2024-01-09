@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerDVMInstallPolicyPackage struct {
@@ -110,12 +109,6 @@ func (i *FortimanagerDVMInstallPolicyPackage) ToFortimanagerDVMInstallPolicyPack
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallPolicyPackageOutput)
 }
 
-func (i *FortimanagerDVMInstallPolicyPackage) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMInstallPolicyPackage] {
-	return pulumix.Output[*FortimanagerDVMInstallPolicyPackage]{
-		OutputState: i.ToFortimanagerDVMInstallPolicyPackageOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerDVMInstallPolicyPackageArrayInput is an input type that accepts FortimanagerDVMInstallPolicyPackageArray and FortimanagerDVMInstallPolicyPackageArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMInstallPolicyPackageArrayInput` via:
 //
@@ -139,12 +132,6 @@ func (i FortimanagerDVMInstallPolicyPackageArray) ToFortimanagerDVMInstallPolicy
 
 func (i FortimanagerDVMInstallPolicyPackageArray) ToFortimanagerDVMInstallPolicyPackageArrayOutputWithContext(ctx context.Context) FortimanagerDVMInstallPolicyPackageArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallPolicyPackageArrayOutput)
-}
-
-func (i FortimanagerDVMInstallPolicyPackageArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMInstallPolicyPackage] {
-	return pulumix.Output[[]*FortimanagerDVMInstallPolicyPackage]{
-		OutputState: i.ToFortimanagerDVMInstallPolicyPackageArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerDVMInstallPolicyPackageMapInput is an input type that accepts FortimanagerDVMInstallPolicyPackageMap and FortimanagerDVMInstallPolicyPackageMapOutput values.
@@ -172,12 +159,6 @@ func (i FortimanagerDVMInstallPolicyPackageMap) ToFortimanagerDVMInstallPolicyPa
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallPolicyPackageMapOutput)
 }
 
-func (i FortimanagerDVMInstallPolicyPackageMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMInstallPolicyPackage] {
-	return pulumix.Output[map[string]*FortimanagerDVMInstallPolicyPackage]{
-		OutputState: i.ToFortimanagerDVMInstallPolicyPackageMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerDVMInstallPolicyPackageOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMInstallPolicyPackageOutput) ElementType() reflect.Type {
@@ -190,12 +171,6 @@ func (o FortimanagerDVMInstallPolicyPackageOutput) ToFortimanagerDVMInstallPolic
 
 func (o FortimanagerDVMInstallPolicyPackageOutput) ToFortimanagerDVMInstallPolicyPackageOutputWithContext(ctx context.Context) FortimanagerDVMInstallPolicyPackageOutput {
 	return o
-}
-
-func (o FortimanagerDVMInstallPolicyPackageOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMInstallPolicyPackage] {
-	return pulumix.Output[*FortimanagerDVMInstallPolicyPackage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerDVMInstallPolicyPackageOutput) Adom() pulumi.StringPtrOutput {
@@ -225,12 +200,6 @@ func (o FortimanagerDVMInstallPolicyPackageArrayOutput) ToFortimanagerDVMInstall
 	return o
 }
 
-func (o FortimanagerDVMInstallPolicyPackageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMInstallPolicyPackage] {
-	return pulumix.Output[[]*FortimanagerDVMInstallPolicyPackage]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerDVMInstallPolicyPackageArrayOutput) Index(i pulumi.IntInput) FortimanagerDVMInstallPolicyPackageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerDVMInstallPolicyPackage {
 		return vs[0].([]*FortimanagerDVMInstallPolicyPackage)[vs[1].(int)]
@@ -249,12 +218,6 @@ func (o FortimanagerDVMInstallPolicyPackageMapOutput) ToFortimanagerDVMInstallPo
 
 func (o FortimanagerDVMInstallPolicyPackageMapOutput) ToFortimanagerDVMInstallPolicyPackageMapOutputWithContext(ctx context.Context) FortimanagerDVMInstallPolicyPackageMapOutput {
 	return o
-}
-
-func (o FortimanagerDVMInstallPolicyPackageMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMInstallPolicyPackage] {
-	return pulumix.Output[map[string]*FortimanagerDVMInstallPolicyPackage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerDVMInstallPolicyPackageMapOutput) MapIndex(k pulumi.StringInput) FortimanagerDVMInstallPolicyPackageOutput {

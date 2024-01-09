@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerAccessControlList struct {
@@ -121,12 +120,6 @@ func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlL
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListOutput)
 }
 
-func (i *WirelessControllerAccessControlList) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerAccessControlList] {
-	return pulumix.Output[*WirelessControllerAccessControlList]{
-		OutputState: i.ToWirelessControllerAccessControlListOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerAccessControlListArrayInput is an input type that accepts WirelessControllerAccessControlListArray and WirelessControllerAccessControlListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAccessControlListArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i WirelessControllerAccessControlListArray) ToWirelessControllerAccessCont
 
 func (i WirelessControllerAccessControlListArray) ToWirelessControllerAccessControlListArrayOutputWithContext(ctx context.Context) WirelessControllerAccessControlListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListArrayOutput)
-}
-
-func (i WirelessControllerAccessControlListArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerAccessControlList] {
-	return pulumix.Output[[]*WirelessControllerAccessControlList]{
-		OutputState: i.ToWirelessControllerAccessControlListArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerAccessControlListMapInput is an input type that accepts WirelessControllerAccessControlListMap and WirelessControllerAccessControlListMapOutput values.
@@ -183,12 +170,6 @@ func (i WirelessControllerAccessControlListMap) ToWirelessControllerAccessContro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListMapOutput)
 }
 
-func (i WirelessControllerAccessControlListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerAccessControlList] {
-	return pulumix.Output[map[string]*WirelessControllerAccessControlList]{
-		OutputState: i.ToWirelessControllerAccessControlListMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerAccessControlListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAccessControlListOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessCon
 
 func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessControlListOutputWithContext(ctx context.Context) WirelessControllerAccessControlListOutput {
 	return o
-}
-
-func (o WirelessControllerAccessControlListOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerAccessControlList] {
-	return pulumix.Output[*WirelessControllerAccessControlList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerAccessControlListOutput) Comment() pulumi.StringOutput {
@@ -255,12 +230,6 @@ func (o WirelessControllerAccessControlListArrayOutput) ToWirelessControllerAcce
 	return o
 }
 
-func (o WirelessControllerAccessControlListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerAccessControlList] {
-	return pulumix.Output[[]*WirelessControllerAccessControlList]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerAccessControlListArrayOutput) Index(i pulumi.IntInput) WirelessControllerAccessControlListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerAccessControlList {
 		return vs[0].([]*WirelessControllerAccessControlList)[vs[1].(int)]
@@ -279,12 +248,6 @@ func (o WirelessControllerAccessControlListMapOutput) ToWirelessControllerAccess
 
 func (o WirelessControllerAccessControlListMapOutput) ToWirelessControllerAccessControlListMapOutputWithContext(ctx context.Context) WirelessControllerAccessControlListMapOutput {
 	return o
-}
-
-func (o WirelessControllerAccessControlListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerAccessControlList] {
-	return pulumix.Output[map[string]*WirelessControllerAccessControlList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerAccessControlListMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerAccessControlListOutput {

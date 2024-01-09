@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallAddrgrp(ctx *pulumi.Context, args *LookupFirewallAddrgrpArgs, opts ...pulumi.InvokeOption) (*LookupFirewallAddrgrpResult, error) {
@@ -84,12 +83,6 @@ func (o LookupFirewallAddrgrpResultOutput) ToLookupFirewallAddrgrpResultOutput()
 
 func (o LookupFirewallAddrgrpResultOutput) ToLookupFirewallAddrgrpResultOutputWithContext(ctx context.Context) LookupFirewallAddrgrpResultOutput {
 	return o
-}
-
-func (o LookupFirewallAddrgrpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallAddrgrpResult] {
-	return pulumix.Output[LookupFirewallAddrgrpResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFirewallAddrgrpResultOutput) AllowRouting() pulumi.StringOutput {

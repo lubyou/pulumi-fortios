@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerArrpProfile struct {
@@ -211,12 +210,6 @@ func (i *WirelessControllerArrpProfile) ToWirelessControllerArrpProfileOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileOutput)
 }
 
-func (i *WirelessControllerArrpProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerArrpProfile] {
-	return pulumix.Output[*WirelessControllerArrpProfile]{
-		OutputState: i.ToWirelessControllerArrpProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerArrpProfileArrayInput is an input type that accepts WirelessControllerArrpProfileArray and WirelessControllerArrpProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerArrpProfileArrayInput` via:
 //
@@ -240,12 +233,6 @@ func (i WirelessControllerArrpProfileArray) ToWirelessControllerArrpProfileArray
 
 func (i WirelessControllerArrpProfileArray) ToWirelessControllerArrpProfileArrayOutputWithContext(ctx context.Context) WirelessControllerArrpProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileArrayOutput)
-}
-
-func (i WirelessControllerArrpProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerArrpProfile] {
-	return pulumix.Output[[]*WirelessControllerArrpProfile]{
-		OutputState: i.ToWirelessControllerArrpProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerArrpProfileMapInput is an input type that accepts WirelessControllerArrpProfileMap and WirelessControllerArrpProfileMapOutput values.
@@ -273,12 +260,6 @@ func (i WirelessControllerArrpProfileMap) ToWirelessControllerArrpProfileMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileMapOutput)
 }
 
-func (i WirelessControllerArrpProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerArrpProfile] {
-	return pulumix.Output[map[string]*WirelessControllerArrpProfile]{
-		OutputState: i.ToWirelessControllerArrpProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerArrpProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerArrpProfileOutput) ElementType() reflect.Type {
@@ -291,12 +272,6 @@ func (o WirelessControllerArrpProfileOutput) ToWirelessControllerArrpProfileOutp
 
 func (o WirelessControllerArrpProfileOutput) ToWirelessControllerArrpProfileOutputWithContext(ctx context.Context) WirelessControllerArrpProfileOutput {
 	return o
-}
-
-func (o WirelessControllerArrpProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerArrpProfile] {
-	return pulumix.Output[*WirelessControllerArrpProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerArrpProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -415,12 +390,6 @@ func (o WirelessControllerArrpProfileArrayOutput) ToWirelessControllerArrpProfil
 	return o
 }
 
-func (o WirelessControllerArrpProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerArrpProfile] {
-	return pulumix.Output[[]*WirelessControllerArrpProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerArrpProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerArrpProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerArrpProfile {
 		return vs[0].([]*WirelessControllerArrpProfile)[vs[1].(int)]
@@ -439,12 +408,6 @@ func (o WirelessControllerArrpProfileMapOutput) ToWirelessControllerArrpProfileM
 
 func (o WirelessControllerArrpProfileMapOutput) ToWirelessControllerArrpProfileMapOutputWithContext(ctx context.Context) WirelessControllerArrpProfileMapOutput {
 	return o
-}
-
-func (o WirelessControllerArrpProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerArrpProfile] {
-	return pulumix.Output[map[string]*WirelessControllerArrpProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerArrpProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerArrpProfileOutput {

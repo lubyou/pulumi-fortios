@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFssoPolling struct {
@@ -118,12 +117,6 @@ func (i *SystemFssoPolling) ToSystemFssoPollingOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingOutput)
 }
 
-func (i *SystemFssoPolling) ToOutput(ctx context.Context) pulumix.Output[*SystemFssoPolling] {
-	return pulumix.Output[*SystemFssoPolling]{
-		OutputState: i.ToSystemFssoPollingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemFssoPollingArrayInput is an input type that accepts SystemFssoPollingArray and SystemFssoPollingArrayOutput values.
 // You can construct a concrete instance of `SystemFssoPollingArrayInput` via:
 //
@@ -147,12 +140,6 @@ func (i SystemFssoPollingArray) ToSystemFssoPollingArrayOutput() SystemFssoPolli
 
 func (i SystemFssoPollingArray) ToSystemFssoPollingArrayOutputWithContext(ctx context.Context) SystemFssoPollingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingArrayOutput)
-}
-
-func (i SystemFssoPollingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFssoPolling] {
-	return pulumix.Output[[]*SystemFssoPolling]{
-		OutputState: i.ToSystemFssoPollingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemFssoPollingMapInput is an input type that accepts SystemFssoPollingMap and SystemFssoPollingMapOutput values.
@@ -180,12 +167,6 @@ func (i SystemFssoPollingMap) ToSystemFssoPollingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingMapOutput)
 }
 
-func (i SystemFssoPollingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFssoPolling] {
-	return pulumix.Output[map[string]*SystemFssoPolling]{
-		OutputState: i.ToSystemFssoPollingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemFssoPollingOutput struct{ *pulumi.OutputState }
 
 func (SystemFssoPollingOutput) ElementType() reflect.Type {
@@ -198,12 +179,6 @@ func (o SystemFssoPollingOutput) ToSystemFssoPollingOutput() SystemFssoPollingOu
 
 func (o SystemFssoPollingOutput) ToSystemFssoPollingOutputWithContext(ctx context.Context) SystemFssoPollingOutput {
 	return o
-}
-
-func (o SystemFssoPollingOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFssoPolling] {
-	return pulumix.Output[*SystemFssoPolling]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFssoPollingOutput) AuthPassword() pulumi.StringPtrOutput {
@@ -240,12 +215,6 @@ func (o SystemFssoPollingArrayOutput) ToSystemFssoPollingArrayOutputWithContext(
 	return o
 }
 
-func (o SystemFssoPollingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFssoPolling] {
-	return pulumix.Output[[]*SystemFssoPolling]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemFssoPollingArrayOutput) Index(i pulumi.IntInput) SystemFssoPollingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFssoPolling {
 		return vs[0].([]*SystemFssoPolling)[vs[1].(int)]
@@ -264,12 +233,6 @@ func (o SystemFssoPollingMapOutput) ToSystemFssoPollingMapOutput() SystemFssoPol
 
 func (o SystemFssoPollingMapOutput) ToSystemFssoPollingMapOutputWithContext(ctx context.Context) SystemFssoPollingMapOutput {
 	return o
-}
-
-func (o SystemFssoPollingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFssoPolling] {
-	return pulumix.Output[map[string]*SystemFssoPolling]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFssoPollingMapOutput) MapIndex(k pulumi.StringInput) SystemFssoPollingOutput {

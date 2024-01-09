@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerNacDevice struct {
@@ -141,12 +140,6 @@ func (i *SwitchControllerNacDevice) ToSwitchControllerNacDeviceOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDeviceOutput)
 }
 
-func (i *SwitchControllerNacDevice) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerNacDevice] {
-	return pulumix.Output[*SwitchControllerNacDevice]{
-		OutputState: i.ToSwitchControllerNacDeviceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerNacDeviceArrayInput is an input type that accepts SwitchControllerNacDeviceArray and SwitchControllerNacDeviceArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerNacDeviceArrayInput` via:
 //
@@ -170,12 +163,6 @@ func (i SwitchControllerNacDeviceArray) ToSwitchControllerNacDeviceArrayOutput()
 
 func (i SwitchControllerNacDeviceArray) ToSwitchControllerNacDeviceArrayOutputWithContext(ctx context.Context) SwitchControllerNacDeviceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDeviceArrayOutput)
-}
-
-func (i SwitchControllerNacDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerNacDevice] {
-	return pulumix.Output[[]*SwitchControllerNacDevice]{
-		OutputState: i.ToSwitchControllerNacDeviceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerNacDeviceMapInput is an input type that accepts SwitchControllerNacDeviceMap and SwitchControllerNacDeviceMapOutput values.
@@ -203,12 +190,6 @@ func (i SwitchControllerNacDeviceMap) ToSwitchControllerNacDeviceMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDeviceMapOutput)
 }
 
-func (i SwitchControllerNacDeviceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerNacDevice] {
-	return pulumix.Output[map[string]*SwitchControllerNacDevice]{
-		OutputState: i.ToSwitchControllerNacDeviceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerNacDeviceOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacDeviceOutput) ElementType() reflect.Type {
@@ -221,12 +202,6 @@ func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDeviceOutput() Swi
 
 func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDeviceOutputWithContext(ctx context.Context) SwitchControllerNacDeviceOutput {
 	return o
-}
-
-func (o SwitchControllerNacDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerNacDevice] {
-	return pulumix.Output[*SwitchControllerNacDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerNacDeviceOutput) Description() pulumi.StringOutput {
@@ -287,12 +262,6 @@ func (o SwitchControllerNacDeviceArrayOutput) ToSwitchControllerNacDeviceArrayOu
 	return o
 }
 
-func (o SwitchControllerNacDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerNacDevice] {
-	return pulumix.Output[[]*SwitchControllerNacDevice]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerNacDeviceArrayOutput) Index(i pulumi.IntInput) SwitchControllerNacDeviceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerNacDevice {
 		return vs[0].([]*SwitchControllerNacDevice)[vs[1].(int)]
@@ -311,12 +280,6 @@ func (o SwitchControllerNacDeviceMapOutput) ToSwitchControllerNacDeviceMapOutput
 
 func (o SwitchControllerNacDeviceMapOutput) ToSwitchControllerNacDeviceMapOutputWithContext(ctx context.Context) SwitchControllerNacDeviceMapOutput {
 	return o
-}
-
-func (o SwitchControllerNacDeviceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerNacDevice] {
-	return pulumix.Output[map[string]*SwitchControllerNacDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerNacDeviceMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerNacDeviceOutput {

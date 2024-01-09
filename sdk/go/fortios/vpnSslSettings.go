@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslSettings struct {
@@ -486,12 +485,6 @@ func (i *VpnSslSettings) ToVpnSslSettingsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsOutput)
 }
 
-func (i *VpnSslSettings) ToOutput(ctx context.Context) pulumix.Output[*VpnSslSettings] {
-	return pulumix.Output[*VpnSslSettings]{
-		OutputState: i.ToVpnSslSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnSslSettingsArrayInput is an input type that accepts VpnSslSettingsArray and VpnSslSettingsArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsArrayInput` via:
 //
@@ -515,12 +508,6 @@ func (i VpnSslSettingsArray) ToVpnSslSettingsArrayOutput() VpnSslSettingsArrayOu
 
 func (i VpnSslSettingsArray) ToVpnSslSettingsArrayOutputWithContext(ctx context.Context) VpnSslSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsArrayOutput)
-}
-
-func (i VpnSslSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslSettings] {
-	return pulumix.Output[[]*VpnSslSettings]{
-		OutputState: i.ToVpnSslSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnSslSettingsMapInput is an input type that accepts VpnSslSettingsMap and VpnSslSettingsMapOutput values.
@@ -548,12 +535,6 @@ func (i VpnSslSettingsMap) ToVpnSslSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsMapOutput)
 }
 
-func (i VpnSslSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslSettings] {
-	return pulumix.Output[map[string]*VpnSslSettings]{
-		OutputState: i.ToVpnSslSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnSslSettingsOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsOutput) ElementType() reflect.Type {
@@ -566,12 +547,6 @@ func (o VpnSslSettingsOutput) ToVpnSslSettingsOutput() VpnSslSettingsOutput {
 
 func (o VpnSslSettingsOutput) ToVpnSslSettingsOutputWithContext(ctx context.Context) VpnSslSettingsOutput {
 	return o
-}
-
-func (o VpnSslSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslSettings] {
-	return pulumix.Output[*VpnSslSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslSettingsOutput) Algorithm() pulumi.StringOutput {
@@ -908,12 +883,6 @@ func (o VpnSslSettingsArrayOutput) ToVpnSslSettingsArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o VpnSslSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslSettings] {
-	return pulumix.Output[[]*VpnSslSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnSslSettingsArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslSettings {
 		return vs[0].([]*VpnSslSettings)[vs[1].(int)]
@@ -932,12 +901,6 @@ func (o VpnSslSettingsMapOutput) ToVpnSslSettingsMapOutput() VpnSslSettingsMapOu
 
 func (o VpnSslSettingsMapOutput) ToVpnSslSettingsMapOutputWithContext(ctx context.Context) VpnSslSettingsMapOutput {
 	return o
-}
-
-func (o VpnSslSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslSettings] {
-	return pulumix.Output[map[string]*VpnSslSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslSettingsMapOutput) MapIndex(k pulumi.StringInput) VpnSslSettingsOutput {

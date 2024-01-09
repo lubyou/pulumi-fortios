@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallVipgrp46 struct {
@@ -130,12 +129,6 @@ func (i *FirewallVipgrp46) ToFirewallVipgrp46OutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp46Output)
 }
 
-func (i *FirewallVipgrp46) ToOutput(ctx context.Context) pulumix.Output[*FirewallVipgrp46] {
-	return pulumix.Output[*FirewallVipgrp46]{
-		OutputState: i.ToFirewallVipgrp46OutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallVipgrp46ArrayInput is an input type that accepts FirewallVipgrp46Array and FirewallVipgrp46ArrayOutput values.
 // You can construct a concrete instance of `FirewallVipgrp46ArrayInput` via:
 //
@@ -159,12 +152,6 @@ func (i FirewallVipgrp46Array) ToFirewallVipgrp46ArrayOutput() FirewallVipgrp46A
 
 func (i FirewallVipgrp46Array) ToFirewallVipgrp46ArrayOutputWithContext(ctx context.Context) FirewallVipgrp46ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp46ArrayOutput)
-}
-
-func (i FirewallVipgrp46Array) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallVipgrp46] {
-	return pulumix.Output[[]*FirewallVipgrp46]{
-		OutputState: i.ToFirewallVipgrp46ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallVipgrp46MapInput is an input type that accepts FirewallVipgrp46Map and FirewallVipgrp46MapOutput values.
@@ -192,12 +179,6 @@ func (i FirewallVipgrp46Map) ToFirewallVipgrp46MapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp46MapOutput)
 }
 
-func (i FirewallVipgrp46Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallVipgrp46] {
-	return pulumix.Output[map[string]*FirewallVipgrp46]{
-		OutputState: i.ToFirewallVipgrp46MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallVipgrp46Output struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp46Output) ElementType() reflect.Type {
@@ -210,12 +191,6 @@ func (o FirewallVipgrp46Output) ToFirewallVipgrp46Output() FirewallVipgrp46Outpu
 
 func (o FirewallVipgrp46Output) ToFirewallVipgrp46OutputWithContext(ctx context.Context) FirewallVipgrp46Output {
 	return o
-}
-
-func (o FirewallVipgrp46Output) ToOutput(ctx context.Context) pulumix.Output[*FirewallVipgrp46] {
-	return pulumix.Output[*FirewallVipgrp46]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallVipgrp46Output) Color() pulumi.IntOutput {
@@ -264,12 +239,6 @@ func (o FirewallVipgrp46ArrayOutput) ToFirewallVipgrp46ArrayOutputWithContext(ct
 	return o
 }
 
-func (o FirewallVipgrp46ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallVipgrp46] {
-	return pulumix.Output[[]*FirewallVipgrp46]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallVipgrp46ArrayOutput) Index(i pulumi.IntInput) FirewallVipgrp46Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVipgrp46 {
 		return vs[0].([]*FirewallVipgrp46)[vs[1].(int)]
@@ -288,12 +257,6 @@ func (o FirewallVipgrp46MapOutput) ToFirewallVipgrp46MapOutput() FirewallVipgrp4
 
 func (o FirewallVipgrp46MapOutput) ToFirewallVipgrp46MapOutputWithContext(ctx context.Context) FirewallVipgrp46MapOutput {
 	return o
-}
-
-func (o FirewallVipgrp46MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallVipgrp46] {
-	return pulumix.Output[map[string]*FirewallVipgrp46]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallVipgrp46MapOutput) MapIndex(k pulumi.StringInput) FirewallVipgrp46Output {

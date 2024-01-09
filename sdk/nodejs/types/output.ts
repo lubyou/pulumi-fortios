@@ -6487,6 +6487,63 @@ export interface GetSystemZoneTaggingTag {
     name: string;
 }
 
+export interface GetVpnSslSettingsAuthenticationRule {
+    auth: string;
+    cipher: string;
+    clientCert: string;
+    groups: outputs.GetVpnSslSettingsAuthenticationRuleGroup[];
+    id: number;
+    portal: string;
+    realm: string;
+    sourceAddress6Negate: string;
+    sourceAddress6s: outputs.GetVpnSslSettingsAuthenticationRuleSourceAddress6[];
+    sourceAddressNegate: string;
+    sourceAddresses: outputs.GetVpnSslSettingsAuthenticationRuleSourceAddress[];
+    sourceInterfaces: outputs.GetVpnSslSettingsAuthenticationRuleSourceInterface[];
+    userPeer: string;
+    users: outputs.GetVpnSslSettingsAuthenticationRuleUser[];
+}
+
+export interface GetVpnSslSettingsAuthenticationRuleGroup {
+    name: string;
+}
+
+export interface GetVpnSslSettingsAuthenticationRuleSourceAddress {
+    name: string;
+}
+
+export interface GetVpnSslSettingsAuthenticationRuleSourceAddress6 {
+    name: string;
+}
+
+export interface GetVpnSslSettingsAuthenticationRuleSourceInterface {
+    name: string;
+}
+
+export interface GetVpnSslSettingsAuthenticationRuleUser {
+    name: string;
+}
+
+export interface GetVpnSslSettingsSourceAddress {
+    name: string;
+}
+
+export interface GetVpnSslSettingsSourceAddress6 {
+    name: string;
+}
+
+export interface GetVpnSslSettingsSourceInterface {
+    name: string;
+}
+
+export interface GetVpnSslSettingsTunnelIpPool {
+    name: string;
+}
+
+export interface GetVpnSslSettingsTunnelIpv6Pool {
+    name: string;
+}
+
 export interface IcapProfileIcapHeader {
     base64Encoding: string;
     content: string;

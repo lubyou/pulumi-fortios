@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RuleOtdt struct {
@@ -161,12 +160,6 @@ func (i *RuleOtdt) ToRuleOtdtOutputWithContext(ctx context.Context) RuleOtdtOutp
 	return pulumi.ToOutputWithContext(ctx, i).(RuleOtdtOutput)
 }
 
-func (i *RuleOtdt) ToOutput(ctx context.Context) pulumix.Output[*RuleOtdt] {
-	return pulumix.Output[*RuleOtdt]{
-		OutputState: i.ToRuleOtdtOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RuleOtdtArrayInput is an input type that accepts RuleOtdtArray and RuleOtdtArrayOutput values.
 // You can construct a concrete instance of `RuleOtdtArrayInput` via:
 //
@@ -190,12 +183,6 @@ func (i RuleOtdtArray) ToRuleOtdtArrayOutput() RuleOtdtArrayOutput {
 
 func (i RuleOtdtArray) ToRuleOtdtArrayOutputWithContext(ctx context.Context) RuleOtdtArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RuleOtdtArrayOutput)
-}
-
-func (i RuleOtdtArray) ToOutput(ctx context.Context) pulumix.Output[[]*RuleOtdt] {
-	return pulumix.Output[[]*RuleOtdt]{
-		OutputState: i.ToRuleOtdtArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RuleOtdtMapInput is an input type that accepts RuleOtdtMap and RuleOtdtMapOutput values.
@@ -223,12 +210,6 @@ func (i RuleOtdtMap) ToRuleOtdtMapOutputWithContext(ctx context.Context) RuleOtd
 	return pulumi.ToOutputWithContext(ctx, i).(RuleOtdtMapOutput)
 }
 
-func (i RuleOtdtMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RuleOtdt] {
-	return pulumix.Output[map[string]*RuleOtdt]{
-		OutputState: i.ToRuleOtdtMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RuleOtdtOutput struct{ *pulumi.OutputState }
 
 func (RuleOtdtOutput) ElementType() reflect.Type {
@@ -241,12 +222,6 @@ func (o RuleOtdtOutput) ToRuleOtdtOutput() RuleOtdtOutput {
 
 func (o RuleOtdtOutput) ToRuleOtdtOutputWithContext(ctx context.Context) RuleOtdtOutput {
 	return o
-}
-
-func (o RuleOtdtOutput) ToOutput(ctx context.Context) pulumix.Output[*RuleOtdt] {
-	return pulumix.Output[*RuleOtdt]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RuleOtdtOutput) Behavior() pulumi.StringOutput {
@@ -323,12 +298,6 @@ func (o RuleOtdtArrayOutput) ToRuleOtdtArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RuleOtdtArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RuleOtdt] {
-	return pulumix.Output[[]*RuleOtdt]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RuleOtdtArrayOutput) Index(i pulumi.IntInput) RuleOtdtOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RuleOtdt {
 		return vs[0].([]*RuleOtdt)[vs[1].(int)]
@@ -347,12 +316,6 @@ func (o RuleOtdtMapOutput) ToRuleOtdtMapOutput() RuleOtdtMapOutput {
 
 func (o RuleOtdtMapOutput) ToRuleOtdtMapOutputWithContext(ctx context.Context) RuleOtdtMapOutput {
 	return o
-}
-
-func (o RuleOtdtMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RuleOtdt] {
-	return pulumix.Output[map[string]*RuleOtdt]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RuleOtdtMapOutput) MapIndex(k pulumi.StringInput) RuleOtdtOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DpdkGlobal struct {
@@ -146,12 +145,6 @@ func (i *DpdkGlobal) ToDpdkGlobalOutputWithContext(ctx context.Context) DpdkGlob
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalOutput)
 }
 
-func (i *DpdkGlobal) ToOutput(ctx context.Context) pulumix.Output[*DpdkGlobal] {
-	return pulumix.Output[*DpdkGlobal]{
-		OutputState: i.ToDpdkGlobalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DpdkGlobalArrayInput is an input type that accepts DpdkGlobalArray and DpdkGlobalArrayOutput values.
 // You can construct a concrete instance of `DpdkGlobalArrayInput` via:
 //
@@ -175,12 +168,6 @@ func (i DpdkGlobalArray) ToDpdkGlobalArrayOutput() DpdkGlobalArrayOutput {
 
 func (i DpdkGlobalArray) ToDpdkGlobalArrayOutputWithContext(ctx context.Context) DpdkGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalArrayOutput)
-}
-
-func (i DpdkGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*DpdkGlobal] {
-	return pulumix.Output[[]*DpdkGlobal]{
-		OutputState: i.ToDpdkGlobalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DpdkGlobalMapInput is an input type that accepts DpdkGlobalMap and DpdkGlobalMapOutput values.
@@ -208,12 +195,6 @@ func (i DpdkGlobalMap) ToDpdkGlobalMapOutputWithContext(ctx context.Context) Dpd
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalMapOutput)
 }
 
-func (i DpdkGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DpdkGlobal] {
-	return pulumix.Output[map[string]*DpdkGlobal]{
-		OutputState: i.ToDpdkGlobalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DpdkGlobalOutput struct{ *pulumi.OutputState }
 
 func (DpdkGlobalOutput) ElementType() reflect.Type {
@@ -226,12 +207,6 @@ func (o DpdkGlobalOutput) ToDpdkGlobalOutput() DpdkGlobalOutput {
 
 func (o DpdkGlobalOutput) ToDpdkGlobalOutputWithContext(ctx context.Context) DpdkGlobalOutput {
 	return o
-}
-
-func (o DpdkGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*DpdkGlobal] {
-	return pulumix.Output[*DpdkGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DpdkGlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -296,12 +271,6 @@ func (o DpdkGlobalArrayOutput) ToDpdkGlobalArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o DpdkGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DpdkGlobal] {
-	return pulumix.Output[[]*DpdkGlobal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DpdkGlobalArrayOutput) Index(i pulumi.IntInput) DpdkGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DpdkGlobal {
 		return vs[0].([]*DpdkGlobal)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o DpdkGlobalMapOutput) ToDpdkGlobalMapOutput() DpdkGlobalMapOutput {
 
 func (o DpdkGlobalMapOutput) ToDpdkGlobalMapOutputWithContext(ctx context.Context) DpdkGlobalMapOutput {
 	return o
-}
-
-func (o DpdkGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DpdkGlobal] {
-	return pulumix.Output[map[string]*DpdkGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DpdkGlobalMapOutput) MapIndex(k pulumi.StringInput) DpdkGlobalOutput {

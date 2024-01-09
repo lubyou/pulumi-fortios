@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallScheduleRecurringList(ctx *pulumi.Context, args *GetFirewallScheduleRecurringListArgs, opts ...pulumi.InvokeOption) (*GetFirewallScheduleRecurringListResult, error) {
@@ -73,12 +72,6 @@ func (o GetFirewallScheduleRecurringListResultOutput) ToGetFirewallScheduleRecur
 
 func (o GetFirewallScheduleRecurringListResultOutput) ToGetFirewallScheduleRecurringListResultOutputWithContext(ctx context.Context) GetFirewallScheduleRecurringListResultOutput {
 	return o
-}
-
-func (o GetFirewallScheduleRecurringListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallScheduleRecurringListResult] {
-	return pulumix.Output[GetFirewallScheduleRecurringListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetFirewallScheduleRecurringListResultOutput) Filter() pulumi.StringPtrOutput {

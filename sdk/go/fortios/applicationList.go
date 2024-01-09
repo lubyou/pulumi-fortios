@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ApplicationList struct {
@@ -191,12 +190,6 @@ func (i *ApplicationList) ToApplicationListOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListOutput)
 }
 
-func (i *ApplicationList) ToOutput(ctx context.Context) pulumix.Output[*ApplicationList] {
-	return pulumix.Output[*ApplicationList]{
-		OutputState: i.ToApplicationListOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ApplicationListArrayInput is an input type that accepts ApplicationListArray and ApplicationListArrayOutput values.
 // You can construct a concrete instance of `ApplicationListArrayInput` via:
 //
@@ -220,12 +213,6 @@ func (i ApplicationListArray) ToApplicationListArrayOutput() ApplicationListArra
 
 func (i ApplicationListArray) ToApplicationListArrayOutputWithContext(ctx context.Context) ApplicationListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListArrayOutput)
-}
-
-func (i ApplicationListArray) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationList] {
-	return pulumix.Output[[]*ApplicationList]{
-		OutputState: i.ToApplicationListArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ApplicationListMapInput is an input type that accepts ApplicationListMap and ApplicationListMapOutput values.
@@ -253,12 +240,6 @@ func (i ApplicationListMap) ToApplicationListMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListMapOutput)
 }
 
-func (i ApplicationListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationList] {
-	return pulumix.Output[map[string]*ApplicationList]{
-		OutputState: i.ToApplicationListMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ApplicationListOutput struct{ *pulumi.OutputState }
 
 func (ApplicationListOutput) ElementType() reflect.Type {
@@ -271,12 +252,6 @@ func (o ApplicationListOutput) ToApplicationListOutput() ApplicationListOutput {
 
 func (o ApplicationListOutput) ToApplicationListOutputWithContext(ctx context.Context) ApplicationListOutput {
 	return o
-}
-
-func (o ApplicationListOutput) ToOutput(ctx context.Context) pulumix.Output[*ApplicationList] {
-	return pulumix.Output[*ApplicationList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ApplicationListOutput) AppReplacemsg() pulumi.StringOutput {
@@ -379,12 +354,6 @@ func (o ApplicationListArrayOutput) ToApplicationListArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o ApplicationListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationList] {
-	return pulumix.Output[[]*ApplicationList]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ApplicationListArrayOutput) Index(i pulumi.IntInput) ApplicationListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationList {
 		return vs[0].([]*ApplicationList)[vs[1].(int)]
@@ -403,12 +372,6 @@ func (o ApplicationListMapOutput) ToApplicationListMapOutput() ApplicationListMa
 
 func (o ApplicationListMapOutput) ToApplicationListMapOutputWithContext(ctx context.Context) ApplicationListMapOutput {
 	return o
-}
-
-func (o ApplicationListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationList] {
-	return pulumix.Output[map[string]*ApplicationList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ApplicationListMapOutput) MapIndex(k pulumi.StringInput) ApplicationListOutput {

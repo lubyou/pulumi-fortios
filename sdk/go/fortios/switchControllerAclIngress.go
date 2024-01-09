@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerAclIngress struct {
@@ -116,12 +115,6 @@ func (i *SwitchControllerAclIngress) ToSwitchControllerAclIngressOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAclIngressOutput)
 }
 
-func (i *SwitchControllerAclIngress) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerAclIngress] {
-	return pulumix.Output[*SwitchControllerAclIngress]{
-		OutputState: i.ToSwitchControllerAclIngressOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerAclIngressArrayInput is an input type that accepts SwitchControllerAclIngressArray and SwitchControllerAclIngressArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerAclIngressArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i SwitchControllerAclIngressArray) ToSwitchControllerAclIngressArrayOutput
 
 func (i SwitchControllerAclIngressArray) ToSwitchControllerAclIngressArrayOutputWithContext(ctx context.Context) SwitchControllerAclIngressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAclIngressArrayOutput)
-}
-
-func (i SwitchControllerAclIngressArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerAclIngress] {
-	return pulumix.Output[[]*SwitchControllerAclIngress]{
-		OutputState: i.ToSwitchControllerAclIngressArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerAclIngressMapInput is an input type that accepts SwitchControllerAclIngressMap and SwitchControllerAclIngressMapOutput values.
@@ -178,12 +165,6 @@ func (i SwitchControllerAclIngressMap) ToSwitchControllerAclIngressMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAclIngressMapOutput)
 }
 
-func (i SwitchControllerAclIngressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerAclIngress] {
-	return pulumix.Output[map[string]*SwitchControllerAclIngress]{
-		OutputState: i.ToSwitchControllerAclIngressMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerAclIngressOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAclIngressOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o SwitchControllerAclIngressOutput) ToSwitchControllerAclIngressOutput() S
 
 func (o SwitchControllerAclIngressOutput) ToSwitchControllerAclIngressOutputWithContext(ctx context.Context) SwitchControllerAclIngressOutput {
 	return o
-}
-
-func (o SwitchControllerAclIngressOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerAclIngress] {
-	return pulumix.Output[*SwitchControllerAclIngress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerAclIngressOutput) Action() SwitchControllerAclIngressActionOutput {
@@ -242,12 +217,6 @@ func (o SwitchControllerAclIngressArrayOutput) ToSwitchControllerAclIngressArray
 	return o
 }
 
-func (o SwitchControllerAclIngressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerAclIngress] {
-	return pulumix.Output[[]*SwitchControllerAclIngress]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerAclIngressArrayOutput) Index(i pulumi.IntInput) SwitchControllerAclIngressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerAclIngress {
 		return vs[0].([]*SwitchControllerAclIngress)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o SwitchControllerAclIngressMapOutput) ToSwitchControllerAclIngressMapOutp
 
 func (o SwitchControllerAclIngressMapOutput) ToSwitchControllerAclIngressMapOutputWithContext(ctx context.Context) SwitchControllerAclIngressMapOutput {
 	return o
-}
-
-func (o SwitchControllerAclIngressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerAclIngress] {
-	return pulumix.Output[map[string]*SwitchControllerAclIngress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerAclIngressMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerAclIngressOutput {

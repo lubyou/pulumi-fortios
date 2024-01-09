@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIpipTunnel struct {
@@ -131,12 +130,6 @@ func (i *SystemIpipTunnel) ToSystemIpipTunnelOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelOutput)
 }
 
-func (i *SystemIpipTunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemIpipTunnel] {
-	return pulumix.Output[*SystemIpipTunnel]{
-		OutputState: i.ToSystemIpipTunnelOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemIpipTunnelArrayInput is an input type that accepts SystemIpipTunnelArray and SystemIpipTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemIpipTunnelArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i SystemIpipTunnelArray) ToSystemIpipTunnelArrayOutput() SystemIpipTunnelA
 
 func (i SystemIpipTunnelArray) ToSystemIpipTunnelArrayOutputWithContext(ctx context.Context) SystemIpipTunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelArrayOutput)
-}
-
-func (i SystemIpipTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpipTunnel] {
-	return pulumix.Output[[]*SystemIpipTunnel]{
-		OutputState: i.ToSystemIpipTunnelArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemIpipTunnelMapInput is an input type that accepts SystemIpipTunnelMap and SystemIpipTunnelMapOutput values.
@@ -193,12 +180,6 @@ func (i SystemIpipTunnelMap) ToSystemIpipTunnelMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelMapOutput)
 }
 
-func (i SystemIpipTunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpipTunnel] {
-	return pulumix.Output[map[string]*SystemIpipTunnel]{
-		OutputState: i.ToSystemIpipTunnelMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemIpipTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemIpipTunnelOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o SystemIpipTunnelOutput) ToSystemIpipTunnelOutput() SystemIpipTunnelOutpu
 
 func (o SystemIpipTunnelOutput) ToSystemIpipTunnelOutputWithContext(ctx context.Context) SystemIpipTunnelOutput {
 	return o
-}
-
-func (o SystemIpipTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemIpipTunnel] {
-	return pulumix.Output[*SystemIpipTunnel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIpipTunnelOutput) AutoAsicOffload() pulumi.StringOutput {
@@ -261,12 +236,6 @@ func (o SystemIpipTunnelArrayOutput) ToSystemIpipTunnelArrayOutputWithContext(ct
 	return o
 }
 
-func (o SystemIpipTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpipTunnel] {
-	return pulumix.Output[[]*SystemIpipTunnel]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemIpipTunnelArrayOutput) Index(i pulumi.IntInput) SystemIpipTunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpipTunnel {
 		return vs[0].([]*SystemIpipTunnel)[vs[1].(int)]
@@ -285,12 +254,6 @@ func (o SystemIpipTunnelMapOutput) ToSystemIpipTunnelMapOutput() SystemIpipTunne
 
 func (o SystemIpipTunnelMapOutput) ToSystemIpipTunnelMapOutputWithContext(ctx context.Context) SystemIpipTunnelMapOutput {
 	return o
-}
-
-func (o SystemIpipTunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpipTunnel] {
-	return pulumix.Output[map[string]*SystemIpipTunnel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIpipTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemIpipTunnelOutput {

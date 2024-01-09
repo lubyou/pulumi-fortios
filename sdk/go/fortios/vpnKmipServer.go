@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnKmipServer struct {
@@ -146,12 +145,6 @@ func (i *VpnKmipServer) ToVpnKmipServerOutputWithContext(ctx context.Context) Vp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerOutput)
 }
 
-func (i *VpnKmipServer) ToOutput(ctx context.Context) pulumix.Output[*VpnKmipServer] {
-	return pulumix.Output[*VpnKmipServer]{
-		OutputState: i.ToVpnKmipServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnKmipServerArrayInput is an input type that accepts VpnKmipServerArray and VpnKmipServerArrayOutput values.
 // You can construct a concrete instance of `VpnKmipServerArrayInput` via:
 //
@@ -175,12 +168,6 @@ func (i VpnKmipServerArray) ToVpnKmipServerArrayOutput() VpnKmipServerArrayOutpu
 
 func (i VpnKmipServerArray) ToVpnKmipServerArrayOutputWithContext(ctx context.Context) VpnKmipServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerArrayOutput)
-}
-
-func (i VpnKmipServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnKmipServer] {
-	return pulumix.Output[[]*VpnKmipServer]{
-		OutputState: i.ToVpnKmipServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnKmipServerMapInput is an input type that accepts VpnKmipServerMap and VpnKmipServerMapOutput values.
@@ -208,12 +195,6 @@ func (i VpnKmipServerMap) ToVpnKmipServerMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerMapOutput)
 }
 
-func (i VpnKmipServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnKmipServer] {
-	return pulumix.Output[map[string]*VpnKmipServer]{
-		OutputState: i.ToVpnKmipServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnKmipServerOutput struct{ *pulumi.OutputState }
 
 func (VpnKmipServerOutput) ElementType() reflect.Type {
@@ -226,12 +207,6 @@ func (o VpnKmipServerOutput) ToVpnKmipServerOutput() VpnKmipServerOutput {
 
 func (o VpnKmipServerOutput) ToVpnKmipServerOutputWithContext(ctx context.Context) VpnKmipServerOutput {
 	return o
-}
-
-func (o VpnKmipServerOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnKmipServer] {
-	return pulumix.Output[*VpnKmipServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnKmipServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -296,12 +271,6 @@ func (o VpnKmipServerArrayOutput) ToVpnKmipServerArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o VpnKmipServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnKmipServer] {
-	return pulumix.Output[[]*VpnKmipServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnKmipServerArrayOutput) Index(i pulumi.IntInput) VpnKmipServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnKmipServer {
 		return vs[0].([]*VpnKmipServer)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o VpnKmipServerMapOutput) ToVpnKmipServerMapOutput() VpnKmipServerMapOutpu
 
 func (o VpnKmipServerMapOutput) ToVpnKmipServerMapOutputWithContext(ctx context.Context) VpnKmipServerMapOutput {
 	return o
-}
-
-func (o VpnKmipServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnKmipServer] {
-	return pulumix.Output[map[string]*VpnKmipServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnKmipServerMapOutput) MapIndex(k pulumi.StringInput) VpnKmipServerOutput {

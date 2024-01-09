@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserTacacs struct {
@@ -171,12 +170,6 @@ func (i *UserTacacs) ToUserTacacsOutputWithContext(ctx context.Context) UserTaca
 	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsOutput)
 }
 
-func (i *UserTacacs) ToOutput(ctx context.Context) pulumix.Output[*UserTacacs] {
-	return pulumix.Output[*UserTacacs]{
-		OutputState: i.ToUserTacacsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserTacacsArrayInput is an input type that accepts UserTacacsArray and UserTacacsArrayOutput values.
 // You can construct a concrete instance of `UserTacacsArrayInput` via:
 //
@@ -200,12 +193,6 @@ func (i UserTacacsArray) ToUserTacacsArrayOutput() UserTacacsArrayOutput {
 
 func (i UserTacacsArray) ToUserTacacsArrayOutputWithContext(ctx context.Context) UserTacacsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsArrayOutput)
-}
-
-func (i UserTacacsArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserTacacs] {
-	return pulumix.Output[[]*UserTacacs]{
-		OutputState: i.ToUserTacacsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserTacacsMapInput is an input type that accepts UserTacacsMap and UserTacacsMapOutput values.
@@ -233,12 +220,6 @@ func (i UserTacacsMap) ToUserTacacsMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsMapOutput)
 }
 
-func (i UserTacacsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserTacacs] {
-	return pulumix.Output[map[string]*UserTacacs]{
-		OutputState: i.ToUserTacacsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserTacacsOutput struct{ *pulumi.OutputState }
 
 func (UserTacacsOutput) ElementType() reflect.Type {
@@ -251,12 +232,6 @@ func (o UserTacacsOutput) ToUserTacacsOutput() UserTacacsOutput {
 
 func (o UserTacacsOutput) ToUserTacacsOutputWithContext(ctx context.Context) UserTacacsOutput {
 	return o
-}
-
-func (o UserTacacsOutput) ToOutput(ctx context.Context) pulumix.Output[*UserTacacs] {
-	return pulumix.Output[*UserTacacs]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserTacacsOutput) AuthenType() pulumi.StringOutput {
@@ -329,12 +304,6 @@ func (o UserTacacsArrayOutput) ToUserTacacsArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o UserTacacsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserTacacs] {
-	return pulumix.Output[[]*UserTacacs]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserTacacsArrayOutput) Index(i pulumi.IntInput) UserTacacsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserTacacs {
 		return vs[0].([]*UserTacacs)[vs[1].(int)]
@@ -353,12 +322,6 @@ func (o UserTacacsMapOutput) ToUserTacacsMapOutput() UserTacacsMapOutput {
 
 func (o UserTacacsMapOutput) ToUserTacacsMapOutputWithContext(ctx context.Context) UserTacacsMapOutput {
 	return o
-}
-
-func (o UserTacacsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserTacacs] {
-	return pulumix.Output[map[string]*UserTacacs]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserTacacsMapOutput) MapIndex(k pulumi.StringInput) UserTacacsOutput {

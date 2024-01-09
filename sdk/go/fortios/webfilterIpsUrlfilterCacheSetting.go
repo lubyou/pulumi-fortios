@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterIpsUrlfilterCacheSetting struct {
@@ -101,12 +100,6 @@ func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingO
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingOutput)
 }
 
-func (i *WebfilterIpsUrlfilterCacheSetting) ToOutput(ctx context.Context) pulumix.Output[*WebfilterIpsUrlfilterCacheSetting] {
-	return pulumix.Output[*WebfilterIpsUrlfilterCacheSetting]{
-		OutputState: i.ToWebfilterIpsUrlfilterCacheSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebfilterIpsUrlfilterCacheSettingArrayInput is an input type that accepts WebfilterIpsUrlfilterCacheSettingArray and WebfilterIpsUrlfilterCacheSettingArrayOutput values.
 // You can construct a concrete instance of `WebfilterIpsUrlfilterCacheSettingArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i WebfilterIpsUrlfilterCacheSettingArray) ToWebfilterIpsUrlfilterCacheSett
 
 func (i WebfilterIpsUrlfilterCacheSettingArray) ToWebfilterIpsUrlfilterCacheSettingArrayOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingArrayOutput)
-}
-
-func (i WebfilterIpsUrlfilterCacheSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterIpsUrlfilterCacheSetting] {
-	return pulumix.Output[[]*WebfilterIpsUrlfilterCacheSetting]{
-		OutputState: i.ToWebfilterIpsUrlfilterCacheSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebfilterIpsUrlfilterCacheSettingMapInput is an input type that accepts WebfilterIpsUrlfilterCacheSettingMap and WebfilterIpsUrlfilterCacheSettingMapOutput values.
@@ -163,12 +150,6 @@ func (i WebfilterIpsUrlfilterCacheSettingMap) ToWebfilterIpsUrlfilterCacheSettin
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingMapOutput)
 }
 
-func (i WebfilterIpsUrlfilterCacheSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterIpsUrlfilterCacheSetting] {
-	return pulumix.Output[map[string]*WebfilterIpsUrlfilterCacheSetting]{
-		OutputState: i.ToWebfilterIpsUrlfilterCacheSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebfilterIpsUrlfilterCacheSettingOutput struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterCacheSettingOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSet
 
 func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSettingOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingOutput {
 	return o
-}
-
-func (o WebfilterIpsUrlfilterCacheSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterIpsUrlfilterCacheSetting] {
-	return pulumix.Output[*WebfilterIpsUrlfilterCacheSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingOutput) DnsRetryInterval() pulumi.IntOutput {
@@ -215,12 +190,6 @@ func (o WebfilterIpsUrlfilterCacheSettingArrayOutput) ToWebfilterIpsUrlfilterCac
 	return o
 }
 
-func (o WebfilterIpsUrlfilterCacheSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterIpsUrlfilterCacheSetting] {
-	return pulumix.Output[[]*WebfilterIpsUrlfilterCacheSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebfilterIpsUrlfilterCacheSettingArrayOutput) Index(i pulumi.IntInput) WebfilterIpsUrlfilterCacheSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterIpsUrlfilterCacheSetting {
 		return vs[0].([]*WebfilterIpsUrlfilterCacheSetting)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o WebfilterIpsUrlfilterCacheSettingMapOutput) ToWebfilterIpsUrlfilterCache
 
 func (o WebfilterIpsUrlfilterCacheSettingMapOutput) ToWebfilterIpsUrlfilterCacheSettingMapOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingMapOutput {
 	return o
-}
-
-func (o WebfilterIpsUrlfilterCacheSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterIpsUrlfilterCacheSetting] {
-	return pulumix.Output[map[string]*WebfilterIpsUrlfilterCacheSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingMapOutput) MapIndex(k pulumi.StringInput) WebfilterIpsUrlfilterCacheSettingOutput {

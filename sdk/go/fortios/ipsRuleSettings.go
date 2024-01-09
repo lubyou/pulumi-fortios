@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsRuleSettings struct {
@@ -96,12 +95,6 @@ func (i *IpsRuleSettings) ToIpsRuleSettingsOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsOutput)
 }
 
-func (i *IpsRuleSettings) ToOutput(ctx context.Context) pulumix.Output[*IpsRuleSettings] {
-	return pulumix.Output[*IpsRuleSettings]{
-		OutputState: i.ToIpsRuleSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IpsRuleSettingsArrayInput is an input type that accepts IpsRuleSettingsArray and IpsRuleSettingsArrayOutput values.
 // You can construct a concrete instance of `IpsRuleSettingsArrayInput` via:
 //
@@ -125,12 +118,6 @@ func (i IpsRuleSettingsArray) ToIpsRuleSettingsArrayOutput() IpsRuleSettingsArra
 
 func (i IpsRuleSettingsArray) ToIpsRuleSettingsArrayOutputWithContext(ctx context.Context) IpsRuleSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsArrayOutput)
-}
-
-func (i IpsRuleSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsRuleSettings] {
-	return pulumix.Output[[]*IpsRuleSettings]{
-		OutputState: i.ToIpsRuleSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IpsRuleSettingsMapInput is an input type that accepts IpsRuleSettingsMap and IpsRuleSettingsMapOutput values.
@@ -158,12 +145,6 @@ func (i IpsRuleSettingsMap) ToIpsRuleSettingsMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsMapOutput)
 }
 
-func (i IpsRuleSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsRuleSettings] {
-	return pulumix.Output[map[string]*IpsRuleSettings]{
-		OutputState: i.ToIpsRuleSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IpsRuleSettingsOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleSettingsOutput) ElementType() reflect.Type {
@@ -176,12 +157,6 @@ func (o IpsRuleSettingsOutput) ToIpsRuleSettingsOutput() IpsRuleSettingsOutput {
 
 func (o IpsRuleSettingsOutput) ToIpsRuleSettingsOutputWithContext(ctx context.Context) IpsRuleSettingsOutput {
 	return o
-}
-
-func (o IpsRuleSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsRuleSettings] {
-	return pulumix.Output[*IpsRuleSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsRuleSettingsOutput) Fosid() pulumi.IntOutput {
@@ -206,12 +181,6 @@ func (o IpsRuleSettingsArrayOutput) ToIpsRuleSettingsArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o IpsRuleSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsRuleSettings] {
-	return pulumix.Output[[]*IpsRuleSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IpsRuleSettingsArrayOutput) Index(i pulumi.IntInput) IpsRuleSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsRuleSettings {
 		return vs[0].([]*IpsRuleSettings)[vs[1].(int)]
@@ -230,12 +199,6 @@ func (o IpsRuleSettingsMapOutput) ToIpsRuleSettingsMapOutput() IpsRuleSettingsMa
 
 func (o IpsRuleSettingsMapOutput) ToIpsRuleSettingsMapOutputWithContext(ctx context.Context) IpsRuleSettingsMapOutput {
 	return o
-}
-
-func (o IpsRuleSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsRuleSettings] {
-	return pulumix.Output[map[string]*IpsRuleSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsRuleSettingsMapOutput) MapIndex(k pulumi.StringInput) IpsRuleSettingsOutput {

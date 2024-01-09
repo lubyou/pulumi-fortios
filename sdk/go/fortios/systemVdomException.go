@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVdomException struct {
@@ -130,12 +129,6 @@ func (i *SystemVdomException) ToSystemVdomExceptionOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionOutput)
 }
 
-func (i *SystemVdomException) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomException] {
-	return pulumix.Output[*SystemVdomException]{
-		OutputState: i.ToSystemVdomExceptionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemVdomExceptionArrayInput is an input type that accepts SystemVdomExceptionArray and SystemVdomExceptionArrayOutput values.
 // You can construct a concrete instance of `SystemVdomExceptionArrayInput` via:
 //
@@ -159,12 +152,6 @@ func (i SystemVdomExceptionArray) ToSystemVdomExceptionArrayOutput() SystemVdomE
 
 func (i SystemVdomExceptionArray) ToSystemVdomExceptionArrayOutputWithContext(ctx context.Context) SystemVdomExceptionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionArrayOutput)
-}
-
-func (i SystemVdomExceptionArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomException] {
-	return pulumix.Output[[]*SystemVdomException]{
-		OutputState: i.ToSystemVdomExceptionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemVdomExceptionMapInput is an input type that accepts SystemVdomExceptionMap and SystemVdomExceptionMapOutput values.
@@ -192,12 +179,6 @@ func (i SystemVdomExceptionMap) ToSystemVdomExceptionMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionMapOutput)
 }
 
-func (i SystemVdomExceptionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomException] {
-	return pulumix.Output[map[string]*SystemVdomException]{
-		OutputState: i.ToSystemVdomExceptionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemVdomExceptionOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomExceptionOutput) ElementType() reflect.Type {
@@ -210,12 +191,6 @@ func (o SystemVdomExceptionOutput) ToSystemVdomExceptionOutput() SystemVdomExcep
 
 func (o SystemVdomExceptionOutput) ToSystemVdomExceptionOutputWithContext(ctx context.Context) SystemVdomExceptionOutput {
 	return o
-}
-
-func (o SystemVdomExceptionOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomException] {
-	return pulumix.Output[*SystemVdomException]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVdomExceptionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -264,12 +239,6 @@ func (o SystemVdomExceptionArrayOutput) ToSystemVdomExceptionArrayOutputWithCont
 	return o
 }
 
-func (o SystemVdomExceptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomException] {
-	return pulumix.Output[[]*SystemVdomException]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemVdomExceptionArrayOutput) Index(i pulumi.IntInput) SystemVdomExceptionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomException {
 		return vs[0].([]*SystemVdomException)[vs[1].(int)]
@@ -288,12 +257,6 @@ func (o SystemVdomExceptionMapOutput) ToSystemVdomExceptionMapOutput() SystemVdo
 
 func (o SystemVdomExceptionMapOutput) ToSystemVdomExceptionMapOutputWithContext(ctx context.Context) SystemVdomExceptionMapOutput {
 	return o
-}
-
-func (o SystemVdomExceptionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomException] {
-	return pulumix.Output[map[string]*SystemVdomException]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVdomExceptionMapOutput) MapIndex(k pulumi.StringInput) SystemVdomExceptionOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemHa(ctx *pulumi.Context, args *LookupSystemHaArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaResult, error) {
@@ -152,12 +151,6 @@ func (o LookupSystemHaResultOutput) ToLookupSystemHaResultOutput() LookupSystemH
 
 func (o LookupSystemHaResultOutput) ToLookupSystemHaResultOutputWithContext(ctx context.Context) LookupSystemHaResultOutput {
 	return o
-}
-
-func (o LookupSystemHaResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemHaResult] {
-	return pulumix.Output[LookupSystemHaResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemHaResultOutput) Arps() pulumi.IntOutput {

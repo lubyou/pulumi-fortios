@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVdomProperty struct {
@@ -196,12 +195,6 @@ func (i *SystemVdomProperty) ToSystemVdomPropertyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyOutput)
 }
 
-func (i *SystemVdomProperty) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomProperty] {
-	return pulumix.Output[*SystemVdomProperty]{
-		OutputState: i.ToSystemVdomPropertyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemVdomPropertyArrayInput is an input type that accepts SystemVdomPropertyArray and SystemVdomPropertyArrayOutput values.
 // You can construct a concrete instance of `SystemVdomPropertyArrayInput` via:
 //
@@ -225,12 +218,6 @@ func (i SystemVdomPropertyArray) ToSystemVdomPropertyArrayOutput() SystemVdomPro
 
 func (i SystemVdomPropertyArray) ToSystemVdomPropertyArrayOutputWithContext(ctx context.Context) SystemVdomPropertyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyArrayOutput)
-}
-
-func (i SystemVdomPropertyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomProperty] {
-	return pulumix.Output[[]*SystemVdomProperty]{
-		OutputState: i.ToSystemVdomPropertyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemVdomPropertyMapInput is an input type that accepts SystemVdomPropertyMap and SystemVdomPropertyMapOutput values.
@@ -258,12 +245,6 @@ func (i SystemVdomPropertyMap) ToSystemVdomPropertyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyMapOutput)
 }
 
-func (i SystemVdomPropertyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomProperty] {
-	return pulumix.Output[map[string]*SystemVdomProperty]{
-		OutputState: i.ToSystemVdomPropertyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemVdomPropertyOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomPropertyOutput) ElementType() reflect.Type {
@@ -276,12 +257,6 @@ func (o SystemVdomPropertyOutput) ToSystemVdomPropertyOutput() SystemVdomPropert
 
 func (o SystemVdomPropertyOutput) ToSystemVdomPropertyOutputWithContext(ctx context.Context) SystemVdomPropertyOutput {
 	return o
-}
-
-func (o SystemVdomPropertyOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomProperty] {
-	return pulumix.Output[*SystemVdomProperty]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVdomPropertyOutput) CustomService() pulumi.StringOutput {
@@ -386,12 +361,6 @@ func (o SystemVdomPropertyArrayOutput) ToSystemVdomPropertyArrayOutputWithContex
 	return o
 }
 
-func (o SystemVdomPropertyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomProperty] {
-	return pulumix.Output[[]*SystemVdomProperty]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemVdomPropertyArrayOutput) Index(i pulumi.IntInput) SystemVdomPropertyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomProperty {
 		return vs[0].([]*SystemVdomProperty)[vs[1].(int)]
@@ -410,12 +379,6 @@ func (o SystemVdomPropertyMapOutput) ToSystemVdomPropertyMapOutput() SystemVdomP
 
 func (o SystemVdomPropertyMapOutput) ToSystemVdomPropertyMapOutputWithContext(ctx context.Context) SystemVdomPropertyMapOutput {
 	return o
-}
-
-func (o SystemVdomPropertyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomProperty] {
-	return pulumix.Output[map[string]*SystemVdomProperty]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVdomPropertyMapOutput) MapIndex(k pulumi.StringInput) SystemVdomPropertyOutput {

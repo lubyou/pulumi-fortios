@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogCustomField struct {
@@ -110,12 +109,6 @@ func (i *LogCustomField) ToLogCustomFieldOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldOutput)
 }
 
-func (i *LogCustomField) ToOutput(ctx context.Context) pulumix.Output[*LogCustomField] {
-	return pulumix.Output[*LogCustomField]{
-		OutputState: i.ToLogCustomFieldOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogCustomFieldArrayInput is an input type that accepts LogCustomFieldArray and LogCustomFieldArrayOutput values.
 // You can construct a concrete instance of `LogCustomFieldArrayInput` via:
 //
@@ -139,12 +132,6 @@ func (i LogCustomFieldArray) ToLogCustomFieldArrayOutput() LogCustomFieldArrayOu
 
 func (i LogCustomFieldArray) ToLogCustomFieldArrayOutputWithContext(ctx context.Context) LogCustomFieldArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldArrayOutput)
-}
-
-func (i LogCustomFieldArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogCustomField] {
-	return pulumix.Output[[]*LogCustomField]{
-		OutputState: i.ToLogCustomFieldArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogCustomFieldMapInput is an input type that accepts LogCustomFieldMap and LogCustomFieldMapOutput values.
@@ -172,12 +159,6 @@ func (i LogCustomFieldMap) ToLogCustomFieldMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldMapOutput)
 }
 
-func (i LogCustomFieldMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogCustomField] {
-	return pulumix.Output[map[string]*LogCustomField]{
-		OutputState: i.ToLogCustomFieldMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogCustomFieldOutput struct{ *pulumi.OutputState }
 
 func (LogCustomFieldOutput) ElementType() reflect.Type {
@@ -190,12 +171,6 @@ func (o LogCustomFieldOutput) ToLogCustomFieldOutput() LogCustomFieldOutput {
 
 func (o LogCustomFieldOutput) ToLogCustomFieldOutputWithContext(ctx context.Context) LogCustomFieldOutput {
 	return o
-}
-
-func (o LogCustomFieldOutput) ToOutput(ctx context.Context) pulumix.Output[*LogCustomField] {
-	return pulumix.Output[*LogCustomField]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogCustomFieldOutput) Fosid() pulumi.StringOutput {
@@ -228,12 +203,6 @@ func (o LogCustomFieldArrayOutput) ToLogCustomFieldArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o LogCustomFieldArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogCustomField] {
-	return pulumix.Output[[]*LogCustomField]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogCustomFieldArrayOutput) Index(i pulumi.IntInput) LogCustomFieldOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogCustomField {
 		return vs[0].([]*LogCustomField)[vs[1].(int)]
@@ -252,12 +221,6 @@ func (o LogCustomFieldMapOutput) ToLogCustomFieldMapOutput() LogCustomFieldMapOu
 
 func (o LogCustomFieldMapOutput) ToLogCustomFieldMapOutputWithContext(ctx context.Context) LogCustomFieldMapOutput {
 	return o
-}
-
-func (o LogCustomFieldMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogCustomField] {
-	return pulumix.Output[map[string]*LogCustomField]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogCustomFieldMapOutput) MapIndex(k pulumi.StringInput) LogCustomFieldOutput {

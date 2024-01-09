@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutoInstall struct {
@@ -111,12 +110,6 @@ func (i *SystemAutoInstall) ToSystemAutoInstallOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallOutput)
 }
 
-func (i *SystemAutoInstall) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoInstall] {
-	return pulumix.Output[*SystemAutoInstall]{
-		OutputState: i.ToSystemAutoInstallOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAutoInstallArrayInput is an input type that accepts SystemAutoInstallArray and SystemAutoInstallArrayOutput values.
 // You can construct a concrete instance of `SystemAutoInstallArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SystemAutoInstallArray) ToSystemAutoInstallArrayOutput() SystemAutoInsta
 
 func (i SystemAutoInstallArray) ToSystemAutoInstallArrayOutputWithContext(ctx context.Context) SystemAutoInstallArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallArrayOutput)
-}
-
-func (i SystemAutoInstallArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoInstall] {
-	return pulumix.Output[[]*SystemAutoInstall]{
-		OutputState: i.ToSystemAutoInstallArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAutoInstallMapInput is an input type that accepts SystemAutoInstallMap and SystemAutoInstallMapOutput values.
@@ -173,12 +160,6 @@ func (i SystemAutoInstallMap) ToSystemAutoInstallMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallMapOutput)
 }
 
-func (i SystemAutoInstallMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoInstall] {
-	return pulumix.Output[map[string]*SystemAutoInstall]{
-		OutputState: i.ToSystemAutoInstallMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAutoInstallOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoInstallOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SystemAutoInstallOutput) ToSystemAutoInstallOutput() SystemAutoInstallOu
 
 func (o SystemAutoInstallOutput) ToSystemAutoInstallOutputWithContext(ctx context.Context) SystemAutoInstallOutput {
 	return o
-}
-
-func (o SystemAutoInstallOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoInstall] {
-	return pulumix.Output[*SystemAutoInstall]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutoInstallOutput) AutoInstallConfig() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o SystemAutoInstallArrayOutput) ToSystemAutoInstallArrayOutputWithContext(
 	return o
 }
 
-func (o SystemAutoInstallArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoInstall] {
-	return pulumix.Output[[]*SystemAutoInstall]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAutoInstallArrayOutput) Index(i pulumi.IntInput) SystemAutoInstallOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoInstall {
 		return vs[0].([]*SystemAutoInstall)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SystemAutoInstallMapOutput) ToSystemAutoInstallMapOutput() SystemAutoIns
 
 func (o SystemAutoInstallMapOutput) ToSystemAutoInstallMapOutputWithContext(ctx context.Context) SystemAutoInstallMapOutput {
 	return o
-}
-
-func (o SystemAutoInstallMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoInstall] {
-	return pulumix.Output[map[string]*SystemAutoInstall]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutoInstallMapOutput) MapIndex(k pulumi.StringInput) SystemAutoInstallOutput {

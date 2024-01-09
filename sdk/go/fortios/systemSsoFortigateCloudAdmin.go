@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSsoFortigateCloudAdmin struct {
@@ -116,12 +115,6 @@ func (i *SystemSsoFortigateCloudAdmin) ToSystemSsoFortigateCloudAdminOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoFortigateCloudAdminOutput)
 }
 
-func (i *SystemSsoFortigateCloudAdmin) ToOutput(ctx context.Context) pulumix.Output[*SystemSsoFortigateCloudAdmin] {
-	return pulumix.Output[*SystemSsoFortigateCloudAdmin]{
-		OutputState: i.ToSystemSsoFortigateCloudAdminOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSsoFortigateCloudAdminArrayInput is an input type that accepts SystemSsoFortigateCloudAdminArray and SystemSsoFortigateCloudAdminArrayOutput values.
 // You can construct a concrete instance of `SystemSsoFortigateCloudAdminArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i SystemSsoFortigateCloudAdminArray) ToSystemSsoFortigateCloudAdminArrayOu
 
 func (i SystemSsoFortigateCloudAdminArray) ToSystemSsoFortigateCloudAdminArrayOutputWithContext(ctx context.Context) SystemSsoFortigateCloudAdminArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoFortigateCloudAdminArrayOutput)
-}
-
-func (i SystemSsoFortigateCloudAdminArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSsoFortigateCloudAdmin] {
-	return pulumix.Output[[]*SystemSsoFortigateCloudAdmin]{
-		OutputState: i.ToSystemSsoFortigateCloudAdminArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSsoFortigateCloudAdminMapInput is an input type that accepts SystemSsoFortigateCloudAdminMap and SystemSsoFortigateCloudAdminMapOutput values.
@@ -178,12 +165,6 @@ func (i SystemSsoFortigateCloudAdminMap) ToSystemSsoFortigateCloudAdminMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoFortigateCloudAdminMapOutput)
 }
 
-func (i SystemSsoFortigateCloudAdminMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSsoFortigateCloudAdmin] {
-	return pulumix.Output[map[string]*SystemSsoFortigateCloudAdmin]{
-		OutputState: i.ToSystemSsoFortigateCloudAdminMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSsoFortigateCloudAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemSsoFortigateCloudAdminOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o SystemSsoFortigateCloudAdminOutput) ToSystemSsoFortigateCloudAdminOutput
 
 func (o SystemSsoFortigateCloudAdminOutput) ToSystemSsoFortigateCloudAdminOutputWithContext(ctx context.Context) SystemSsoFortigateCloudAdminOutput {
 	return o
-}
-
-func (o SystemSsoFortigateCloudAdminOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSsoFortigateCloudAdmin] {
-	return pulumix.Output[*SystemSsoFortigateCloudAdmin]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSsoFortigateCloudAdminOutput) Accprofile() pulumi.StringOutput {
@@ -242,12 +217,6 @@ func (o SystemSsoFortigateCloudAdminArrayOutput) ToSystemSsoFortigateCloudAdminA
 	return o
 }
 
-func (o SystemSsoFortigateCloudAdminArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSsoFortigateCloudAdmin] {
-	return pulumix.Output[[]*SystemSsoFortigateCloudAdmin]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSsoFortigateCloudAdminArrayOutput) Index(i pulumi.IntInput) SystemSsoFortigateCloudAdminOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSsoFortigateCloudAdmin {
 		return vs[0].([]*SystemSsoFortigateCloudAdmin)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o SystemSsoFortigateCloudAdminMapOutput) ToSystemSsoFortigateCloudAdminMap
 
 func (o SystemSsoFortigateCloudAdminMapOutput) ToSystemSsoFortigateCloudAdminMapOutputWithContext(ctx context.Context) SystemSsoFortigateCloudAdminMapOutput {
 	return o
-}
-
-func (o SystemSsoFortigateCloudAdminMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSsoFortigateCloudAdmin] {
-	return pulumix.Output[map[string]*SystemSsoFortigateCloudAdmin]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSsoFortigateCloudAdminMapOutput) MapIndex(k pulumi.StringInput) SystemSsoFortigateCloudAdminOutput {

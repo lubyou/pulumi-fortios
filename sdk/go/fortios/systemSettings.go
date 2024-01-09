@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSettings struct {
@@ -866,12 +865,6 @@ func (i *SystemSettings) ToSystemSettingsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsOutput)
 }
 
-func (i *SystemSettings) ToOutput(ctx context.Context) pulumix.Output[*SystemSettings] {
-	return pulumix.Output[*SystemSettings]{
-		OutputState: i.ToSystemSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSettingsArrayInput is an input type that accepts SystemSettingsArray and SystemSettingsArrayOutput values.
 // You can construct a concrete instance of `SystemSettingsArrayInput` via:
 //
@@ -895,12 +888,6 @@ func (i SystemSettingsArray) ToSystemSettingsArrayOutput() SystemSettingsArrayOu
 
 func (i SystemSettingsArray) ToSystemSettingsArrayOutputWithContext(ctx context.Context) SystemSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsArrayOutput)
-}
-
-func (i SystemSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettings] {
-	return pulumix.Output[[]*SystemSettings]{
-		OutputState: i.ToSystemSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSettingsMapInput is an input type that accepts SystemSettingsMap and SystemSettingsMapOutput values.
@@ -928,12 +915,6 @@ func (i SystemSettingsMap) ToSystemSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsMapOutput)
 }
 
-func (i SystemSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettings] {
-	return pulumix.Output[map[string]*SystemSettings]{
-		OutputState: i.ToSystemSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSettingsOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingsOutput) ElementType() reflect.Type {
@@ -946,12 +927,6 @@ func (o SystemSettingsOutput) ToSystemSettingsOutput() SystemSettingsOutput {
 
 func (o SystemSettingsOutput) ToSystemSettingsOutputWithContext(ctx context.Context) SystemSettingsOutput {
 	return o
-}
-
-func (o SystemSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSettings] {
-	return pulumix.Output[*SystemSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSettingsOutput) AllowLinkdownPath() pulumi.StringOutput {
@@ -1594,12 +1569,6 @@ func (o SystemSettingsArrayOutput) ToSystemSettingsArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettings] {
-	return pulumix.Output[[]*SystemSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSettingsArrayOutput) Index(i pulumi.IntInput) SystemSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettings {
 		return vs[0].([]*SystemSettings)[vs[1].(int)]
@@ -1618,12 +1587,6 @@ func (o SystemSettingsMapOutput) ToSystemSettingsMapOutput() SystemSettingsMapOu
 
 func (o SystemSettingsMapOutput) ToSystemSettingsMapOutputWithContext(ctx context.Context) SystemSettingsMapOutput {
 	return o
-}
-
-func (o SystemSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettings] {
-	return pulumix.Output[map[string]*SystemSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSettingsMapOutput) MapIndex(k pulumi.StringInput) SystemSettingsOutput {

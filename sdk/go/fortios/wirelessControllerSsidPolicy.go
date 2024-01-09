@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerSsidPolicy struct {
@@ -106,12 +105,6 @@ func (i *WirelessControllerSsidPolicy) ToWirelessControllerSsidPolicyOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSsidPolicyOutput)
 }
 
-func (i *WirelessControllerSsidPolicy) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerSsidPolicy] {
-	return pulumix.Output[*WirelessControllerSsidPolicy]{
-		OutputState: i.ToWirelessControllerSsidPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerSsidPolicyArrayInput is an input type that accepts WirelessControllerSsidPolicyArray and WirelessControllerSsidPolicyArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSsidPolicyArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i WirelessControllerSsidPolicyArray) ToWirelessControllerSsidPolicyArrayOu
 
 func (i WirelessControllerSsidPolicyArray) ToWirelessControllerSsidPolicyArrayOutputWithContext(ctx context.Context) WirelessControllerSsidPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSsidPolicyArrayOutput)
-}
-
-func (i WirelessControllerSsidPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerSsidPolicy] {
-	return pulumix.Output[[]*WirelessControllerSsidPolicy]{
-		OutputState: i.ToWirelessControllerSsidPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerSsidPolicyMapInput is an input type that accepts WirelessControllerSsidPolicyMap and WirelessControllerSsidPolicyMapOutput values.
@@ -168,12 +155,6 @@ func (i WirelessControllerSsidPolicyMap) ToWirelessControllerSsidPolicyMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSsidPolicyMapOutput)
 }
 
-func (i WirelessControllerSsidPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerSsidPolicy] {
-	return pulumix.Output[map[string]*WirelessControllerSsidPolicy]{
-		OutputState: i.ToWirelessControllerSsidPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerSsidPolicyOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSsidPolicyOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o WirelessControllerSsidPolicyOutput) ToWirelessControllerSsidPolicyOutput
 
 func (o WirelessControllerSsidPolicyOutput) ToWirelessControllerSsidPolicyOutputWithContext(ctx context.Context) WirelessControllerSsidPolicyOutput {
 	return o
-}
-
-func (o WirelessControllerSsidPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerSsidPolicy] {
-	return pulumix.Output[*WirelessControllerSsidPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerSsidPolicyOutput) Description() pulumi.StringPtrOutput {
@@ -224,12 +199,6 @@ func (o WirelessControllerSsidPolicyArrayOutput) ToWirelessControllerSsidPolicyA
 	return o
 }
 
-func (o WirelessControllerSsidPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerSsidPolicy] {
-	return pulumix.Output[[]*WirelessControllerSsidPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerSsidPolicyArrayOutput) Index(i pulumi.IntInput) WirelessControllerSsidPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerSsidPolicy {
 		return vs[0].([]*WirelessControllerSsidPolicy)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o WirelessControllerSsidPolicyMapOutput) ToWirelessControllerSsidPolicyMap
 
 func (o WirelessControllerSsidPolicyMapOutput) ToWirelessControllerSsidPolicyMapOutputWithContext(ctx context.Context) WirelessControllerSsidPolicyMapOutput {
 	return o
-}
-
-func (o WirelessControllerSsidPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerSsidPolicy] {
-	return pulumix.Output[map[string]*WirelessControllerSsidPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerSsidPolicyMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerSsidPolicyOutput {

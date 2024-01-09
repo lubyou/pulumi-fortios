@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAPIUserSetting struct {
@@ -121,12 +120,6 @@ func (i *SystemAPIUserSetting) ToSystemAPIUserSettingOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingOutput)
 }
 
-func (i *SystemAPIUserSetting) ToOutput(ctx context.Context) pulumix.Output[*SystemAPIUserSetting] {
-	return pulumix.Output[*SystemAPIUserSetting]{
-		OutputState: i.ToSystemAPIUserSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAPIUserSettingArrayInput is an input type that accepts SystemAPIUserSettingArray and SystemAPIUserSettingArrayOutput values.
 // You can construct a concrete instance of `SystemAPIUserSettingArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i SystemAPIUserSettingArray) ToSystemAPIUserSettingArrayOutput() SystemAPI
 
 func (i SystemAPIUserSettingArray) ToSystemAPIUserSettingArrayOutputWithContext(ctx context.Context) SystemAPIUserSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingArrayOutput)
-}
-
-func (i SystemAPIUserSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAPIUserSetting] {
-	return pulumix.Output[[]*SystemAPIUserSetting]{
-		OutputState: i.ToSystemAPIUserSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAPIUserSettingMapInput is an input type that accepts SystemAPIUserSettingMap and SystemAPIUserSettingMapOutput values.
@@ -183,12 +170,6 @@ func (i SystemAPIUserSettingMap) ToSystemAPIUserSettingMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingMapOutput)
 }
 
-func (i SystemAPIUserSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAPIUserSetting] {
-	return pulumix.Output[map[string]*SystemAPIUserSetting]{
-		OutputState: i.ToSystemAPIUserSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAPIUserSettingOutput struct{ *pulumi.OutputState }
 
 func (SystemAPIUserSettingOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingOutput() SystemAPIUser
 
 func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingOutputWithContext(ctx context.Context) SystemAPIUserSettingOutput {
 	return o
-}
-
-func (o SystemAPIUserSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAPIUserSetting] {
-	return pulumix.Output[*SystemAPIUserSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAPIUserSettingOutput) Accprofile() pulumi.StringOutput {
@@ -243,12 +218,6 @@ func (o SystemAPIUserSettingArrayOutput) ToSystemAPIUserSettingArrayOutputWithCo
 	return o
 }
 
-func (o SystemAPIUserSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAPIUserSetting] {
-	return pulumix.Output[[]*SystemAPIUserSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAPIUserSettingArrayOutput) Index(i pulumi.IntInput) SystemAPIUserSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAPIUserSetting {
 		return vs[0].([]*SystemAPIUserSetting)[vs[1].(int)]
@@ -267,12 +236,6 @@ func (o SystemAPIUserSettingMapOutput) ToSystemAPIUserSettingMapOutput() SystemA
 
 func (o SystemAPIUserSettingMapOutput) ToSystemAPIUserSettingMapOutputWithContext(ctx context.Context) SystemAPIUserSettingMapOutput {
 	return o
-}
-
-func (o SystemAPIUserSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAPIUserSetting] {
-	return pulumix.Output[map[string]*SystemAPIUserSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAPIUserSettingMapOutput) MapIndex(k pulumi.StringInput) SystemAPIUserSettingOutput {

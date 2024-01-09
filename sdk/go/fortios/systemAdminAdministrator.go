@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAdminAdministrator struct {
@@ -168,12 +167,6 @@ func (i *SystemAdminAdministrator) ToSystemAdminAdministratorOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorOutput)
 }
 
-func (i *SystemAdminAdministrator) ToOutput(ctx context.Context) pulumix.Output[*SystemAdminAdministrator] {
-	return pulumix.Output[*SystemAdminAdministrator]{
-		OutputState: i.ToSystemAdminAdministratorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAdminAdministratorArrayInput is an input type that accepts SystemAdminAdministratorArray and SystemAdminAdministratorArrayOutput values.
 // You can construct a concrete instance of `SystemAdminAdministratorArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i SystemAdminAdministratorArray) ToSystemAdminAdministratorArrayOutput() S
 
 func (i SystemAdminAdministratorArray) ToSystemAdminAdministratorArrayOutputWithContext(ctx context.Context) SystemAdminAdministratorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorArrayOutput)
-}
-
-func (i SystemAdminAdministratorArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAdminAdministrator] {
-	return pulumix.Output[[]*SystemAdminAdministrator]{
-		OutputState: i.ToSystemAdminAdministratorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAdminAdministratorMapInput is an input type that accepts SystemAdminAdministratorMap and SystemAdminAdministratorMapOutput values.
@@ -230,12 +217,6 @@ func (i SystemAdminAdministratorMap) ToSystemAdminAdministratorMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorMapOutput)
 }
 
-func (i SystemAdminAdministratorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAdminAdministrator] {
-	return pulumix.Output[map[string]*SystemAdminAdministrator]{
-		OutputState: i.ToSystemAdminAdministratorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAdminAdministratorOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminAdministratorOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorOutput() Syste
 
 func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorOutputWithContext(ctx context.Context) SystemAdminAdministratorOutput {
 	return o
-}
-
-func (o SystemAdminAdministratorOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAdminAdministrator] {
-	return pulumix.Output[*SystemAdminAdministrator]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAdminAdministratorOutput) Accprofile() pulumi.StringOutput {
@@ -330,12 +305,6 @@ func (o SystemAdminAdministratorArrayOutput) ToSystemAdminAdministratorArrayOutp
 	return o
 }
 
-func (o SystemAdminAdministratorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAdminAdministrator] {
-	return pulumix.Output[[]*SystemAdminAdministrator]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAdminAdministratorArrayOutput) Index(i pulumi.IntInput) SystemAdminAdministratorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAdminAdministrator {
 		return vs[0].([]*SystemAdminAdministrator)[vs[1].(int)]
@@ -354,12 +323,6 @@ func (o SystemAdminAdministratorMapOutput) ToSystemAdminAdministratorMapOutput()
 
 func (o SystemAdminAdministratorMapOutput) ToSystemAdminAdministratorMapOutputWithContext(ctx context.Context) SystemAdminAdministratorMapOutput {
 	return o
-}
-
-func (o SystemAdminAdministratorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAdminAdministrator] {
-	return pulumix.Output[map[string]*SystemAdminAdministrator]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAdminAdministratorMapOutput) MapIndex(k pulumi.StringInput) SystemAdminAdministratorOutput {

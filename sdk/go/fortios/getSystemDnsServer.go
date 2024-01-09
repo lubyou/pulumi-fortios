@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemDnsServer(ctx *pulumi.Context, args *LookupSystemDnsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsServerResult, error) {
@@ -77,12 +76,6 @@ func (o LookupSystemDnsServerResultOutput) ToLookupSystemDnsServerResultOutput()
 
 func (o LookupSystemDnsServerResultOutput) ToLookupSystemDnsServerResultOutputWithContext(ctx context.Context) LookupSystemDnsServerResultOutput {
 	return o
-}
-
-func (o LookupSystemDnsServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemDnsServerResult] {
-	return pulumix.Output[LookupSystemDnsServerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemDnsServerResultOutput) DnsfilterProfile() pulumi.StringOutput {

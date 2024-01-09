@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallIpTranslation struct {
@@ -126,12 +125,6 @@ func (i *FirewallIpTranslation) ToFirewallIpTranslationOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationOutput)
 }
 
-func (i *FirewallIpTranslation) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpTranslation] {
-	return pulumix.Output[*FirewallIpTranslation]{
-		OutputState: i.ToFirewallIpTranslationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallIpTranslationArrayInput is an input type that accepts FirewallIpTranslationArray and FirewallIpTranslationArrayOutput values.
 // You can construct a concrete instance of `FirewallIpTranslationArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i FirewallIpTranslationArray) ToFirewallIpTranslationArrayOutput() Firewal
 
 func (i FirewallIpTranslationArray) ToFirewallIpTranslationArrayOutputWithContext(ctx context.Context) FirewallIpTranslationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationArrayOutput)
-}
-
-func (i FirewallIpTranslationArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpTranslation] {
-	return pulumix.Output[[]*FirewallIpTranslation]{
-		OutputState: i.ToFirewallIpTranslationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallIpTranslationMapInput is an input type that accepts FirewallIpTranslationMap and FirewallIpTranslationMapOutput values.
@@ -188,12 +175,6 @@ func (i FirewallIpTranslationMap) ToFirewallIpTranslationMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationMapOutput)
 }
 
-func (i FirewallIpTranslationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpTranslation] {
-	return pulumix.Output[map[string]*FirewallIpTranslation]{
-		OutputState: i.ToFirewallIpTranslationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallIpTranslationOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpTranslationOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o FirewallIpTranslationOutput) ToFirewallIpTranslationOutput() FirewallIpT
 
 func (o FirewallIpTranslationOutput) ToFirewallIpTranslationOutputWithContext(ctx context.Context) FirewallIpTranslationOutput {
 	return o
-}
-
-func (o FirewallIpTranslationOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpTranslation] {
-	return pulumix.Output[*FirewallIpTranslation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallIpTranslationOutput) Endip() pulumi.StringOutput {
@@ -252,12 +227,6 @@ func (o FirewallIpTranslationArrayOutput) ToFirewallIpTranslationArrayOutputWith
 	return o
 }
 
-func (o FirewallIpTranslationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpTranslation] {
-	return pulumix.Output[[]*FirewallIpTranslation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallIpTranslationArrayOutput) Index(i pulumi.IntInput) FirewallIpTranslationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpTranslation {
 		return vs[0].([]*FirewallIpTranslation)[vs[1].(int)]
@@ -276,12 +245,6 @@ func (o FirewallIpTranslationMapOutput) ToFirewallIpTranslationMapOutput() Firew
 
 func (o FirewallIpTranslationMapOutput) ToFirewallIpTranslationMapOutputWithContext(ctx context.Context) FirewallIpTranslationMapOutput {
 	return o
-}
-
-func (o FirewallIpTranslationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpTranslation] {
-	return pulumix.Output[map[string]*FirewallIpTranslation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallIpTranslationMapOutput) MapIndex(k pulumi.StringInput) FirewallIpTranslationOutput {

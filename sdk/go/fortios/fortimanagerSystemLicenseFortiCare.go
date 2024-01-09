@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemLicenseFortiCare struct {
@@ -108,12 +107,6 @@ func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCar
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCareOutput)
 }
 
-func (i *FortimanagerSystemLicenseFortiCare) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemLicenseFortiCare] {
-	return pulumix.Output[*FortimanagerSystemLicenseFortiCare]{
-		OutputState: i.ToFortimanagerSystemLicenseFortiCareOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerSystemLicenseFortiCareArrayInput is an input type that accepts FortimanagerSystemLicenseFortiCareArray and FortimanagerSystemLicenseFortiCareArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemLicenseFortiCareArrayInput` via:
 //
@@ -137,12 +130,6 @@ func (i FortimanagerSystemLicenseFortiCareArray) ToFortimanagerSystemLicenseFort
 
 func (i FortimanagerSystemLicenseFortiCareArray) ToFortimanagerSystemLicenseFortiCareArrayOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCareArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCareArrayOutput)
-}
-
-func (i FortimanagerSystemLicenseFortiCareArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemLicenseFortiCare] {
-	return pulumix.Output[[]*FortimanagerSystemLicenseFortiCare]{
-		OutputState: i.ToFortimanagerSystemLicenseFortiCareArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerSystemLicenseFortiCareMapInput is an input type that accepts FortimanagerSystemLicenseFortiCareMap and FortimanagerSystemLicenseFortiCareMapOutput values.
@@ -170,12 +157,6 @@ func (i FortimanagerSystemLicenseFortiCareMap) ToFortimanagerSystemLicenseFortiC
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCareMapOutput)
 }
 
-func (i FortimanagerSystemLicenseFortiCareMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemLicenseFortiCare] {
-	return pulumix.Output[map[string]*FortimanagerSystemLicenseFortiCare]{
-		OutputState: i.ToFortimanagerSystemLicenseFortiCareMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerSystemLicenseFortiCareOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemLicenseFortiCareOutput) ElementType() reflect.Type {
@@ -188,12 +169,6 @@ func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFor
 
 func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFortiCareOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCareOutput {
 	return o
-}
-
-func (o FortimanagerSystemLicenseFortiCareOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemLicenseFortiCare] {
-	return pulumix.Output[*FortimanagerSystemLicenseFortiCare]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemLicenseFortiCareOutput) Adom() pulumi.StringPtrOutput {
@@ -222,12 +197,6 @@ func (o FortimanagerSystemLicenseFortiCareArrayOutput) ToFortimanagerSystemLicen
 	return o
 }
 
-func (o FortimanagerSystemLicenseFortiCareArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemLicenseFortiCare] {
-	return pulumix.Output[[]*FortimanagerSystemLicenseFortiCare]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerSystemLicenseFortiCareArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemLicenseFortiCareOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemLicenseFortiCare {
 		return vs[0].([]*FortimanagerSystemLicenseFortiCare)[vs[1].(int)]
@@ -246,12 +215,6 @@ func (o FortimanagerSystemLicenseFortiCareMapOutput) ToFortimanagerSystemLicense
 
 func (o FortimanagerSystemLicenseFortiCareMapOutput) ToFortimanagerSystemLicenseFortiCareMapOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCareMapOutput {
 	return o
-}
-
-func (o FortimanagerSystemLicenseFortiCareMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemLicenseFortiCare] {
-	return pulumix.Output[map[string]*FortimanagerSystemLicenseFortiCare]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemLicenseFortiCareMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemLicenseFortiCareOutput {

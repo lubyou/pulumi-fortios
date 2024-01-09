@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemLicenseVM struct {
@@ -108,12 +107,6 @@ func (i *FortimanagerSystemLicenseVM) ToFortimanagerSystemLicenseVMOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseVMOutput)
 }
 
-func (i *FortimanagerSystemLicenseVM) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemLicenseVM] {
-	return pulumix.Output[*FortimanagerSystemLicenseVM]{
-		OutputState: i.ToFortimanagerSystemLicenseVMOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerSystemLicenseVMArrayInput is an input type that accepts FortimanagerSystemLicenseVMArray and FortimanagerSystemLicenseVMArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemLicenseVMArrayInput` via:
 //
@@ -137,12 +130,6 @@ func (i FortimanagerSystemLicenseVMArray) ToFortimanagerSystemLicenseVMArrayOutp
 
 func (i FortimanagerSystemLicenseVMArray) ToFortimanagerSystemLicenseVMArrayOutputWithContext(ctx context.Context) FortimanagerSystemLicenseVMArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseVMArrayOutput)
-}
-
-func (i FortimanagerSystemLicenseVMArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemLicenseVM] {
-	return pulumix.Output[[]*FortimanagerSystemLicenseVM]{
-		OutputState: i.ToFortimanagerSystemLicenseVMArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerSystemLicenseVMMapInput is an input type that accepts FortimanagerSystemLicenseVMMap and FortimanagerSystemLicenseVMMapOutput values.
@@ -170,12 +157,6 @@ func (i FortimanagerSystemLicenseVMMap) ToFortimanagerSystemLicenseVMMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseVMMapOutput)
 }
 
-func (i FortimanagerSystemLicenseVMMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemLicenseVM] {
-	return pulumix.Output[map[string]*FortimanagerSystemLicenseVM]{
-		OutputState: i.ToFortimanagerSystemLicenseVMMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerSystemLicenseVMOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemLicenseVMOutput) ElementType() reflect.Type {
@@ -188,12 +169,6 @@ func (o FortimanagerSystemLicenseVMOutput) ToFortimanagerSystemLicenseVMOutput()
 
 func (o FortimanagerSystemLicenseVMOutput) ToFortimanagerSystemLicenseVMOutputWithContext(ctx context.Context) FortimanagerSystemLicenseVMOutput {
 	return o
-}
-
-func (o FortimanagerSystemLicenseVMOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemLicenseVM] {
-	return pulumix.Output[*FortimanagerSystemLicenseVM]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemLicenseVMOutput) Adom() pulumi.StringPtrOutput {
@@ -222,12 +197,6 @@ func (o FortimanagerSystemLicenseVMArrayOutput) ToFortimanagerSystemLicenseVMArr
 	return o
 }
 
-func (o FortimanagerSystemLicenseVMArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemLicenseVM] {
-	return pulumix.Output[[]*FortimanagerSystemLicenseVM]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerSystemLicenseVMArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemLicenseVMOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemLicenseVM {
 		return vs[0].([]*FortimanagerSystemLicenseVM)[vs[1].(int)]
@@ -246,12 +215,6 @@ func (o FortimanagerSystemLicenseVMMapOutput) ToFortimanagerSystemLicenseVMMapOu
 
 func (o FortimanagerSystemLicenseVMMapOutput) ToFortimanagerSystemLicenseVMMapOutputWithContext(ctx context.Context) FortimanagerSystemLicenseVMMapOutput {
 	return o
-}
-
-func (o FortimanagerSystemLicenseVMMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemLicenseVM] {
-	return pulumix.Output[map[string]*FortimanagerSystemLicenseVM]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerSystemLicenseVMMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemLicenseVMOutput {

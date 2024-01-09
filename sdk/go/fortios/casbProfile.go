@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CasbProfile struct {
@@ -111,12 +110,6 @@ func (i *CasbProfile) ToCasbProfileOutputWithContext(ctx context.Context) CasbPr
 	return pulumi.ToOutputWithContext(ctx, i).(CasbProfileOutput)
 }
 
-func (i *CasbProfile) ToOutput(ctx context.Context) pulumix.Output[*CasbProfile] {
-	return pulumix.Output[*CasbProfile]{
-		OutputState: i.ToCasbProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CasbProfileArrayInput is an input type that accepts CasbProfileArray and CasbProfileArrayOutput values.
 // You can construct a concrete instance of `CasbProfileArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i CasbProfileArray) ToCasbProfileArrayOutput() CasbProfileArrayOutput {
 
 func (i CasbProfileArray) ToCasbProfileArrayOutputWithContext(ctx context.Context) CasbProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CasbProfileArrayOutput)
-}
-
-func (i CasbProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*CasbProfile] {
-	return pulumix.Output[[]*CasbProfile]{
-		OutputState: i.ToCasbProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CasbProfileMapInput is an input type that accepts CasbProfileMap and CasbProfileMapOutput values.
@@ -173,12 +160,6 @@ func (i CasbProfileMap) ToCasbProfileMapOutputWithContext(ctx context.Context) C
 	return pulumi.ToOutputWithContext(ctx, i).(CasbProfileMapOutput)
 }
 
-func (i CasbProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CasbProfile] {
-	return pulumix.Output[map[string]*CasbProfile]{
-		OutputState: i.ToCasbProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CasbProfileOutput struct{ *pulumi.OutputState }
 
 func (CasbProfileOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o CasbProfileOutput) ToCasbProfileOutput() CasbProfileOutput {
 
 func (o CasbProfileOutput) ToCasbProfileOutputWithContext(ctx context.Context) CasbProfileOutput {
 	return o
-}
-
-func (o CasbProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*CasbProfile] {
-	return pulumix.Output[*CasbProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CasbProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o CasbProfileArrayOutput) ToCasbProfileArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o CasbProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CasbProfile] {
-	return pulumix.Output[[]*CasbProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CasbProfileArrayOutput) Index(i pulumi.IntInput) CasbProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CasbProfile {
 		return vs[0].([]*CasbProfile)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o CasbProfileMapOutput) ToCasbProfileMapOutput() CasbProfileMapOutput {
 
 func (o CasbProfileMapOutput) ToCasbProfileMapOutputWithContext(ctx context.Context) CasbProfileMapOutput {
 	return o
-}
-
-func (o CasbProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CasbProfile] {
-	return pulumix.Output[map[string]*CasbProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CasbProfileMapOutput) MapIndex(k pulumi.StringInput) CasbProfileOutput {

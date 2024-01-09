@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnCertificateLocal struct {
@@ -300,12 +299,6 @@ func (i *VpnCertificateLocal) ToVpnCertificateLocalOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalOutput)
 }
 
-func (i *VpnCertificateLocal) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateLocal] {
-	return pulumix.Output[*VpnCertificateLocal]{
-		OutputState: i.ToVpnCertificateLocalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnCertificateLocalArrayInput is an input type that accepts VpnCertificateLocalArray and VpnCertificateLocalArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateLocalArrayInput` via:
 //
@@ -329,12 +322,6 @@ func (i VpnCertificateLocalArray) ToVpnCertificateLocalArrayOutput() VpnCertific
 
 func (i VpnCertificateLocalArray) ToVpnCertificateLocalArrayOutputWithContext(ctx context.Context) VpnCertificateLocalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalArrayOutput)
-}
-
-func (i VpnCertificateLocalArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateLocal] {
-	return pulumix.Output[[]*VpnCertificateLocal]{
-		OutputState: i.ToVpnCertificateLocalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnCertificateLocalMapInput is an input type that accepts VpnCertificateLocalMap and VpnCertificateLocalMapOutput values.
@@ -362,12 +349,6 @@ func (i VpnCertificateLocalMap) ToVpnCertificateLocalMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalMapOutput)
 }
 
-func (i VpnCertificateLocalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateLocal] {
-	return pulumix.Output[map[string]*VpnCertificateLocal]{
-		OutputState: i.ToVpnCertificateLocalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnCertificateLocalOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateLocalOutput) ElementType() reflect.Type {
@@ -380,12 +361,6 @@ func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutput() VpnCertificateL
 
 func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutputWithContext(ctx context.Context) VpnCertificateLocalOutput {
 	return o
-}
-
-func (o VpnCertificateLocalOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateLocal] {
-	return pulumix.Output[*VpnCertificateLocal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnCertificateLocalOutput) AcmeCaUrl() pulumi.StringOutput {
@@ -558,12 +533,6 @@ func (o VpnCertificateLocalArrayOutput) ToVpnCertificateLocalArrayOutputWithCont
 	return o
 }
 
-func (o VpnCertificateLocalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateLocal] {
-	return pulumix.Output[[]*VpnCertificateLocal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnCertificateLocalArrayOutput) Index(i pulumi.IntInput) VpnCertificateLocalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateLocal {
 		return vs[0].([]*VpnCertificateLocal)[vs[1].(int)]
@@ -582,12 +551,6 @@ func (o VpnCertificateLocalMapOutput) ToVpnCertificateLocalMapOutput() VpnCertif
 
 func (o VpnCertificateLocalMapOutput) ToVpnCertificateLocalMapOutputWithContext(ctx context.Context) VpnCertificateLocalMapOutput {
 	return o
-}
-
-func (o VpnCertificateLocalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateLocal] {
-	return pulumix.Output[map[string]*VpnCertificateLocal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnCertificateLocalMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateLocalOutput {

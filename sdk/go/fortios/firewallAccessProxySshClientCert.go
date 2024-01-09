@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallAccessProxySshClientCert struct {
@@ -146,12 +145,6 @@ func (i *FirewallAccessProxySshClientCert) ToFirewallAccessProxySshClientCertOut
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxySshClientCertOutput)
 }
 
-func (i *FirewallAccessProxySshClientCert) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxySshClientCert] {
-	return pulumix.Output[*FirewallAccessProxySshClientCert]{
-		OutputState: i.ToFirewallAccessProxySshClientCertOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallAccessProxySshClientCertArrayInput is an input type that accepts FirewallAccessProxySshClientCertArray and FirewallAccessProxySshClientCertArrayOutput values.
 // You can construct a concrete instance of `FirewallAccessProxySshClientCertArrayInput` via:
 //
@@ -175,12 +168,6 @@ func (i FirewallAccessProxySshClientCertArray) ToFirewallAccessProxySshClientCer
 
 func (i FirewallAccessProxySshClientCertArray) ToFirewallAccessProxySshClientCertArrayOutputWithContext(ctx context.Context) FirewallAccessProxySshClientCertArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxySshClientCertArrayOutput)
-}
-
-func (i FirewallAccessProxySshClientCertArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxySshClientCert] {
-	return pulumix.Output[[]*FirewallAccessProxySshClientCert]{
-		OutputState: i.ToFirewallAccessProxySshClientCertArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallAccessProxySshClientCertMapInput is an input type that accepts FirewallAccessProxySshClientCertMap and FirewallAccessProxySshClientCertMapOutput values.
@@ -208,12 +195,6 @@ func (i FirewallAccessProxySshClientCertMap) ToFirewallAccessProxySshClientCertM
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxySshClientCertMapOutput)
 }
 
-func (i FirewallAccessProxySshClientCertMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxySshClientCert] {
-	return pulumix.Output[map[string]*FirewallAccessProxySshClientCert]{
-		OutputState: i.ToFirewallAccessProxySshClientCertMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallAccessProxySshClientCertOutput struct{ *pulumi.OutputState }
 
 func (FirewallAccessProxySshClientCertOutput) ElementType() reflect.Type {
@@ -226,12 +207,6 @@ func (o FirewallAccessProxySshClientCertOutput) ToFirewallAccessProxySshClientCe
 
 func (o FirewallAccessProxySshClientCertOutput) ToFirewallAccessProxySshClientCertOutputWithContext(ctx context.Context) FirewallAccessProxySshClientCertOutput {
 	return o
-}
-
-func (o FirewallAccessProxySshClientCertOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxySshClientCert] {
-	return pulumix.Output[*FirewallAccessProxySshClientCert]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallAccessProxySshClientCertOutput) AuthCa() pulumi.StringOutput {
@@ -298,12 +273,6 @@ func (o FirewallAccessProxySshClientCertArrayOutput) ToFirewallAccessProxySshCli
 	return o
 }
 
-func (o FirewallAccessProxySshClientCertArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxySshClientCert] {
-	return pulumix.Output[[]*FirewallAccessProxySshClientCert]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallAccessProxySshClientCertArrayOutput) Index(i pulumi.IntInput) FirewallAccessProxySshClientCertOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAccessProxySshClientCert {
 		return vs[0].([]*FirewallAccessProxySshClientCert)[vs[1].(int)]
@@ -322,12 +291,6 @@ func (o FirewallAccessProxySshClientCertMapOutput) ToFirewallAccessProxySshClien
 
 func (o FirewallAccessProxySshClientCertMapOutput) ToFirewallAccessProxySshClientCertMapOutputWithContext(ctx context.Context) FirewallAccessProxySshClientCertMapOutput {
 	return o
-}
-
-func (o FirewallAccessProxySshClientCertMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxySshClientCert] {
-	return pulumix.Output[map[string]*FirewallAccessProxySshClientCert]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallAccessProxySshClientCertMapOutput) MapIndex(k pulumi.StringInput) FirewallAccessProxySshClientCertOutput {

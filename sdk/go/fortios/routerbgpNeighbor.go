@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterbgpNeighbor struct {
@@ -767,12 +766,6 @@ func (i *RouterbgpNeighbor) ToRouterbgpNeighborOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborOutput)
 }
 
-func (i *RouterbgpNeighbor) ToOutput(ctx context.Context) pulumix.Output[*RouterbgpNeighbor] {
-	return pulumix.Output[*RouterbgpNeighbor]{
-		OutputState: i.ToRouterbgpNeighborOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterbgpNeighborArrayInput is an input type that accepts RouterbgpNeighborArray and RouterbgpNeighborArrayOutput values.
 // You can construct a concrete instance of `RouterbgpNeighborArrayInput` via:
 //
@@ -796,12 +789,6 @@ func (i RouterbgpNeighborArray) ToRouterbgpNeighborArrayOutput() RouterbgpNeighb
 
 func (i RouterbgpNeighborArray) ToRouterbgpNeighborArrayOutputWithContext(ctx context.Context) RouterbgpNeighborArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborArrayOutput)
-}
-
-func (i RouterbgpNeighborArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterbgpNeighbor] {
-	return pulumix.Output[[]*RouterbgpNeighbor]{
-		OutputState: i.ToRouterbgpNeighborArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterbgpNeighborMapInput is an input type that accepts RouterbgpNeighborMap and RouterbgpNeighborMapOutput values.
@@ -829,12 +816,6 @@ func (i RouterbgpNeighborMap) ToRouterbgpNeighborMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborMapOutput)
 }
 
-func (i RouterbgpNeighborMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterbgpNeighbor] {
-	return pulumix.Output[map[string]*RouterbgpNeighbor]{
-		OutputState: i.ToRouterbgpNeighborMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterbgpNeighborOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNeighborOutput) ElementType() reflect.Type {
@@ -847,12 +828,6 @@ func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutput() RouterbgpNeighborOu
 
 func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutputWithContext(ctx context.Context) RouterbgpNeighborOutput {
 	return o
-}
-
-func (o RouterbgpNeighborOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterbgpNeighbor] {
-	return pulumix.Output[*RouterbgpNeighbor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterbgpNeighborOutput) Activate() pulumi.StringOutput {
@@ -1409,12 +1384,6 @@ func (o RouterbgpNeighborArrayOutput) ToRouterbgpNeighborArrayOutputWithContext(
 	return o
 }
 
-func (o RouterbgpNeighborArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterbgpNeighbor] {
-	return pulumix.Output[[]*RouterbgpNeighbor]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterbgpNeighborArrayOutput) Index(i pulumi.IntInput) RouterbgpNeighborOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterbgpNeighbor {
 		return vs[0].([]*RouterbgpNeighbor)[vs[1].(int)]
@@ -1433,12 +1402,6 @@ func (o RouterbgpNeighborMapOutput) ToRouterbgpNeighborMapOutput() RouterbgpNeig
 
 func (o RouterbgpNeighborMapOutput) ToRouterbgpNeighborMapOutputWithContext(ctx context.Context) RouterbgpNeighborMapOutput {
 	return o
-}
-
-func (o RouterbgpNeighborMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterbgpNeighbor] {
-	return pulumix.Output[map[string]*RouterbgpNeighbor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterbgpNeighborMapOutput) MapIndex(k pulumi.StringInput) RouterbgpNeighborOutput {

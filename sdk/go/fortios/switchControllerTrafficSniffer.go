@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerTrafficSniffer struct {
@@ -126,12 +125,6 @@ func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferOutput)
 }
 
-func (i *SwitchControllerTrafficSniffer) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerTrafficSniffer] {
-	return pulumix.Output[*SwitchControllerTrafficSniffer]{
-		OutputState: i.ToSwitchControllerTrafficSnifferOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerTrafficSnifferArrayInput is an input type that accepts SwitchControllerTrafficSnifferArray and SwitchControllerTrafficSnifferArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerTrafficSnifferArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i SwitchControllerTrafficSnifferArray) ToSwitchControllerTrafficSnifferArr
 
 func (i SwitchControllerTrafficSnifferArray) ToSwitchControllerTrafficSnifferArrayOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferArrayOutput)
-}
-
-func (i SwitchControllerTrafficSnifferArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerTrafficSniffer] {
-	return pulumix.Output[[]*SwitchControllerTrafficSniffer]{
-		OutputState: i.ToSwitchControllerTrafficSnifferArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerTrafficSnifferMapInput is an input type that accepts SwitchControllerTrafficSnifferMap and SwitchControllerTrafficSnifferMapOutput values.
@@ -188,12 +175,6 @@ func (i SwitchControllerTrafficSnifferMap) ToSwitchControllerTrafficSnifferMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferMapOutput)
 }
 
-func (i SwitchControllerTrafficSnifferMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerTrafficSniffer] {
-	return pulumix.Output[map[string]*SwitchControllerTrafficSniffer]{
-		OutputState: i.ToSwitchControllerTrafficSnifferMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerTrafficSnifferOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficSnifferOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferOu
 
 func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferOutput {
 	return o
-}
-
-func (o SwitchControllerTrafficSnifferOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerTrafficSniffer] {
-	return pulumix.Output[*SwitchControllerTrafficSniffer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerTrafficSnifferOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -266,12 +241,6 @@ func (o SwitchControllerTrafficSnifferArrayOutput) ToSwitchControllerTrafficSnif
 	return o
 }
 
-func (o SwitchControllerTrafficSnifferArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerTrafficSniffer] {
-	return pulumix.Output[[]*SwitchControllerTrafficSniffer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerTrafficSnifferArrayOutput) Index(i pulumi.IntInput) SwitchControllerTrafficSnifferOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerTrafficSniffer {
 		return vs[0].([]*SwitchControllerTrafficSniffer)[vs[1].(int)]
@@ -290,12 +259,6 @@ func (o SwitchControllerTrafficSnifferMapOutput) ToSwitchControllerTrafficSniffe
 
 func (o SwitchControllerTrafficSnifferMapOutput) ToSwitchControllerTrafficSnifferMapOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferMapOutput {
 	return o
-}
-
-func (o SwitchControllerTrafficSnifferMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerTrafficSniffer] {
-	return pulumix.Output[map[string]*SwitchControllerTrafficSniffer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerTrafficSnifferMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerTrafficSnifferOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemProxyArp struct {
@@ -121,12 +120,6 @@ func (i *SystemProxyArp) ToSystemProxyArpOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpOutput)
 }
 
-func (i *SystemProxyArp) ToOutput(ctx context.Context) pulumix.Output[*SystemProxyArp] {
-	return pulumix.Output[*SystemProxyArp]{
-		OutputState: i.ToSystemProxyArpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemProxyArpArrayInput is an input type that accepts SystemProxyArpArray and SystemProxyArpArrayOutput values.
 // You can construct a concrete instance of `SystemProxyArpArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i SystemProxyArpArray) ToSystemProxyArpArrayOutput() SystemProxyArpArrayOu
 
 func (i SystemProxyArpArray) ToSystemProxyArpArrayOutputWithContext(ctx context.Context) SystemProxyArpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpArrayOutput)
-}
-
-func (i SystemProxyArpArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemProxyArp] {
-	return pulumix.Output[[]*SystemProxyArp]{
-		OutputState: i.ToSystemProxyArpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemProxyArpMapInput is an input type that accepts SystemProxyArpMap and SystemProxyArpMapOutput values.
@@ -183,12 +170,6 @@ func (i SystemProxyArpMap) ToSystemProxyArpMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpMapOutput)
 }
 
-func (i SystemProxyArpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemProxyArp] {
-	return pulumix.Output[map[string]*SystemProxyArp]{
-		OutputState: i.ToSystemProxyArpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemProxyArpOutput struct{ *pulumi.OutputState }
 
 func (SystemProxyArpOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o SystemProxyArpOutput) ToSystemProxyArpOutput() SystemProxyArpOutput {
 
 func (o SystemProxyArpOutput) ToSystemProxyArpOutputWithContext(ctx context.Context) SystemProxyArpOutput {
 	return o
-}
-
-func (o SystemProxyArpOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemProxyArp] {
-	return pulumix.Output[*SystemProxyArp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemProxyArpOutput) EndIp() pulumi.StringOutput {
@@ -243,12 +218,6 @@ func (o SystemProxyArpArrayOutput) ToSystemProxyArpArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemProxyArpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemProxyArp] {
-	return pulumix.Output[[]*SystemProxyArp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemProxyArpArrayOutput) Index(i pulumi.IntInput) SystemProxyArpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemProxyArp {
 		return vs[0].([]*SystemProxyArp)[vs[1].(int)]
@@ -267,12 +236,6 @@ func (o SystemProxyArpMapOutput) ToSystemProxyArpMapOutput() SystemProxyArpMapOu
 
 func (o SystemProxyArpMapOutput) ToSystemProxyArpMapOutputWithContext(ctx context.Context) SystemProxyArpMapOutput {
 	return o
-}
-
-func (o SystemProxyArpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemProxyArp] {
-	return pulumix.Output[map[string]*SystemProxyArp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemProxyArpMapOutput) MapIndex(k pulumi.StringInput) SystemProxyArpOutput {

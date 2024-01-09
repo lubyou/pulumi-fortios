@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyUrlMatch struct {
@@ -130,12 +129,6 @@ func (i *WebProxyUrlMatch) ToWebProxyUrlMatchOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchOutput)
 }
 
-func (i *WebProxyUrlMatch) ToOutput(ctx context.Context) pulumix.Output[*WebProxyUrlMatch] {
-	return pulumix.Output[*WebProxyUrlMatch]{
-		OutputState: i.ToWebProxyUrlMatchOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebProxyUrlMatchArrayInput is an input type that accepts WebProxyUrlMatchArray and WebProxyUrlMatchArrayOutput values.
 // You can construct a concrete instance of `WebProxyUrlMatchArrayInput` via:
 //
@@ -159,12 +152,6 @@ func (i WebProxyUrlMatchArray) ToWebProxyUrlMatchArrayOutput() WebProxyUrlMatchA
 
 func (i WebProxyUrlMatchArray) ToWebProxyUrlMatchArrayOutputWithContext(ctx context.Context) WebProxyUrlMatchArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchArrayOutput)
-}
-
-func (i WebProxyUrlMatchArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyUrlMatch] {
-	return pulumix.Output[[]*WebProxyUrlMatch]{
-		OutputState: i.ToWebProxyUrlMatchArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebProxyUrlMatchMapInput is an input type that accepts WebProxyUrlMatchMap and WebProxyUrlMatchMapOutput values.
@@ -192,12 +179,6 @@ func (i WebProxyUrlMatchMap) ToWebProxyUrlMatchMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchMapOutput)
 }
 
-func (i WebProxyUrlMatchMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyUrlMatch] {
-	return pulumix.Output[map[string]*WebProxyUrlMatch]{
-		OutputState: i.ToWebProxyUrlMatchMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebProxyUrlMatchOutput struct{ *pulumi.OutputState }
 
 func (WebProxyUrlMatchOutput) ElementType() reflect.Type {
@@ -210,12 +191,6 @@ func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchOutput() WebProxyUrlMatchOutpu
 
 func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchOutputWithContext(ctx context.Context) WebProxyUrlMatchOutput {
 	return o
-}
-
-func (o WebProxyUrlMatchOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyUrlMatch] {
-	return pulumix.Output[*WebProxyUrlMatch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyUrlMatchOutput) CacheExemption() pulumi.StringOutput {
@@ -264,12 +239,6 @@ func (o WebProxyUrlMatchArrayOutput) ToWebProxyUrlMatchArrayOutputWithContext(ct
 	return o
 }
 
-func (o WebProxyUrlMatchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyUrlMatch] {
-	return pulumix.Output[[]*WebProxyUrlMatch]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebProxyUrlMatchArrayOutput) Index(i pulumi.IntInput) WebProxyUrlMatchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyUrlMatch {
 		return vs[0].([]*WebProxyUrlMatch)[vs[1].(int)]
@@ -288,12 +257,6 @@ func (o WebProxyUrlMatchMapOutput) ToWebProxyUrlMatchMapOutput() WebProxyUrlMatc
 
 func (o WebProxyUrlMatchMapOutput) ToWebProxyUrlMatchMapOutputWithContext(ctx context.Context) WebProxyUrlMatchMapOutput {
 	return o
-}
-
-func (o WebProxyUrlMatchMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyUrlMatch] {
-	return pulumix.Output[map[string]*WebProxyUrlMatch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyUrlMatchMapOutput) MapIndex(k pulumi.StringInput) WebProxyUrlMatchOutput {

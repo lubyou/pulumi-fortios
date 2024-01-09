@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslWebPortal struct {
@@ -491,12 +490,6 @@ func (i *VpnSslWebPortal) ToVpnSslWebPortalOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalOutput)
 }
 
-func (i *VpnSslWebPortal) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebPortal] {
-	return pulumix.Output[*VpnSslWebPortal]{
-		OutputState: i.ToVpnSslWebPortalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnSslWebPortalArrayInput is an input type that accepts VpnSslWebPortalArray and VpnSslWebPortalArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalArrayInput` via:
 //
@@ -520,12 +513,6 @@ func (i VpnSslWebPortalArray) ToVpnSslWebPortalArrayOutput() VpnSslWebPortalArra
 
 func (i VpnSslWebPortalArray) ToVpnSslWebPortalArrayOutputWithContext(ctx context.Context) VpnSslWebPortalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalArrayOutput)
-}
-
-func (i VpnSslWebPortalArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebPortal] {
-	return pulumix.Output[[]*VpnSslWebPortal]{
-		OutputState: i.ToVpnSslWebPortalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnSslWebPortalMapInput is an input type that accepts VpnSslWebPortalMap and VpnSslWebPortalMapOutput values.
@@ -553,12 +540,6 @@ func (i VpnSslWebPortalMap) ToVpnSslWebPortalMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMapOutput)
 }
 
-func (i VpnSslWebPortalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebPortal] {
-	return pulumix.Output[map[string]*VpnSslWebPortal]{
-		OutputState: i.ToVpnSslWebPortalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnSslWebPortalOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalOutput) ElementType() reflect.Type {
@@ -571,12 +552,6 @@ func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutput() VpnSslWebPortalOutput {
 
 func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutputWithContext(ctx context.Context) VpnSslWebPortalOutput {
 	return o
-}
-
-func (o VpnSslWebPortalOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebPortal] {
-	return pulumix.Output[*VpnSslWebPortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebPortalOutput) AllowUserAccess() pulumi.StringOutput {
@@ -921,12 +896,6 @@ func (o VpnSslWebPortalArrayOutput) ToVpnSslWebPortalArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o VpnSslWebPortalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebPortal] {
-	return pulumix.Output[[]*VpnSslWebPortal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnSslWebPortalArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebPortal {
 		return vs[0].([]*VpnSslWebPortal)[vs[1].(int)]
@@ -945,12 +914,6 @@ func (o VpnSslWebPortalMapOutput) ToVpnSslWebPortalMapOutput() VpnSslWebPortalMa
 
 func (o VpnSslWebPortalMapOutput) ToVpnSslWebPortalMapOutputWithContext(ctx context.Context) VpnSslWebPortalMapOutput {
 	return o
-}
-
-func (o VpnSslWebPortalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebPortal] {
-	return pulumix.Output[map[string]*VpnSslWebPortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebPortalMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebPortalOutput {

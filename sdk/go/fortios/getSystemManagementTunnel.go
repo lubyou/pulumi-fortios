@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemManagementTunnel(ctx *pulumi.Context, args *LookupSystemManagementTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemManagementTunnelResult, error) {
@@ -76,12 +75,6 @@ func (o LookupSystemManagementTunnelResultOutput) ToLookupSystemManagementTunnel
 
 func (o LookupSystemManagementTunnelResultOutput) ToLookupSystemManagementTunnelResultOutputWithContext(ctx context.Context) LookupSystemManagementTunnelResultOutput {
 	return o
-}
-
-func (o LookupSystemManagementTunnelResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemManagementTunnelResult] {
-	return pulumix.Output[LookupSystemManagementTunnelResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemManagementTunnelResultOutput) AllowCollectStatistics() pulumi.StringOutput {

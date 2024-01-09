@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallWildcardFqdnGroup struct {
@@ -135,12 +134,6 @@ func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupOutput)
 }
 
-func (i *FirewallWildcardFqdnGroup) ToOutput(ctx context.Context) pulumix.Output[*FirewallWildcardFqdnGroup] {
-	return pulumix.Output[*FirewallWildcardFqdnGroup]{
-		OutputState: i.ToFirewallWildcardFqdnGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallWildcardFqdnGroupArrayInput is an input type that accepts FirewallWildcardFqdnGroupArray and FirewallWildcardFqdnGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallWildcardFqdnGroupArrayInput` via:
 //
@@ -164,12 +157,6 @@ func (i FirewallWildcardFqdnGroupArray) ToFirewallWildcardFqdnGroupArrayOutput()
 
 func (i FirewallWildcardFqdnGroupArray) ToFirewallWildcardFqdnGroupArrayOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupArrayOutput)
-}
-
-func (i FirewallWildcardFqdnGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallWildcardFqdnGroup] {
-	return pulumix.Output[[]*FirewallWildcardFqdnGroup]{
-		OutputState: i.ToFirewallWildcardFqdnGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallWildcardFqdnGroupMapInput is an input type that accepts FirewallWildcardFqdnGroupMap and FirewallWildcardFqdnGroupMapOutput values.
@@ -197,12 +184,6 @@ func (i FirewallWildcardFqdnGroupMap) ToFirewallWildcardFqdnGroupMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupMapOutput)
 }
 
-func (i FirewallWildcardFqdnGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallWildcardFqdnGroup] {
-	return pulumix.Output[map[string]*FirewallWildcardFqdnGroup]{
-		OutputState: i.ToFirewallWildcardFqdnGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallWildcardFqdnGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnGroupOutput) ElementType() reflect.Type {
@@ -215,12 +196,6 @@ func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupOutput() Fir
 
 func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupOutput {
 	return o
-}
-
-func (o FirewallWildcardFqdnGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallWildcardFqdnGroup] {
-	return pulumix.Output[*FirewallWildcardFqdnGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallWildcardFqdnGroupOutput) Color() pulumi.IntOutput {
@@ -273,12 +248,6 @@ func (o FirewallWildcardFqdnGroupArrayOutput) ToFirewallWildcardFqdnGroupArrayOu
 	return o
 }
 
-func (o FirewallWildcardFqdnGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallWildcardFqdnGroup] {
-	return pulumix.Output[[]*FirewallWildcardFqdnGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallWildcardFqdnGroupArrayOutput) Index(i pulumi.IntInput) FirewallWildcardFqdnGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallWildcardFqdnGroup {
 		return vs[0].([]*FirewallWildcardFqdnGroup)[vs[1].(int)]
@@ -297,12 +266,6 @@ func (o FirewallWildcardFqdnGroupMapOutput) ToFirewallWildcardFqdnGroupMapOutput
 
 func (o FirewallWildcardFqdnGroupMapOutput) ToFirewallWildcardFqdnGroupMapOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupMapOutput {
 	return o
-}
-
-func (o FirewallWildcardFqdnGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallWildcardFqdnGroup] {
-	return pulumix.Output[map[string]*FirewallWildcardFqdnGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallWildcardFqdnGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallWildcardFqdnGroupOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerLldpSettings struct {
@@ -121,12 +120,6 @@ func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsOutput)
 }
 
-func (i *SwitchControllerLldpSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLldpSettings] {
-	return pulumix.Output[*SwitchControllerLldpSettings]{
-		OutputState: i.ToSwitchControllerLldpSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerLldpSettingsArrayInput is an input type that accepts SwitchControllerLldpSettingsArray and SwitchControllerLldpSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpSettingsArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i SwitchControllerLldpSettingsArray) ToSwitchControllerLldpSettingsArrayOu
 
 func (i SwitchControllerLldpSettingsArray) ToSwitchControllerLldpSettingsArrayOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsArrayOutput)
-}
-
-func (i SwitchControllerLldpSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLldpSettings] {
-	return pulumix.Output[[]*SwitchControllerLldpSettings]{
-		OutputState: i.ToSwitchControllerLldpSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerLldpSettingsMapInput is an input type that accepts SwitchControllerLldpSettingsMap and SwitchControllerLldpSettingsMapOutput values.
@@ -183,12 +170,6 @@ func (i SwitchControllerLldpSettingsMap) ToSwitchControllerLldpSettingsMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsMapOutput)
 }
 
-func (i SwitchControllerLldpSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLldpSettings] {
-	return pulumix.Output[map[string]*SwitchControllerLldpSettings]{
-		OutputState: i.ToSwitchControllerLldpSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerLldpSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpSettingsOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsOutput
 
 func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsOutput {
 	return o
-}
-
-func (o SwitchControllerLldpSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLldpSettings] {
-	return pulumix.Output[*SwitchControllerLldpSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerLldpSettingsOutput) DeviceDetection() pulumi.StringOutput {
@@ -251,12 +226,6 @@ func (o SwitchControllerLldpSettingsArrayOutput) ToSwitchControllerLldpSettingsA
 	return o
 }
 
-func (o SwitchControllerLldpSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLldpSettings] {
-	return pulumix.Output[[]*SwitchControllerLldpSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerLldpSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerLldpSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLldpSettings {
 		return vs[0].([]*SwitchControllerLldpSettings)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o SwitchControllerLldpSettingsMapOutput) ToSwitchControllerLldpSettingsMap
 
 func (o SwitchControllerLldpSettingsMapOutput) ToSwitchControllerLldpSettingsMapOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsMapOutput {
 	return o
-}
-
-func (o SwitchControllerLldpSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLldpSettings] {
-	return pulumix.Output[map[string]*SwitchControllerLldpSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerLldpSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLldpSettingsOutput {

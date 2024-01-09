@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSwitchInterfaceTag struct {
@@ -96,12 +95,6 @@ func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTa
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagOutput)
 }
 
-func (i *SwitchControllerSwitchInterfaceTag) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSwitchInterfaceTag] {
-	return pulumix.Output[*SwitchControllerSwitchInterfaceTag]{
-		OutputState: i.ToSwitchControllerSwitchInterfaceTagOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerSwitchInterfaceTagArrayInput is an input type that accepts SwitchControllerSwitchInterfaceTagArray and SwitchControllerSwitchInterfaceTagArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchInterfaceTagArrayInput` via:
 //
@@ -125,12 +118,6 @@ func (i SwitchControllerSwitchInterfaceTagArray) ToSwitchControllerSwitchInterfa
 
 func (i SwitchControllerSwitchInterfaceTagArray) ToSwitchControllerSwitchInterfaceTagArrayOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagArrayOutput)
-}
-
-func (i SwitchControllerSwitchInterfaceTagArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSwitchInterfaceTag] {
-	return pulumix.Output[[]*SwitchControllerSwitchInterfaceTag]{
-		OutputState: i.ToSwitchControllerSwitchInterfaceTagArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerSwitchInterfaceTagMapInput is an input type that accepts SwitchControllerSwitchInterfaceTagMap and SwitchControllerSwitchInterfaceTagMapOutput values.
@@ -158,12 +145,6 @@ func (i SwitchControllerSwitchInterfaceTagMap) ToSwitchControllerSwitchInterface
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagMapOutput)
 }
 
-func (i SwitchControllerSwitchInterfaceTagMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSwitchInterfaceTag] {
-	return pulumix.Output[map[string]*SwitchControllerSwitchInterfaceTag]{
-		OutputState: i.ToSwitchControllerSwitchInterfaceTagMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerSwitchInterfaceTagOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchInterfaceTagOutput) ElementType() reflect.Type {
@@ -176,12 +157,6 @@ func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterf
 
 func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterfaceTagOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagOutput {
 	return o
-}
-
-func (o SwitchControllerSwitchInterfaceTagOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSwitchInterfaceTag] {
-	return pulumix.Output[*SwitchControllerSwitchInterfaceTag]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSwitchInterfaceTagOutput) Name() pulumi.StringOutput {
@@ -206,12 +181,6 @@ func (o SwitchControllerSwitchInterfaceTagArrayOutput) ToSwitchControllerSwitchI
 	return o
 }
 
-func (o SwitchControllerSwitchInterfaceTagArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSwitchInterfaceTag] {
-	return pulumix.Output[[]*SwitchControllerSwitchInterfaceTag]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerSwitchInterfaceTagArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchInterfaceTagOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchInterfaceTag {
 		return vs[0].([]*SwitchControllerSwitchInterfaceTag)[vs[1].(int)]
@@ -230,12 +199,6 @@ func (o SwitchControllerSwitchInterfaceTagMapOutput) ToSwitchControllerSwitchInt
 
 func (o SwitchControllerSwitchInterfaceTagMapOutput) ToSwitchControllerSwitchInterfaceTagMapOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagMapOutput {
 	return o
-}
-
-func (o SwitchControllerSwitchInterfaceTagMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSwitchInterfaceTag] {
-	return pulumix.Output[map[string]*SwitchControllerSwitchInterfaceTag]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSwitchInterfaceTagMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchInterfaceTagOutput {

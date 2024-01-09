@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutoScript struct {
@@ -126,12 +125,6 @@ func (i *SystemAutoScript) ToSystemAutoScriptOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptOutput)
 }
 
-func (i *SystemAutoScript) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoScript] {
-	return pulumix.Output[*SystemAutoScript]{
-		OutputState: i.ToSystemAutoScriptOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAutoScriptArrayInput is an input type that accepts SystemAutoScriptArray and SystemAutoScriptArrayOutput values.
 // You can construct a concrete instance of `SystemAutoScriptArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i SystemAutoScriptArray) ToSystemAutoScriptArrayOutput() SystemAutoScriptA
 
 func (i SystemAutoScriptArray) ToSystemAutoScriptArrayOutputWithContext(ctx context.Context) SystemAutoScriptArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptArrayOutput)
-}
-
-func (i SystemAutoScriptArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoScript] {
-	return pulumix.Output[[]*SystemAutoScript]{
-		OutputState: i.ToSystemAutoScriptArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAutoScriptMapInput is an input type that accepts SystemAutoScriptMap and SystemAutoScriptMapOutput values.
@@ -188,12 +175,6 @@ func (i SystemAutoScriptMap) ToSystemAutoScriptMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptMapOutput)
 }
 
-func (i SystemAutoScriptMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoScript] {
-	return pulumix.Output[map[string]*SystemAutoScript]{
-		OutputState: i.ToSystemAutoScriptMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAutoScriptOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoScriptOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o SystemAutoScriptOutput) ToSystemAutoScriptOutput() SystemAutoScriptOutpu
 
 func (o SystemAutoScriptOutput) ToSystemAutoScriptOutputWithContext(ctx context.Context) SystemAutoScriptOutput {
 	return o
-}
-
-func (o SystemAutoScriptOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoScript] {
-	return pulumix.Output[*SystemAutoScript]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutoScriptOutput) Interval() pulumi.IntOutput {
@@ -260,12 +235,6 @@ func (o SystemAutoScriptArrayOutput) ToSystemAutoScriptArrayOutputWithContext(ct
 	return o
 }
 
-func (o SystemAutoScriptArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoScript] {
-	return pulumix.Output[[]*SystemAutoScript]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAutoScriptArrayOutput) Index(i pulumi.IntInput) SystemAutoScriptOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoScript {
 		return vs[0].([]*SystemAutoScript)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o SystemAutoScriptMapOutput) ToSystemAutoScriptMapOutput() SystemAutoScrip
 
 func (o SystemAutoScriptMapOutput) ToSystemAutoScriptMapOutputWithContext(ctx context.Context) SystemAutoScriptMapOutput {
 	return o
-}
-
-func (o SystemAutoScriptMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoScript] {
-	return pulumix.Output[map[string]*SystemAutoScript]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutoScriptMapOutput) MapIndex(k pulumi.StringInput) SystemAutoScriptOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnCertificateCrl struct {
@@ -168,12 +167,6 @@ func (i *VpnCertificateCrl) ToVpnCertificateCrlOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCrlOutput)
 }
 
-func (i *VpnCertificateCrl) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateCrl] {
-	return pulumix.Output[*VpnCertificateCrl]{
-		OutputState: i.ToVpnCertificateCrlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnCertificateCrlArrayInput is an input type that accepts VpnCertificateCrlArray and VpnCertificateCrlArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateCrlArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i VpnCertificateCrlArray) ToVpnCertificateCrlArrayOutput() VpnCertificateC
 
 func (i VpnCertificateCrlArray) ToVpnCertificateCrlArrayOutputWithContext(ctx context.Context) VpnCertificateCrlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCrlArrayOutput)
-}
-
-func (i VpnCertificateCrlArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateCrl] {
-	return pulumix.Output[[]*VpnCertificateCrl]{
-		OutputState: i.ToVpnCertificateCrlArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnCertificateCrlMapInput is an input type that accepts VpnCertificateCrlMap and VpnCertificateCrlMapOutput values.
@@ -230,12 +217,6 @@ func (i VpnCertificateCrlMap) ToVpnCertificateCrlMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCrlMapOutput)
 }
 
-func (i VpnCertificateCrlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateCrl] {
-	return pulumix.Output[map[string]*VpnCertificateCrl]{
-		OutputState: i.ToVpnCertificateCrlMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnCertificateCrlOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateCrlOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o VpnCertificateCrlOutput) ToVpnCertificateCrlOutput() VpnCertificateCrlOu
 
 func (o VpnCertificateCrlOutput) ToVpnCertificateCrlOutputWithContext(ctx context.Context) VpnCertificateCrlOutput {
 	return o
-}
-
-func (o VpnCertificateCrlOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateCrl] {
-	return pulumix.Output[*VpnCertificateCrl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnCertificateCrlOutput) Crl() pulumi.StringOutput {
@@ -330,12 +305,6 @@ func (o VpnCertificateCrlArrayOutput) ToVpnCertificateCrlArrayOutputWithContext(
 	return o
 }
 
-func (o VpnCertificateCrlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateCrl] {
-	return pulumix.Output[[]*VpnCertificateCrl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnCertificateCrlArrayOutput) Index(i pulumi.IntInput) VpnCertificateCrlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateCrl {
 		return vs[0].([]*VpnCertificateCrl)[vs[1].(int)]
@@ -354,12 +323,6 @@ func (o VpnCertificateCrlMapOutput) ToVpnCertificateCrlMapOutput() VpnCertificat
 
 func (o VpnCertificateCrlMapOutput) ToVpnCertificateCrlMapOutputWithContext(ctx context.Context) VpnCertificateCrlMapOutput {
 	return o
-}
-
-func (o VpnCertificateCrlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateCrl] {
-	return pulumix.Output[map[string]*VpnCertificateCrl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnCertificateCrlMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateCrlOutput {

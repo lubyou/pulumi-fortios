@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserDomainController struct {
@@ -228,12 +227,6 @@ func (i *UserDomainController) ToUserDomainControllerOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerOutput)
 }
 
-func (i *UserDomainController) ToOutput(ctx context.Context) pulumix.Output[*UserDomainController] {
-	return pulumix.Output[*UserDomainController]{
-		OutputState: i.ToUserDomainControllerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserDomainControllerArrayInput is an input type that accepts UserDomainControllerArray and UserDomainControllerArrayOutput values.
 // You can construct a concrete instance of `UserDomainControllerArrayInput` via:
 //
@@ -257,12 +250,6 @@ func (i UserDomainControllerArray) ToUserDomainControllerArrayOutput() UserDomai
 
 func (i UserDomainControllerArray) ToUserDomainControllerArrayOutputWithContext(ctx context.Context) UserDomainControllerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerArrayOutput)
-}
-
-func (i UserDomainControllerArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserDomainController] {
-	return pulumix.Output[[]*UserDomainController]{
-		OutputState: i.ToUserDomainControllerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserDomainControllerMapInput is an input type that accepts UserDomainControllerMap and UserDomainControllerMapOutput values.
@@ -290,12 +277,6 @@ func (i UserDomainControllerMap) ToUserDomainControllerMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerMapOutput)
 }
 
-func (i UserDomainControllerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserDomainController] {
-	return pulumix.Output[map[string]*UserDomainController]{
-		OutputState: i.ToUserDomainControllerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserDomainControllerOutput struct{ *pulumi.OutputState }
 
 func (UserDomainControllerOutput) ElementType() reflect.Type {
@@ -308,12 +289,6 @@ func (o UserDomainControllerOutput) ToUserDomainControllerOutput() UserDomainCon
 
 func (o UserDomainControllerOutput) ToUserDomainControllerOutputWithContext(ctx context.Context) UserDomainControllerOutput {
 	return o
-}
-
-func (o UserDomainControllerOutput) ToOutput(ctx context.Context) pulumix.Output[*UserDomainController] {
-	return pulumix.Output[*UserDomainController]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserDomainControllerOutput) AdMode() pulumi.StringOutput {
@@ -438,12 +413,6 @@ func (o UserDomainControllerArrayOutput) ToUserDomainControllerArrayOutputWithCo
 	return o
 }
 
-func (o UserDomainControllerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserDomainController] {
-	return pulumix.Output[[]*UserDomainController]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserDomainControllerArrayOutput) Index(i pulumi.IntInput) UserDomainControllerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDomainController {
 		return vs[0].([]*UserDomainController)[vs[1].(int)]
@@ -462,12 +431,6 @@ func (o UserDomainControllerMapOutput) ToUserDomainControllerMapOutput() UserDom
 
 func (o UserDomainControllerMapOutput) ToUserDomainControllerMapOutputWithContext(ctx context.Context) UserDomainControllerMapOutput {
 	return o
-}
-
-func (o UserDomainControllerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserDomainController] {
-	return pulumix.Output[map[string]*UserDomainController]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserDomainControllerMapOutput) MapIndex(k pulumi.StringInput) UserDomainControllerOutput {

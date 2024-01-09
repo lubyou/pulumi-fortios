@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallScheduleGroupList(ctx *pulumi.Context, args *GetFirewallScheduleGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallScheduleGroupListResult, error) {
@@ -73,12 +72,6 @@ func (o GetFirewallScheduleGroupListResultOutput) ToGetFirewallScheduleGroupList
 
 func (o GetFirewallScheduleGroupListResultOutput) ToGetFirewallScheduleGroupListResultOutputWithContext(ctx context.Context) GetFirewallScheduleGroupListResultOutput {
 	return o
-}
-
-func (o GetFirewallScheduleGroupListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallScheduleGroupListResult] {
-	return pulumix.Output[GetFirewallScheduleGroupListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetFirewallScheduleGroupListResultOutput) Filter() pulumi.StringPtrOutput {

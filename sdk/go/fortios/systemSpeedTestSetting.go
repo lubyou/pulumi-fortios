@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSpeedTestSetting struct {
@@ -101,12 +100,6 @@ func (i *SystemSpeedTestSetting) ToSystemSpeedTestSettingOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestSettingOutput)
 }
 
-func (i *SystemSpeedTestSetting) ToOutput(ctx context.Context) pulumix.Output[*SystemSpeedTestSetting] {
-	return pulumix.Output[*SystemSpeedTestSetting]{
-		OutputState: i.ToSystemSpeedTestSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSpeedTestSettingArrayInput is an input type that accepts SystemSpeedTestSettingArray and SystemSpeedTestSettingArrayOutput values.
 // You can construct a concrete instance of `SystemSpeedTestSettingArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i SystemSpeedTestSettingArray) ToSystemSpeedTestSettingArrayOutput() Syste
 
 func (i SystemSpeedTestSettingArray) ToSystemSpeedTestSettingArrayOutputWithContext(ctx context.Context) SystemSpeedTestSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestSettingArrayOutput)
-}
-
-func (i SystemSpeedTestSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSpeedTestSetting] {
-	return pulumix.Output[[]*SystemSpeedTestSetting]{
-		OutputState: i.ToSystemSpeedTestSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSpeedTestSettingMapInput is an input type that accepts SystemSpeedTestSettingMap and SystemSpeedTestSettingMapOutput values.
@@ -163,12 +150,6 @@ func (i SystemSpeedTestSettingMap) ToSystemSpeedTestSettingMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestSettingMapOutput)
 }
 
-func (i SystemSpeedTestSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSpeedTestSetting] {
-	return pulumix.Output[map[string]*SystemSpeedTestSetting]{
-		OutputState: i.ToSystemSpeedTestSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSpeedTestSettingOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestSettingOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o SystemSpeedTestSettingOutput) ToSystemSpeedTestSettingOutput() SystemSpe
 
 func (o SystemSpeedTestSettingOutput) ToSystemSpeedTestSettingOutputWithContext(ctx context.Context) SystemSpeedTestSettingOutput {
 	return o
-}
-
-func (o SystemSpeedTestSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSpeedTestSetting] {
-	return pulumix.Output[*SystemSpeedTestSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSpeedTestSettingOutput) LatencyThreshold() pulumi.IntOutput {
@@ -215,12 +190,6 @@ func (o SystemSpeedTestSettingArrayOutput) ToSystemSpeedTestSettingArrayOutputWi
 	return o
 }
 
-func (o SystemSpeedTestSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSpeedTestSetting] {
-	return pulumix.Output[[]*SystemSpeedTestSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSpeedTestSettingArrayOutput) Index(i pulumi.IntInput) SystemSpeedTestSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSpeedTestSetting {
 		return vs[0].([]*SystemSpeedTestSetting)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o SystemSpeedTestSettingMapOutput) ToSystemSpeedTestSettingMapOutput() Sys
 
 func (o SystemSpeedTestSettingMapOutput) ToSystemSpeedTestSettingMapOutputWithContext(ctx context.Context) SystemSpeedTestSettingMapOutput {
 	return o
-}
-
-func (o SystemSpeedTestSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSpeedTestSetting] {
-	return pulumix.Output[map[string]*SystemSpeedTestSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSpeedTestSettingMapOutput) MapIndex(k pulumi.StringInput) SystemSpeedTestSettingOutput {

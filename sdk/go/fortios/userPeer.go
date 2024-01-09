@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserPeer struct {
@@ -187,12 +186,6 @@ func (i *UserPeer) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerOutput)
 }
 
-func (i *UserPeer) ToOutput(ctx context.Context) pulumix.Output[*UserPeer] {
-	return pulumix.Output[*UserPeer]{
-		OutputState: i.ToUserPeerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserPeerArrayInput is an input type that accepts UserPeerArray and UserPeerArrayOutput values.
 // You can construct a concrete instance of `UserPeerArrayInput` via:
 //
@@ -216,12 +209,6 @@ func (i UserPeerArray) ToUserPeerArrayOutput() UserPeerArrayOutput {
 
 func (i UserPeerArray) ToUserPeerArrayOutputWithContext(ctx context.Context) UserPeerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerArrayOutput)
-}
-
-func (i UserPeerArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserPeer] {
-	return pulumix.Output[[]*UserPeer]{
-		OutputState: i.ToUserPeerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserPeerMapInput is an input type that accepts UserPeerMap and UserPeerMapOutput values.
@@ -249,12 +236,6 @@ func (i UserPeerMap) ToUserPeerMapOutputWithContext(ctx context.Context) UserPee
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerMapOutput)
 }
 
-func (i UserPeerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPeer] {
-	return pulumix.Output[map[string]*UserPeer]{
-		OutputState: i.ToUserPeerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserPeerOutput struct{ *pulumi.OutputState }
 
 func (UserPeerOutput) ElementType() reflect.Type {
@@ -267,12 +248,6 @@ func (o UserPeerOutput) ToUserPeerOutput() UserPeerOutput {
 
 func (o UserPeerOutput) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutput {
 	return o
-}
-
-func (o UserPeerOutput) ToOutput(ctx context.Context) pulumix.Output[*UserPeer] {
-	return pulumix.Output[*UserPeer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserPeerOutput) Ca() pulumi.StringOutput {
@@ -361,12 +336,6 @@ func (o UserPeerArrayOutput) ToUserPeerArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o UserPeerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserPeer] {
-	return pulumix.Output[[]*UserPeer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserPeerArrayOutput) Index(i pulumi.IntInput) UserPeerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPeer {
 		return vs[0].([]*UserPeer)[vs[1].(int)]
@@ -385,12 +354,6 @@ func (o UserPeerMapOutput) ToUserPeerMapOutput() UserPeerMapOutput {
 
 func (o UserPeerMapOutput) ToUserPeerMapOutputWithContext(ctx context.Context) UserPeerMapOutput {
 	return o
-}
-
-func (o UserPeerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPeer] {
-	return pulumix.Output[map[string]*UserPeer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserPeerMapOutput) MapIndex(k pulumi.StringInput) UserPeerOutput {

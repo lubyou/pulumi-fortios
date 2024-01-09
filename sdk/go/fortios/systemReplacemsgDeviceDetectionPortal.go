@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgDeviceDetectionPortal struct {
@@ -115,12 +114,6 @@ func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectio
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalOutput)
 }
 
-func (i *SystemReplacemsgDeviceDetectionPortal) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgDeviceDetectionPortal] {
-	return pulumix.Output[*SystemReplacemsgDeviceDetectionPortal]{
-		OutputState: i.ToSystemReplacemsgDeviceDetectionPortalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemReplacemsgDeviceDetectionPortalArrayInput is an input type that accepts SystemReplacemsgDeviceDetectionPortalArray and SystemReplacemsgDeviceDetectionPortalArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgDeviceDetectionPortalArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i SystemReplacemsgDeviceDetectionPortalArray) ToSystemReplacemsgDeviceDete
 
 func (i SystemReplacemsgDeviceDetectionPortalArray) ToSystemReplacemsgDeviceDetectionPortalArrayOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalArrayOutput)
-}
-
-func (i SystemReplacemsgDeviceDetectionPortalArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgDeviceDetectionPortal] {
-	return pulumix.Output[[]*SystemReplacemsgDeviceDetectionPortal]{
-		OutputState: i.ToSystemReplacemsgDeviceDetectionPortalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemReplacemsgDeviceDetectionPortalMapInput is an input type that accepts SystemReplacemsgDeviceDetectionPortalMap and SystemReplacemsgDeviceDetectionPortalMapOutput values.
@@ -177,12 +164,6 @@ func (i SystemReplacemsgDeviceDetectionPortalMap) ToSystemReplacemsgDeviceDetect
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalMapOutput)
 }
 
-func (i SystemReplacemsgDeviceDetectionPortalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgDeviceDetectionPortal] {
-	return pulumix.Output[map[string]*SystemReplacemsgDeviceDetectionPortal]{
-		OutputState: i.ToSystemReplacemsgDeviceDetectionPortalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemReplacemsgDeviceDetectionPortalOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgDeviceDetectionPortalOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDet
 
 func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDetectionPortalOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalOutput {
 	return o
-}
-
-func (o SystemReplacemsgDeviceDetectionPortalOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgDeviceDetectionPortal] {
-	return pulumix.Output[*SystemReplacemsgDeviceDetectionPortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalOutput) Buffer() pulumi.StringPtrOutput {
@@ -237,12 +212,6 @@ func (o SystemReplacemsgDeviceDetectionPortalArrayOutput) ToSystemReplacemsgDevi
 	return o
 }
 
-func (o SystemReplacemsgDeviceDetectionPortalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgDeviceDetectionPortal] {
-	return pulumix.Output[[]*SystemReplacemsgDeviceDetectionPortal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemReplacemsgDeviceDetectionPortalArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgDeviceDetectionPortalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgDeviceDetectionPortal {
 		return vs[0].([]*SystemReplacemsgDeviceDetectionPortal)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o SystemReplacemsgDeviceDetectionPortalMapOutput) ToSystemReplacemsgDevice
 
 func (o SystemReplacemsgDeviceDetectionPortalMapOutput) ToSystemReplacemsgDeviceDetectionPortalMapOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalMapOutput {
 	return o
-}
-
-func (o SystemReplacemsgDeviceDetectionPortalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgDeviceDetectionPortal] {
-	return pulumix.Output[map[string]*SystemReplacemsgDeviceDetectionPortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgDeviceDetectionPortalOutput {

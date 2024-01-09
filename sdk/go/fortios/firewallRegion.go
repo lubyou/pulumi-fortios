@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallRegion struct {
@@ -116,12 +115,6 @@ func (i *FirewallRegion) ToFirewallRegionOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionOutput)
 }
 
-func (i *FirewallRegion) ToOutput(ctx context.Context) pulumix.Output[*FirewallRegion] {
-	return pulumix.Output[*FirewallRegion]{
-		OutputState: i.ToFirewallRegionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallRegionArrayInput is an input type that accepts FirewallRegionArray and FirewallRegionArrayOutput values.
 // You can construct a concrete instance of `FirewallRegionArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i FirewallRegionArray) ToFirewallRegionArrayOutput() FirewallRegionArrayOu
 
 func (i FirewallRegionArray) ToFirewallRegionArrayOutputWithContext(ctx context.Context) FirewallRegionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionArrayOutput)
-}
-
-func (i FirewallRegionArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallRegion] {
-	return pulumix.Output[[]*FirewallRegion]{
-		OutputState: i.ToFirewallRegionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallRegionMapInput is an input type that accepts FirewallRegionMap and FirewallRegionMapOutput values.
@@ -178,12 +165,6 @@ func (i FirewallRegionMap) ToFirewallRegionMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionMapOutput)
 }
 
-func (i FirewallRegionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallRegion] {
-	return pulumix.Output[map[string]*FirewallRegion]{
-		OutputState: i.ToFirewallRegionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallRegionOutput struct{ *pulumi.OutputState }
 
 func (FirewallRegionOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o FirewallRegionOutput) ToFirewallRegionOutput() FirewallRegionOutput {
 
 func (o FirewallRegionOutput) ToFirewallRegionOutputWithContext(ctx context.Context) FirewallRegionOutput {
 	return o
-}
-
-func (o FirewallRegionOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallRegion] {
-	return pulumix.Output[*FirewallRegion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallRegionOutput) Cities() FirewallRegionCityArrayOutput {
@@ -242,12 +217,6 @@ func (o FirewallRegionArrayOutput) ToFirewallRegionArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o FirewallRegionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallRegion] {
-	return pulumix.Output[[]*FirewallRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallRegionArrayOutput) Index(i pulumi.IntInput) FirewallRegionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallRegion {
 		return vs[0].([]*FirewallRegion)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o FirewallRegionMapOutput) ToFirewallRegionMapOutput() FirewallRegionMapOu
 
 func (o FirewallRegionMapOutput) ToFirewallRegionMapOutputWithContext(ctx context.Context) FirewallRegionMapOutput {
 	return o
-}
-
-func (o FirewallRegionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallRegion] {
-	return pulumix.Output[map[string]*FirewallRegion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallRegionMapOutput) MapIndex(k pulumi.StringInput) FirewallRegionOutput {

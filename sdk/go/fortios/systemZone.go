@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemZone struct {
@@ -126,12 +125,6 @@ func (i *SystemZone) ToSystemZoneOutputWithContext(ctx context.Context) SystemZo
 	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneOutput)
 }
 
-func (i *SystemZone) ToOutput(ctx context.Context) pulumix.Output[*SystemZone] {
-	return pulumix.Output[*SystemZone]{
-		OutputState: i.ToSystemZoneOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemZoneArrayInput is an input type that accepts SystemZoneArray and SystemZoneArrayOutput values.
 // You can construct a concrete instance of `SystemZoneArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i SystemZoneArray) ToSystemZoneArrayOutput() SystemZoneArrayOutput {
 
 func (i SystemZoneArray) ToSystemZoneArrayOutputWithContext(ctx context.Context) SystemZoneArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneArrayOutput)
-}
-
-func (i SystemZoneArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemZone] {
-	return pulumix.Output[[]*SystemZone]{
-		OutputState: i.ToSystemZoneArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemZoneMapInput is an input type that accepts SystemZoneMap and SystemZoneMapOutput values.
@@ -188,12 +175,6 @@ func (i SystemZoneMap) ToSystemZoneMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneMapOutput)
 }
 
-func (i SystemZoneMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemZone] {
-	return pulumix.Output[map[string]*SystemZone]{
-		OutputState: i.ToSystemZoneMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemZoneOutput struct{ *pulumi.OutputState }
 
 func (SystemZoneOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o SystemZoneOutput) ToSystemZoneOutput() SystemZoneOutput {
 
 func (o SystemZoneOutput) ToSystemZoneOutputWithContext(ctx context.Context) SystemZoneOutput {
 	return o
-}
-
-func (o SystemZoneOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemZone] {
-	return pulumix.Output[*SystemZone]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemZoneOutput) Description() pulumi.StringOutput {
@@ -260,12 +235,6 @@ func (o SystemZoneArrayOutput) ToSystemZoneArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemZoneArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemZone] {
-	return pulumix.Output[[]*SystemZone]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemZoneArrayOutput) Index(i pulumi.IntInput) SystemZoneOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemZone {
 		return vs[0].([]*SystemZone)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o SystemZoneMapOutput) ToSystemZoneMapOutput() SystemZoneMapOutput {
 
 func (o SystemZoneMapOutput) ToSystemZoneMapOutputWithContext(ctx context.Context) SystemZoneMapOutput {
 	return o
-}
-
-func (o SystemZoneMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemZone] {
-	return pulumix.Output[map[string]*SystemZone]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemZoneMapOutput) MapIndex(k pulumi.StringInput) SystemZoneOutput {

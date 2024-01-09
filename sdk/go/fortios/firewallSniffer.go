@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSniffer struct {
@@ -290,12 +289,6 @@ func (i *FirewallSniffer) ToFirewallSnifferOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferOutput)
 }
 
-func (i *FirewallSniffer) ToOutput(ctx context.Context) pulumix.Output[*FirewallSniffer] {
-	return pulumix.Output[*FirewallSniffer]{
-		OutputState: i.ToFirewallSnifferOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallSnifferArrayInput is an input type that accepts FirewallSnifferArray and FirewallSnifferArrayOutput values.
 // You can construct a concrete instance of `FirewallSnifferArrayInput` via:
 //
@@ -319,12 +312,6 @@ func (i FirewallSnifferArray) ToFirewallSnifferArrayOutput() FirewallSnifferArra
 
 func (i FirewallSnifferArray) ToFirewallSnifferArrayOutputWithContext(ctx context.Context) FirewallSnifferArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferArrayOutput)
-}
-
-func (i FirewallSnifferArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSniffer] {
-	return pulumix.Output[[]*FirewallSniffer]{
-		OutputState: i.ToFirewallSnifferArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallSnifferMapInput is an input type that accepts FirewallSnifferMap and FirewallSnifferMapOutput values.
@@ -352,12 +339,6 @@ func (i FirewallSnifferMap) ToFirewallSnifferMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferMapOutput)
 }
 
-func (i FirewallSnifferMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSniffer] {
-	return pulumix.Output[map[string]*FirewallSniffer]{
-		OutputState: i.ToFirewallSnifferMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallSnifferOutput struct{ *pulumi.OutputState }
 
 func (FirewallSnifferOutput) ElementType() reflect.Type {
@@ -370,12 +351,6 @@ func (o FirewallSnifferOutput) ToFirewallSnifferOutput() FirewallSnifferOutput {
 
 func (o FirewallSnifferOutput) ToFirewallSnifferOutputWithContext(ctx context.Context) FirewallSnifferOutput {
 	return o
-}
-
-func (o FirewallSnifferOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSniffer] {
-	return pulumix.Output[*FirewallSniffer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSnifferOutput) Anomalies() FirewallSnifferAnomalyArrayOutput {
@@ -552,12 +527,6 @@ func (o FirewallSnifferArrayOutput) ToFirewallSnifferArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallSnifferArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSniffer] {
-	return pulumix.Output[[]*FirewallSniffer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallSnifferArrayOutput) Index(i pulumi.IntInput) FirewallSnifferOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSniffer {
 		return vs[0].([]*FirewallSniffer)[vs[1].(int)]
@@ -576,12 +545,6 @@ func (o FirewallSnifferMapOutput) ToFirewallSnifferMapOutput() FirewallSnifferMa
 
 func (o FirewallSnifferMapOutput) ToFirewallSnifferMapOutputWithContext(ctx context.Context) FirewallSnifferMapOutput {
 	return o
-}
-
-func (o FirewallSnifferMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSniffer] {
-	return pulumix.Output[map[string]*FirewallSniffer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSnifferMapOutput) MapIndex(k pulumi.StringInput) FirewallSnifferOutput {

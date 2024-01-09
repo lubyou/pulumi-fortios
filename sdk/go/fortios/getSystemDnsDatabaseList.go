@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemDnsDatabaseList(ctx *pulumi.Context, args *GetSystemDnsDatabaseListArgs, opts ...pulumi.InvokeOption) (*GetSystemDnsDatabaseListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemDnsDatabaseListResultOutput) ToGetSystemDnsDatabaseListResultOu
 
 func (o GetSystemDnsDatabaseListResultOutput) ToGetSystemDnsDatabaseListResultOutputWithContext(ctx context.Context) GetSystemDnsDatabaseListResultOutput {
 	return o
-}
-
-func (o GetSystemDnsDatabaseListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemDnsDatabaseListResult] {
-	return pulumix.Output[GetSystemDnsDatabaseListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemDnsDatabaseListResultOutput) Filter() pulumi.StringPtrOutput {

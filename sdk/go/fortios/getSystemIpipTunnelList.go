@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemIpipTunnelList(ctx *pulumi.Context, args *GetSystemIpipTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemIpipTunnelListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemIpipTunnelListResultOutput) ToGetSystemIpipTunnelListResultOutp
 
 func (o GetSystemIpipTunnelListResultOutput) ToGetSystemIpipTunnelListResultOutputWithContext(ctx context.Context) GetSystemIpipTunnelListResultOutput {
 	return o
-}
-
-func (o GetSystemIpipTunnelListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemIpipTunnelListResult] {
-	return pulumix.Output[GetSystemIpipTunnelListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemIpipTunnelListResultOutput) Filter() pulumi.StringPtrOutput {

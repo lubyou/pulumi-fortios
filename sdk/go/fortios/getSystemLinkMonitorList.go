@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemLinkMonitorList(ctx *pulumi.Context, args *GetSystemLinkMonitorListArgs, opts ...pulumi.InvokeOption) (*GetSystemLinkMonitorListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemLinkMonitorListResultOutput) ToGetSystemLinkMonitorListResultOu
 
 func (o GetSystemLinkMonitorListResultOutput) ToGetSystemLinkMonitorListResultOutputWithContext(ctx context.Context) GetSystemLinkMonitorListResultOutput {
 	return o
-}
-
-func (o GetSystemLinkMonitorListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemLinkMonitorListResult] {
-	return pulumix.Output[GetSystemLinkMonitorListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemLinkMonitorListResultOutput) Filter() pulumi.StringPtrOutput {

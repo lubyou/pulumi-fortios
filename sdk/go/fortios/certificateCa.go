@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CertificateCa struct {
@@ -165,12 +164,6 @@ func (i *CertificateCa) ToCertificateCaOutputWithContext(ctx context.Context) Ce
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaOutput)
 }
 
-func (i *CertificateCa) ToOutput(ctx context.Context) pulumix.Output[*CertificateCa] {
-	return pulumix.Output[*CertificateCa]{
-		OutputState: i.ToCertificateCaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CertificateCaArrayInput is an input type that accepts CertificateCaArray and CertificateCaArrayOutput values.
 // You can construct a concrete instance of `CertificateCaArrayInput` via:
 //
@@ -194,12 +187,6 @@ func (i CertificateCaArray) ToCertificateCaArrayOutput() CertificateCaArrayOutpu
 
 func (i CertificateCaArray) ToCertificateCaArrayOutputWithContext(ctx context.Context) CertificateCaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaArrayOutput)
-}
-
-func (i CertificateCaArray) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateCa] {
-	return pulumix.Output[[]*CertificateCa]{
-		OutputState: i.ToCertificateCaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CertificateCaMapInput is an input type that accepts CertificateCaMap and CertificateCaMapOutput values.
@@ -227,12 +214,6 @@ func (i CertificateCaMap) ToCertificateCaMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaMapOutput)
 }
 
-func (i CertificateCaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateCa] {
-	return pulumix.Output[map[string]*CertificateCa]{
-		OutputState: i.ToCertificateCaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CertificateCaOutput struct{ *pulumi.OutputState }
 
 func (CertificateCaOutput) ElementType() reflect.Type {
@@ -245,12 +226,6 @@ func (o CertificateCaOutput) ToCertificateCaOutput() CertificateCaOutput {
 
 func (o CertificateCaOutput) ToCertificateCaOutputWithContext(ctx context.Context) CertificateCaOutput {
 	return o
-}
-
-func (o CertificateCaOutput) ToOutput(ctx context.Context) pulumix.Output[*CertificateCa] {
-	return pulumix.Output[*CertificateCa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CertificateCaOutput) AutoUpdateDays() pulumi.IntOutput {
@@ -327,12 +302,6 @@ func (o CertificateCaArrayOutput) ToCertificateCaArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o CertificateCaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateCa] {
-	return pulumix.Output[[]*CertificateCa]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CertificateCaArrayOutput) Index(i pulumi.IntInput) CertificateCaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateCa {
 		return vs[0].([]*CertificateCa)[vs[1].(int)]
@@ -351,12 +320,6 @@ func (o CertificateCaMapOutput) ToCertificateCaMapOutput() CertificateCaMapOutpu
 
 func (o CertificateCaMapOutput) ToCertificateCaMapOutputWithContext(ctx context.Context) CertificateCaMapOutput {
 	return o
-}
-
-func (o CertificateCaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateCa] {
-	return pulumix.Output[map[string]*CertificateCa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CertificateCaMapOutput) MapIndex(k pulumi.StringInput) CertificateCaOutput {

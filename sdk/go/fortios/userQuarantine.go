@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserQuarantine struct {
@@ -121,12 +120,6 @@ func (i *UserQuarantine) ToUserQuarantineOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineOutput)
 }
 
-func (i *UserQuarantine) ToOutput(ctx context.Context) pulumix.Output[*UserQuarantine] {
-	return pulumix.Output[*UserQuarantine]{
-		OutputState: i.ToUserQuarantineOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserQuarantineArrayInput is an input type that accepts UserQuarantineArray and UserQuarantineArrayOutput values.
 // You can construct a concrete instance of `UserQuarantineArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i UserQuarantineArray) ToUserQuarantineArrayOutput() UserQuarantineArrayOu
 
 func (i UserQuarantineArray) ToUserQuarantineArrayOutputWithContext(ctx context.Context) UserQuarantineArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineArrayOutput)
-}
-
-func (i UserQuarantineArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserQuarantine] {
-	return pulumix.Output[[]*UserQuarantine]{
-		OutputState: i.ToUserQuarantineArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserQuarantineMapInput is an input type that accepts UserQuarantineMap and UserQuarantineMapOutput values.
@@ -183,12 +170,6 @@ func (i UserQuarantineMap) ToUserQuarantineMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineMapOutput)
 }
 
-func (i UserQuarantineMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserQuarantine] {
-	return pulumix.Output[map[string]*UserQuarantine]{
-		OutputState: i.ToUserQuarantineMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserQuarantineOutput struct{ *pulumi.OutputState }
 
 func (UserQuarantineOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o UserQuarantineOutput) ToUserQuarantineOutput() UserQuarantineOutput {
 
 func (o UserQuarantineOutput) ToUserQuarantineOutputWithContext(ctx context.Context) UserQuarantineOutput {
 	return o
-}
-
-func (o UserQuarantineOutput) ToOutput(ctx context.Context) pulumix.Output[*UserQuarantine] {
-	return pulumix.Output[*UserQuarantine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserQuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -251,12 +226,6 @@ func (o UserQuarantineArrayOutput) ToUserQuarantineArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o UserQuarantineArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserQuarantine] {
-	return pulumix.Output[[]*UserQuarantine]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserQuarantineArrayOutput) Index(i pulumi.IntInput) UserQuarantineOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserQuarantine {
 		return vs[0].([]*UserQuarantine)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o UserQuarantineMapOutput) ToUserQuarantineMapOutput() UserQuarantineMapOu
 
 func (o UserQuarantineMapOutput) ToUserQuarantineMapOutputWithContext(ctx context.Context) UserQuarantineMapOutput {
 	return o
-}
-
-func (o UserQuarantineMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserQuarantine] {
-	return pulumix.Output[map[string]*UserQuarantine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserQuarantineMapOutput) MapIndex(k pulumi.StringInput) UserQuarantineOutput {

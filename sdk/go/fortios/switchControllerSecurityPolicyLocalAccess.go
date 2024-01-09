@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSecurityPolicyLocalAccess struct {
@@ -106,12 +105,6 @@ func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPo
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessOutput)
 }
 
-func (i *SwitchControllerSecurityPolicyLocalAccess) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSecurityPolicyLocalAccess] {
-	return pulumix.Output[*SwitchControllerSecurityPolicyLocalAccess]{
-		OutputState: i.ToSwitchControllerSecurityPolicyLocalAccessOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerSecurityPolicyLocalAccessArrayInput is an input type that accepts SwitchControllerSecurityPolicyLocalAccessArray and SwitchControllerSecurityPolicyLocalAccessArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicyLocalAccessArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i SwitchControllerSecurityPolicyLocalAccessArray) ToSwitchControllerSecuri
 
 func (i SwitchControllerSecurityPolicyLocalAccessArray) ToSwitchControllerSecurityPolicyLocalAccessArrayOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessArrayOutput)
-}
-
-func (i SwitchControllerSecurityPolicyLocalAccessArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSecurityPolicyLocalAccess] {
-	return pulumix.Output[[]*SwitchControllerSecurityPolicyLocalAccess]{
-		OutputState: i.ToSwitchControllerSecurityPolicyLocalAccessArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerSecurityPolicyLocalAccessMapInput is an input type that accepts SwitchControllerSecurityPolicyLocalAccessMap and SwitchControllerSecurityPolicyLocalAccessMapOutput values.
@@ -168,12 +155,6 @@ func (i SwitchControllerSecurityPolicyLocalAccessMap) ToSwitchControllerSecurity
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessMapOutput)
 }
 
-func (i SwitchControllerSecurityPolicyLocalAccessMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSecurityPolicyLocalAccess] {
-	return pulumix.Output[map[string]*SwitchControllerSecurityPolicyLocalAccess]{
-		OutputState: i.ToSwitchControllerSecurityPolicyLocalAccessMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerSecurityPolicyLocalAccessOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyLocalAccessOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecur
 
 func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecurityPolicyLocalAccessOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessOutput {
 	return o
-}
-
-func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSecurityPolicyLocalAccess] {
-	return pulumix.Output[*SwitchControllerSecurityPolicyLocalAccess]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessOutput) InternalAllowaccess() pulumi.StringOutput {
@@ -224,12 +199,6 @@ func (o SwitchControllerSecurityPolicyLocalAccessArrayOutput) ToSwitchController
 	return o
 }
 
-func (o SwitchControllerSecurityPolicyLocalAccessArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSecurityPolicyLocalAccess] {
-	return pulumix.Output[[]*SwitchControllerSecurityPolicyLocalAccess]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerSecurityPolicyLocalAccessArrayOutput) Index(i pulumi.IntInput) SwitchControllerSecurityPolicyLocalAccessOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicyLocalAccess {
 		return vs[0].([]*SwitchControllerSecurityPolicyLocalAccess)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) ToSwitchControllerSe
 
 func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) ToSwitchControllerSecurityPolicyLocalAccessMapOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessMapOutput {
 	return o
-}
-
-func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSecurityPolicyLocalAccess] {
-	return pulumix.Output[map[string]*SwitchControllerSecurityPolicyLocalAccess]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSecurityPolicyLocalAccessOutput {

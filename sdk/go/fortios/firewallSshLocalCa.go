@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSshLocalCa struct {
@@ -138,12 +137,6 @@ func (i *FirewallSshLocalCa) ToFirewallSshLocalCaOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalCaOutput)
 }
 
-func (i *FirewallSshLocalCa) ToOutput(ctx context.Context) pulumix.Output[*FirewallSshLocalCa] {
-	return pulumix.Output[*FirewallSshLocalCa]{
-		OutputState: i.ToFirewallSshLocalCaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallSshLocalCaArrayInput is an input type that accepts FirewallSshLocalCaArray and FirewallSshLocalCaArrayOutput values.
 // You can construct a concrete instance of `FirewallSshLocalCaArrayInput` via:
 //
@@ -167,12 +160,6 @@ func (i FirewallSshLocalCaArray) ToFirewallSshLocalCaArrayOutput() FirewallSshLo
 
 func (i FirewallSshLocalCaArray) ToFirewallSshLocalCaArrayOutputWithContext(ctx context.Context) FirewallSshLocalCaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalCaArrayOutput)
-}
-
-func (i FirewallSshLocalCaArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSshLocalCa] {
-	return pulumix.Output[[]*FirewallSshLocalCa]{
-		OutputState: i.ToFirewallSshLocalCaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallSshLocalCaMapInput is an input type that accepts FirewallSshLocalCaMap and FirewallSshLocalCaMapOutput values.
@@ -200,12 +187,6 @@ func (i FirewallSshLocalCaMap) ToFirewallSshLocalCaMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalCaMapOutput)
 }
 
-func (i FirewallSshLocalCaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSshLocalCa] {
-	return pulumix.Output[map[string]*FirewallSshLocalCa]{
-		OutputState: i.ToFirewallSshLocalCaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallSshLocalCaOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshLocalCaOutput) ElementType() reflect.Type {
@@ -218,12 +199,6 @@ func (o FirewallSshLocalCaOutput) ToFirewallSshLocalCaOutput() FirewallSshLocalC
 
 func (o FirewallSshLocalCaOutput) ToFirewallSshLocalCaOutputWithContext(ctx context.Context) FirewallSshLocalCaOutput {
 	return o
-}
-
-func (o FirewallSshLocalCaOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSshLocalCa] {
-	return pulumix.Output[*FirewallSshLocalCa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSshLocalCaOutput) Name() pulumi.StringOutput {
@@ -264,12 +239,6 @@ func (o FirewallSshLocalCaArrayOutput) ToFirewallSshLocalCaArrayOutputWithContex
 	return o
 }
 
-func (o FirewallSshLocalCaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSshLocalCa] {
-	return pulumix.Output[[]*FirewallSshLocalCa]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallSshLocalCaArrayOutput) Index(i pulumi.IntInput) FirewallSshLocalCaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSshLocalCa {
 		return vs[0].([]*FirewallSshLocalCa)[vs[1].(int)]
@@ -288,12 +257,6 @@ func (o FirewallSshLocalCaMapOutput) ToFirewallSshLocalCaMapOutput() FirewallSsh
 
 func (o FirewallSshLocalCaMapOutput) ToFirewallSshLocalCaMapOutputWithContext(ctx context.Context) FirewallSshLocalCaMapOutput {
 	return o
-}
-
-func (o FirewallSshLocalCaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSshLocalCa] {
-	return pulumix.Output[map[string]*FirewallSshLocalCa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSshLocalCaMapOutput) MapIndex(k pulumi.StringInput) FirewallSshLocalCaOutput {

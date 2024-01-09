@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemNtp struct {
@@ -168,12 +167,6 @@ func (i *SystemNtp) ToSystemNtpOutputWithContext(ctx context.Context) SystemNtpO
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpOutput)
 }
 
-func (i *SystemNtp) ToOutput(ctx context.Context) pulumix.Output[*SystemNtp] {
-	return pulumix.Output[*SystemNtp]{
-		OutputState: i.ToSystemNtpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemNtpArrayInput is an input type that accepts SystemNtpArray and SystemNtpArrayOutput values.
 // You can construct a concrete instance of `SystemNtpArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i SystemNtpArray) ToSystemNtpArrayOutput() SystemNtpArrayOutput {
 
 func (i SystemNtpArray) ToSystemNtpArrayOutputWithContext(ctx context.Context) SystemNtpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpArrayOutput)
-}
-
-func (i SystemNtpArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNtp] {
-	return pulumix.Output[[]*SystemNtp]{
-		OutputState: i.ToSystemNtpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemNtpMapInput is an input type that accepts SystemNtpMap and SystemNtpMapOutput values.
@@ -230,12 +217,6 @@ func (i SystemNtpMap) ToSystemNtpMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpMapOutput)
 }
 
-func (i SystemNtpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNtp] {
-	return pulumix.Output[map[string]*SystemNtp]{
-		OutputState: i.ToSystemNtpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemNtpOutput struct{ *pulumi.OutputState }
 
 func (SystemNtpOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o SystemNtpOutput) ToSystemNtpOutput() SystemNtpOutput {
 
 func (o SystemNtpOutput) ToSystemNtpOutputWithContext(ctx context.Context) SystemNtpOutput {
 	return o
-}
-
-func (o SystemNtpOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemNtp] {
-	return pulumix.Output[*SystemNtp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemNtpOutput) Authentication() pulumi.StringOutput {
@@ -330,12 +305,6 @@ func (o SystemNtpArrayOutput) ToSystemNtpArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemNtpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNtp] {
-	return pulumix.Output[[]*SystemNtp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemNtpArrayOutput) Index(i pulumi.IntInput) SystemNtpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNtp {
 		return vs[0].([]*SystemNtp)[vs[1].(int)]
@@ -354,12 +323,6 @@ func (o SystemNtpMapOutput) ToSystemNtpMapOutput() SystemNtpMapOutput {
 
 func (o SystemNtpMapOutput) ToSystemNtpMapOutputWithContext(ctx context.Context) SystemNtpMapOutput {
 	return o
-}
-
-func (o SystemNtpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNtp] {
-	return pulumix.Output[map[string]*SystemNtp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemNtpMapOutput) MapIndex(k pulumi.StringInput) SystemNtpOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemVdomExceptionList(ctx *pulumi.Context, args *GetSystemVdomExceptionListArgs, opts ...pulumi.InvokeOption) (*GetSystemVdomExceptionListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemVdomExceptionListResultOutput) ToGetSystemVdomExceptionListResu
 
 func (o GetSystemVdomExceptionListResultOutput) ToGetSystemVdomExceptionListResultOutputWithContext(ctx context.Context) GetSystemVdomExceptionListResultOutput {
 	return o
-}
-
-func (o GetSystemVdomExceptionListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemVdomExceptionListResult] {
-	return pulumix.Output[GetSystemVdomExceptionListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemVdomExceptionListResultOutput) Filter() pulumi.StringPtrOutput {

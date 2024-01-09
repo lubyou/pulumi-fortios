@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemNetworkVisibility(ctx *pulumi.Context, args *LookupSystemNetworkVisibilityArgs, opts ...pulumi.InvokeOption) (*LookupSystemNetworkVisibilityResult, error) {
@@ -75,12 +74,6 @@ func (o LookupSystemNetworkVisibilityResultOutput) ToLookupSystemNetworkVisibili
 
 func (o LookupSystemNetworkVisibilityResultOutput) ToLookupSystemNetworkVisibilityResultOutputWithContext(ctx context.Context) LookupSystemNetworkVisibilityResultOutput {
 	return o
-}
-
-func (o LookupSystemNetworkVisibilityResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemNetworkVisibilityResult] {
-	return pulumix.Output[LookupSystemNetworkVisibilityResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemNetworkVisibilityResultOutput) DestinationHostnameVisibility() pulumi.StringOutput {

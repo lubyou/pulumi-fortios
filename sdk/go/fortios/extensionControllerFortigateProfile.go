@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ExtensionControllerFortigateProfile struct {
@@ -116,12 +115,6 @@ func (i *ExtensionControllerFortigateProfile) ToExtensionControllerFortigateProf
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerFortigateProfileOutput)
 }
 
-func (i *ExtensionControllerFortigateProfile) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerFortigateProfile] {
-	return pulumix.Output[*ExtensionControllerFortigateProfile]{
-		OutputState: i.ToExtensionControllerFortigateProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExtensionControllerFortigateProfileArrayInput is an input type that accepts ExtensionControllerFortigateProfileArray and ExtensionControllerFortigateProfileArrayOutput values.
 // You can construct a concrete instance of `ExtensionControllerFortigateProfileArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i ExtensionControllerFortigateProfileArray) ToExtensionControllerFortigate
 
 func (i ExtensionControllerFortigateProfileArray) ToExtensionControllerFortigateProfileArrayOutputWithContext(ctx context.Context) ExtensionControllerFortigateProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerFortigateProfileArrayOutput)
-}
-
-func (i ExtensionControllerFortigateProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerFortigateProfile] {
-	return pulumix.Output[[]*ExtensionControllerFortigateProfile]{
-		OutputState: i.ToExtensionControllerFortigateProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExtensionControllerFortigateProfileMapInput is an input type that accepts ExtensionControllerFortigateProfileMap and ExtensionControllerFortigateProfileMapOutput values.
@@ -178,12 +165,6 @@ func (i ExtensionControllerFortigateProfileMap) ToExtensionControllerFortigatePr
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerFortigateProfileMapOutput)
 }
 
-func (i ExtensionControllerFortigateProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerFortigateProfile] {
-	return pulumix.Output[map[string]*ExtensionControllerFortigateProfile]{
-		OutputState: i.ToExtensionControllerFortigateProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExtensionControllerFortigateProfileOutput struct{ *pulumi.OutputState }
 
 func (ExtensionControllerFortigateProfileOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o ExtensionControllerFortigateProfileOutput) ToExtensionControllerFortigat
 
 func (o ExtensionControllerFortigateProfileOutput) ToExtensionControllerFortigateProfileOutputWithContext(ctx context.Context) ExtensionControllerFortigateProfileOutput {
 	return o
-}
-
-func (o ExtensionControllerFortigateProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerFortigateProfile] {
-	return pulumix.Output[*ExtensionControllerFortigateProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerFortigateProfileOutput) Extension() pulumi.StringOutput {
@@ -244,12 +219,6 @@ func (o ExtensionControllerFortigateProfileArrayOutput) ToExtensionControllerFor
 	return o
 }
 
-func (o ExtensionControllerFortigateProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerFortigateProfile] {
-	return pulumix.Output[[]*ExtensionControllerFortigateProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExtensionControllerFortigateProfileArrayOutput) Index(i pulumi.IntInput) ExtensionControllerFortigateProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtensionControllerFortigateProfile {
 		return vs[0].([]*ExtensionControllerFortigateProfile)[vs[1].(int)]
@@ -268,12 +237,6 @@ func (o ExtensionControllerFortigateProfileMapOutput) ToExtensionControllerForti
 
 func (o ExtensionControllerFortigateProfileMapOutput) ToExtensionControllerFortigateProfileMapOutputWithContext(ctx context.Context) ExtensionControllerFortigateProfileMapOutput {
 	return o
-}
-
-func (o ExtensionControllerFortigateProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerFortigateProfile] {
-	return pulumix.Output[map[string]*ExtensionControllerFortigateProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerFortigateProfileMapOutput) MapIndex(k pulumi.StringInput) ExtensionControllerFortigateProfileOutput {

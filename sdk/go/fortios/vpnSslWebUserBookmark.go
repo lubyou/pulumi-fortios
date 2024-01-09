@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslWebUserBookmark struct {
@@ -116,12 +115,6 @@ func (i *VpnSslWebUserBookmark) ToVpnSslWebUserBookmarkOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkOutput)
 }
 
-func (i *VpnSslWebUserBookmark) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebUserBookmark] {
-	return pulumix.Output[*VpnSslWebUserBookmark]{
-		OutputState: i.ToVpnSslWebUserBookmarkOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnSslWebUserBookmarkArrayInput is an input type that accepts VpnSslWebUserBookmarkArray and VpnSslWebUserBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserBookmarkArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i VpnSslWebUserBookmarkArray) ToVpnSslWebUserBookmarkArrayOutput() VpnSslW
 
 func (i VpnSslWebUserBookmarkArray) ToVpnSslWebUserBookmarkArrayOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkArrayOutput)
-}
-
-func (i VpnSslWebUserBookmarkArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebUserBookmark] {
-	return pulumix.Output[[]*VpnSslWebUserBookmark]{
-		OutputState: i.ToVpnSslWebUserBookmarkArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnSslWebUserBookmarkMapInput is an input type that accepts VpnSslWebUserBookmarkMap and VpnSslWebUserBookmarkMapOutput values.
@@ -178,12 +165,6 @@ func (i VpnSslWebUserBookmarkMap) ToVpnSslWebUserBookmarkMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkMapOutput)
 }
 
-func (i VpnSslWebUserBookmarkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebUserBookmark] {
-	return pulumix.Output[map[string]*VpnSslWebUserBookmark]{
-		OutputState: i.ToVpnSslWebUserBookmarkMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnSslWebUserBookmarkOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserBookmarkOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o VpnSslWebUserBookmarkOutput) ToVpnSslWebUserBookmarkOutput() VpnSslWebUs
 
 func (o VpnSslWebUserBookmarkOutput) ToVpnSslWebUserBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkOutput {
 	return o
-}
-
-func (o VpnSslWebUserBookmarkOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebUserBookmark] {
-	return pulumix.Output[*VpnSslWebUserBookmark]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebUserBookmarkOutput) Bookmarks() VpnSslWebUserBookmarkBookmarkArrayOutput {
@@ -242,12 +217,6 @@ func (o VpnSslWebUserBookmarkArrayOutput) ToVpnSslWebUserBookmarkArrayOutputWith
 	return o
 }
 
-func (o VpnSslWebUserBookmarkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebUserBookmark] {
-	return pulumix.Output[[]*VpnSslWebUserBookmark]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnSslWebUserBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserBookmarkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebUserBookmark {
 		return vs[0].([]*VpnSslWebUserBookmark)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o VpnSslWebUserBookmarkMapOutput) ToVpnSslWebUserBookmarkMapOutput() VpnSs
 
 func (o VpnSslWebUserBookmarkMapOutput) ToVpnSslWebUserBookmarkMapOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkMapOutput {
 	return o
-}
-
-func (o VpnSslWebUserBookmarkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebUserBookmark] {
-	return pulumix.Output[map[string]*VpnSslWebUserBookmark]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebUserBookmarkMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebUserBookmarkOutput {

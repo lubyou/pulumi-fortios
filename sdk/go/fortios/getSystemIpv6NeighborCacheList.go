@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemIpv6NeighborCacheList(ctx *pulumi.Context, args *GetSystemIpv6NeighborCacheListArgs, opts ...pulumi.InvokeOption) (*GetSystemIpv6NeighborCacheListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemIpv6NeighborCacheListResultOutput) ToGetSystemIpv6NeighborCache
 
 func (o GetSystemIpv6NeighborCacheListResultOutput) ToGetSystemIpv6NeighborCacheListResultOutputWithContext(ctx context.Context) GetSystemIpv6NeighborCacheListResultOutput {
 	return o
-}
-
-func (o GetSystemIpv6NeighborCacheListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemIpv6NeighborCacheListResult] {
-	return pulumix.Output[GetSystemIpv6NeighborCacheListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemIpv6NeighborCacheListResultOutput) Filter() pulumi.StringPtrOutput {

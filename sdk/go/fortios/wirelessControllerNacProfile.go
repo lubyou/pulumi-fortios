@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerNacProfile struct {
@@ -106,12 +105,6 @@ func (i *WirelessControllerNacProfile) ToWirelessControllerNacProfileOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerNacProfileOutput)
 }
 
-func (i *WirelessControllerNacProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerNacProfile] {
-	return pulumix.Output[*WirelessControllerNacProfile]{
-		OutputState: i.ToWirelessControllerNacProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerNacProfileArrayInput is an input type that accepts WirelessControllerNacProfileArray and WirelessControllerNacProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerNacProfileArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i WirelessControllerNacProfileArray) ToWirelessControllerNacProfileArrayOu
 
 func (i WirelessControllerNacProfileArray) ToWirelessControllerNacProfileArrayOutputWithContext(ctx context.Context) WirelessControllerNacProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerNacProfileArrayOutput)
-}
-
-func (i WirelessControllerNacProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerNacProfile] {
-	return pulumix.Output[[]*WirelessControllerNacProfile]{
-		OutputState: i.ToWirelessControllerNacProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerNacProfileMapInput is an input type that accepts WirelessControllerNacProfileMap and WirelessControllerNacProfileMapOutput values.
@@ -168,12 +155,6 @@ func (i WirelessControllerNacProfileMap) ToWirelessControllerNacProfileMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerNacProfileMapOutput)
 }
 
-func (i WirelessControllerNacProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerNacProfile] {
-	return pulumix.Output[map[string]*WirelessControllerNacProfile]{
-		OutputState: i.ToWirelessControllerNacProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerNacProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerNacProfileOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o WirelessControllerNacProfileOutput) ToWirelessControllerNacProfileOutput
 
 func (o WirelessControllerNacProfileOutput) ToWirelessControllerNacProfileOutputWithContext(ctx context.Context) WirelessControllerNacProfileOutput {
 	return o
-}
-
-func (o WirelessControllerNacProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerNacProfile] {
-	return pulumix.Output[*WirelessControllerNacProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerNacProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -224,12 +199,6 @@ func (o WirelessControllerNacProfileArrayOutput) ToWirelessControllerNacProfileA
 	return o
 }
 
-func (o WirelessControllerNacProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerNacProfile] {
-	return pulumix.Output[[]*WirelessControllerNacProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerNacProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerNacProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerNacProfile {
 		return vs[0].([]*WirelessControllerNacProfile)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o WirelessControllerNacProfileMapOutput) ToWirelessControllerNacProfileMap
 
 func (o WirelessControllerNacProfileMapOutput) ToWirelessControllerNacProfileMapOutputWithContext(ctx context.Context) WirelessControllerNacProfileMapOutput {
 	return o
-}
-
-func (o WirelessControllerNacProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerNacProfile] {
-	return pulumix.Output[map[string]*WirelessControllerNacProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerNacProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerNacProfileOutput {

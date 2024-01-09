@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemSdnConnector(ctx *pulumi.Context, args *LookupSystemSdnConnectorArgs, opts ...pulumi.InvokeOption) (*LookupSystemSdnConnectorResult, error) {
@@ -129,12 +128,6 @@ func (o LookupSystemSdnConnectorResultOutput) ToLookupSystemSdnConnectorResultOu
 
 func (o LookupSystemSdnConnectorResultOutput) ToLookupSystemSdnConnectorResultOutputWithContext(ctx context.Context) LookupSystemSdnConnectorResultOutput {
 	return o
-}
-
-func (o LookupSystemSdnConnectorResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemSdnConnectorResult] {
-	return pulumix.Output[LookupSystemSdnConnectorResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemSdnConnectorResultOutput) AccessKey() pulumi.StringOutput {

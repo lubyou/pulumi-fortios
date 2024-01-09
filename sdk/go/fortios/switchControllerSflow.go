@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSflow struct {
@@ -105,12 +104,6 @@ func (i *SwitchControllerSflow) ToSwitchControllerSflowOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSflowOutput)
 }
 
-func (i *SwitchControllerSflow) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSflow] {
-	return pulumix.Output[*SwitchControllerSflow]{
-		OutputState: i.ToSwitchControllerSflowOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerSflowArrayInput is an input type that accepts SwitchControllerSflowArray and SwitchControllerSflowArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSflowArrayInput` via:
 //
@@ -134,12 +127,6 @@ func (i SwitchControllerSflowArray) ToSwitchControllerSflowArrayOutput() SwitchC
 
 func (i SwitchControllerSflowArray) ToSwitchControllerSflowArrayOutputWithContext(ctx context.Context) SwitchControllerSflowArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSflowArrayOutput)
-}
-
-func (i SwitchControllerSflowArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSflow] {
-	return pulumix.Output[[]*SwitchControllerSflow]{
-		OutputState: i.ToSwitchControllerSflowArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerSflowMapInput is an input type that accepts SwitchControllerSflowMap and SwitchControllerSflowMapOutput values.
@@ -167,12 +154,6 @@ func (i SwitchControllerSflowMap) ToSwitchControllerSflowMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSflowMapOutput)
 }
 
-func (i SwitchControllerSflowMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSflow] {
-	return pulumix.Output[map[string]*SwitchControllerSflow]{
-		OutputState: i.ToSwitchControllerSflowMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerSflowOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSflowOutput) ElementType() reflect.Type {
@@ -185,12 +166,6 @@ func (o SwitchControllerSflowOutput) ToSwitchControllerSflowOutput() SwitchContr
 
 func (o SwitchControllerSflowOutput) ToSwitchControllerSflowOutputWithContext(ctx context.Context) SwitchControllerSflowOutput {
 	return o
-}
-
-func (o SwitchControllerSflowOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSflow] {
-	return pulumix.Output[*SwitchControllerSflow]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSflowOutput) CollectorIp() pulumi.StringOutput {
@@ -219,12 +194,6 @@ func (o SwitchControllerSflowArrayOutput) ToSwitchControllerSflowArrayOutputWith
 	return o
 }
 
-func (o SwitchControllerSflowArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSflow] {
-	return pulumix.Output[[]*SwitchControllerSflow]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerSflowArrayOutput) Index(i pulumi.IntInput) SwitchControllerSflowOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSflow {
 		return vs[0].([]*SwitchControllerSflow)[vs[1].(int)]
@@ -243,12 +212,6 @@ func (o SwitchControllerSflowMapOutput) ToSwitchControllerSflowMapOutput() Switc
 
 func (o SwitchControllerSflowMapOutput) ToSwitchControllerSflowMapOutputWithContext(ctx context.Context) SwitchControllerSflowMapOutput {
 	return o
-}
-
-func (o SwitchControllerSflowMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSflow] {
-	return pulumix.Output[map[string]*SwitchControllerSflow]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSflowMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSflowOutput {

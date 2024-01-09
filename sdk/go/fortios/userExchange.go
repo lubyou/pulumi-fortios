@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserExchange struct {
@@ -173,12 +172,6 @@ func (i *UserExchange) ToUserExchangeOutputWithContext(ctx context.Context) User
 	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeOutput)
 }
 
-func (i *UserExchange) ToOutput(ctx context.Context) pulumix.Output[*UserExchange] {
-	return pulumix.Output[*UserExchange]{
-		OutputState: i.ToUserExchangeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserExchangeArrayInput is an input type that accepts UserExchangeArray and UserExchangeArrayOutput values.
 // You can construct a concrete instance of `UserExchangeArrayInput` via:
 //
@@ -202,12 +195,6 @@ func (i UserExchangeArray) ToUserExchangeArrayOutput() UserExchangeArrayOutput {
 
 func (i UserExchangeArray) ToUserExchangeArrayOutputWithContext(ctx context.Context) UserExchangeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeArrayOutput)
-}
-
-func (i UserExchangeArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserExchange] {
-	return pulumix.Output[[]*UserExchange]{
-		OutputState: i.ToUserExchangeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserExchangeMapInput is an input type that accepts UserExchangeMap and UserExchangeMapOutput values.
@@ -235,12 +222,6 @@ func (i UserExchangeMap) ToUserExchangeMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeMapOutput)
 }
 
-func (i UserExchangeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserExchange] {
-	return pulumix.Output[map[string]*UserExchange]{
-		OutputState: i.ToUserExchangeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserExchangeOutput struct{ *pulumi.OutputState }
 
 func (UserExchangeOutput) ElementType() reflect.Type {
@@ -253,12 +234,6 @@ func (o UserExchangeOutput) ToUserExchangeOutput() UserExchangeOutput {
 
 func (o UserExchangeOutput) ToUserExchangeOutputWithContext(ctx context.Context) UserExchangeOutput {
 	return o
-}
-
-func (o UserExchangeOutput) ToOutput(ctx context.Context) pulumix.Output[*UserExchange] {
-	return pulumix.Output[*UserExchange]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserExchangeOutput) AuthLevel() pulumi.StringOutput {
@@ -339,12 +314,6 @@ func (o UserExchangeArrayOutput) ToUserExchangeArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o UserExchangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserExchange] {
-	return pulumix.Output[[]*UserExchange]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserExchangeArrayOutput) Index(i pulumi.IntInput) UserExchangeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserExchange {
 		return vs[0].([]*UserExchange)[vs[1].(int)]
@@ -363,12 +332,6 @@ func (o UserExchangeMapOutput) ToUserExchangeMapOutput() UserExchangeMapOutput {
 
 func (o UserExchangeMapOutput) ToUserExchangeMapOutputWithContext(ctx context.Context) UserExchangeMapOutput {
 	return o
-}
-
-func (o UserExchangeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserExchange] {
-	return pulumix.Output[map[string]*UserExchange]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserExchangeMapOutput) MapIndex(k pulumi.StringInput) UserExchangeOutput {

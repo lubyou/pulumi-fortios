@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemTosBasedPriority(ctx *pulumi.Context, args *LookupSystemTosBasedPriorityArgs, opts ...pulumi.InvokeOption) (*LookupSystemTosBasedPriorityResult, error) {
@@ -74,12 +73,6 @@ func (o LookupSystemTosBasedPriorityResultOutput) ToLookupSystemTosBasedPriority
 
 func (o LookupSystemTosBasedPriorityResultOutput) ToLookupSystemTosBasedPriorityResultOutputWithContext(ctx context.Context) LookupSystemTosBasedPriorityResultOutput {
 	return o
-}
-
-func (o LookupSystemTosBasedPriorityResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemTosBasedPriorityResult] {
-	return pulumix.Output[LookupSystemTosBasedPriorityResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemTosBasedPriorityResultOutput) Fosid() pulumi.IntOutput {

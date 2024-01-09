@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSecurityPolicyCaptivePortal struct {
@@ -106,12 +105,6 @@ func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurity
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalOutput)
 }
 
-func (i *SwitchControllerSecurityPolicyCaptivePortal) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSecurityPolicyCaptivePortal] {
-	return pulumix.Output[*SwitchControllerSecurityPolicyCaptivePortal]{
-		OutputState: i.ToSwitchControllerSecurityPolicyCaptivePortalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerSecurityPolicyCaptivePortalArrayInput is an input type that accepts SwitchControllerSecurityPolicyCaptivePortalArray and SwitchControllerSecurityPolicyCaptivePortalArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicyCaptivePortalArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i SwitchControllerSecurityPolicyCaptivePortalArray) ToSwitchControllerSecu
 
 func (i SwitchControllerSecurityPolicyCaptivePortalArray) ToSwitchControllerSecurityPolicyCaptivePortalArrayOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalArrayOutput)
-}
-
-func (i SwitchControllerSecurityPolicyCaptivePortalArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSecurityPolicyCaptivePortal] {
-	return pulumix.Output[[]*SwitchControllerSecurityPolicyCaptivePortal]{
-		OutputState: i.ToSwitchControllerSecurityPolicyCaptivePortalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerSecurityPolicyCaptivePortalMapInput is an input type that accepts SwitchControllerSecurityPolicyCaptivePortalMap and SwitchControllerSecurityPolicyCaptivePortalMapOutput values.
@@ -168,12 +155,6 @@ func (i SwitchControllerSecurityPolicyCaptivePortalMap) ToSwitchControllerSecuri
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalMapOutput)
 }
 
-func (i SwitchControllerSecurityPolicyCaptivePortalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSecurityPolicyCaptivePortal] {
-	return pulumix.Output[map[string]*SwitchControllerSecurityPolicyCaptivePortal]{
-		OutputState: i.ToSwitchControllerSecurityPolicyCaptivePortalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerSecurityPolicyCaptivePortalOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyCaptivePortalOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSec
 
 func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSecurityPolicyCaptivePortalOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalOutput {
 	return o
-}
-
-func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSecurityPolicyCaptivePortal] {
-	return pulumix.Output[*SwitchControllerSecurityPolicyCaptivePortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalOutput) Name() pulumi.StringOutput {
@@ -224,12 +199,6 @@ func (o SwitchControllerSecurityPolicyCaptivePortalArrayOutput) ToSwitchControll
 	return o
 }
 
-func (o SwitchControllerSecurityPolicyCaptivePortalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSecurityPolicyCaptivePortal] {
-	return pulumix.Output[[]*SwitchControllerSecurityPolicyCaptivePortal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerSecurityPolicyCaptivePortalArrayOutput) Index(i pulumi.IntInput) SwitchControllerSecurityPolicyCaptivePortalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicyCaptivePortal {
 		return vs[0].([]*SwitchControllerSecurityPolicyCaptivePortal)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) ToSwitchController
 
 func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) ToSwitchControllerSecurityPolicyCaptivePortalMapOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalMapOutput {
 	return o
-}
-
-func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSecurityPolicyCaptivePortal] {
-	return pulumix.Output[map[string]*SwitchControllerSecurityPolicyCaptivePortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSecurityPolicyCaptivePortalOutput {

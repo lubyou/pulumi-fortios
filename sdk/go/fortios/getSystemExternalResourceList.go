@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemExternalResourceList(ctx *pulumi.Context, args *GetSystemExternalResourceListArgs, opts ...pulumi.InvokeOption) (*GetSystemExternalResourceListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemExternalResourceListResultOutput) ToGetSystemExternalResourceLi
 
 func (o GetSystemExternalResourceListResultOutput) ToGetSystemExternalResourceListResultOutputWithContext(ctx context.Context) GetSystemExternalResourceListResultOutput {
 	return o
-}
-
-func (o GetSystemExternalResourceListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemExternalResourceListResult] {
-	return pulumix.Output[GetSystemExternalResourceListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemExternalResourceListResultOutput) Filter() pulumi.StringPtrOutput {

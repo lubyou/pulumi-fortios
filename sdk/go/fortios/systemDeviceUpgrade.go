@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDeviceUpgrade struct {
@@ -136,12 +135,6 @@ func (i *SystemDeviceUpgrade) ToSystemDeviceUpgradeOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDeviceUpgradeOutput)
 }
 
-func (i *SystemDeviceUpgrade) ToOutput(ctx context.Context) pulumix.Output[*SystemDeviceUpgrade] {
-	return pulumix.Output[*SystemDeviceUpgrade]{
-		OutputState: i.ToSystemDeviceUpgradeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemDeviceUpgradeArrayInput is an input type that accepts SystemDeviceUpgradeArray and SystemDeviceUpgradeArrayOutput values.
 // You can construct a concrete instance of `SystemDeviceUpgradeArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i SystemDeviceUpgradeArray) ToSystemDeviceUpgradeArrayOutput() SystemDevic
 
 func (i SystemDeviceUpgradeArray) ToSystemDeviceUpgradeArrayOutputWithContext(ctx context.Context) SystemDeviceUpgradeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDeviceUpgradeArrayOutput)
-}
-
-func (i SystemDeviceUpgradeArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDeviceUpgrade] {
-	return pulumix.Output[[]*SystemDeviceUpgrade]{
-		OutputState: i.ToSystemDeviceUpgradeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemDeviceUpgradeMapInput is an input type that accepts SystemDeviceUpgradeMap and SystemDeviceUpgradeMapOutput values.
@@ -198,12 +185,6 @@ func (i SystemDeviceUpgradeMap) ToSystemDeviceUpgradeMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDeviceUpgradeMapOutput)
 }
 
-func (i SystemDeviceUpgradeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDeviceUpgrade] {
-	return pulumix.Output[map[string]*SystemDeviceUpgrade]{
-		OutputState: i.ToSystemDeviceUpgradeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemDeviceUpgradeOutput struct{ *pulumi.OutputState }
 
 func (SystemDeviceUpgradeOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o SystemDeviceUpgradeOutput) ToSystemDeviceUpgradeOutput() SystemDeviceUpg
 
 func (o SystemDeviceUpgradeOutput) ToSystemDeviceUpgradeOutputWithContext(ctx context.Context) SystemDeviceUpgradeOutput {
 	return o
-}
-
-func (o SystemDeviceUpgradeOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDeviceUpgrade] {
-	return pulumix.Output[*SystemDeviceUpgrade]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDeviceUpgradeOutput) DeviceType() pulumi.StringOutput {
@@ -278,12 +253,6 @@ func (o SystemDeviceUpgradeArrayOutput) ToSystemDeviceUpgradeArrayOutputWithCont
 	return o
 }
 
-func (o SystemDeviceUpgradeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDeviceUpgrade] {
-	return pulumix.Output[[]*SystemDeviceUpgrade]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemDeviceUpgradeArrayOutput) Index(i pulumi.IntInput) SystemDeviceUpgradeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDeviceUpgrade {
 		return vs[0].([]*SystemDeviceUpgrade)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o SystemDeviceUpgradeMapOutput) ToSystemDeviceUpgradeMapOutput() SystemDev
 
 func (o SystemDeviceUpgradeMapOutput) ToSystemDeviceUpgradeMapOutputWithContext(ctx context.Context) SystemDeviceUpgradeMapOutput {
 	return o
-}
-
-func (o SystemDeviceUpgradeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDeviceUpgrade] {
-	return pulumix.Output[map[string]*SystemDeviceUpgrade]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDeviceUpgradeMapOutput) MapIndex(k pulumi.StringInput) SystemDeviceUpgradeOutput {

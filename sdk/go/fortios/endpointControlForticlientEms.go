@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlForticlientEms struct {
@@ -158,12 +157,6 @@ func (i *EndpointControlForticlientEms) ToEndpointControlForticlientEmsOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlForticlientEmsOutput)
 }
 
-func (i *EndpointControlForticlientEms) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlForticlientEms] {
-	return pulumix.Output[*EndpointControlForticlientEms]{
-		OutputState: i.ToEndpointControlForticlientEmsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EndpointControlForticlientEmsArrayInput is an input type that accepts EndpointControlForticlientEmsArray and EndpointControlForticlientEmsArrayOutput values.
 // You can construct a concrete instance of `EndpointControlForticlientEmsArrayInput` via:
 //
@@ -187,12 +180,6 @@ func (i EndpointControlForticlientEmsArray) ToEndpointControlForticlientEmsArray
 
 func (i EndpointControlForticlientEmsArray) ToEndpointControlForticlientEmsArrayOutputWithContext(ctx context.Context) EndpointControlForticlientEmsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlForticlientEmsArrayOutput)
-}
-
-func (i EndpointControlForticlientEmsArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlForticlientEms] {
-	return pulumix.Output[[]*EndpointControlForticlientEms]{
-		OutputState: i.ToEndpointControlForticlientEmsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EndpointControlForticlientEmsMapInput is an input type that accepts EndpointControlForticlientEmsMap and EndpointControlForticlientEmsMapOutput values.
@@ -220,12 +207,6 @@ func (i EndpointControlForticlientEmsMap) ToEndpointControlForticlientEmsMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlForticlientEmsMapOutput)
 }
 
-func (i EndpointControlForticlientEmsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlForticlientEms] {
-	return pulumix.Output[map[string]*EndpointControlForticlientEms]{
-		OutputState: i.ToEndpointControlForticlientEmsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EndpointControlForticlientEmsOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlForticlientEmsOutput) ElementType() reflect.Type {
@@ -238,12 +219,6 @@ func (o EndpointControlForticlientEmsOutput) ToEndpointControlForticlientEmsOutp
 
 func (o EndpointControlForticlientEmsOutput) ToEndpointControlForticlientEmsOutputWithContext(ctx context.Context) EndpointControlForticlientEmsOutput {
 	return o
-}
-
-func (o EndpointControlForticlientEmsOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlForticlientEms] {
-	return pulumix.Output[*EndpointControlForticlientEms]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointControlForticlientEmsOutput) Address() pulumi.StringOutput {
@@ -304,12 +279,6 @@ func (o EndpointControlForticlientEmsArrayOutput) ToEndpointControlForticlientEm
 	return o
 }
 
-func (o EndpointControlForticlientEmsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlForticlientEms] {
-	return pulumix.Output[[]*EndpointControlForticlientEms]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EndpointControlForticlientEmsArrayOutput) Index(i pulumi.IntInput) EndpointControlForticlientEmsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlForticlientEms {
 		return vs[0].([]*EndpointControlForticlientEms)[vs[1].(int)]
@@ -328,12 +297,6 @@ func (o EndpointControlForticlientEmsMapOutput) ToEndpointControlForticlientEmsM
 
 func (o EndpointControlForticlientEmsMapOutput) ToEndpointControlForticlientEmsMapOutputWithContext(ctx context.Context) EndpointControlForticlientEmsMapOutput {
 	return o
-}
-
-func (o EndpointControlForticlientEmsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlForticlientEms] {
-	return pulumix.Output[map[string]*EndpointControlForticlientEms]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointControlForticlientEmsMapOutput) MapIndex(k pulumi.StringInput) EndpointControlForticlientEmsOutput {

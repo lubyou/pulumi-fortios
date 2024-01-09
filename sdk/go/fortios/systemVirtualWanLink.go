@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVirtualWanLink struct {
@@ -161,12 +160,6 @@ func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkOutput)
 }
 
-func (i *SystemVirtualWanLink) ToOutput(ctx context.Context) pulumix.Output[*SystemVirtualWanLink] {
-	return pulumix.Output[*SystemVirtualWanLink]{
-		OutputState: i.ToSystemVirtualWanLinkOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemVirtualWanLinkArrayInput is an input type that accepts SystemVirtualWanLinkArray and SystemVirtualWanLinkArrayOutput values.
 // You can construct a concrete instance of `SystemVirtualWanLinkArrayInput` via:
 //
@@ -190,12 +183,6 @@ func (i SystemVirtualWanLinkArray) ToSystemVirtualWanLinkArrayOutput() SystemVir
 
 func (i SystemVirtualWanLinkArray) ToSystemVirtualWanLinkArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkArrayOutput)
-}
-
-func (i SystemVirtualWanLinkArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVirtualWanLink] {
-	return pulumix.Output[[]*SystemVirtualWanLink]{
-		OutputState: i.ToSystemVirtualWanLinkArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemVirtualWanLinkMapInput is an input type that accepts SystemVirtualWanLinkMap and SystemVirtualWanLinkMapOutput values.
@@ -223,12 +210,6 @@ func (i SystemVirtualWanLinkMap) ToSystemVirtualWanLinkMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkMapOutput)
 }
 
-func (i SystemVirtualWanLinkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVirtualWanLink] {
-	return pulumix.Output[map[string]*SystemVirtualWanLink]{
-		OutputState: i.ToSystemVirtualWanLinkMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemVirtualWanLinkOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWanLinkOutput) ElementType() reflect.Type {
@@ -241,12 +222,6 @@ func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkOutput() SystemVirtual
 
 func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkOutputWithContext(ctx context.Context) SystemVirtualWanLinkOutput {
 	return o
-}
-
-func (o SystemVirtualWanLinkOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVirtualWanLink] {
-	return pulumix.Output[*SystemVirtualWanLink]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVirtualWanLinkOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -325,12 +300,6 @@ func (o SystemVirtualWanLinkArrayOutput) ToSystemVirtualWanLinkArrayOutputWithCo
 	return o
 }
 
-func (o SystemVirtualWanLinkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVirtualWanLink] {
-	return pulumix.Output[[]*SystemVirtualWanLink]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemVirtualWanLinkArrayOutput) Index(i pulumi.IntInput) SystemVirtualWanLinkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVirtualWanLink {
 		return vs[0].([]*SystemVirtualWanLink)[vs[1].(int)]
@@ -349,12 +318,6 @@ func (o SystemVirtualWanLinkMapOutput) ToSystemVirtualWanLinkMapOutput() SystemV
 
 func (o SystemVirtualWanLinkMapOutput) ToSystemVirtualWanLinkMapOutputWithContext(ctx context.Context) SystemVirtualWanLinkMapOutput {
 	return o
-}
-
-func (o SystemVirtualWanLinkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVirtualWanLink] {
-	return pulumix.Output[map[string]*SystemVirtualWanLink]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVirtualWanLinkMapOutput) MapIndex(k pulumi.StringInput) SystemVirtualWanLinkOutput {

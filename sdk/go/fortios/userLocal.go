@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserLocal struct {
@@ -244,12 +243,6 @@ func (i *UserLocal) ToUserLocalOutputWithContext(ctx context.Context) UserLocalO
 	return pulumi.ToOutputWithContext(ctx, i).(UserLocalOutput)
 }
 
-func (i *UserLocal) ToOutput(ctx context.Context) pulumix.Output[*UserLocal] {
-	return pulumix.Output[*UserLocal]{
-		OutputState: i.ToUserLocalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserLocalArrayInput is an input type that accepts UserLocalArray and UserLocalArrayOutput values.
 // You can construct a concrete instance of `UserLocalArrayInput` via:
 //
@@ -273,12 +266,6 @@ func (i UserLocalArray) ToUserLocalArrayOutput() UserLocalArrayOutput {
 
 func (i UserLocalArray) ToUserLocalArrayOutputWithContext(ctx context.Context) UserLocalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserLocalArrayOutput)
-}
-
-func (i UserLocalArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserLocal] {
-	return pulumix.Output[[]*UserLocal]{
-		OutputState: i.ToUserLocalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserLocalMapInput is an input type that accepts UserLocalMap and UserLocalMapOutput values.
@@ -306,12 +293,6 @@ func (i UserLocalMap) ToUserLocalMapOutputWithContext(ctx context.Context) UserL
 	return pulumi.ToOutputWithContext(ctx, i).(UserLocalMapOutput)
 }
 
-func (i UserLocalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserLocal] {
-	return pulumix.Output[map[string]*UserLocal]{
-		OutputState: i.ToUserLocalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserLocalOutput struct{ *pulumi.OutputState }
 
 func (UserLocalOutput) ElementType() reflect.Type {
@@ -324,12 +305,6 @@ func (o UserLocalOutput) ToUserLocalOutput() UserLocalOutput {
 
 func (o UserLocalOutput) ToUserLocalOutputWithContext(ctx context.Context) UserLocalOutput {
 	return o
-}
-
-func (o UserLocalOutput) ToOutput(ctx context.Context) pulumix.Output[*UserLocal] {
-	return pulumix.Output[*UserLocal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserLocalOutput) AuthConcurrentOverride() pulumi.StringOutput {
@@ -458,12 +433,6 @@ func (o UserLocalArrayOutput) ToUserLocalArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o UserLocalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserLocal] {
-	return pulumix.Output[[]*UserLocal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserLocalArrayOutput) Index(i pulumi.IntInput) UserLocalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserLocal {
 		return vs[0].([]*UserLocal)[vs[1].(int)]
@@ -482,12 +451,6 @@ func (o UserLocalMapOutput) ToUserLocalMapOutput() UserLocalMapOutput {
 
 func (o UserLocalMapOutput) ToUserLocalMapOutputWithContext(ctx context.Context) UserLocalMapOutput {
 	return o
-}
-
-func (o UserLocalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserLocal] {
-	return pulumix.Output[map[string]*UserLocal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserLocalMapOutput) MapIndex(k pulumi.StringInput) UserLocalOutput {

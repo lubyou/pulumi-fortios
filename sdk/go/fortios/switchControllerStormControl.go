@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerStormControl struct {
@@ -111,12 +110,6 @@ func (i *SwitchControllerStormControl) ToSwitchControllerStormControlOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlOutput)
 }
 
-func (i *SwitchControllerStormControl) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStormControl] {
-	return pulumix.Output[*SwitchControllerStormControl]{
-		OutputState: i.ToSwitchControllerStormControlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerStormControlArrayInput is an input type that accepts SwitchControllerStormControlArray and SwitchControllerStormControlArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStormControlArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SwitchControllerStormControlArray) ToSwitchControllerStormControlArrayOu
 
 func (i SwitchControllerStormControlArray) ToSwitchControllerStormControlArrayOutputWithContext(ctx context.Context) SwitchControllerStormControlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlArrayOutput)
-}
-
-func (i SwitchControllerStormControlArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStormControl] {
-	return pulumix.Output[[]*SwitchControllerStormControl]{
-		OutputState: i.ToSwitchControllerStormControlArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerStormControlMapInput is an input type that accepts SwitchControllerStormControlMap and SwitchControllerStormControlMapOutput values.
@@ -173,12 +160,6 @@ func (i SwitchControllerStormControlMap) ToSwitchControllerStormControlMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlMapOutput)
 }
 
-func (i SwitchControllerStormControlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStormControl] {
-	return pulumix.Output[map[string]*SwitchControllerStormControl]{
-		OutputState: i.ToSwitchControllerStormControlMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerStormControlOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStormControlOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SwitchControllerStormControlOutput) ToSwitchControllerStormControlOutput
 
 func (o SwitchControllerStormControlOutput) ToSwitchControllerStormControlOutputWithContext(ctx context.Context) SwitchControllerStormControlOutput {
 	return o
-}
-
-func (o SwitchControllerStormControlOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStormControl] {
-	return pulumix.Output[*SwitchControllerStormControl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerStormControlOutput) Broadcast() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o SwitchControllerStormControlArrayOutput) ToSwitchControllerStormControlA
 	return o
 }
 
-func (o SwitchControllerStormControlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStormControl] {
-	return pulumix.Output[[]*SwitchControllerStormControl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerStormControlArrayOutput) Index(i pulumi.IntInput) SwitchControllerStormControlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerStormControl {
 		return vs[0].([]*SwitchControllerStormControl)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SwitchControllerStormControlMapOutput) ToSwitchControllerStormControlMap
 
 func (o SwitchControllerStormControlMapOutput) ToSwitchControllerStormControlMapOutputWithContext(ctx context.Context) SwitchControllerStormControlMapOutput {
 	return o
-}
-
-func (o SwitchControllerStormControlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStormControl] {
-	return pulumix.Output[map[string]*SwitchControllerStormControl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerStormControlMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerStormControlOutput {

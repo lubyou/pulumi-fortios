@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpSettings struct {
@@ -116,12 +115,6 @@ func (i *DlpSettings) ToDlpSettingsOutputWithContext(ctx context.Context) DlpSet
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsOutput)
 }
 
-func (i *DlpSettings) ToOutput(ctx context.Context) pulumix.Output[*DlpSettings] {
-	return pulumix.Output[*DlpSettings]{
-		OutputState: i.ToDlpSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DlpSettingsArrayInput is an input type that accepts DlpSettingsArray and DlpSettingsArrayOutput values.
 // You can construct a concrete instance of `DlpSettingsArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i DlpSettingsArray) ToDlpSettingsArrayOutput() DlpSettingsArrayOutput {
 
 func (i DlpSettingsArray) ToDlpSettingsArrayOutputWithContext(ctx context.Context) DlpSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsArrayOutput)
-}
-
-func (i DlpSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpSettings] {
-	return pulumix.Output[[]*DlpSettings]{
-		OutputState: i.ToDlpSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DlpSettingsMapInput is an input type that accepts DlpSettingsMap and DlpSettingsMapOutput values.
@@ -178,12 +165,6 @@ func (i DlpSettingsMap) ToDlpSettingsMapOutputWithContext(ctx context.Context) D
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsMapOutput)
 }
 
-func (i DlpSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpSettings] {
-	return pulumix.Output[map[string]*DlpSettings]{
-		OutputState: i.ToDlpSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DlpSettingsOutput struct{ *pulumi.OutputState }
 
 func (DlpSettingsOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o DlpSettingsOutput) ToDlpSettingsOutput() DlpSettingsOutput {
 
 func (o DlpSettingsOutput) ToDlpSettingsOutputWithContext(ctx context.Context) DlpSettingsOutput {
 	return o
-}
-
-func (o DlpSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpSettings] {
-	return pulumix.Output[*DlpSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpSettingsOutput) CacheMemPercent() pulumi.IntOutput {
@@ -242,12 +217,6 @@ func (o DlpSettingsArrayOutput) ToDlpSettingsArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o DlpSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpSettings] {
-	return pulumix.Output[[]*DlpSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DlpSettingsArrayOutput) Index(i pulumi.IntInput) DlpSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpSettings {
 		return vs[0].([]*DlpSettings)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o DlpSettingsMapOutput) ToDlpSettingsMapOutput() DlpSettingsMapOutput {
 
 func (o DlpSettingsMapOutput) ToDlpSettingsMapOutputWithContext(ctx context.Context) DlpSettingsMapOutput {
 	return o
-}
-
-func (o DlpSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpSettings] {
-	return pulumix.Output[map[string]*DlpSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpSettingsMapOutput) MapIndex(k pulumi.StringInput) DlpSettingsOutput {

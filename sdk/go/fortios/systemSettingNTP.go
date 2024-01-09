@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSettingNTP struct {
@@ -105,12 +104,6 @@ func (i *SystemSettingNTP) ToSystemSettingNTPOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPOutput)
 }
 
-func (i *SystemSettingNTP) ToOutput(ctx context.Context) pulumix.Output[*SystemSettingNTP] {
-	return pulumix.Output[*SystemSettingNTP]{
-		OutputState: i.ToSystemSettingNTPOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSettingNTPArrayInput is an input type that accepts SystemSettingNTPArray and SystemSettingNTPArrayOutput values.
 // You can construct a concrete instance of `SystemSettingNTPArrayInput` via:
 //
@@ -134,12 +127,6 @@ func (i SystemSettingNTPArray) ToSystemSettingNTPArrayOutput() SystemSettingNTPA
 
 func (i SystemSettingNTPArray) ToSystemSettingNTPArrayOutputWithContext(ctx context.Context) SystemSettingNTPArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPArrayOutput)
-}
-
-func (i SystemSettingNTPArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettingNTP] {
-	return pulumix.Output[[]*SystemSettingNTP]{
-		OutputState: i.ToSystemSettingNTPArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSettingNTPMapInput is an input type that accepts SystemSettingNTPMap and SystemSettingNTPMapOutput values.
@@ -167,12 +154,6 @@ func (i SystemSettingNTPMap) ToSystemSettingNTPMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPMapOutput)
 }
 
-func (i SystemSettingNTPMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettingNTP] {
-	return pulumix.Output[map[string]*SystemSettingNTP]{
-		OutputState: i.ToSystemSettingNTPMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSettingNTPOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingNTPOutput) ElementType() reflect.Type {
@@ -185,12 +166,6 @@ func (o SystemSettingNTPOutput) ToSystemSettingNTPOutput() SystemSettingNTPOutpu
 
 func (o SystemSettingNTPOutput) ToSystemSettingNTPOutputWithContext(ctx context.Context) SystemSettingNTPOutput {
 	return o
-}
-
-func (o SystemSettingNTPOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSettingNTP] {
-	return pulumix.Output[*SystemSettingNTP]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSettingNTPOutput) Ntpservers() pulumi.StringArrayOutput {
@@ -219,12 +194,6 @@ func (o SystemSettingNTPArrayOutput) ToSystemSettingNTPArrayOutputWithContext(ct
 	return o
 }
 
-func (o SystemSettingNTPArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettingNTP] {
-	return pulumix.Output[[]*SystemSettingNTP]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSettingNTPArrayOutput) Index(i pulumi.IntInput) SystemSettingNTPOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettingNTP {
 		return vs[0].([]*SystemSettingNTP)[vs[1].(int)]
@@ -243,12 +212,6 @@ func (o SystemSettingNTPMapOutput) ToSystemSettingNTPMapOutput() SystemSettingNT
 
 func (o SystemSettingNTPMapOutput) ToSystemSettingNTPMapOutputWithContext(ctx context.Context) SystemSettingNTPMapOutput {
 	return o
-}
-
-func (o SystemSettingNTPMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettingNTP] {
-	return pulumix.Output[map[string]*SystemSettingNTP]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSettingNTPMapOutput) MapIndex(k pulumi.StringInput) SystemSettingNTPOutput {

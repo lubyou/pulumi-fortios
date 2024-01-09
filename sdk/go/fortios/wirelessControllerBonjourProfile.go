@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerBonjourProfile struct {
@@ -116,12 +115,6 @@ func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfileOut
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfileOutput)
 }
 
-func (i *WirelessControllerBonjourProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerBonjourProfile] {
-	return pulumix.Output[*WirelessControllerBonjourProfile]{
-		OutputState: i.ToWirelessControllerBonjourProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerBonjourProfileArrayInput is an input type that accepts WirelessControllerBonjourProfileArray and WirelessControllerBonjourProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerBonjourProfileArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i WirelessControllerBonjourProfileArray) ToWirelessControllerBonjourProfil
 
 func (i WirelessControllerBonjourProfileArray) ToWirelessControllerBonjourProfileArrayOutputWithContext(ctx context.Context) WirelessControllerBonjourProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfileArrayOutput)
-}
-
-func (i WirelessControllerBonjourProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerBonjourProfile] {
-	return pulumix.Output[[]*WirelessControllerBonjourProfile]{
-		OutputState: i.ToWirelessControllerBonjourProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerBonjourProfileMapInput is an input type that accepts WirelessControllerBonjourProfileMap and WirelessControllerBonjourProfileMapOutput values.
@@ -178,12 +165,6 @@ func (i WirelessControllerBonjourProfileMap) ToWirelessControllerBonjourProfileM
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfileMapOutput)
 }
 
-func (i WirelessControllerBonjourProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerBonjourProfile] {
-	return pulumix.Output[map[string]*WirelessControllerBonjourProfile]{
-		OutputState: i.ToWirelessControllerBonjourProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerBonjourProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerBonjourProfileOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfi
 
 func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfileOutputWithContext(ctx context.Context) WirelessControllerBonjourProfileOutput {
 	return o
-}
-
-func (o WirelessControllerBonjourProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerBonjourProfile] {
-	return pulumix.Output[*WirelessControllerBonjourProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerBonjourProfileOutput) Comment() pulumi.StringOutput {
@@ -244,12 +219,6 @@ func (o WirelessControllerBonjourProfileArrayOutput) ToWirelessControllerBonjour
 	return o
 }
 
-func (o WirelessControllerBonjourProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerBonjourProfile] {
-	return pulumix.Output[[]*WirelessControllerBonjourProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerBonjourProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerBonjourProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerBonjourProfile {
 		return vs[0].([]*WirelessControllerBonjourProfile)[vs[1].(int)]
@@ -268,12 +237,6 @@ func (o WirelessControllerBonjourProfileMapOutput) ToWirelessControllerBonjourPr
 
 func (o WirelessControllerBonjourProfileMapOutput) ToWirelessControllerBonjourProfileMapOutputWithContext(ctx context.Context) WirelessControllerBonjourProfileMapOutput {
 	return o
-}
-
-func (o WirelessControllerBonjourProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerBonjourProfile] {
-	return pulumix.Output[map[string]*WirelessControllerBonjourProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerBonjourProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerBonjourProfileOutput {

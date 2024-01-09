@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterFortiguard struct {
@@ -161,12 +160,6 @@ func (i *WebfilterFortiguard) ToWebfilterFortiguardOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardOutput)
 }
 
-func (i *WebfilterFortiguard) ToOutput(ctx context.Context) pulumix.Output[*WebfilterFortiguard] {
-	return pulumix.Output[*WebfilterFortiguard]{
-		OutputState: i.ToWebfilterFortiguardOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebfilterFortiguardArrayInput is an input type that accepts WebfilterFortiguardArray and WebfilterFortiguardArrayOutput values.
 // You can construct a concrete instance of `WebfilterFortiguardArrayInput` via:
 //
@@ -190,12 +183,6 @@ func (i WebfilterFortiguardArray) ToWebfilterFortiguardArrayOutput() WebfilterFo
 
 func (i WebfilterFortiguardArray) ToWebfilterFortiguardArrayOutputWithContext(ctx context.Context) WebfilterFortiguardArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardArrayOutput)
-}
-
-func (i WebfilterFortiguardArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterFortiguard] {
-	return pulumix.Output[[]*WebfilterFortiguard]{
-		OutputState: i.ToWebfilterFortiguardArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebfilterFortiguardMapInput is an input type that accepts WebfilterFortiguardMap and WebfilterFortiguardMapOutput values.
@@ -223,12 +210,6 @@ func (i WebfilterFortiguardMap) ToWebfilterFortiguardMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardMapOutput)
 }
 
-func (i WebfilterFortiguardMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterFortiguard] {
-	return pulumix.Output[map[string]*WebfilterFortiguard]{
-		OutputState: i.ToWebfilterFortiguardMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebfilterFortiguardOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFortiguardOutput) ElementType() reflect.Type {
@@ -241,12 +222,6 @@ func (o WebfilterFortiguardOutput) ToWebfilterFortiguardOutput() WebfilterFortig
 
 func (o WebfilterFortiguardOutput) ToWebfilterFortiguardOutputWithContext(ctx context.Context) WebfilterFortiguardOutput {
 	return o
-}
-
-func (o WebfilterFortiguardOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterFortiguard] {
-	return pulumix.Output[*WebfilterFortiguard]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterFortiguardOutput) CacheMemPercent() pulumi.IntOutput {
@@ -323,12 +298,6 @@ func (o WebfilterFortiguardArrayOutput) ToWebfilterFortiguardArrayOutputWithCont
 	return o
 }
 
-func (o WebfilterFortiguardArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterFortiguard] {
-	return pulumix.Output[[]*WebfilterFortiguard]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebfilterFortiguardArrayOutput) Index(i pulumi.IntInput) WebfilterFortiguardOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterFortiguard {
 		return vs[0].([]*WebfilterFortiguard)[vs[1].(int)]
@@ -347,12 +316,6 @@ func (o WebfilterFortiguardMapOutput) ToWebfilterFortiguardMapOutput() Webfilter
 
 func (o WebfilterFortiguardMapOutput) ToWebfilterFortiguardMapOutputWithContext(ctx context.Context) WebfilterFortiguardMapOutput {
 	return o
-}
-
-func (o WebfilterFortiguardMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterFortiguard] {
-	return pulumix.Output[map[string]*WebfilterFortiguard]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterFortiguardMapOutput) MapIndex(k pulumi.StringInput) WebfilterFortiguardOutput {

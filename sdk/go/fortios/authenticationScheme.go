@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AuthenticationScheme struct {
@@ -170,12 +169,6 @@ func (i *AuthenticationScheme) ToAuthenticationSchemeOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemeOutput)
 }
 
-func (i *AuthenticationScheme) ToOutput(ctx context.Context) pulumix.Output[*AuthenticationScheme] {
-	return pulumix.Output[*AuthenticationScheme]{
-		OutputState: i.ToAuthenticationSchemeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthenticationSchemeArrayInput is an input type that accepts AuthenticationSchemeArray and AuthenticationSchemeArrayOutput values.
 // You can construct a concrete instance of `AuthenticationSchemeArrayInput` via:
 //
@@ -199,12 +192,6 @@ func (i AuthenticationSchemeArray) ToAuthenticationSchemeArrayOutput() Authentic
 
 func (i AuthenticationSchemeArray) ToAuthenticationSchemeArrayOutputWithContext(ctx context.Context) AuthenticationSchemeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemeArrayOutput)
-}
-
-func (i AuthenticationSchemeArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthenticationScheme] {
-	return pulumix.Output[[]*AuthenticationScheme]{
-		OutputState: i.ToAuthenticationSchemeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthenticationSchemeMapInput is an input type that accepts AuthenticationSchemeMap and AuthenticationSchemeMapOutput values.
@@ -232,12 +219,6 @@ func (i AuthenticationSchemeMap) ToAuthenticationSchemeMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemeMapOutput)
 }
 
-func (i AuthenticationSchemeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthenticationScheme] {
-	return pulumix.Output[map[string]*AuthenticationScheme]{
-		OutputState: i.ToAuthenticationSchemeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthenticationSchemeOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSchemeOutput) ElementType() reflect.Type {
@@ -250,12 +231,6 @@ func (o AuthenticationSchemeOutput) ToAuthenticationSchemeOutput() Authenticatio
 
 func (o AuthenticationSchemeOutput) ToAuthenticationSchemeOutputWithContext(ctx context.Context) AuthenticationSchemeOutput {
 	return o
-}
-
-func (o AuthenticationSchemeOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthenticationScheme] {
-	return pulumix.Output[*AuthenticationScheme]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthenticationSchemeOutput) DomainController() pulumi.StringOutput {
@@ -336,12 +311,6 @@ func (o AuthenticationSchemeArrayOutput) ToAuthenticationSchemeArrayOutputWithCo
 	return o
 }
 
-func (o AuthenticationSchemeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthenticationScheme] {
-	return pulumix.Output[[]*AuthenticationScheme]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthenticationSchemeArrayOutput) Index(i pulumi.IntInput) AuthenticationSchemeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthenticationScheme {
 		return vs[0].([]*AuthenticationScheme)[vs[1].(int)]
@@ -360,12 +329,6 @@ func (o AuthenticationSchemeMapOutput) ToAuthenticationSchemeMapOutput() Authent
 
 func (o AuthenticationSchemeMapOutput) ToAuthenticationSchemeMapOutputWithContext(ctx context.Context) AuthenticationSchemeMapOutput {
 	return o
-}
-
-func (o AuthenticationSchemeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthenticationScheme] {
-	return pulumix.Output[map[string]*AuthenticationScheme]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthenticationSchemeMapOutput) MapIndex(k pulumi.StringInput) AuthenticationSchemeOutput {

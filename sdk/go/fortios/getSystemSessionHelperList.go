@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemSessionHelperList(ctx *pulumi.Context, args *GetSystemSessionHelperListArgs, opts ...pulumi.InvokeOption) (*GetSystemSessionHelperListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemSessionHelperListResultOutput) ToGetSystemSessionHelperListResu
 
 func (o GetSystemSessionHelperListResultOutput) ToGetSystemSessionHelperListResultOutputWithContext(ctx context.Context) GetSystemSessionHelperListResultOutput {
 	return o
-}
-
-func (o GetSystemSessionHelperListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemSessionHelperListResult] {
-	return pulumix.Output[GetSystemSessionHelperListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemSessionHelperListResultOutput) Filter() pulumi.StringPtrOutput {

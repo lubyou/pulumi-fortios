@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterExtcommunityList struct {
@@ -116,12 +115,6 @@ func (i *RouterExtcommunityList) ToRouterExtcommunityListOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(RouterExtcommunityListOutput)
 }
 
-func (i *RouterExtcommunityList) ToOutput(ctx context.Context) pulumix.Output[*RouterExtcommunityList] {
-	return pulumix.Output[*RouterExtcommunityList]{
-		OutputState: i.ToRouterExtcommunityListOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterExtcommunityListArrayInput is an input type that accepts RouterExtcommunityListArray and RouterExtcommunityListArrayOutput values.
 // You can construct a concrete instance of `RouterExtcommunityListArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i RouterExtcommunityListArray) ToRouterExtcommunityListArrayOutput() Route
 
 func (i RouterExtcommunityListArray) ToRouterExtcommunityListArrayOutputWithContext(ctx context.Context) RouterExtcommunityListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterExtcommunityListArrayOutput)
-}
-
-func (i RouterExtcommunityListArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterExtcommunityList] {
-	return pulumix.Output[[]*RouterExtcommunityList]{
-		OutputState: i.ToRouterExtcommunityListArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterExtcommunityListMapInput is an input type that accepts RouterExtcommunityListMap and RouterExtcommunityListMapOutput values.
@@ -178,12 +165,6 @@ func (i RouterExtcommunityListMap) ToRouterExtcommunityListMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(RouterExtcommunityListMapOutput)
 }
 
-func (i RouterExtcommunityListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterExtcommunityList] {
-	return pulumix.Output[map[string]*RouterExtcommunityList]{
-		OutputState: i.ToRouterExtcommunityListMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterExtcommunityListOutput struct{ *pulumi.OutputState }
 
 func (RouterExtcommunityListOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o RouterExtcommunityListOutput) ToRouterExtcommunityListOutput() RouterExt
 
 func (o RouterExtcommunityListOutput) ToRouterExtcommunityListOutputWithContext(ctx context.Context) RouterExtcommunityListOutput {
 	return o
-}
-
-func (o RouterExtcommunityListOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterExtcommunityList] {
-	return pulumix.Output[*RouterExtcommunityList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterExtcommunityListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -242,12 +217,6 @@ func (o RouterExtcommunityListArrayOutput) ToRouterExtcommunityListArrayOutputWi
 	return o
 }
 
-func (o RouterExtcommunityListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterExtcommunityList] {
-	return pulumix.Output[[]*RouterExtcommunityList]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterExtcommunityListArrayOutput) Index(i pulumi.IntInput) RouterExtcommunityListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterExtcommunityList {
 		return vs[0].([]*RouterExtcommunityList)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o RouterExtcommunityListMapOutput) ToRouterExtcommunityListMapOutput() Rou
 
 func (o RouterExtcommunityListMapOutput) ToRouterExtcommunityListMapOutputWithContext(ctx context.Context) RouterExtcommunityListMapOutput {
 	return o
-}
-
-func (o RouterExtcommunityListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterExtcommunityList] {
-	return pulumix.Output[map[string]*RouterExtcommunityList]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterExtcommunityListMapOutput) MapIndex(k pulumi.StringInput) RouterExtcommunityListOutput {

@@ -450,6 +450,7 @@
         "getSystemZoneList.ts",
         "getUserSaml.ts",
         "getUserSamlList.ts",
+        "getVpnSslSettings.ts",
         "icapProfile.ts",
         "icapServer.ts",
         "icapServerGroup.ts",

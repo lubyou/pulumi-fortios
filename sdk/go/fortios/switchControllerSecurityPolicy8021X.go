@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSecurityPolicy8021X struct {
@@ -201,12 +200,6 @@ func (i *SwitchControllerSecurityPolicy8021X) ToSwitchControllerSecurityPolicy80
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XOutput)
 }
 
-func (i *SwitchControllerSecurityPolicy8021X) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSecurityPolicy8021X] {
-	return pulumix.Output[*SwitchControllerSecurityPolicy8021X]{
-		OutputState: i.ToSwitchControllerSecurityPolicy8021XOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerSecurityPolicy8021XArrayInput is an input type that accepts SwitchControllerSecurityPolicy8021XArray and SwitchControllerSecurityPolicy8021XArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicy8021XArrayInput` via:
 //
@@ -230,12 +223,6 @@ func (i SwitchControllerSecurityPolicy8021XArray) ToSwitchControllerSecurityPoli
 
 func (i SwitchControllerSecurityPolicy8021XArray) ToSwitchControllerSecurityPolicy8021XArrayOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XArrayOutput)
-}
-
-func (i SwitchControllerSecurityPolicy8021XArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSecurityPolicy8021X] {
-	return pulumix.Output[[]*SwitchControllerSecurityPolicy8021X]{
-		OutputState: i.ToSwitchControllerSecurityPolicy8021XArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerSecurityPolicy8021XMapInput is an input type that accepts SwitchControllerSecurityPolicy8021XMap and SwitchControllerSecurityPolicy8021XMapOutput values.
@@ -263,12 +250,6 @@ func (i SwitchControllerSecurityPolicy8021XMap) ToSwitchControllerSecurityPolicy
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XMapOutput)
 }
 
-func (i SwitchControllerSecurityPolicy8021XMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSecurityPolicy8021X] {
-	return pulumix.Output[map[string]*SwitchControllerSecurityPolicy8021X]{
-		OutputState: i.ToSwitchControllerSecurityPolicy8021XMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerSecurityPolicy8021XOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicy8021XOutput) ElementType() reflect.Type {
@@ -281,12 +262,6 @@ func (o SwitchControllerSecurityPolicy8021XOutput) ToSwitchControllerSecurityPol
 
 func (o SwitchControllerSecurityPolicy8021XOutput) ToSwitchControllerSecurityPolicy8021XOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XOutput {
 	return o
-}
-
-func (o SwitchControllerSecurityPolicy8021XOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSecurityPolicy8021X] {
-	return pulumix.Output[*SwitchControllerSecurityPolicy8021X]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSecurityPolicy8021XOutput) AuthFailVlan() pulumi.StringOutput {
@@ -397,12 +372,6 @@ func (o SwitchControllerSecurityPolicy8021XArrayOutput) ToSwitchControllerSecuri
 	return o
 }
 
-func (o SwitchControllerSecurityPolicy8021XArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSecurityPolicy8021X] {
-	return pulumix.Output[[]*SwitchControllerSecurityPolicy8021X]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerSecurityPolicy8021XArrayOutput) Index(i pulumi.IntInput) SwitchControllerSecurityPolicy8021XOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicy8021X {
 		return vs[0].([]*SwitchControllerSecurityPolicy8021X)[vs[1].(int)]
@@ -421,12 +390,6 @@ func (o SwitchControllerSecurityPolicy8021XMapOutput) ToSwitchControllerSecurity
 
 func (o SwitchControllerSecurityPolicy8021XMapOutput) ToSwitchControllerSecurityPolicy8021XMapOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XMapOutput {
 	return o
-}
-
-func (o SwitchControllerSecurityPolicy8021XMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSecurityPolicy8021X] {
-	return pulumix.Output[map[string]*SwitchControllerSecurityPolicy8021X]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerSecurityPolicy8021XMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSecurityPolicy8021XOutput {

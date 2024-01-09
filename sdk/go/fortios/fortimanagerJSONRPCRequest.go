@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerJSONRPCRequest struct {
@@ -103,12 +102,6 @@ func (i *FortimanagerJSONRPCRequest) ToFortimanagerJSONRPCRequestOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerJSONRPCRequestOutput)
 }
 
-func (i *FortimanagerJSONRPCRequest) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerJSONRPCRequest] {
-	return pulumix.Output[*FortimanagerJSONRPCRequest]{
-		OutputState: i.ToFortimanagerJSONRPCRequestOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerJSONRPCRequestArrayInput is an input type that accepts FortimanagerJSONRPCRequestArray and FortimanagerJSONRPCRequestArrayOutput values.
 // You can construct a concrete instance of `FortimanagerJSONRPCRequestArrayInput` via:
 //
@@ -132,12 +125,6 @@ func (i FortimanagerJSONRPCRequestArray) ToFortimanagerJSONRPCRequestArrayOutput
 
 func (i FortimanagerJSONRPCRequestArray) ToFortimanagerJSONRPCRequestArrayOutputWithContext(ctx context.Context) FortimanagerJSONRPCRequestArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerJSONRPCRequestArrayOutput)
-}
-
-func (i FortimanagerJSONRPCRequestArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerJSONRPCRequest] {
-	return pulumix.Output[[]*FortimanagerJSONRPCRequest]{
-		OutputState: i.ToFortimanagerJSONRPCRequestArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerJSONRPCRequestMapInput is an input type that accepts FortimanagerJSONRPCRequestMap and FortimanagerJSONRPCRequestMapOutput values.
@@ -165,12 +152,6 @@ func (i FortimanagerJSONRPCRequestMap) ToFortimanagerJSONRPCRequestMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerJSONRPCRequestMapOutput)
 }
 
-func (i FortimanagerJSONRPCRequestMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerJSONRPCRequest] {
-	return pulumix.Output[map[string]*FortimanagerJSONRPCRequest]{
-		OutputState: i.ToFortimanagerJSONRPCRequestMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerJSONRPCRequestOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerJSONRPCRequestOutput) ElementType() reflect.Type {
@@ -183,12 +164,6 @@ func (o FortimanagerJSONRPCRequestOutput) ToFortimanagerJSONRPCRequestOutput() F
 
 func (o FortimanagerJSONRPCRequestOutput) ToFortimanagerJSONRPCRequestOutputWithContext(ctx context.Context) FortimanagerJSONRPCRequestOutput {
 	return o
-}
-
-func (o FortimanagerJSONRPCRequestOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerJSONRPCRequest] {
-	return pulumix.Output[*FortimanagerJSONRPCRequest]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerJSONRPCRequestOutput) Comment() pulumi.StringPtrOutput {
@@ -217,12 +192,6 @@ func (o FortimanagerJSONRPCRequestArrayOutput) ToFortimanagerJSONRPCRequestArray
 	return o
 }
 
-func (o FortimanagerJSONRPCRequestArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerJSONRPCRequest] {
-	return pulumix.Output[[]*FortimanagerJSONRPCRequest]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerJSONRPCRequestArrayOutput) Index(i pulumi.IntInput) FortimanagerJSONRPCRequestOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerJSONRPCRequest {
 		return vs[0].([]*FortimanagerJSONRPCRequest)[vs[1].(int)]
@@ -241,12 +210,6 @@ func (o FortimanagerJSONRPCRequestMapOutput) ToFortimanagerJSONRPCRequestMapOutp
 
 func (o FortimanagerJSONRPCRequestMapOutput) ToFortimanagerJSONRPCRequestMapOutputWithContext(ctx context.Context) FortimanagerJSONRPCRequestMapOutput {
 	return o
-}
-
-func (o FortimanagerJSONRPCRequestMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerJSONRPCRequest] {
-	return pulumix.Output[map[string]*FortimanagerJSONRPCRequest]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerJSONRPCRequestMapOutput) MapIndex(k pulumi.StringInput) FortimanagerJSONRPCRequestOutput {

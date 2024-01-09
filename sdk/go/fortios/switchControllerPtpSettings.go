@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerPtpSettings struct {
@@ -96,12 +95,6 @@ func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsOutput)
 }
 
-func (i *SwitchControllerPtpSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerPtpSettings] {
-	return pulumix.Output[*SwitchControllerPtpSettings]{
-		OutputState: i.ToSwitchControllerPtpSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerPtpSettingsArrayInput is an input type that accepts SwitchControllerPtpSettingsArray and SwitchControllerPtpSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpSettingsArrayInput` via:
 //
@@ -125,12 +118,6 @@ func (i SwitchControllerPtpSettingsArray) ToSwitchControllerPtpSettingsArrayOutp
 
 func (i SwitchControllerPtpSettingsArray) ToSwitchControllerPtpSettingsArrayOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsArrayOutput)
-}
-
-func (i SwitchControllerPtpSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerPtpSettings] {
-	return pulumix.Output[[]*SwitchControllerPtpSettings]{
-		OutputState: i.ToSwitchControllerPtpSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerPtpSettingsMapInput is an input type that accepts SwitchControllerPtpSettingsMap and SwitchControllerPtpSettingsMapOutput values.
@@ -158,12 +145,6 @@ func (i SwitchControllerPtpSettingsMap) ToSwitchControllerPtpSettingsMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsMapOutput)
 }
 
-func (i SwitchControllerPtpSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerPtpSettings] {
-	return pulumix.Output[map[string]*SwitchControllerPtpSettings]{
-		OutputState: i.ToSwitchControllerPtpSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerPtpSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerPtpSettingsOutput) ElementType() reflect.Type {
@@ -176,12 +157,6 @@ func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsOutput()
 
 func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsOutput {
 	return o
-}
-
-func (o SwitchControllerPtpSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerPtpSettings] {
-	return pulumix.Output[*SwitchControllerPtpSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerPtpSettingsOutput) Mode() pulumi.StringOutput {
@@ -206,12 +181,6 @@ func (o SwitchControllerPtpSettingsArrayOutput) ToSwitchControllerPtpSettingsArr
 	return o
 }
 
-func (o SwitchControllerPtpSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerPtpSettings] {
-	return pulumix.Output[[]*SwitchControllerPtpSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerPtpSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerPtpSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerPtpSettings {
 		return vs[0].([]*SwitchControllerPtpSettings)[vs[1].(int)]
@@ -230,12 +199,6 @@ func (o SwitchControllerPtpSettingsMapOutput) ToSwitchControllerPtpSettingsMapOu
 
 func (o SwitchControllerPtpSettingsMapOutput) ToSwitchControllerPtpSettingsMapOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsMapOutput {
 	return o
-}
-
-func (o SwitchControllerPtpSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerPtpSettings] {
-	return pulumix.Output[map[string]*SwitchControllerPtpSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerPtpSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerPtpSettingsOutput {

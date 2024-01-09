@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterContent struct {
@@ -125,12 +124,6 @@ func (i *WebfilterContent) ToWebfilterContentOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentOutput)
 }
 
-func (i *WebfilterContent) ToOutput(ctx context.Context) pulumix.Output[*WebfilterContent] {
-	return pulumix.Output[*WebfilterContent]{
-		OutputState: i.ToWebfilterContentOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebfilterContentArrayInput is an input type that accepts WebfilterContentArray and WebfilterContentArrayOutput values.
 // You can construct a concrete instance of `WebfilterContentArrayInput` via:
 //
@@ -154,12 +147,6 @@ func (i WebfilterContentArray) ToWebfilterContentArrayOutput() WebfilterContentA
 
 func (i WebfilterContentArray) ToWebfilterContentArrayOutputWithContext(ctx context.Context) WebfilterContentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentArrayOutput)
-}
-
-func (i WebfilterContentArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterContent] {
-	return pulumix.Output[[]*WebfilterContent]{
-		OutputState: i.ToWebfilterContentArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebfilterContentMapInput is an input type that accepts WebfilterContentMap and WebfilterContentMapOutput values.
@@ -187,12 +174,6 @@ func (i WebfilterContentMap) ToWebfilterContentMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentMapOutput)
 }
 
-func (i WebfilterContentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterContent] {
-	return pulumix.Output[map[string]*WebfilterContent]{
-		OutputState: i.ToWebfilterContentMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebfilterContentOutput struct{ *pulumi.OutputState }
 
 func (WebfilterContentOutput) ElementType() reflect.Type {
@@ -205,12 +186,6 @@ func (o WebfilterContentOutput) ToWebfilterContentOutput() WebfilterContentOutpu
 
 func (o WebfilterContentOutput) ToWebfilterContentOutputWithContext(ctx context.Context) WebfilterContentOutput {
 	return o
-}
-
-func (o WebfilterContentOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterContent] {
-	return pulumix.Output[*WebfilterContent]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterContentOutput) Comment() pulumi.StringPtrOutput {
@@ -255,12 +230,6 @@ func (o WebfilterContentArrayOutput) ToWebfilterContentArrayOutputWithContext(ct
 	return o
 }
 
-func (o WebfilterContentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterContent] {
-	return pulumix.Output[[]*WebfilterContent]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebfilterContentArrayOutput) Index(i pulumi.IntInput) WebfilterContentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterContent {
 		return vs[0].([]*WebfilterContent)[vs[1].(int)]
@@ -279,12 +248,6 @@ func (o WebfilterContentMapOutput) ToWebfilterContentMapOutput() WebfilterConten
 
 func (o WebfilterContentMapOutput) ToWebfilterContentMapOutputWithContext(ctx context.Context) WebfilterContentMapOutput {
 	return o
-}
-
-func (o WebfilterContentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterContent] {
-	return pulumix.Output[map[string]*WebfilterContent]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterContentMapOutput) MapIndex(k pulumi.StringInput) WebfilterContentOutput {

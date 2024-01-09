@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgNacQuar struct {
@@ -115,12 +114,6 @@ func (i *SystemReplacemsgNacQuar) ToSystemReplacemsgNacQuarOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarOutput)
 }
 
-func (i *SystemReplacemsgNacQuar) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgNacQuar] {
-	return pulumix.Output[*SystemReplacemsgNacQuar]{
-		OutputState: i.ToSystemReplacemsgNacQuarOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemReplacemsgNacQuarArrayInput is an input type that accepts SystemReplacemsgNacQuarArray and SystemReplacemsgNacQuarArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgNacQuarArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i SystemReplacemsgNacQuarArray) ToSystemReplacemsgNacQuarArrayOutput() Sys
 
 func (i SystemReplacemsgNacQuarArray) ToSystemReplacemsgNacQuarArrayOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarArrayOutput)
-}
-
-func (i SystemReplacemsgNacQuarArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgNacQuar] {
-	return pulumix.Output[[]*SystemReplacemsgNacQuar]{
-		OutputState: i.ToSystemReplacemsgNacQuarArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemReplacemsgNacQuarMapInput is an input type that accepts SystemReplacemsgNacQuarMap and SystemReplacemsgNacQuarMapOutput values.
@@ -177,12 +164,6 @@ func (i SystemReplacemsgNacQuarMap) ToSystemReplacemsgNacQuarMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarMapOutput)
 }
 
-func (i SystemReplacemsgNacQuarMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgNacQuar] {
-	return pulumix.Output[map[string]*SystemReplacemsgNacQuar]{
-		OutputState: i.ToSystemReplacemsgNacQuarMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemReplacemsgNacQuarOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgNacQuarOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o SystemReplacemsgNacQuarOutput) ToSystemReplacemsgNacQuarOutput() SystemR
 
 func (o SystemReplacemsgNacQuarOutput) ToSystemReplacemsgNacQuarOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarOutput {
 	return o
-}
-
-func (o SystemReplacemsgNacQuarOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgNacQuar] {
-	return pulumix.Output[*SystemReplacemsgNacQuar]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgNacQuarOutput) Buffer() pulumi.StringPtrOutput {
@@ -237,12 +212,6 @@ func (o SystemReplacemsgNacQuarArrayOutput) ToSystemReplacemsgNacQuarArrayOutput
 	return o
 }
 
-func (o SystemReplacemsgNacQuarArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgNacQuar] {
-	return pulumix.Output[[]*SystemReplacemsgNacQuar]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemReplacemsgNacQuarArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgNacQuarOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgNacQuar {
 		return vs[0].([]*SystemReplacemsgNacQuar)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o SystemReplacemsgNacQuarMapOutput) ToSystemReplacemsgNacQuarMapOutput() S
 
 func (o SystemReplacemsgNacQuarMapOutput) ToSystemReplacemsgNacQuarMapOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarMapOutput {
 	return o
-}
-
-func (o SystemReplacemsgNacQuarMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgNacQuar] {
-	return pulumix.Output[map[string]*SystemReplacemsgNacQuar]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgNacQuarMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgNacQuarOutput {

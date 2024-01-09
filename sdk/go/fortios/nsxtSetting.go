@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type NsxtSetting struct {
@@ -101,12 +100,6 @@ func (i *NsxtSetting) ToNsxtSettingOutputWithContext(ctx context.Context) NsxtSe
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingOutput)
 }
 
-func (i *NsxtSetting) ToOutput(ctx context.Context) pulumix.Output[*NsxtSetting] {
-	return pulumix.Output[*NsxtSetting]{
-		OutputState: i.ToNsxtSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NsxtSettingArrayInput is an input type that accepts NsxtSettingArray and NsxtSettingArrayOutput values.
 // You can construct a concrete instance of `NsxtSettingArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i NsxtSettingArray) ToNsxtSettingArrayOutput() NsxtSettingArrayOutput {
 
 func (i NsxtSettingArray) ToNsxtSettingArrayOutputWithContext(ctx context.Context) NsxtSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingArrayOutput)
-}
-
-func (i NsxtSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*NsxtSetting] {
-	return pulumix.Output[[]*NsxtSetting]{
-		OutputState: i.ToNsxtSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NsxtSettingMapInput is an input type that accepts NsxtSettingMap and NsxtSettingMapOutput values.
@@ -163,12 +150,6 @@ func (i NsxtSettingMap) ToNsxtSettingMapOutputWithContext(ctx context.Context) N
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingMapOutput)
 }
 
-func (i NsxtSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NsxtSetting] {
-	return pulumix.Output[map[string]*NsxtSetting]{
-		OutputState: i.ToNsxtSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NsxtSettingOutput struct{ *pulumi.OutputState }
 
 func (NsxtSettingOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o NsxtSettingOutput) ToNsxtSettingOutput() NsxtSettingOutput {
 
 func (o NsxtSettingOutput) ToNsxtSettingOutputWithContext(ctx context.Context) NsxtSettingOutput {
 	return o
-}
-
-func (o NsxtSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*NsxtSetting] {
-	return pulumix.Output[*NsxtSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NsxtSettingOutput) Liveness() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o NsxtSettingArrayOutput) ToNsxtSettingArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o NsxtSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NsxtSetting] {
-	return pulumix.Output[[]*NsxtSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NsxtSettingArrayOutput) Index(i pulumi.IntInput) NsxtSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NsxtSetting {
 		return vs[0].([]*NsxtSetting)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o NsxtSettingMapOutput) ToNsxtSettingMapOutput() NsxtSettingMapOutput {
 
 func (o NsxtSettingMapOutput) ToNsxtSettingMapOutputWithContext(ctx context.Context) NsxtSettingMapOutput {
 	return o
-}
-
-func (o NsxtSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NsxtSetting] {
-	return pulumix.Output[map[string]*NsxtSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NsxtSettingMapOutput) MapIndex(k pulumi.StringInput) NsxtSettingOutput {

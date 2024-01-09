@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemAccprofile(ctx *pulumi.Context, args *LookupSystemAccprofileArgs, opts ...pulumi.InvokeOption) (*LookupSystemAccprofileResult, error) {
@@ -95,12 +94,6 @@ func (o LookupSystemAccprofileResultOutput) ToLookupSystemAccprofileResultOutput
 
 func (o LookupSystemAccprofileResultOutput) ToLookupSystemAccprofileResultOutputWithContext(ctx context.Context) LookupSystemAccprofileResultOutput {
 	return o
-}
-
-func (o LookupSystemAccprofileResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemAccprofileResult] {
-	return pulumix.Output[LookupSystemAccprofileResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemAccprofileResultOutput) Admintimeout() pulumi.IntOutput {

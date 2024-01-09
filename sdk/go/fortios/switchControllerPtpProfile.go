@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerPtpProfile struct {
@@ -126,12 +125,6 @@ func (i *SwitchControllerPtpProfile) ToSwitchControllerPtpProfileOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpProfileOutput)
 }
 
-func (i *SwitchControllerPtpProfile) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerPtpProfile] {
-	return pulumix.Output[*SwitchControllerPtpProfile]{
-		OutputState: i.ToSwitchControllerPtpProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerPtpProfileArrayInput is an input type that accepts SwitchControllerPtpProfileArray and SwitchControllerPtpProfileArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpProfileArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i SwitchControllerPtpProfileArray) ToSwitchControllerPtpProfileArrayOutput
 
 func (i SwitchControllerPtpProfileArray) ToSwitchControllerPtpProfileArrayOutputWithContext(ctx context.Context) SwitchControllerPtpProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpProfileArrayOutput)
-}
-
-func (i SwitchControllerPtpProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerPtpProfile] {
-	return pulumix.Output[[]*SwitchControllerPtpProfile]{
-		OutputState: i.ToSwitchControllerPtpProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerPtpProfileMapInput is an input type that accepts SwitchControllerPtpProfileMap and SwitchControllerPtpProfileMapOutput values.
@@ -188,12 +175,6 @@ func (i SwitchControllerPtpProfileMap) ToSwitchControllerPtpProfileMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpProfileMapOutput)
 }
 
-func (i SwitchControllerPtpProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerPtpProfile] {
-	return pulumix.Output[map[string]*SwitchControllerPtpProfile]{
-		OutputState: i.ToSwitchControllerPtpProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerPtpProfileOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerPtpProfileOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o SwitchControllerPtpProfileOutput) ToSwitchControllerPtpProfileOutput() S
 
 func (o SwitchControllerPtpProfileOutput) ToSwitchControllerPtpProfileOutputWithContext(ctx context.Context) SwitchControllerPtpProfileOutput {
 	return o
-}
-
-func (o SwitchControllerPtpProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerPtpProfile] {
-	return pulumix.Output[*SwitchControllerPtpProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerPtpProfileOutput) Description() pulumi.StringOutput {
@@ -260,12 +235,6 @@ func (o SwitchControllerPtpProfileArrayOutput) ToSwitchControllerPtpProfileArray
 	return o
 }
 
-func (o SwitchControllerPtpProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerPtpProfile] {
-	return pulumix.Output[[]*SwitchControllerPtpProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerPtpProfileArrayOutput) Index(i pulumi.IntInput) SwitchControllerPtpProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerPtpProfile {
 		return vs[0].([]*SwitchControllerPtpProfile)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o SwitchControllerPtpProfileMapOutput) ToSwitchControllerPtpProfileMapOutp
 
 func (o SwitchControllerPtpProfileMapOutput) ToSwitchControllerPtpProfileMapOutputWithContext(ctx context.Context) SwitchControllerPtpProfileMapOutput {
 	return o
-}
-
-func (o SwitchControllerPtpProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerPtpProfile] {
-	return pulumix.Output[map[string]*SwitchControllerPtpProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerPtpProfileMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerPtpProfileOutput {

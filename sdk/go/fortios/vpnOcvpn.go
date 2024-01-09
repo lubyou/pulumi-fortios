@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnOcvpn struct {
@@ -176,12 +175,6 @@ func (i *VpnOcvpn) ToVpnOcvpnOutputWithContext(ctx context.Context) VpnOcvpnOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOutput)
 }
 
-func (i *VpnOcvpn) ToOutput(ctx context.Context) pulumix.Output[*VpnOcvpn] {
-	return pulumix.Output[*VpnOcvpn]{
-		OutputState: i.ToVpnOcvpnOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnOcvpnArrayInput is an input type that accepts VpnOcvpnArray and VpnOcvpnArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnArrayInput` via:
 //
@@ -205,12 +198,6 @@ func (i VpnOcvpnArray) ToVpnOcvpnArrayOutput() VpnOcvpnArrayOutput {
 
 func (i VpnOcvpnArray) ToVpnOcvpnArrayOutputWithContext(ctx context.Context) VpnOcvpnArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnArrayOutput)
-}
-
-func (i VpnOcvpnArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnOcvpn] {
-	return pulumix.Output[[]*VpnOcvpn]{
-		OutputState: i.ToVpnOcvpnArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnOcvpnMapInput is an input type that accepts VpnOcvpnMap and VpnOcvpnMapOutput values.
@@ -238,12 +225,6 @@ func (i VpnOcvpnMap) ToVpnOcvpnMapOutputWithContext(ctx context.Context) VpnOcvp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnMapOutput)
 }
 
-func (i VpnOcvpnMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnOcvpn] {
-	return pulumix.Output[map[string]*VpnOcvpn]{
-		OutputState: i.ToVpnOcvpnMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnOcvpnOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnOutput) ElementType() reflect.Type {
@@ -256,12 +237,6 @@ func (o VpnOcvpnOutput) ToVpnOcvpnOutput() VpnOcvpnOutput {
 
 func (o VpnOcvpnOutput) ToVpnOcvpnOutputWithContext(ctx context.Context) VpnOcvpnOutput {
 	return o
-}
-
-func (o VpnOcvpnOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnOcvpn] {
-	return pulumix.Output[*VpnOcvpn]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnOcvpnOutput) AutoDiscovery() pulumi.StringOutput {
@@ -350,12 +325,6 @@ func (o VpnOcvpnArrayOutput) ToVpnOcvpnArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o VpnOcvpnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnOcvpn] {
-	return pulumix.Output[[]*VpnOcvpn]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnOcvpnArrayOutput) Index(i pulumi.IntInput) VpnOcvpnOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnOcvpn {
 		return vs[0].([]*VpnOcvpn)[vs[1].(int)]
@@ -374,12 +343,6 @@ func (o VpnOcvpnMapOutput) ToVpnOcvpnMapOutput() VpnOcvpnMapOutput {
 
 func (o VpnOcvpnMapOutput) ToVpnOcvpnMapOutputWithContext(ctx context.Context) VpnOcvpnMapOutput {
 	return o
-}
-
-func (o VpnOcvpnMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnOcvpn] {
-	return pulumix.Output[map[string]*VpnOcvpn]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnOcvpnMapOutput) MapIndex(k pulumi.StringInput) VpnOcvpnOutput {

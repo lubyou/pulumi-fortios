@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupUserSaml(ctx *pulumi.Context, args *LookupUserSamlArgs, opts ...pulumi.InvokeOption) (*LookupUserSamlResult, error) {
@@ -90,12 +89,6 @@ func (o LookupUserSamlResultOutput) ToLookupUserSamlResultOutput() LookupUserSam
 
 func (o LookupUserSamlResultOutput) ToLookupUserSamlResultOutputWithContext(ctx context.Context) LookupUserSamlResultOutput {
 	return o
-}
-
-func (o LookupUserSamlResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupUserSamlResult] {
-	return pulumix.Output[LookupUserSamlResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupUserSamlResultOutput) AdfsClaim() pulumi.StringOutput {

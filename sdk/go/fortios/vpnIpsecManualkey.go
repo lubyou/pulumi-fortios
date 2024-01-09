@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnIpsecManualkey struct {
@@ -170,12 +169,6 @@ func (i *VpnIpsecManualkey) ToVpnIpsecManualkeyOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyOutput)
 }
 
-func (i *VpnIpsecManualkey) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecManualkey] {
-	return pulumix.Output[*VpnIpsecManualkey]{
-		OutputState: i.ToVpnIpsecManualkeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnIpsecManualkeyArrayInput is an input type that accepts VpnIpsecManualkeyArray and VpnIpsecManualkeyArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecManualkeyArrayInput` via:
 //
@@ -199,12 +192,6 @@ func (i VpnIpsecManualkeyArray) ToVpnIpsecManualkeyArrayOutput() VpnIpsecManualk
 
 func (i VpnIpsecManualkeyArray) ToVpnIpsecManualkeyArrayOutputWithContext(ctx context.Context) VpnIpsecManualkeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyArrayOutput)
-}
-
-func (i VpnIpsecManualkeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecManualkey] {
-	return pulumix.Output[[]*VpnIpsecManualkey]{
-		OutputState: i.ToVpnIpsecManualkeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnIpsecManualkeyMapInput is an input type that accepts VpnIpsecManualkeyMap and VpnIpsecManualkeyMapOutput values.
@@ -232,12 +219,6 @@ func (i VpnIpsecManualkeyMap) ToVpnIpsecManualkeyMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyMapOutput)
 }
 
-func (i VpnIpsecManualkeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecManualkey] {
-	return pulumix.Output[map[string]*VpnIpsecManualkey]{
-		OutputState: i.ToVpnIpsecManualkeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnIpsecManualkeyOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecManualkeyOutput) ElementType() reflect.Type {
@@ -250,12 +231,6 @@ func (o VpnIpsecManualkeyOutput) ToVpnIpsecManualkeyOutput() VpnIpsecManualkeyOu
 
 func (o VpnIpsecManualkeyOutput) ToVpnIpsecManualkeyOutputWithContext(ctx context.Context) VpnIpsecManualkeyOutput {
 	return o
-}
-
-func (o VpnIpsecManualkeyOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecManualkey] {
-	return pulumix.Output[*VpnIpsecManualkey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnIpsecManualkeyOutput) Authentication() pulumi.StringOutput {
@@ -320,12 +295,6 @@ func (o VpnIpsecManualkeyArrayOutput) ToVpnIpsecManualkeyArrayOutputWithContext(
 	return o
 }
 
-func (o VpnIpsecManualkeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecManualkey] {
-	return pulumix.Output[[]*VpnIpsecManualkey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnIpsecManualkeyArrayOutput) Index(i pulumi.IntInput) VpnIpsecManualkeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecManualkey {
 		return vs[0].([]*VpnIpsecManualkey)[vs[1].(int)]
@@ -344,12 +313,6 @@ func (o VpnIpsecManualkeyMapOutput) ToVpnIpsecManualkeyMapOutput() VpnIpsecManua
 
 func (o VpnIpsecManualkeyMapOutput) ToVpnIpsecManualkeyMapOutputWithContext(ctx context.Context) VpnIpsecManualkeyMapOutput {
 	return o
-}
-
-func (o VpnIpsecManualkeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecManualkey] {
-	return pulumix.Output[map[string]*VpnIpsecManualkey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnIpsecManualkeyMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecManualkeyOutput {

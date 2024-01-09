@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SshFilterProfile struct {
@@ -131,12 +130,6 @@ func (i *SshFilterProfile) ToSshFilterProfileOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfileOutput)
 }
 
-func (i *SshFilterProfile) ToOutput(ctx context.Context) pulumix.Output[*SshFilterProfile] {
-	return pulumix.Output[*SshFilterProfile]{
-		OutputState: i.ToSshFilterProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SshFilterProfileArrayInput is an input type that accepts SshFilterProfileArray and SshFilterProfileArrayOutput values.
 // You can construct a concrete instance of `SshFilterProfileArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i SshFilterProfileArray) ToSshFilterProfileArrayOutput() SshFilterProfileA
 
 func (i SshFilterProfileArray) ToSshFilterProfileArrayOutputWithContext(ctx context.Context) SshFilterProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfileArrayOutput)
-}
-
-func (i SshFilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SshFilterProfile] {
-	return pulumix.Output[[]*SshFilterProfile]{
-		OutputState: i.ToSshFilterProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SshFilterProfileMapInput is an input type that accepts SshFilterProfileMap and SshFilterProfileMapOutput values.
@@ -193,12 +180,6 @@ func (i SshFilterProfileMap) ToSshFilterProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfileMapOutput)
 }
 
-func (i SshFilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshFilterProfile] {
-	return pulumix.Output[map[string]*SshFilterProfile]{
-		OutputState: i.ToSshFilterProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SshFilterProfileOutput struct{ *pulumi.OutputState }
 
 func (SshFilterProfileOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o SshFilterProfileOutput) ToSshFilterProfileOutput() SshFilterProfileOutpu
 
 func (o SshFilterProfileOutput) ToSshFilterProfileOutputWithContext(ctx context.Context) SshFilterProfileOutput {
 	return o
-}
-
-func (o SshFilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SshFilterProfile] {
-	return pulumix.Output[*SshFilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SshFilterProfileOutput) Block() pulumi.StringOutput {
@@ -269,12 +244,6 @@ func (o SshFilterProfileArrayOutput) ToSshFilterProfileArrayOutputWithContext(ct
 	return o
 }
 
-func (o SshFilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SshFilterProfile] {
-	return pulumix.Output[[]*SshFilterProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SshFilterProfileArrayOutput) Index(i pulumi.IntInput) SshFilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SshFilterProfile {
 		return vs[0].([]*SshFilterProfile)[vs[1].(int)]
@@ -293,12 +262,6 @@ func (o SshFilterProfileMapOutput) ToSshFilterProfileMapOutput() SshFilterProfil
 
 func (o SshFilterProfileMapOutput) ToSshFilterProfileMapOutputWithContext(ctx context.Context) SshFilterProfileMapOutput {
 	return o
-}
-
-func (o SshFilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshFilterProfile] {
-	return pulumix.Output[map[string]*SshFilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SshFilterProfileMapOutput) MapIndex(k pulumi.StringInput) SshFilterProfileOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemNetflow struct {
@@ -136,12 +135,6 @@ func (i *SystemNetflow) ToSystemNetflowOutputWithContext(ctx context.Context) Sy
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowOutput)
 }
 
-func (i *SystemNetflow) ToOutput(ctx context.Context) pulumix.Output[*SystemNetflow] {
-	return pulumix.Output[*SystemNetflow]{
-		OutputState: i.ToSystemNetflowOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemNetflowArrayInput is an input type that accepts SystemNetflowArray and SystemNetflowArrayOutput values.
 // You can construct a concrete instance of `SystemNetflowArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i SystemNetflowArray) ToSystemNetflowArrayOutput() SystemNetflowArrayOutpu
 
 func (i SystemNetflowArray) ToSystemNetflowArrayOutputWithContext(ctx context.Context) SystemNetflowArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowArrayOutput)
-}
-
-func (i SystemNetflowArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNetflow] {
-	return pulumix.Output[[]*SystemNetflow]{
-		OutputState: i.ToSystemNetflowArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemNetflowMapInput is an input type that accepts SystemNetflowMap and SystemNetflowMapOutput values.
@@ -198,12 +185,6 @@ func (i SystemNetflowMap) ToSystemNetflowMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowMapOutput)
 }
 
-func (i SystemNetflowMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNetflow] {
-	return pulumix.Output[map[string]*SystemNetflow]{
-		OutputState: i.ToSystemNetflowMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemNetflowOutput struct{ *pulumi.OutputState }
 
 func (SystemNetflowOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o SystemNetflowOutput) ToSystemNetflowOutput() SystemNetflowOutput {
 
 func (o SystemNetflowOutput) ToSystemNetflowOutputWithContext(ctx context.Context) SystemNetflowOutput {
 	return o
-}
-
-func (o SystemNetflowOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemNetflow] {
-	return pulumix.Output[*SystemNetflow]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemNetflowOutput) ActiveFlowTimeout() pulumi.IntOutput {
@@ -278,12 +253,6 @@ func (o SystemNetflowArrayOutput) ToSystemNetflowArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemNetflowArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNetflow] {
-	return pulumix.Output[[]*SystemNetflow]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemNetflowArrayOutput) Index(i pulumi.IntInput) SystemNetflowOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNetflow {
 		return vs[0].([]*SystemNetflow)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o SystemNetflowMapOutput) ToSystemNetflowMapOutput() SystemNetflowMapOutpu
 
 func (o SystemNetflowMapOutput) ToSystemNetflowMapOutputWithContext(ctx context.Context) SystemNetflowMapOutput {
 	return o
-}
-
-func (o SystemNetflowMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNetflow] {
-	return pulumix.Output[map[string]*SystemNetflow]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemNetflowMapOutput) MapIndex(k pulumi.StringInput) SystemNetflowOutput {

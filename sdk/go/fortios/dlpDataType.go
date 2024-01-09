@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpDataType struct {
@@ -136,12 +135,6 @@ func (i *DlpDataType) ToDlpDataTypeOutputWithContext(ctx context.Context) DlpDat
 	return pulumi.ToOutputWithContext(ctx, i).(DlpDataTypeOutput)
 }
 
-func (i *DlpDataType) ToOutput(ctx context.Context) pulumix.Output[*DlpDataType] {
-	return pulumix.Output[*DlpDataType]{
-		OutputState: i.ToDlpDataTypeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DlpDataTypeArrayInput is an input type that accepts DlpDataTypeArray and DlpDataTypeArrayOutput values.
 // You can construct a concrete instance of `DlpDataTypeArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i DlpDataTypeArray) ToDlpDataTypeArrayOutput() DlpDataTypeArrayOutput {
 
 func (i DlpDataTypeArray) ToDlpDataTypeArrayOutputWithContext(ctx context.Context) DlpDataTypeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpDataTypeArrayOutput)
-}
-
-func (i DlpDataTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpDataType] {
-	return pulumix.Output[[]*DlpDataType]{
-		OutputState: i.ToDlpDataTypeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DlpDataTypeMapInput is an input type that accepts DlpDataTypeMap and DlpDataTypeMapOutput values.
@@ -198,12 +185,6 @@ func (i DlpDataTypeMap) ToDlpDataTypeMapOutputWithContext(ctx context.Context) D
 	return pulumi.ToOutputWithContext(ctx, i).(DlpDataTypeMapOutput)
 }
 
-func (i DlpDataTypeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpDataType] {
-	return pulumix.Output[map[string]*DlpDataType]{
-		OutputState: i.ToDlpDataTypeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DlpDataTypeOutput struct{ *pulumi.OutputState }
 
 func (DlpDataTypeOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o DlpDataTypeOutput) ToDlpDataTypeOutput() DlpDataTypeOutput {
 
 func (o DlpDataTypeOutput) ToDlpDataTypeOutputWithContext(ctx context.Context) DlpDataTypeOutput {
 	return o
-}
-
-func (o DlpDataTypeOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpDataType] {
-	return pulumix.Output[*DlpDataType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpDataTypeOutput) Comment() pulumi.StringPtrOutput {
@@ -278,12 +253,6 @@ func (o DlpDataTypeArrayOutput) ToDlpDataTypeArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o DlpDataTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpDataType] {
-	return pulumix.Output[[]*DlpDataType]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DlpDataTypeArrayOutput) Index(i pulumi.IntInput) DlpDataTypeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpDataType {
 		return vs[0].([]*DlpDataType)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o DlpDataTypeMapOutput) ToDlpDataTypeMapOutput() DlpDataTypeMapOutput {
 
 func (o DlpDataTypeMapOutput) ToDlpDataTypeMapOutputWithContext(ctx context.Context) DlpDataTypeMapOutput {
 	return o
-}
-
-func (o DlpDataTypeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpDataType] {
-	return pulumix.Output[map[string]*DlpDataType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpDataTypeMapOutput) MapIndex(k pulumi.StringInput) DlpDataTypeOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemSnmpUser(ctx *pulumi.Context, args *LookupSystemSnmpUserArgs, opts ...pulumi.InvokeOption) (*LookupSystemSnmpUserResult, error) {
@@ -91,12 +90,6 @@ func (o LookupSystemSnmpUserResultOutput) ToLookupSystemSnmpUserResultOutput() L
 
 func (o LookupSystemSnmpUserResultOutput) ToLookupSystemSnmpUserResultOutputWithContext(ctx context.Context) LookupSystemSnmpUserResultOutput {
 	return o
-}
-
-func (o LookupSystemSnmpUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemSnmpUserResult] {
-	return pulumix.Output[LookupSystemSnmpUserResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemSnmpUserResultOutput) AuthProto() pulumi.StringOutput {

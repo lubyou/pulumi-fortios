@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallProfileProtocolOptions(ctx *pulumi.Context, args *LookupFirewallProfileProtocolOptionsArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProfileProtocolOptionsResult, error) {
@@ -89,12 +88,6 @@ func (o LookupFirewallProfileProtocolOptionsResultOutput) ToLookupFirewallProfil
 
 func (o LookupFirewallProfileProtocolOptionsResultOutput) ToLookupFirewallProfileProtocolOptionsResultOutputWithContext(ctx context.Context) LookupFirewallProfileProtocolOptionsResultOutput {
 	return o
-}
-
-func (o LookupFirewallProfileProtocolOptionsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallProfileProtocolOptionsResult] {
-	return pulumix.Output[LookupFirewallProfileProtocolOptionsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFirewallProfileProtocolOptionsResultOutput) Cifs() GetFirewallProfileProtocolOptionsCifArrayOutput {

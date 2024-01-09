@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchController8021XSettings struct {
@@ -116,12 +115,6 @@ func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsOutput)
 }
 
-func (i *SwitchController8021XSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchController8021XSettings] {
-	return pulumix.Output[*SwitchController8021XSettings]{
-		OutputState: i.ToSwitchController8021XSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchController8021XSettingsArrayInput is an input type that accepts SwitchController8021XSettingsArray and SwitchController8021XSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchController8021XSettingsArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i SwitchController8021XSettingsArray) ToSwitchController8021XSettingsArray
 
 func (i SwitchController8021XSettingsArray) ToSwitchController8021XSettingsArrayOutputWithContext(ctx context.Context) SwitchController8021XSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsArrayOutput)
-}
-
-func (i SwitchController8021XSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchController8021XSettings] {
-	return pulumix.Output[[]*SwitchController8021XSettings]{
-		OutputState: i.ToSwitchController8021XSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchController8021XSettingsMapInput is an input type that accepts SwitchController8021XSettingsMap and SwitchController8021XSettingsMapOutput values.
@@ -178,12 +165,6 @@ func (i SwitchController8021XSettingsMap) ToSwitchController8021XSettingsMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsMapOutput)
 }
 
-func (i SwitchController8021XSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchController8021XSettings] {
-	return pulumix.Output[map[string]*SwitchController8021XSettings]{
-		OutputState: i.ToSwitchController8021XSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchController8021XSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchController8021XSettingsOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsOutp
 
 func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsOutputWithContext(ctx context.Context) SwitchController8021XSettingsOutput {
 	return o
-}
-
-func (o SwitchController8021XSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchController8021XSettings] {
-	return pulumix.Output[*SwitchController8021XSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchController8021XSettingsOutput) LinkDownAuth() pulumi.StringOutput {
@@ -242,12 +217,6 @@ func (o SwitchController8021XSettingsArrayOutput) ToSwitchController8021XSetting
 	return o
 }
 
-func (o SwitchController8021XSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchController8021XSettings] {
-	return pulumix.Output[[]*SwitchController8021XSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchController8021XSettingsArrayOutput) Index(i pulumi.IntInput) SwitchController8021XSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchController8021XSettings {
 		return vs[0].([]*SwitchController8021XSettings)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o SwitchController8021XSettingsMapOutput) ToSwitchController8021XSettingsM
 
 func (o SwitchController8021XSettingsMapOutput) ToSwitchController8021XSettingsMapOutputWithContext(ctx context.Context) SwitchController8021XSettingsMapOutput {
 	return o
-}
-
-func (o SwitchController8021XSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchController8021XSettings] {
-	return pulumix.Output[map[string]*SwitchController8021XSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchController8021XSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchController8021XSettingsOutput {

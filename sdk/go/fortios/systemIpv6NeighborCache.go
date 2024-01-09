@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIpv6NeighborCache struct {
@@ -124,12 +123,6 @@ func (i *SystemIpv6NeighborCache) ToSystemIpv6NeighborCacheOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCacheOutput)
 }
 
-func (i *SystemIpv6NeighborCache) ToOutput(ctx context.Context) pulumix.Output[*SystemIpv6NeighborCache] {
-	return pulumix.Output[*SystemIpv6NeighborCache]{
-		OutputState: i.ToSystemIpv6NeighborCacheOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemIpv6NeighborCacheArrayInput is an input type that accepts SystemIpv6NeighborCacheArray and SystemIpv6NeighborCacheArrayOutput values.
 // You can construct a concrete instance of `SystemIpv6NeighborCacheArrayInput` via:
 //
@@ -153,12 +146,6 @@ func (i SystemIpv6NeighborCacheArray) ToSystemIpv6NeighborCacheArrayOutput() Sys
 
 func (i SystemIpv6NeighborCacheArray) ToSystemIpv6NeighborCacheArrayOutputWithContext(ctx context.Context) SystemIpv6NeighborCacheArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCacheArrayOutput)
-}
-
-func (i SystemIpv6NeighborCacheArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpv6NeighborCache] {
-	return pulumix.Output[[]*SystemIpv6NeighborCache]{
-		OutputState: i.ToSystemIpv6NeighborCacheArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemIpv6NeighborCacheMapInput is an input type that accepts SystemIpv6NeighborCacheMap and SystemIpv6NeighborCacheMapOutput values.
@@ -186,12 +173,6 @@ func (i SystemIpv6NeighborCacheMap) ToSystemIpv6NeighborCacheMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCacheMapOutput)
 }
 
-func (i SystemIpv6NeighborCacheMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpv6NeighborCache] {
-	return pulumix.Output[map[string]*SystemIpv6NeighborCache]{
-		OutputState: i.ToSystemIpv6NeighborCacheMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemIpv6NeighborCacheOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6NeighborCacheOutput) ElementType() reflect.Type {
@@ -204,12 +185,6 @@ func (o SystemIpv6NeighborCacheOutput) ToSystemIpv6NeighborCacheOutput() SystemI
 
 func (o SystemIpv6NeighborCacheOutput) ToSystemIpv6NeighborCacheOutputWithContext(ctx context.Context) SystemIpv6NeighborCacheOutput {
 	return o
-}
-
-func (o SystemIpv6NeighborCacheOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemIpv6NeighborCache] {
-	return pulumix.Output[*SystemIpv6NeighborCache]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIpv6NeighborCacheOutput) Fosid() pulumi.IntOutput {
@@ -246,12 +221,6 @@ func (o SystemIpv6NeighborCacheArrayOutput) ToSystemIpv6NeighborCacheArrayOutput
 	return o
 }
 
-func (o SystemIpv6NeighborCacheArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpv6NeighborCache] {
-	return pulumix.Output[[]*SystemIpv6NeighborCache]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemIpv6NeighborCacheArrayOutput) Index(i pulumi.IntInput) SystemIpv6NeighborCacheOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpv6NeighborCache {
 		return vs[0].([]*SystemIpv6NeighborCache)[vs[1].(int)]
@@ -270,12 +239,6 @@ func (o SystemIpv6NeighborCacheMapOutput) ToSystemIpv6NeighborCacheMapOutput() S
 
 func (o SystemIpv6NeighborCacheMapOutput) ToSystemIpv6NeighborCacheMapOutputWithContext(ctx context.Context) SystemIpv6NeighborCacheMapOutput {
 	return o
-}
-
-func (o SystemIpv6NeighborCacheMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpv6NeighborCache] {
-	return pulumix.Output[map[string]*SystemIpv6NeighborCache]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemIpv6NeighborCacheMapOutput) MapIndex(k pulumi.StringInput) SystemIpv6NeighborCacheOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerFlowTracking struct {
@@ -191,12 +190,6 @@ func (i *SwitchControllerFlowTracking) ToSwitchControllerFlowTrackingOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingOutput)
 }
 
-func (i *SwitchControllerFlowTracking) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerFlowTracking] {
-	return pulumix.Output[*SwitchControllerFlowTracking]{
-		OutputState: i.ToSwitchControllerFlowTrackingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerFlowTrackingArrayInput is an input type that accepts SwitchControllerFlowTrackingArray and SwitchControllerFlowTrackingArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerFlowTrackingArrayInput` via:
 //
@@ -220,12 +213,6 @@ func (i SwitchControllerFlowTrackingArray) ToSwitchControllerFlowTrackingArrayOu
 
 func (i SwitchControllerFlowTrackingArray) ToSwitchControllerFlowTrackingArrayOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingArrayOutput)
-}
-
-func (i SwitchControllerFlowTrackingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerFlowTracking] {
-	return pulumix.Output[[]*SwitchControllerFlowTracking]{
-		OutputState: i.ToSwitchControllerFlowTrackingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerFlowTrackingMapInput is an input type that accepts SwitchControllerFlowTrackingMap and SwitchControllerFlowTrackingMapOutput values.
@@ -253,12 +240,6 @@ func (i SwitchControllerFlowTrackingMap) ToSwitchControllerFlowTrackingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingMapOutput)
 }
 
-func (i SwitchControllerFlowTrackingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerFlowTracking] {
-	return pulumix.Output[map[string]*SwitchControllerFlowTracking]{
-		OutputState: i.ToSwitchControllerFlowTrackingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerFlowTrackingOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerFlowTrackingOutput) ElementType() reflect.Type {
@@ -271,12 +252,6 @@ func (o SwitchControllerFlowTrackingOutput) ToSwitchControllerFlowTrackingOutput
 
 func (o SwitchControllerFlowTrackingOutput) ToSwitchControllerFlowTrackingOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingOutput {
 	return o
-}
-
-func (o SwitchControllerFlowTrackingOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerFlowTracking] {
-	return pulumix.Output[*SwitchControllerFlowTracking]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerFlowTrackingOutput) Aggregates() SwitchControllerFlowTrackingAggregateArrayOutput {
@@ -381,12 +356,6 @@ func (o SwitchControllerFlowTrackingArrayOutput) ToSwitchControllerFlowTrackingA
 	return o
 }
 
-func (o SwitchControllerFlowTrackingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerFlowTracking] {
-	return pulumix.Output[[]*SwitchControllerFlowTracking]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerFlowTrackingArrayOutput) Index(i pulumi.IntInput) SwitchControllerFlowTrackingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerFlowTracking {
 		return vs[0].([]*SwitchControllerFlowTracking)[vs[1].(int)]
@@ -405,12 +374,6 @@ func (o SwitchControllerFlowTrackingMapOutput) ToSwitchControllerFlowTrackingMap
 
 func (o SwitchControllerFlowTrackingMapOutput) ToSwitchControllerFlowTrackingMapOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingMapOutput {
 	return o
-}
-
-func (o SwitchControllerFlowTrackingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerFlowTracking] {
-	return pulumix.Output[map[string]*SwitchControllerFlowTracking]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerFlowTrackingMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerFlowTrackingOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserRadius struct {
@@ -414,12 +413,6 @@ func (i *UserRadius) ToUserRadiusOutputWithContext(ctx context.Context) UserRadi
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusOutput)
 }
 
-func (i *UserRadius) ToOutput(ctx context.Context) pulumix.Output[*UserRadius] {
-	return pulumix.Output[*UserRadius]{
-		OutputState: i.ToUserRadiusOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserRadiusArrayInput is an input type that accepts UserRadiusArray and UserRadiusArrayOutput values.
 // You can construct a concrete instance of `UserRadiusArrayInput` via:
 //
@@ -443,12 +436,6 @@ func (i UserRadiusArray) ToUserRadiusArrayOutput() UserRadiusArrayOutput {
 
 func (i UserRadiusArray) ToUserRadiusArrayOutputWithContext(ctx context.Context) UserRadiusArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusArrayOutput)
-}
-
-func (i UserRadiusArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserRadius] {
-	return pulumix.Output[[]*UserRadius]{
-		OutputState: i.ToUserRadiusArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserRadiusMapInput is an input type that accepts UserRadiusMap and UserRadiusMapOutput values.
@@ -476,12 +463,6 @@ func (i UserRadiusMap) ToUserRadiusMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusMapOutput)
 }
 
-func (i UserRadiusMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRadius] {
-	return pulumix.Output[map[string]*UserRadius]{
-		OutputState: i.ToUserRadiusMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserRadiusOutput struct{ *pulumi.OutputState }
 
 func (UserRadiusOutput) ElementType() reflect.Type {
@@ -494,12 +475,6 @@ func (o UserRadiusOutput) ToUserRadiusOutput() UserRadiusOutput {
 
 func (o UserRadiusOutput) ToUserRadiusOutputWithContext(ctx context.Context) UserRadiusOutput {
 	return o
-}
-
-func (o UserRadiusOutput) ToOutput(ctx context.Context) pulumix.Output[*UserRadius] {
-	return pulumix.Output[*UserRadius]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserRadiusOutput) AccountKeyCertField() pulumi.StringOutput {
@@ -760,12 +735,6 @@ func (o UserRadiusArrayOutput) ToUserRadiusArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o UserRadiusArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserRadius] {
-	return pulumix.Output[[]*UserRadius]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserRadiusArrayOutput) Index(i pulumi.IntInput) UserRadiusOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserRadius {
 		return vs[0].([]*UserRadius)[vs[1].(int)]
@@ -784,12 +753,6 @@ func (o UserRadiusMapOutput) ToUserRadiusMapOutput() UserRadiusMapOutput {
 
 func (o UserRadiusMapOutput) ToUserRadiusMapOutputWithContext(ctx context.Context) UserRadiusMapOutput {
 	return o
-}
-
-func (o UserRadiusMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRadius] {
-	return pulumix.Output[map[string]*UserRadius]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserRadiusMapOutput) MapIndex(k pulumi.StringInput) UserRadiusOutput {

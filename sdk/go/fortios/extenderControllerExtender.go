@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ExtenderControllerExtender struct {
@@ -399,12 +398,6 @@ func (i *ExtenderControllerExtender) ToExtenderControllerExtenderOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderOutput)
 }
 
-func (i *ExtenderControllerExtender) ToOutput(ctx context.Context) pulumix.Output[*ExtenderControllerExtender] {
-	return pulumix.Output[*ExtenderControllerExtender]{
-		OutputState: i.ToExtenderControllerExtenderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExtenderControllerExtenderArrayInput is an input type that accepts ExtenderControllerExtenderArray and ExtenderControllerExtenderArrayOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtenderArrayInput` via:
 //
@@ -428,12 +421,6 @@ func (i ExtenderControllerExtenderArray) ToExtenderControllerExtenderArrayOutput
 
 func (i ExtenderControllerExtenderArray) ToExtenderControllerExtenderArrayOutputWithContext(ctx context.Context) ExtenderControllerExtenderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderArrayOutput)
-}
-
-func (i ExtenderControllerExtenderArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtenderControllerExtender] {
-	return pulumix.Output[[]*ExtenderControllerExtender]{
-		OutputState: i.ToExtenderControllerExtenderArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExtenderControllerExtenderMapInput is an input type that accepts ExtenderControllerExtenderMap and ExtenderControllerExtenderMapOutput values.
@@ -461,12 +448,6 @@ func (i ExtenderControllerExtenderMap) ToExtenderControllerExtenderMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderMapOutput)
 }
 
-func (i ExtenderControllerExtenderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtenderControllerExtender] {
-	return pulumix.Output[map[string]*ExtenderControllerExtender]{
-		OutputState: i.ToExtenderControllerExtenderMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExtenderControllerExtenderOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtenderOutput) ElementType() reflect.Type {
@@ -479,12 +460,6 @@ func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderOutput() E
 
 func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderOutputWithContext(ctx context.Context) ExtenderControllerExtenderOutput {
 	return o
-}
-
-func (o ExtenderControllerExtenderOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtenderControllerExtender] {
-	return pulumix.Output[*ExtenderControllerExtender]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtenderControllerExtenderOutput) AaaSharedSecret() pulumi.StringPtrOutput {
@@ -729,12 +704,6 @@ func (o ExtenderControllerExtenderArrayOutput) ToExtenderControllerExtenderArray
 	return o
 }
 
-func (o ExtenderControllerExtenderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtenderControllerExtender] {
-	return pulumix.Output[[]*ExtenderControllerExtender]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExtenderControllerExtenderArrayOutput) Index(i pulumi.IntInput) ExtenderControllerExtenderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtenderControllerExtender {
 		return vs[0].([]*ExtenderControllerExtender)[vs[1].(int)]
@@ -753,12 +722,6 @@ func (o ExtenderControllerExtenderMapOutput) ToExtenderControllerExtenderMapOutp
 
 func (o ExtenderControllerExtenderMapOutput) ToExtenderControllerExtenderMapOutputWithContext(ctx context.Context) ExtenderControllerExtenderMapOutput {
 	return o
-}
-
-func (o ExtenderControllerExtenderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtenderControllerExtender] {
-	return pulumix.Output[map[string]*ExtenderControllerExtender]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtenderControllerExtenderMapOutput) MapIndex(k pulumi.StringInput) ExtenderControllerExtenderOutput {

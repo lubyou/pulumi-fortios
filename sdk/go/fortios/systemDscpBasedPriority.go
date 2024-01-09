@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDscpBasedPriority struct {
@@ -106,12 +105,6 @@ func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityOutput)
 }
 
-func (i *SystemDscpBasedPriority) ToOutput(ctx context.Context) pulumix.Output[*SystemDscpBasedPriority] {
-	return pulumix.Output[*SystemDscpBasedPriority]{
-		OutputState: i.ToSystemDscpBasedPriorityOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemDscpBasedPriorityArrayInput is an input type that accepts SystemDscpBasedPriorityArray and SystemDscpBasedPriorityArrayOutput values.
 // You can construct a concrete instance of `SystemDscpBasedPriorityArrayInput` via:
 //
@@ -135,12 +128,6 @@ func (i SystemDscpBasedPriorityArray) ToSystemDscpBasedPriorityArrayOutput() Sys
 
 func (i SystemDscpBasedPriorityArray) ToSystemDscpBasedPriorityArrayOutputWithContext(ctx context.Context) SystemDscpBasedPriorityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityArrayOutput)
-}
-
-func (i SystemDscpBasedPriorityArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDscpBasedPriority] {
-	return pulumix.Output[[]*SystemDscpBasedPriority]{
-		OutputState: i.ToSystemDscpBasedPriorityArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemDscpBasedPriorityMapInput is an input type that accepts SystemDscpBasedPriorityMap and SystemDscpBasedPriorityMapOutput values.
@@ -168,12 +155,6 @@ func (i SystemDscpBasedPriorityMap) ToSystemDscpBasedPriorityMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityMapOutput)
 }
 
-func (i SystemDscpBasedPriorityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDscpBasedPriority] {
-	return pulumix.Output[map[string]*SystemDscpBasedPriority]{
-		OutputState: i.ToSystemDscpBasedPriorityMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemDscpBasedPriorityOutput struct{ *pulumi.OutputState }
 
 func (SystemDscpBasedPriorityOutput) ElementType() reflect.Type {
@@ -186,12 +167,6 @@ func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityOutput() SystemD
 
 func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityOutputWithContext(ctx context.Context) SystemDscpBasedPriorityOutput {
 	return o
-}
-
-func (o SystemDscpBasedPriorityOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDscpBasedPriority] {
-	return pulumix.Output[*SystemDscpBasedPriority]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDscpBasedPriorityOutput) Ds() pulumi.IntOutput {
@@ -224,12 +199,6 @@ func (o SystemDscpBasedPriorityArrayOutput) ToSystemDscpBasedPriorityArrayOutput
 	return o
 }
 
-func (o SystemDscpBasedPriorityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDscpBasedPriority] {
-	return pulumix.Output[[]*SystemDscpBasedPriority]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemDscpBasedPriorityArrayOutput) Index(i pulumi.IntInput) SystemDscpBasedPriorityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDscpBasedPriority {
 		return vs[0].([]*SystemDscpBasedPriority)[vs[1].(int)]
@@ -248,12 +217,6 @@ func (o SystemDscpBasedPriorityMapOutput) ToSystemDscpBasedPriorityMapOutput() S
 
 func (o SystemDscpBasedPriorityMapOutput) ToSystemDscpBasedPriorityMapOutputWithContext(ctx context.Context) SystemDscpBasedPriorityMapOutput {
 	return o
-}
-
-func (o SystemDscpBasedPriorityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDscpBasedPriority] {
-	return pulumix.Output[map[string]*SystemDscpBasedPriority]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDscpBasedPriorityMapOutput) MapIndex(k pulumi.StringInput) SystemDscpBasedPriorityOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogNullDeviceFilter struct {
@@ -181,12 +180,6 @@ func (i *LogNullDeviceFilter) ToLogNullDeviceFilterOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterOutput)
 }
 
-func (i *LogNullDeviceFilter) ToOutput(ctx context.Context) pulumix.Output[*LogNullDeviceFilter] {
-	return pulumix.Output[*LogNullDeviceFilter]{
-		OutputState: i.ToLogNullDeviceFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogNullDeviceFilterArrayInput is an input type that accepts LogNullDeviceFilterArray and LogNullDeviceFilterArrayOutput values.
 // You can construct a concrete instance of `LogNullDeviceFilterArrayInput` via:
 //
@@ -210,12 +203,6 @@ func (i LogNullDeviceFilterArray) ToLogNullDeviceFilterArrayOutput() LogNullDevi
 
 func (i LogNullDeviceFilterArray) ToLogNullDeviceFilterArrayOutputWithContext(ctx context.Context) LogNullDeviceFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterArrayOutput)
-}
-
-func (i LogNullDeviceFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogNullDeviceFilter] {
-	return pulumix.Output[[]*LogNullDeviceFilter]{
-		OutputState: i.ToLogNullDeviceFilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogNullDeviceFilterMapInput is an input type that accepts LogNullDeviceFilterMap and LogNullDeviceFilterMapOutput values.
@@ -243,12 +230,6 @@ func (i LogNullDeviceFilterMap) ToLogNullDeviceFilterMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterMapOutput)
 }
 
-func (i LogNullDeviceFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogNullDeviceFilter] {
-	return pulumix.Output[map[string]*LogNullDeviceFilter]{
-		OutputState: i.ToLogNullDeviceFilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogNullDeviceFilterOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceFilterOutput) ElementType() reflect.Type {
@@ -261,12 +242,6 @@ func (o LogNullDeviceFilterOutput) ToLogNullDeviceFilterOutput() LogNullDeviceFi
 
 func (o LogNullDeviceFilterOutput) ToLogNullDeviceFilterOutputWithContext(ctx context.Context) LogNullDeviceFilterOutput {
 	return o
-}
-
-func (o LogNullDeviceFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogNullDeviceFilter] {
-	return pulumix.Output[*LogNullDeviceFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogNullDeviceFilterOutput) Anomaly() pulumi.StringOutput {
@@ -359,12 +334,6 @@ func (o LogNullDeviceFilterArrayOutput) ToLogNullDeviceFilterArrayOutputWithCont
 	return o
 }
 
-func (o LogNullDeviceFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogNullDeviceFilter] {
-	return pulumix.Output[[]*LogNullDeviceFilter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogNullDeviceFilterArrayOutput) Index(i pulumi.IntInput) LogNullDeviceFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogNullDeviceFilter {
 		return vs[0].([]*LogNullDeviceFilter)[vs[1].(int)]
@@ -383,12 +352,6 @@ func (o LogNullDeviceFilterMapOutput) ToLogNullDeviceFilterMapOutput() LogNullDe
 
 func (o LogNullDeviceFilterMapOutput) ToLogNullDeviceFilterMapOutputWithContext(ctx context.Context) LogNullDeviceFilterMapOutput {
 	return o
-}
-
-func (o LogNullDeviceFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogNullDeviceFilter] {
-	return pulumix.Output[map[string]*LogNullDeviceFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogNullDeviceFilterMapOutput) MapIndex(k pulumi.StringInput) LogNullDeviceFilterOutput {

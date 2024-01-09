@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzer2Filter struct {
@@ -186,12 +185,6 @@ func (i *LogFortianalyzer2Filter) ToLogFortianalyzer2FilterOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2FilterOutput)
 }
 
-func (i *LogFortianalyzer2Filter) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzer2Filter] {
-	return pulumix.Output[*LogFortianalyzer2Filter]{
-		OutputState: i.ToLogFortianalyzer2FilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortianalyzer2FilterArrayInput is an input type that accepts LogFortianalyzer2FilterArray and LogFortianalyzer2FilterArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzer2FilterArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i LogFortianalyzer2FilterArray) ToLogFortianalyzer2FilterArrayOutput() Log
 
 func (i LogFortianalyzer2FilterArray) ToLogFortianalyzer2FilterArrayOutputWithContext(ctx context.Context) LogFortianalyzer2FilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2FilterArrayOutput)
-}
-
-func (i LogFortianalyzer2FilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzer2Filter] {
-	return pulumix.Output[[]*LogFortianalyzer2Filter]{
-		OutputState: i.ToLogFortianalyzer2FilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortianalyzer2FilterMapInput is an input type that accepts LogFortianalyzer2FilterMap and LogFortianalyzer2FilterMapOutput values.
@@ -248,12 +235,6 @@ func (i LogFortianalyzer2FilterMap) ToLogFortianalyzer2FilterMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2FilterMapOutput)
 }
 
-func (i LogFortianalyzer2FilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzer2Filter] {
-	return pulumix.Output[map[string]*LogFortianalyzer2Filter]{
-		OutputState: i.ToLogFortianalyzer2FilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortianalyzer2FilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzer2FilterOutput) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o LogFortianalyzer2FilterOutput) ToLogFortianalyzer2FilterOutput() LogFort
 
 func (o LogFortianalyzer2FilterOutput) ToLogFortianalyzer2FilterOutputWithContext(ctx context.Context) LogFortianalyzer2FilterOutput {
 	return o
-}
-
-func (o LogFortianalyzer2FilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzer2Filter] {
-	return pulumix.Output[*LogFortianalyzer2Filter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzer2FilterOutput) Anomaly() pulumi.StringOutput {
@@ -368,12 +343,6 @@ func (o LogFortianalyzer2FilterArrayOutput) ToLogFortianalyzer2FilterArrayOutput
 	return o
 }
 
-func (o LogFortianalyzer2FilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzer2Filter] {
-	return pulumix.Output[[]*LogFortianalyzer2Filter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortianalyzer2FilterArrayOutput) Index(i pulumi.IntInput) LogFortianalyzer2FilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzer2Filter {
 		return vs[0].([]*LogFortianalyzer2Filter)[vs[1].(int)]
@@ -392,12 +361,6 @@ func (o LogFortianalyzer2FilterMapOutput) ToLogFortianalyzer2FilterMapOutput() L
 
 func (o LogFortianalyzer2FilterMapOutput) ToLogFortianalyzer2FilterMapOutputWithContext(ctx context.Context) LogFortianalyzer2FilterMapOutput {
 	return o
-}
-
-func (o LogFortianalyzer2FilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzer2Filter] {
-	return pulumix.Output[map[string]*LogFortianalyzer2Filter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzer2FilterMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzer2FilterOutput {

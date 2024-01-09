@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerQosDot1PMap struct {
@@ -146,12 +145,6 @@ func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapOutput)
 }
 
-func (i *SwitchControllerQosDot1PMap) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosDot1PMap] {
-	return pulumix.Output[*SwitchControllerQosDot1PMap]{
-		OutputState: i.ToSwitchControllerQosDot1PMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerQosDot1PMapArrayInput is an input type that accepts SwitchControllerQosDot1PMapArray and SwitchControllerQosDot1PMapArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosDot1PMapArrayInput` via:
 //
@@ -175,12 +168,6 @@ func (i SwitchControllerQosDot1PMapArray) ToSwitchControllerQosDot1PMapArrayOutp
 
 func (i SwitchControllerQosDot1PMapArray) ToSwitchControllerQosDot1PMapArrayOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapArrayOutput)
-}
-
-func (i SwitchControllerQosDot1PMapArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosDot1PMap] {
-	return pulumix.Output[[]*SwitchControllerQosDot1PMap]{
-		OutputState: i.ToSwitchControllerQosDot1PMapArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerQosDot1PMapMapInput is an input type that accepts SwitchControllerQosDot1PMapMap and SwitchControllerQosDot1PMapMapOutput values.
@@ -208,12 +195,6 @@ func (i SwitchControllerQosDot1PMapMap) ToSwitchControllerQosDot1PMapMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapMapOutput)
 }
 
-func (i SwitchControllerQosDot1PMapMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosDot1PMap] {
-	return pulumix.Output[map[string]*SwitchControllerQosDot1PMap]{
-		OutputState: i.ToSwitchControllerQosDot1PMapMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerQosDot1PMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosDot1PMapOutput) ElementType() reflect.Type {
@@ -226,12 +207,6 @@ func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapOutput()
 
 func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapOutput {
 	return o
-}
-
-func (o SwitchControllerQosDot1PMapOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosDot1PMap] {
-	return pulumix.Output[*SwitchControllerQosDot1PMap]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerQosDot1PMapOutput) Description() pulumi.StringOutput {
@@ -296,12 +271,6 @@ func (o SwitchControllerQosDot1PMapArrayOutput) ToSwitchControllerQosDot1PMapArr
 	return o
 }
 
-func (o SwitchControllerQosDot1PMapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosDot1PMap] {
-	return pulumix.Output[[]*SwitchControllerQosDot1PMap]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerQosDot1PMapArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosDot1PMapOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosDot1PMap {
 		return vs[0].([]*SwitchControllerQosDot1PMap)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o SwitchControllerQosDot1PMapMapOutput) ToSwitchControllerQosDot1PMapMapOu
 
 func (o SwitchControllerQosDot1PMapMapOutput) ToSwitchControllerQosDot1PMapMapOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapMapOutput {
 	return o
-}
-
-func (o SwitchControllerQosDot1PMapMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosDot1PMap] {
-	return pulumix.Output[map[string]*SwitchControllerQosDot1PMap]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerQosDot1PMapMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosDot1PMapOutput {

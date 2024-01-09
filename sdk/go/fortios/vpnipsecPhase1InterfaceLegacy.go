@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VPNIPsecPhase1InterfaceLegacy struct {
@@ -194,12 +193,6 @@ func (i *VPNIPsecPhase1InterfaceLegacy) ToVPNIPsecPhase1InterfaceLegacyOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(VPNIPsecPhase1InterfaceLegacyOutput)
 }
 
-func (i *VPNIPsecPhase1InterfaceLegacy) ToOutput(ctx context.Context) pulumix.Output[*VPNIPsecPhase1InterfaceLegacy] {
-	return pulumix.Output[*VPNIPsecPhase1InterfaceLegacy]{
-		OutputState: i.ToVPNIPsecPhase1InterfaceLegacyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VPNIPsecPhase1InterfaceLegacyArrayInput is an input type that accepts VPNIPsecPhase1InterfaceLegacyArray and VPNIPsecPhase1InterfaceLegacyArrayOutput values.
 // You can construct a concrete instance of `VPNIPsecPhase1InterfaceLegacyArrayInput` via:
 //
@@ -223,12 +216,6 @@ func (i VPNIPsecPhase1InterfaceLegacyArray) ToVPNIPsecPhase1InterfaceLegacyArray
 
 func (i VPNIPsecPhase1InterfaceLegacyArray) ToVPNIPsecPhase1InterfaceLegacyArrayOutputWithContext(ctx context.Context) VPNIPsecPhase1InterfaceLegacyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VPNIPsecPhase1InterfaceLegacyArrayOutput)
-}
-
-func (i VPNIPsecPhase1InterfaceLegacyArray) ToOutput(ctx context.Context) pulumix.Output[[]*VPNIPsecPhase1InterfaceLegacy] {
-	return pulumix.Output[[]*VPNIPsecPhase1InterfaceLegacy]{
-		OutputState: i.ToVPNIPsecPhase1InterfaceLegacyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VPNIPsecPhase1InterfaceLegacyMapInput is an input type that accepts VPNIPsecPhase1InterfaceLegacyMap and VPNIPsecPhase1InterfaceLegacyMapOutput values.
@@ -256,12 +243,6 @@ func (i VPNIPsecPhase1InterfaceLegacyMap) ToVPNIPsecPhase1InterfaceLegacyMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VPNIPsecPhase1InterfaceLegacyMapOutput)
 }
 
-func (i VPNIPsecPhase1InterfaceLegacyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VPNIPsecPhase1InterfaceLegacy] {
-	return pulumix.Output[map[string]*VPNIPsecPhase1InterfaceLegacy]{
-		OutputState: i.ToVPNIPsecPhase1InterfaceLegacyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VPNIPsecPhase1InterfaceLegacyOutput struct{ *pulumi.OutputState }
 
 func (VPNIPsecPhase1InterfaceLegacyOutput) ElementType() reflect.Type {
@@ -274,12 +255,6 @@ func (o VPNIPsecPhase1InterfaceLegacyOutput) ToVPNIPsecPhase1InterfaceLegacyOutp
 
 func (o VPNIPsecPhase1InterfaceLegacyOutput) ToVPNIPsecPhase1InterfaceLegacyOutputWithContext(ctx context.Context) VPNIPsecPhase1InterfaceLegacyOutput {
 	return o
-}
-
-func (o VPNIPsecPhase1InterfaceLegacyOutput) ToOutput(ctx context.Context) pulumix.Output[*VPNIPsecPhase1InterfaceLegacy] {
-	return pulumix.Output[*VPNIPsecPhase1InterfaceLegacy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VPNIPsecPhase1InterfaceLegacyOutput) Authmethod() pulumi.StringOutput {
@@ -372,12 +347,6 @@ func (o VPNIPsecPhase1InterfaceLegacyArrayOutput) ToVPNIPsecPhase1InterfaceLegac
 	return o
 }
 
-func (o VPNIPsecPhase1InterfaceLegacyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VPNIPsecPhase1InterfaceLegacy] {
-	return pulumix.Output[[]*VPNIPsecPhase1InterfaceLegacy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VPNIPsecPhase1InterfaceLegacyArrayOutput) Index(i pulumi.IntInput) VPNIPsecPhase1InterfaceLegacyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VPNIPsecPhase1InterfaceLegacy {
 		return vs[0].([]*VPNIPsecPhase1InterfaceLegacy)[vs[1].(int)]
@@ -396,12 +365,6 @@ func (o VPNIPsecPhase1InterfaceLegacyMapOutput) ToVPNIPsecPhase1InterfaceLegacyM
 
 func (o VPNIPsecPhase1InterfaceLegacyMapOutput) ToVPNIPsecPhase1InterfaceLegacyMapOutputWithContext(ctx context.Context) VPNIPsecPhase1InterfaceLegacyMapOutput {
 	return o
-}
-
-func (o VPNIPsecPhase1InterfaceLegacyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VPNIPsecPhase1InterfaceLegacy] {
-	return pulumix.Output[map[string]*VPNIPsecPhase1InterfaceLegacy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VPNIPsecPhase1InterfaceLegacyMapOutput) MapIndex(k pulumi.StringInput) VPNIPsecPhase1InterfaceLegacyOutput {

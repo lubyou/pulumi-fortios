@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallLdbMonitor struct {
@@ -160,12 +159,6 @@ func (i *FirewallLdbMonitor) ToFirewallLdbMonitorOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorOutput)
 }
 
-func (i *FirewallLdbMonitor) ToOutput(ctx context.Context) pulumix.Output[*FirewallLdbMonitor] {
-	return pulumix.Output[*FirewallLdbMonitor]{
-		OutputState: i.ToFirewallLdbMonitorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallLdbMonitorArrayInput is an input type that accepts FirewallLdbMonitorArray and FirewallLdbMonitorArrayOutput values.
 // You can construct a concrete instance of `FirewallLdbMonitorArrayInput` via:
 //
@@ -189,12 +182,6 @@ func (i FirewallLdbMonitorArray) ToFirewallLdbMonitorArrayOutput() FirewallLdbMo
 
 func (i FirewallLdbMonitorArray) ToFirewallLdbMonitorArrayOutputWithContext(ctx context.Context) FirewallLdbMonitorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorArrayOutput)
-}
-
-func (i FirewallLdbMonitorArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallLdbMonitor] {
-	return pulumix.Output[[]*FirewallLdbMonitor]{
-		OutputState: i.ToFirewallLdbMonitorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallLdbMonitorMapInput is an input type that accepts FirewallLdbMonitorMap and FirewallLdbMonitorMapOutput values.
@@ -222,12 +209,6 @@ func (i FirewallLdbMonitorMap) ToFirewallLdbMonitorMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorMapOutput)
 }
 
-func (i FirewallLdbMonitorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallLdbMonitor] {
-	return pulumix.Output[map[string]*FirewallLdbMonitor]{
-		OutputState: i.ToFirewallLdbMonitorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallLdbMonitorOutput struct{ *pulumi.OutputState }
 
 func (FirewallLdbMonitorOutput) ElementType() reflect.Type {
@@ -240,12 +221,6 @@ func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorOutput() FirewallLdbMonito
 
 func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorOutputWithContext(ctx context.Context) FirewallLdbMonitorOutput {
 	return o
-}
-
-func (o FirewallLdbMonitorOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallLdbMonitor] {
-	return pulumix.Output[*FirewallLdbMonitor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallLdbMonitorOutput) DnsMatchIp() pulumi.StringOutput {
@@ -318,12 +293,6 @@ func (o FirewallLdbMonitorArrayOutput) ToFirewallLdbMonitorArrayOutputWithContex
 	return o
 }
 
-func (o FirewallLdbMonitorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallLdbMonitor] {
-	return pulumix.Output[[]*FirewallLdbMonitor]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallLdbMonitorArrayOutput) Index(i pulumi.IntInput) FirewallLdbMonitorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallLdbMonitor {
 		return vs[0].([]*FirewallLdbMonitor)[vs[1].(int)]
@@ -342,12 +311,6 @@ func (o FirewallLdbMonitorMapOutput) ToFirewallLdbMonitorMapOutput() FirewallLdb
 
 func (o FirewallLdbMonitorMapOutput) ToFirewallLdbMonitorMapOutputWithContext(ctx context.Context) FirewallLdbMonitorMapOutput {
 	return o
-}
-
-func (o FirewallLdbMonitorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallLdbMonitor] {
-	return pulumix.Output[map[string]*FirewallLdbMonitor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallLdbMonitorMapOutput) MapIndex(k pulumi.StringInput) FirewallLdbMonitorOutput {

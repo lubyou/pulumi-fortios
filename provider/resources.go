@@ -1051,6 +1051,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_systemsnmp_userlist":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSystemSnmpUserList")},
 			"fortios_user_saml":                               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetUserSaml")},
 			"fortios_user_samllist":                           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetUserSamlList")},
+			"fortios_vpnssl_settings":                         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetVpnSslSettings")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

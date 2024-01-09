@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemWccp(ctx *pulumi.Context, args *LookupSystemWccpArgs, opts ...pulumi.InvokeOption) (*LookupSystemWccpResult, error) {
@@ -94,12 +93,6 @@ func (o LookupSystemWccpResultOutput) ToLookupSystemWccpResultOutput() LookupSys
 
 func (o LookupSystemWccpResultOutput) ToLookupSystemWccpResultOutputWithContext(ctx context.Context) LookupSystemWccpResultOutput {
 	return o
-}
-
-func (o LookupSystemWccpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemWccpResult] {
-	return pulumix.Output[LookupSystemWccpResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemWccpResultOutput) AssignmentBucketFormat() pulumi.StringOutput {

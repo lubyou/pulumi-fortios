@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutomationDestination struct {
@@ -121,12 +120,6 @@ func (i *SystemAutomationDestination) ToSystemAutomationDestinationOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationOutput)
 }
 
-func (i *SystemAutomationDestination) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationDestination] {
-	return pulumix.Output[*SystemAutomationDestination]{
-		OutputState: i.ToSystemAutomationDestinationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAutomationDestinationArrayInput is an input type that accepts SystemAutomationDestinationArray and SystemAutomationDestinationArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationDestinationArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i SystemAutomationDestinationArray) ToSystemAutomationDestinationArrayOutp
 
 func (i SystemAutomationDestinationArray) ToSystemAutomationDestinationArrayOutputWithContext(ctx context.Context) SystemAutomationDestinationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationArrayOutput)
-}
-
-func (i SystemAutomationDestinationArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationDestination] {
-	return pulumix.Output[[]*SystemAutomationDestination]{
-		OutputState: i.ToSystemAutomationDestinationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAutomationDestinationMapInput is an input type that accepts SystemAutomationDestinationMap and SystemAutomationDestinationMapOutput values.
@@ -183,12 +170,6 @@ func (i SystemAutomationDestinationMap) ToSystemAutomationDestinationMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationMapOutput)
 }
 
-func (i SystemAutomationDestinationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationDestination] {
-	return pulumix.Output[map[string]*SystemAutomationDestination]{
-		OutputState: i.ToSystemAutomationDestinationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAutomationDestinationOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationDestinationOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationOutput()
 
 func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationOutputWithContext(ctx context.Context) SystemAutomationDestinationOutput {
 	return o
-}
-
-func (o SystemAutomationDestinationOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationDestination] {
-	return pulumix.Output[*SystemAutomationDestination]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutomationDestinationOutput) Destinations() SystemAutomationDestinationDestinationArrayOutput {
@@ -253,12 +228,6 @@ func (o SystemAutomationDestinationArrayOutput) ToSystemAutomationDestinationArr
 	return o
 }
 
-func (o SystemAutomationDestinationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationDestination] {
-	return pulumix.Output[[]*SystemAutomationDestination]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAutomationDestinationArrayOutput) Index(i pulumi.IntInput) SystemAutomationDestinationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationDestination {
 		return vs[0].([]*SystemAutomationDestination)[vs[1].(int)]
@@ -277,12 +246,6 @@ func (o SystemAutomationDestinationMapOutput) ToSystemAutomationDestinationMapOu
 
 func (o SystemAutomationDestinationMapOutput) ToSystemAutomationDestinationMapOutputWithContext(ctx context.Context) SystemAutomationDestinationMapOutput {
 	return o
-}
-
-func (o SystemAutomationDestinationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationDestination] {
-	return pulumix.Output[map[string]*SystemAutomationDestination]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutomationDestinationMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationDestinationOutput {

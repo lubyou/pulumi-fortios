@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemAliasList(ctx *pulumi.Context, args *GetSystemAliasListArgs, opts ...pulumi.InvokeOption) (*GetSystemAliasListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemAliasListResultOutput) ToGetSystemAliasListResultOutput() GetSy
 
 func (o GetSystemAliasListResultOutput) ToGetSystemAliasListResultOutputWithContext(ctx context.Context) GetSystemAliasListResultOutput {
 	return o
-}
-
-func (o GetSystemAliasListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemAliasListResult] {
-	return pulumix.Output[GetSystemAliasListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemAliasListResultOutput) Filter() pulumi.StringPtrOutput {

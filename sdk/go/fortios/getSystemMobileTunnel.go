@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemMobileTunnel(ctx *pulumi.Context, args *LookupSystemMobileTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemMobileTunnelResult, error) {
@@ -86,12 +85,6 @@ func (o LookupSystemMobileTunnelResultOutput) ToLookupSystemMobileTunnelResultOu
 
 func (o LookupSystemMobileTunnelResultOutput) ToLookupSystemMobileTunnelResultOutputWithContext(ctx context.Context) LookupSystemMobileTunnelResultOutput {
 	return o
-}
-
-func (o LookupSystemMobileTunnelResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemMobileTunnelResult] {
-	return pulumix.Output[LookupSystemMobileTunnelResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemMobileTunnelResultOutput) HashAlgorithm() pulumi.StringOutput {

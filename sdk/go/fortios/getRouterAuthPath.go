@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterAuthPath(ctx *pulumi.Context, args *LookupRouterAuthPathArgs, opts ...pulumi.InvokeOption) (*LookupRouterAuthPathResult, error) {
@@ -74,12 +73,6 @@ func (o LookupRouterAuthPathResultOutput) ToLookupRouterAuthPathResultOutput() L
 
 func (o LookupRouterAuthPathResultOutput) ToLookupRouterAuthPathResultOutputWithContext(ctx context.Context) LookupRouterAuthPathResultOutput {
 	return o
-}
-
-func (o LookupRouterAuthPathResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterAuthPathResult] {
-	return pulumix.Output[LookupRouterAuthPathResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupRouterAuthPathResultOutput) Device() pulumi.StringOutput {

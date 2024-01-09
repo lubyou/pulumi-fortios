@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerStpInstance struct {
@@ -111,12 +110,6 @@ func (i *SwitchControllerStpInstance) ToSwitchControllerStpInstanceOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStpInstanceOutput)
 }
 
-func (i *SwitchControllerStpInstance) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStpInstance] {
-	return pulumix.Output[*SwitchControllerStpInstance]{
-		OutputState: i.ToSwitchControllerStpInstanceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerStpInstanceArrayInput is an input type that accepts SwitchControllerStpInstanceArray and SwitchControllerStpInstanceArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStpInstanceArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SwitchControllerStpInstanceArray) ToSwitchControllerStpInstanceArrayOutp
 
 func (i SwitchControllerStpInstanceArray) ToSwitchControllerStpInstanceArrayOutputWithContext(ctx context.Context) SwitchControllerStpInstanceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStpInstanceArrayOutput)
-}
-
-func (i SwitchControllerStpInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStpInstance] {
-	return pulumix.Output[[]*SwitchControllerStpInstance]{
-		OutputState: i.ToSwitchControllerStpInstanceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerStpInstanceMapInput is an input type that accepts SwitchControllerStpInstanceMap and SwitchControllerStpInstanceMapOutput values.
@@ -173,12 +160,6 @@ func (i SwitchControllerStpInstanceMap) ToSwitchControllerStpInstanceMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStpInstanceMapOutput)
 }
 
-func (i SwitchControllerStpInstanceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStpInstance] {
-	return pulumix.Output[map[string]*SwitchControllerStpInstance]{
-		OutputState: i.ToSwitchControllerStpInstanceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerStpInstanceOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStpInstanceOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SwitchControllerStpInstanceOutput) ToSwitchControllerStpInstanceOutput()
 
 func (o SwitchControllerStpInstanceOutput) ToSwitchControllerStpInstanceOutputWithContext(ctx context.Context) SwitchControllerStpInstanceOutput {
 	return o
-}
-
-func (o SwitchControllerStpInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStpInstance] {
-	return pulumix.Output[*SwitchControllerStpInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerStpInstanceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -235,12 +210,6 @@ func (o SwitchControllerStpInstanceArrayOutput) ToSwitchControllerStpInstanceArr
 	return o
 }
 
-func (o SwitchControllerStpInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStpInstance] {
-	return pulumix.Output[[]*SwitchControllerStpInstance]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerStpInstanceArrayOutput) Index(i pulumi.IntInput) SwitchControllerStpInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerStpInstance {
 		return vs[0].([]*SwitchControllerStpInstance)[vs[1].(int)]
@@ -259,12 +228,6 @@ func (o SwitchControllerStpInstanceMapOutput) ToSwitchControllerStpInstanceMapOu
 
 func (o SwitchControllerStpInstanceMapOutput) ToSwitchControllerStpInstanceMapOutputWithContext(ctx context.Context) SwitchControllerStpInstanceMapOutput {
 	return o
-}
-
-func (o SwitchControllerStpInstanceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStpInstance] {
-	return pulumix.Output[map[string]*SwitchControllerStpInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerStpInstanceMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerStpInstanceOutput {

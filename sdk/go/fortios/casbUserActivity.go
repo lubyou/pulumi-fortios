@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CasbUserActivity struct {
@@ -151,12 +150,6 @@ func (i *CasbUserActivity) ToCasbUserActivityOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(CasbUserActivityOutput)
 }
 
-func (i *CasbUserActivity) ToOutput(ctx context.Context) pulumix.Output[*CasbUserActivity] {
-	return pulumix.Output[*CasbUserActivity]{
-		OutputState: i.ToCasbUserActivityOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CasbUserActivityArrayInput is an input type that accepts CasbUserActivityArray and CasbUserActivityArrayOutput values.
 // You can construct a concrete instance of `CasbUserActivityArrayInput` via:
 //
@@ -180,12 +173,6 @@ func (i CasbUserActivityArray) ToCasbUserActivityArrayOutput() CasbUserActivityA
 
 func (i CasbUserActivityArray) ToCasbUserActivityArrayOutputWithContext(ctx context.Context) CasbUserActivityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CasbUserActivityArrayOutput)
-}
-
-func (i CasbUserActivityArray) ToOutput(ctx context.Context) pulumix.Output[[]*CasbUserActivity] {
-	return pulumix.Output[[]*CasbUserActivity]{
-		OutputState: i.ToCasbUserActivityArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CasbUserActivityMapInput is an input type that accepts CasbUserActivityMap and CasbUserActivityMapOutput values.
@@ -213,12 +200,6 @@ func (i CasbUserActivityMap) ToCasbUserActivityMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(CasbUserActivityMapOutput)
 }
 
-func (i CasbUserActivityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CasbUserActivity] {
-	return pulumix.Output[map[string]*CasbUserActivity]{
-		OutputState: i.ToCasbUserActivityMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CasbUserActivityOutput struct{ *pulumi.OutputState }
 
 func (CasbUserActivityOutput) ElementType() reflect.Type {
@@ -231,12 +212,6 @@ func (o CasbUserActivityOutput) ToCasbUserActivityOutput() CasbUserActivityOutpu
 
 func (o CasbUserActivityOutput) ToCasbUserActivityOutputWithContext(ctx context.Context) CasbUserActivityOutput {
 	return o
-}
-
-func (o CasbUserActivityOutput) ToOutput(ctx context.Context) pulumix.Output[*CasbUserActivity] {
-	return pulumix.Output[*CasbUserActivity]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CasbUserActivityOutput) Application() pulumi.StringOutput {
@@ -305,12 +280,6 @@ func (o CasbUserActivityArrayOutput) ToCasbUserActivityArrayOutputWithContext(ct
 	return o
 }
 
-func (o CasbUserActivityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CasbUserActivity] {
-	return pulumix.Output[[]*CasbUserActivity]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CasbUserActivityArrayOutput) Index(i pulumi.IntInput) CasbUserActivityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CasbUserActivity {
 		return vs[0].([]*CasbUserActivity)[vs[1].(int)]
@@ -329,12 +298,6 @@ func (o CasbUserActivityMapOutput) ToCasbUserActivityMapOutput() CasbUserActivit
 
 func (o CasbUserActivityMapOutput) ToCasbUserActivityMapOutputWithContext(ctx context.Context) CasbUserActivityMapOutput {
 	return o
-}
-
-func (o CasbUserActivityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CasbUserActivity] {
-	return pulumix.Output[map[string]*CasbUserActivity]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CasbUserActivityMapOutput) MapIndex(k pulumi.StringInput) CasbUserActivityOutput {

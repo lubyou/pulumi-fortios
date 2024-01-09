@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyExplicit struct {
@@ -261,12 +260,6 @@ func (i *WebProxyExplicit) ToWebProxyExplicitOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitOutput)
 }
 
-func (i *WebProxyExplicit) ToOutput(ctx context.Context) pulumix.Output[*WebProxyExplicit] {
-	return pulumix.Output[*WebProxyExplicit]{
-		OutputState: i.ToWebProxyExplicitOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebProxyExplicitArrayInput is an input type that accepts WebProxyExplicitArray and WebProxyExplicitArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitArrayInput` via:
 //
@@ -290,12 +283,6 @@ func (i WebProxyExplicitArray) ToWebProxyExplicitArrayOutput() WebProxyExplicitA
 
 func (i WebProxyExplicitArray) ToWebProxyExplicitArrayOutputWithContext(ctx context.Context) WebProxyExplicitArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitArrayOutput)
-}
-
-func (i WebProxyExplicitArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyExplicit] {
-	return pulumix.Output[[]*WebProxyExplicit]{
-		OutputState: i.ToWebProxyExplicitArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebProxyExplicitMapInput is an input type that accepts WebProxyExplicitMap and WebProxyExplicitMapOutput values.
@@ -323,12 +310,6 @@ func (i WebProxyExplicitMap) ToWebProxyExplicitMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitMapOutput)
 }
 
-func (i WebProxyExplicitMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyExplicit] {
-	return pulumix.Output[map[string]*WebProxyExplicit]{
-		OutputState: i.ToWebProxyExplicitMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebProxyExplicitOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitOutput) ElementType() reflect.Type {
@@ -341,12 +322,6 @@ func (o WebProxyExplicitOutput) ToWebProxyExplicitOutput() WebProxyExplicitOutpu
 
 func (o WebProxyExplicitOutput) ToWebProxyExplicitOutputWithContext(ctx context.Context) WebProxyExplicitOutput {
 	return o
-}
-
-func (o WebProxyExplicitOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyExplicit] {
-	return pulumix.Output[*WebProxyExplicit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyExplicitOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -503,12 +478,6 @@ func (o WebProxyExplicitArrayOutput) ToWebProxyExplicitArrayOutputWithContext(ct
 	return o
 }
 
-func (o WebProxyExplicitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyExplicit] {
-	return pulumix.Output[[]*WebProxyExplicit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebProxyExplicitArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyExplicit {
 		return vs[0].([]*WebProxyExplicit)[vs[1].(int)]
@@ -527,12 +496,6 @@ func (o WebProxyExplicitMapOutput) ToWebProxyExplicitMapOutput() WebProxyExplici
 
 func (o WebProxyExplicitMapOutput) ToWebProxyExplicitMapOutputWithContext(ctx context.Context) WebProxyExplicitMapOutput {
 	return o
-}
-
-func (o WebProxyExplicitMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyExplicit] {
-	return pulumix.Output[map[string]*WebProxyExplicit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyExplicitMapOutput) MapIndex(k pulumi.StringInput) WebProxyExplicitOutput {

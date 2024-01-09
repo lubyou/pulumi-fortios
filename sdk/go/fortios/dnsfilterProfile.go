@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DnsfilterProfile struct {
@@ -181,12 +180,6 @@ func (i *DnsfilterProfile) ToDnsfilterProfileOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileOutput)
 }
 
-func (i *DnsfilterProfile) ToOutput(ctx context.Context) pulumix.Output[*DnsfilterProfile] {
-	return pulumix.Output[*DnsfilterProfile]{
-		OutputState: i.ToDnsfilterProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DnsfilterProfileArrayInput is an input type that accepts DnsfilterProfileArray and DnsfilterProfileArrayOutput values.
 // You can construct a concrete instance of `DnsfilterProfileArrayInput` via:
 //
@@ -210,12 +203,6 @@ func (i DnsfilterProfileArray) ToDnsfilterProfileArrayOutput() DnsfilterProfileA
 
 func (i DnsfilterProfileArray) ToDnsfilterProfileArrayOutputWithContext(ctx context.Context) DnsfilterProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileArrayOutput)
-}
-
-func (i DnsfilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*DnsfilterProfile] {
-	return pulumix.Output[[]*DnsfilterProfile]{
-		OutputState: i.ToDnsfilterProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DnsfilterProfileMapInput is an input type that accepts DnsfilterProfileMap and DnsfilterProfileMapOutput values.
@@ -243,12 +230,6 @@ func (i DnsfilterProfileMap) ToDnsfilterProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileMapOutput)
 }
 
-func (i DnsfilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsfilterProfile] {
-	return pulumix.Output[map[string]*DnsfilterProfile]{
-		OutputState: i.ToDnsfilterProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DnsfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (DnsfilterProfileOutput) ElementType() reflect.Type {
@@ -261,12 +242,6 @@ func (o DnsfilterProfileOutput) ToDnsfilterProfileOutput() DnsfilterProfileOutpu
 
 func (o DnsfilterProfileOutput) ToDnsfilterProfileOutputWithContext(ctx context.Context) DnsfilterProfileOutput {
 	return o
-}
-
-func (o DnsfilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*DnsfilterProfile] {
-	return pulumix.Output[*DnsfilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DnsfilterProfileOutput) BlockAction() pulumi.StringOutput {
@@ -363,12 +338,6 @@ func (o DnsfilterProfileArrayOutput) ToDnsfilterProfileArrayOutputWithContext(ct
 	return o
 }
 
-func (o DnsfilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DnsfilterProfile] {
-	return pulumix.Output[[]*DnsfilterProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DnsfilterProfileArrayOutput) Index(i pulumi.IntInput) DnsfilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsfilterProfile {
 		return vs[0].([]*DnsfilterProfile)[vs[1].(int)]
@@ -387,12 +356,6 @@ func (o DnsfilterProfileMapOutput) ToDnsfilterProfileMapOutput() DnsfilterProfil
 
 func (o DnsfilterProfileMapOutput) ToDnsfilterProfileMapOutputWithContext(ctx context.Context) DnsfilterProfileMapOutput {
 	return o
-}
-
-func (o DnsfilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsfilterProfile] {
-	return pulumix.Output[map[string]*DnsfilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DnsfilterProfileMapOutput) MapIndex(k pulumi.StringInput) DnsfilterProfileOutput {

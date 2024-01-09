@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemAutoupdatePushUpdate(ctx *pulumi.Context, args *LookupSystemAutoupdatePushUpdateArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdatePushUpdateResult, error) {
@@ -73,12 +72,6 @@ func (o LookupSystemAutoupdatePushUpdateResultOutput) ToLookupSystemAutoupdatePu
 
 func (o LookupSystemAutoupdatePushUpdateResultOutput) ToLookupSystemAutoupdatePushUpdateResultOutputWithContext(ctx context.Context) LookupSystemAutoupdatePushUpdateResultOutput {
 	return o
-}
-
-func (o LookupSystemAutoupdatePushUpdateResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemAutoupdatePushUpdateResult] {
-	return pulumix.Output[LookupSystemAutoupdatePushUpdateResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemAutoupdatePushUpdateResultOutput) Address() pulumi.StringOutput {

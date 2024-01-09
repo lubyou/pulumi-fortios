@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallMulticastAddress(ctx *pulumi.Context, args *LookupFirewallMulticastAddressArgs, opts ...pulumi.InvokeOption) (*LookupFirewallMulticastAddressResult, error) {
@@ -81,12 +80,6 @@ func (o LookupFirewallMulticastAddressResultOutput) ToLookupFirewallMulticastAdd
 
 func (o LookupFirewallMulticastAddressResultOutput) ToLookupFirewallMulticastAddressResultOutputWithContext(ctx context.Context) LookupFirewallMulticastAddressResultOutput {
 	return o
-}
-
-func (o LookupFirewallMulticastAddressResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallMulticastAddressResult] {
-	return pulumix.Output[LookupFirewallMulticastAddressResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFirewallMulticastAddressResultOutput) AssociatedInterface() pulumi.StringOutput {

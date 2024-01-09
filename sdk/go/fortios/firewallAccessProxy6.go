@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallAccessProxy6 struct {
@@ -186,12 +185,6 @@ func (i *FirewallAccessProxy6) ToFirewallAccessProxy6OutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxy6Output)
 }
 
-func (i *FirewallAccessProxy6) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxy6] {
-	return pulumix.Output[*FirewallAccessProxy6]{
-		OutputState: i.ToFirewallAccessProxy6OutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallAccessProxy6ArrayInput is an input type that accepts FirewallAccessProxy6Array and FirewallAccessProxy6ArrayOutput values.
 // You can construct a concrete instance of `FirewallAccessProxy6ArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i FirewallAccessProxy6Array) ToFirewallAccessProxy6ArrayOutput() FirewallA
 
 func (i FirewallAccessProxy6Array) ToFirewallAccessProxy6ArrayOutputWithContext(ctx context.Context) FirewallAccessProxy6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxy6ArrayOutput)
-}
-
-func (i FirewallAccessProxy6Array) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxy6] {
-	return pulumix.Output[[]*FirewallAccessProxy6]{
-		OutputState: i.ToFirewallAccessProxy6ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallAccessProxy6MapInput is an input type that accepts FirewallAccessProxy6Map and FirewallAccessProxy6MapOutput values.
@@ -248,12 +235,6 @@ func (i FirewallAccessProxy6Map) ToFirewallAccessProxy6MapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxy6MapOutput)
 }
 
-func (i FirewallAccessProxy6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxy6] {
-	return pulumix.Output[map[string]*FirewallAccessProxy6]{
-		OutputState: i.ToFirewallAccessProxy6MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallAccessProxy6Output struct{ *pulumi.OutputState }
 
 func (FirewallAccessProxy6Output) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o FirewallAccessProxy6Output) ToFirewallAccessProxy6Output() FirewallAcces
 
 func (o FirewallAccessProxy6Output) ToFirewallAccessProxy6OutputWithContext(ctx context.Context) FirewallAccessProxy6Output {
 	return o
-}
-
-func (o FirewallAccessProxy6Output) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxy6] {
-	return pulumix.Output[*FirewallAccessProxy6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallAccessProxy6Output) AddVhostDomainToDnsdb() pulumi.StringOutput {
@@ -368,12 +343,6 @@ func (o FirewallAccessProxy6ArrayOutput) ToFirewallAccessProxy6ArrayOutputWithCo
 	return o
 }
 
-func (o FirewallAccessProxy6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxy6] {
-	return pulumix.Output[[]*FirewallAccessProxy6]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallAccessProxy6ArrayOutput) Index(i pulumi.IntInput) FirewallAccessProxy6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAccessProxy6 {
 		return vs[0].([]*FirewallAccessProxy6)[vs[1].(int)]
@@ -392,12 +361,6 @@ func (o FirewallAccessProxy6MapOutput) ToFirewallAccessProxy6MapOutput() Firewal
 
 func (o FirewallAccessProxy6MapOutput) ToFirewallAccessProxy6MapOutputWithContext(ctx context.Context) FirewallAccessProxy6MapOutput {
 	return o
-}
-
-func (o FirewallAccessProxy6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxy6] {
-	return pulumix.Output[map[string]*FirewallAccessProxy6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallAccessProxy6MapOutput) MapIndex(k pulumi.StringInput) FirewallAccessProxy6Output {

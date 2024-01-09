@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ExtensionControllerExtenderProfile struct {
@@ -151,12 +150,6 @@ func (i *ExtensionControllerExtenderProfile) ToExtensionControllerExtenderProfil
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerExtenderProfileOutput)
 }
 
-func (i *ExtensionControllerExtenderProfile) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerExtenderProfile] {
-	return pulumix.Output[*ExtensionControllerExtenderProfile]{
-		OutputState: i.ToExtensionControllerExtenderProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExtensionControllerExtenderProfileArrayInput is an input type that accepts ExtensionControllerExtenderProfileArray and ExtensionControllerExtenderProfileArrayOutput values.
 // You can construct a concrete instance of `ExtensionControllerExtenderProfileArrayInput` via:
 //
@@ -180,12 +173,6 @@ func (i ExtensionControllerExtenderProfileArray) ToExtensionControllerExtenderPr
 
 func (i ExtensionControllerExtenderProfileArray) ToExtensionControllerExtenderProfileArrayOutputWithContext(ctx context.Context) ExtensionControllerExtenderProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerExtenderProfileArrayOutput)
-}
-
-func (i ExtensionControllerExtenderProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerExtenderProfile] {
-	return pulumix.Output[[]*ExtensionControllerExtenderProfile]{
-		OutputState: i.ToExtensionControllerExtenderProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExtensionControllerExtenderProfileMapInput is an input type that accepts ExtensionControllerExtenderProfileMap and ExtensionControllerExtenderProfileMapOutput values.
@@ -213,12 +200,6 @@ func (i ExtensionControllerExtenderProfileMap) ToExtensionControllerExtenderProf
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerExtenderProfileMapOutput)
 }
 
-func (i ExtensionControllerExtenderProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerExtenderProfile] {
-	return pulumix.Output[map[string]*ExtensionControllerExtenderProfile]{
-		OutputState: i.ToExtensionControllerExtenderProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExtensionControllerExtenderProfileOutput struct{ *pulumi.OutputState }
 
 func (ExtensionControllerExtenderProfileOutput) ElementType() reflect.Type {
@@ -231,12 +212,6 @@ func (o ExtensionControllerExtenderProfileOutput) ToExtensionControllerExtenderP
 
 func (o ExtensionControllerExtenderProfileOutput) ToExtensionControllerExtenderProfileOutputWithContext(ctx context.Context) ExtensionControllerExtenderProfileOutput {
 	return o
-}
-
-func (o ExtensionControllerExtenderProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerExtenderProfile] {
-	return pulumix.Output[*ExtensionControllerExtenderProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerExtenderProfileOutput) Allowaccess() pulumi.StringOutput {
@@ -309,12 +284,6 @@ func (o ExtensionControllerExtenderProfileArrayOutput) ToExtensionControllerExte
 	return o
 }
 
-func (o ExtensionControllerExtenderProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerExtenderProfile] {
-	return pulumix.Output[[]*ExtensionControllerExtenderProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExtensionControllerExtenderProfileArrayOutput) Index(i pulumi.IntInput) ExtensionControllerExtenderProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtensionControllerExtenderProfile {
 		return vs[0].([]*ExtensionControllerExtenderProfile)[vs[1].(int)]
@@ -333,12 +302,6 @@ func (o ExtensionControllerExtenderProfileMapOutput) ToExtensionControllerExtend
 
 func (o ExtensionControllerExtenderProfileMapOutput) ToExtensionControllerExtenderProfileMapOutputWithContext(ctx context.Context) ExtensionControllerExtenderProfileMapOutput {
 	return o
-}
-
-func (o ExtensionControllerExtenderProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerExtenderProfile] {
-	return pulumix.Output[map[string]*ExtensionControllerExtenderProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtensionControllerExtenderProfileMapOutput) MapIndex(k pulumi.StringInput) ExtensionControllerExtenderProfileOutput {

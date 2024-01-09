@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterSearchEngine struct {
@@ -126,12 +125,6 @@ func (i *WebfilterSearchEngine) ToWebfilterSearchEngineOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEngineOutput)
 }
 
-func (i *WebfilterSearchEngine) ToOutput(ctx context.Context) pulumix.Output[*WebfilterSearchEngine] {
-	return pulumix.Output[*WebfilterSearchEngine]{
-		OutputState: i.ToWebfilterSearchEngineOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebfilterSearchEngineArrayInput is an input type that accepts WebfilterSearchEngineArray and WebfilterSearchEngineArrayOutput values.
 // You can construct a concrete instance of `WebfilterSearchEngineArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i WebfilterSearchEngineArray) ToWebfilterSearchEngineArrayOutput() Webfilt
 
 func (i WebfilterSearchEngineArray) ToWebfilterSearchEngineArrayOutputWithContext(ctx context.Context) WebfilterSearchEngineArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEngineArrayOutput)
-}
-
-func (i WebfilterSearchEngineArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterSearchEngine] {
-	return pulumix.Output[[]*WebfilterSearchEngine]{
-		OutputState: i.ToWebfilterSearchEngineArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebfilterSearchEngineMapInput is an input type that accepts WebfilterSearchEngineMap and WebfilterSearchEngineMapOutput values.
@@ -188,12 +175,6 @@ func (i WebfilterSearchEngineMap) ToWebfilterSearchEngineMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEngineMapOutput)
 }
 
-func (i WebfilterSearchEngineMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterSearchEngine] {
-	return pulumix.Output[map[string]*WebfilterSearchEngine]{
-		OutputState: i.ToWebfilterSearchEngineMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebfilterSearchEngineOutput struct{ *pulumi.OutputState }
 
 func (WebfilterSearchEngineOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o WebfilterSearchEngineOutput) ToWebfilterSearchEngineOutput() WebfilterSe
 
 func (o WebfilterSearchEngineOutput) ToWebfilterSearchEngineOutputWithContext(ctx context.Context) WebfilterSearchEngineOutput {
 	return o
-}
-
-func (o WebfilterSearchEngineOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterSearchEngine] {
-	return pulumix.Output[*WebfilterSearchEngine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterSearchEngineOutput) Charset() pulumi.StringOutput {
@@ -260,12 +235,6 @@ func (o WebfilterSearchEngineArrayOutput) ToWebfilterSearchEngineArrayOutputWith
 	return o
 }
 
-func (o WebfilterSearchEngineArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterSearchEngine] {
-	return pulumix.Output[[]*WebfilterSearchEngine]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebfilterSearchEngineArrayOutput) Index(i pulumi.IntInput) WebfilterSearchEngineOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterSearchEngine {
 		return vs[0].([]*WebfilterSearchEngine)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o WebfilterSearchEngineMapOutput) ToWebfilterSearchEngineMapOutput() Webfi
 
 func (o WebfilterSearchEngineMapOutput) ToWebfilterSearchEngineMapOutputWithContext(ctx context.Context) WebfilterSearchEngineMapOutput {
 	return o
-}
-
-func (o WebfilterSearchEngineMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterSearchEngine] {
-	return pulumix.Output[map[string]*WebfilterSearchEngine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebfilterSearchEngineMapOutput) MapIndex(k pulumi.StringInput) WebfilterSearchEngineOutput {

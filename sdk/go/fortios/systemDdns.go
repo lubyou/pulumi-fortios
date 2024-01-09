@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDdns struct {
@@ -224,12 +223,6 @@ func (i *SystemDdns) ToSystemDdnsOutputWithContext(ctx context.Context) SystemDd
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsOutput)
 }
 
-func (i *SystemDdns) ToOutput(ctx context.Context) pulumix.Output[*SystemDdns] {
-	return pulumix.Output[*SystemDdns]{
-		OutputState: i.ToSystemDdnsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemDdnsArrayInput is an input type that accepts SystemDdnsArray and SystemDdnsArrayOutput values.
 // You can construct a concrete instance of `SystemDdnsArrayInput` via:
 //
@@ -253,12 +246,6 @@ func (i SystemDdnsArray) ToSystemDdnsArrayOutput() SystemDdnsArrayOutput {
 
 func (i SystemDdnsArray) ToSystemDdnsArrayOutputWithContext(ctx context.Context) SystemDdnsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsArrayOutput)
-}
-
-func (i SystemDdnsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDdns] {
-	return pulumix.Output[[]*SystemDdns]{
-		OutputState: i.ToSystemDdnsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemDdnsMapInput is an input type that accepts SystemDdnsMap and SystemDdnsMapOutput values.
@@ -286,12 +273,6 @@ func (i SystemDdnsMap) ToSystemDdnsMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsMapOutput)
 }
 
-func (i SystemDdnsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDdns] {
-	return pulumix.Output[map[string]*SystemDdns]{
-		OutputState: i.ToSystemDdnsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemDdnsOutput struct{ *pulumi.OutputState }
 
 func (SystemDdnsOutput) ElementType() reflect.Type {
@@ -304,12 +285,6 @@ func (o SystemDdnsOutput) ToSystemDdnsOutput() SystemDdnsOutput {
 
 func (o SystemDdnsOutput) ToSystemDdnsOutputWithContext(ctx context.Context) SystemDdnsOutput {
 	return o
-}
-
-func (o SystemDdnsOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDdns] {
-	return pulumix.Output[*SystemDdns]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDdnsOutput) AddrType() pulumi.StringOutput {
@@ -422,12 +397,6 @@ func (o SystemDdnsArrayOutput) ToSystemDdnsArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemDdnsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDdns] {
-	return pulumix.Output[[]*SystemDdns]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemDdnsArrayOutput) Index(i pulumi.IntInput) SystemDdnsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDdns {
 		return vs[0].([]*SystemDdns)[vs[1].(int)]
@@ -446,12 +415,6 @@ func (o SystemDdnsMapOutput) ToSystemDdnsMapOutput() SystemDdnsMapOutput {
 
 func (o SystemDdnsMapOutput) ToSystemDdnsMapOutputWithContext(ctx context.Context) SystemDdnsMapOutput {
 	return o
-}
-
-func (o SystemDdnsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDdns] {
-	return pulumix.Output[map[string]*SystemDdns]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemDdnsMapOutput) MapIndex(k pulumi.StringInput) SystemDdnsOutput {

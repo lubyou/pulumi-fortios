@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerGlobal struct {
@@ -231,12 +230,6 @@ func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalOutput)
 }
 
-func (i *SwitchControllerGlobal) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerGlobal] {
-	return pulumix.Output[*SwitchControllerGlobal]{
-		OutputState: i.ToSwitchControllerGlobalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerGlobalArrayInput is an input type that accepts SwitchControllerGlobalArray and SwitchControllerGlobalArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerGlobalArrayInput` via:
 //
@@ -260,12 +253,6 @@ func (i SwitchControllerGlobalArray) ToSwitchControllerGlobalArrayOutput() Switc
 
 func (i SwitchControllerGlobalArray) ToSwitchControllerGlobalArrayOutputWithContext(ctx context.Context) SwitchControllerGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalArrayOutput)
-}
-
-func (i SwitchControllerGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerGlobal] {
-	return pulumix.Output[[]*SwitchControllerGlobal]{
-		OutputState: i.ToSwitchControllerGlobalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerGlobalMapInput is an input type that accepts SwitchControllerGlobalMap and SwitchControllerGlobalMapOutput values.
@@ -293,12 +280,6 @@ func (i SwitchControllerGlobalMap) ToSwitchControllerGlobalMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalMapOutput)
 }
 
-func (i SwitchControllerGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerGlobal] {
-	return pulumix.Output[map[string]*SwitchControllerGlobal]{
-		OutputState: i.ToSwitchControllerGlobalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerGlobalOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerGlobalOutput) ElementType() reflect.Type {
@@ -311,12 +292,6 @@ func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutput() SwitchCon
 
 func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutputWithContext(ctx context.Context) SwitchControllerGlobalOutput {
 	return o
-}
-
-func (o SwitchControllerGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerGlobal] {
-	return pulumix.Output[*SwitchControllerGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerGlobalOutput) AllowMultipleInterfaces() pulumi.StringOutput {
@@ -453,12 +428,6 @@ func (o SwitchControllerGlobalArrayOutput) ToSwitchControllerGlobalArrayOutputWi
 	return o
 }
 
-func (o SwitchControllerGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerGlobal] {
-	return pulumix.Output[[]*SwitchControllerGlobal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerGlobalArrayOutput) Index(i pulumi.IntInput) SwitchControllerGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerGlobal {
 		return vs[0].([]*SwitchControllerGlobal)[vs[1].(int)]
@@ -477,12 +446,6 @@ func (o SwitchControllerGlobalMapOutput) ToSwitchControllerGlobalMapOutput() Swi
 
 func (o SwitchControllerGlobalMapOutput) ToSwitchControllerGlobalMapOutputWithContext(ctx context.Context) SwitchControllerGlobalMapOutput {
 	return o
-}
-
-func (o SwitchControllerGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerGlobal] {
-	return pulumix.Output[map[string]*SwitchControllerGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerGlobalMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerGlobalOutput {

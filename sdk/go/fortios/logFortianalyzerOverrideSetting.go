@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzerOverrideSetting struct {
@@ -256,12 +255,6 @@ func (i *LogFortianalyzerOverrideSetting) ToLogFortianalyzerOverrideSettingOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingOutput)
 }
 
-func (i *LogFortianalyzerOverrideSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerOverrideSetting] {
-	return pulumix.Output[*LogFortianalyzerOverrideSetting]{
-		OutputState: i.ToLogFortianalyzerOverrideSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortianalyzerOverrideSettingArrayInput is an input type that accepts LogFortianalyzerOverrideSettingArray and LogFortianalyzerOverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerOverrideSettingArrayInput` via:
 //
@@ -285,12 +278,6 @@ func (i LogFortianalyzerOverrideSettingArray) ToLogFortianalyzerOverrideSettingA
 
 func (i LogFortianalyzerOverrideSettingArray) ToLogFortianalyzerOverrideSettingArrayOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingArrayOutput)
-}
-
-func (i LogFortianalyzerOverrideSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerOverrideSetting] {
-	return pulumix.Output[[]*LogFortianalyzerOverrideSetting]{
-		OutputState: i.ToLogFortianalyzerOverrideSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortianalyzerOverrideSettingMapInput is an input type that accepts LogFortianalyzerOverrideSettingMap and LogFortianalyzerOverrideSettingMapOutput values.
@@ -318,12 +305,6 @@ func (i LogFortianalyzerOverrideSettingMap) ToLogFortianalyzerOverrideSettingMap
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingMapOutput)
 }
 
-func (i LogFortianalyzerOverrideSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerOverrideSetting] {
-	return pulumix.Output[map[string]*LogFortianalyzerOverrideSetting]{
-		OutputState: i.ToLogFortianalyzerOverrideSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortianalyzerOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerOverrideSettingOutput) ElementType() reflect.Type {
@@ -336,12 +317,6 @@ func (o LogFortianalyzerOverrideSettingOutput) ToLogFortianalyzerOverrideSetting
 
 func (o LogFortianalyzerOverrideSettingOutput) ToLogFortianalyzerOverrideSettingOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingOutput {
 	return o
-}
-
-func (o LogFortianalyzerOverrideSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerOverrideSetting] {
-	return pulumix.Output[*LogFortianalyzerOverrideSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzerOverrideSettingOutput) __changeIp() pulumi.IntOutput {
@@ -496,12 +471,6 @@ func (o LogFortianalyzerOverrideSettingArrayOutput) ToLogFortianalyzerOverrideSe
 	return o
 }
 
-func (o LogFortianalyzerOverrideSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerOverrideSetting] {
-	return pulumix.Output[[]*LogFortianalyzerOverrideSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortianalyzerOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerOverrideSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerOverrideSetting {
 		return vs[0].([]*LogFortianalyzerOverrideSetting)[vs[1].(int)]
@@ -520,12 +489,6 @@ func (o LogFortianalyzerOverrideSettingMapOutput) ToLogFortianalyzerOverrideSett
 
 func (o LogFortianalyzerOverrideSettingMapOutput) ToLogFortianalyzerOverrideSettingMapOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingMapOutput {
 	return o
-}
-
-func (o LogFortianalyzerOverrideSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerOverrideSetting] {
-	return pulumix.Output[map[string]*LogFortianalyzerOverrideSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortianalyzerOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerOverrideSettingOutput {

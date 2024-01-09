@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemPcpServer struct {
@@ -111,12 +110,6 @@ func (i *SystemPcpServer) ToSystemPcpServerOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPcpServerOutput)
 }
 
-func (i *SystemPcpServer) ToOutput(ctx context.Context) pulumix.Output[*SystemPcpServer] {
-	return pulumix.Output[*SystemPcpServer]{
-		OutputState: i.ToSystemPcpServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemPcpServerArrayInput is an input type that accepts SystemPcpServerArray and SystemPcpServerArrayOutput values.
 // You can construct a concrete instance of `SystemPcpServerArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SystemPcpServerArray) ToSystemPcpServerArrayOutput() SystemPcpServerArra
 
 func (i SystemPcpServerArray) ToSystemPcpServerArrayOutputWithContext(ctx context.Context) SystemPcpServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPcpServerArrayOutput)
-}
-
-func (i SystemPcpServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPcpServer] {
-	return pulumix.Output[[]*SystemPcpServer]{
-		OutputState: i.ToSystemPcpServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemPcpServerMapInput is an input type that accepts SystemPcpServerMap and SystemPcpServerMapOutput values.
@@ -173,12 +160,6 @@ func (i SystemPcpServerMap) ToSystemPcpServerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPcpServerMapOutput)
 }
 
-func (i SystemPcpServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPcpServer] {
-	return pulumix.Output[map[string]*SystemPcpServer]{
-		OutputState: i.ToSystemPcpServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemPcpServerOutput struct{ *pulumi.OutputState }
 
 func (SystemPcpServerOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SystemPcpServerOutput) ToSystemPcpServerOutput() SystemPcpServerOutput {
 
 func (o SystemPcpServerOutput) ToSystemPcpServerOutputWithContext(ctx context.Context) SystemPcpServerOutput {
 	return o
-}
-
-func (o SystemPcpServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemPcpServer] {
-	return pulumix.Output[*SystemPcpServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemPcpServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o SystemPcpServerArrayOutput) ToSystemPcpServerArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemPcpServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPcpServer] {
-	return pulumix.Output[[]*SystemPcpServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemPcpServerArrayOutput) Index(i pulumi.IntInput) SystemPcpServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPcpServer {
 		return vs[0].([]*SystemPcpServer)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SystemPcpServerMapOutput) ToSystemPcpServerMapOutput() SystemPcpServerMa
 
 func (o SystemPcpServerMapOutput) ToSystemPcpServerMapOutputWithContext(ctx context.Context) SystemPcpServerMapOutput {
 	return o
-}
-
-func (o SystemPcpServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPcpServer] {
-	return pulumix.Output[map[string]*SystemPcpServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemPcpServerMapOutput) MapIndex(k pulumi.StringInput) SystemPcpServerOutput {

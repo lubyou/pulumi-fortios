@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetRouterStatic6List(ctx *pulumi.Context, args *GetRouterStatic6ListArgs, opts ...pulumi.InvokeOption) (*GetRouterStatic6ListResult, error) {
@@ -73,12 +72,6 @@ func (o GetRouterStatic6ListResultOutput) ToGetRouterStatic6ListResultOutput() G
 
 func (o GetRouterStatic6ListResultOutput) ToGetRouterStatic6ListResultOutputWithContext(ctx context.Context) GetRouterStatic6ListResultOutput {
 	return o
-}
-
-func (o GetRouterStatic6ListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRouterStatic6ListResult] {
-	return pulumix.Output[GetRouterStatic6ListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRouterStatic6ListResultOutput) Filter() pulumi.StringPtrOutput {

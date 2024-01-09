@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortiguardOverrideSetting struct {
@@ -136,12 +135,6 @@ func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingOutput)
 }
 
-func (i *LogFortiguardOverrideSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardOverrideSetting] {
-	return pulumix.Output[*LogFortiguardOverrideSetting]{
-		OutputState: i.ToLogFortiguardOverrideSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogFortiguardOverrideSettingArrayInput is an input type that accepts LogFortiguardOverrideSettingArray and LogFortiguardOverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortiguardOverrideSettingArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i LogFortiguardOverrideSettingArray) ToLogFortiguardOverrideSettingArrayOu
 
 func (i LogFortiguardOverrideSettingArray) ToLogFortiguardOverrideSettingArrayOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingArrayOutput)
-}
-
-func (i LogFortiguardOverrideSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardOverrideSetting] {
-	return pulumix.Output[[]*LogFortiguardOverrideSetting]{
-		OutputState: i.ToLogFortiguardOverrideSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogFortiguardOverrideSettingMapInput is an input type that accepts LogFortiguardOverrideSettingMap and LogFortiguardOverrideSettingMapOutput values.
@@ -198,12 +185,6 @@ func (i LogFortiguardOverrideSettingMap) ToLogFortiguardOverrideSettingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingMapOutput)
 }
 
-func (i LogFortiguardOverrideSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardOverrideSetting] {
-	return pulumix.Output[map[string]*LogFortiguardOverrideSetting]{
-		OutputState: i.ToLogFortiguardOverrideSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogFortiguardOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideSettingOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingOutput
 
 func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingOutput {
 	return o
-}
-
-func (o LogFortiguardOverrideSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardOverrideSetting] {
-	return pulumix.Output[*LogFortiguardOverrideSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortiguardOverrideSettingOutput) AccessConfig() pulumi.StringOutput {
@@ -278,12 +253,6 @@ func (o LogFortiguardOverrideSettingArrayOutput) ToLogFortiguardOverrideSettingA
 	return o
 }
 
-func (o LogFortiguardOverrideSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardOverrideSetting] {
-	return pulumix.Output[[]*LogFortiguardOverrideSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogFortiguardOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortiguardOverrideSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardOverrideSetting {
 		return vs[0].([]*LogFortiguardOverrideSetting)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o LogFortiguardOverrideSettingMapOutput) ToLogFortiguardOverrideSettingMap
 
 func (o LogFortiguardOverrideSettingMapOutput) ToLogFortiguardOverrideSettingMapOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingMapOutput {
 	return o
-}
-
-func (o LogFortiguardOverrideSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardOverrideSetting] {
-	return pulumix.Output[map[string]*LogFortiguardOverrideSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogFortiguardOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardOverrideSettingOutput {

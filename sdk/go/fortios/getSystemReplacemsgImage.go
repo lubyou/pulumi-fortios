@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemReplacemsgImage(ctx *pulumi.Context, args *LookupSystemReplacemsgImageArgs, opts ...pulumi.InvokeOption) (*LookupSystemReplacemsgImageResult, error) {
@@ -74,12 +73,6 @@ func (o LookupSystemReplacemsgImageResultOutput) ToLookupSystemReplacemsgImageRe
 
 func (o LookupSystemReplacemsgImageResultOutput) ToLookupSystemReplacemsgImageResultOutputWithContext(ctx context.Context) LookupSystemReplacemsgImageResultOutput {
 	return o
-}
-
-func (o LookupSystemReplacemsgImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemReplacemsgImageResult] {
-	return pulumix.Output[LookupSystemReplacemsgImageResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

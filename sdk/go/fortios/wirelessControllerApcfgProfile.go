@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerApcfgProfile struct {
@@ -141,12 +140,6 @@ func (i *WirelessControllerApcfgProfile) ToWirelessControllerApcfgProfileOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApcfgProfileOutput)
 }
 
-func (i *WirelessControllerApcfgProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerApcfgProfile] {
-	return pulumix.Output[*WirelessControllerApcfgProfile]{
-		OutputState: i.ToWirelessControllerApcfgProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerApcfgProfileArrayInput is an input type that accepts WirelessControllerApcfgProfileArray and WirelessControllerApcfgProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerApcfgProfileArrayInput` via:
 //
@@ -170,12 +163,6 @@ func (i WirelessControllerApcfgProfileArray) ToWirelessControllerApcfgProfileArr
 
 func (i WirelessControllerApcfgProfileArray) ToWirelessControllerApcfgProfileArrayOutputWithContext(ctx context.Context) WirelessControllerApcfgProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApcfgProfileArrayOutput)
-}
-
-func (i WirelessControllerApcfgProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerApcfgProfile] {
-	return pulumix.Output[[]*WirelessControllerApcfgProfile]{
-		OutputState: i.ToWirelessControllerApcfgProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerApcfgProfileMapInput is an input type that accepts WirelessControllerApcfgProfileMap and WirelessControllerApcfgProfileMapOutput values.
@@ -203,12 +190,6 @@ func (i WirelessControllerApcfgProfileMap) ToWirelessControllerApcfgProfileMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApcfgProfileMapOutput)
 }
 
-func (i WirelessControllerApcfgProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerApcfgProfile] {
-	return pulumix.Output[map[string]*WirelessControllerApcfgProfile]{
-		OutputState: i.ToWirelessControllerApcfgProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerApcfgProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerApcfgProfileOutput) ElementType() reflect.Type {
@@ -221,12 +202,6 @@ func (o WirelessControllerApcfgProfileOutput) ToWirelessControllerApcfgProfileOu
 
 func (o WirelessControllerApcfgProfileOutput) ToWirelessControllerApcfgProfileOutputWithContext(ctx context.Context) WirelessControllerApcfgProfileOutput {
 	return o
-}
-
-func (o WirelessControllerApcfgProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerApcfgProfile] {
-	return pulumix.Output[*WirelessControllerApcfgProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerApcfgProfileOutput) AcIp() pulumi.StringOutput {
@@ -289,12 +264,6 @@ func (o WirelessControllerApcfgProfileArrayOutput) ToWirelessControllerApcfgProf
 	return o
 }
 
-func (o WirelessControllerApcfgProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerApcfgProfile] {
-	return pulumix.Output[[]*WirelessControllerApcfgProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerApcfgProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerApcfgProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerApcfgProfile {
 		return vs[0].([]*WirelessControllerApcfgProfile)[vs[1].(int)]
@@ -313,12 +282,6 @@ func (o WirelessControllerApcfgProfileMapOutput) ToWirelessControllerApcfgProfil
 
 func (o WirelessControllerApcfgProfileMapOutput) ToWirelessControllerApcfgProfileMapOutputWithContext(ctx context.Context) WirelessControllerApcfgProfileMapOutput {
 	return o
-}
-
-func (o WirelessControllerApcfgProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerApcfgProfile] {
-	return pulumix.Output[map[string]*WirelessControllerApcfgProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerApcfgProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerApcfgProfileOutput {

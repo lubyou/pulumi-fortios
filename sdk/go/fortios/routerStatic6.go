@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterStatic6 struct {
@@ -200,12 +199,6 @@ func (i *RouterStatic6) ToRouterStatic6OutputWithContext(ctx context.Context) Ro
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6Output)
 }
 
-func (i *RouterStatic6) ToOutput(ctx context.Context) pulumix.Output[*RouterStatic6] {
-	return pulumix.Output[*RouterStatic6]{
-		OutputState: i.ToRouterStatic6OutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterStatic6ArrayInput is an input type that accepts RouterStatic6Array and RouterStatic6ArrayOutput values.
 // You can construct a concrete instance of `RouterStatic6ArrayInput` via:
 //
@@ -229,12 +222,6 @@ func (i RouterStatic6Array) ToRouterStatic6ArrayOutput() RouterStatic6ArrayOutpu
 
 func (i RouterStatic6Array) ToRouterStatic6ArrayOutputWithContext(ctx context.Context) RouterStatic6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6ArrayOutput)
-}
-
-func (i RouterStatic6Array) ToOutput(ctx context.Context) pulumix.Output[[]*RouterStatic6] {
-	return pulumix.Output[[]*RouterStatic6]{
-		OutputState: i.ToRouterStatic6ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterStatic6MapInput is an input type that accepts RouterStatic6Map and RouterStatic6MapOutput values.
@@ -262,12 +249,6 @@ func (i RouterStatic6Map) ToRouterStatic6MapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6MapOutput)
 }
 
-func (i RouterStatic6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterStatic6] {
-	return pulumix.Output[map[string]*RouterStatic6]{
-		OutputState: i.ToRouterStatic6MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterStatic6Output struct{ *pulumi.OutputState }
 
 func (RouterStatic6Output) ElementType() reflect.Type {
@@ -280,12 +261,6 @@ func (o RouterStatic6Output) ToRouterStatic6Output() RouterStatic6Output {
 
 func (o RouterStatic6Output) ToRouterStatic6OutputWithContext(ctx context.Context) RouterStatic6Output {
 	return o
-}
-
-func (o RouterStatic6Output) ToOutput(ctx context.Context) pulumix.Output[*RouterStatic6] {
-	return pulumix.Output[*RouterStatic6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterStatic6Output) Bfd() pulumi.StringOutput {
@@ -390,12 +365,6 @@ func (o RouterStatic6ArrayOutput) ToRouterStatic6ArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o RouterStatic6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterStatic6] {
-	return pulumix.Output[[]*RouterStatic6]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterStatic6ArrayOutput) Index(i pulumi.IntInput) RouterStatic6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterStatic6 {
 		return vs[0].([]*RouterStatic6)[vs[1].(int)]
@@ -414,12 +383,6 @@ func (o RouterStatic6MapOutput) ToRouterStatic6MapOutput() RouterStatic6MapOutpu
 
 func (o RouterStatic6MapOutput) ToRouterStatic6MapOutputWithContext(ctx context.Context) RouterStatic6MapOutput {
 	return o
-}
-
-func (o RouterStatic6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterStatic6] {
-	return pulumix.Output[map[string]*RouterStatic6]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterStatic6MapOutput) MapIndex(k pulumi.StringInput) RouterStatic6Output {

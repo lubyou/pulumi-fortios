@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemClusterSync struct {
@@ -171,12 +170,6 @@ func (i *SystemClusterSync) ToSystemClusterSyncOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncOutput)
 }
 
-func (i *SystemClusterSync) ToOutput(ctx context.Context) pulumix.Output[*SystemClusterSync] {
-	return pulumix.Output[*SystemClusterSync]{
-		OutputState: i.ToSystemClusterSyncOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemClusterSyncArrayInput is an input type that accepts SystemClusterSyncArray and SystemClusterSyncArrayOutput values.
 // You can construct a concrete instance of `SystemClusterSyncArrayInput` via:
 //
@@ -200,12 +193,6 @@ func (i SystemClusterSyncArray) ToSystemClusterSyncArrayOutput() SystemClusterSy
 
 func (i SystemClusterSyncArray) ToSystemClusterSyncArrayOutputWithContext(ctx context.Context) SystemClusterSyncArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncArrayOutput)
-}
-
-func (i SystemClusterSyncArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemClusterSync] {
-	return pulumix.Output[[]*SystemClusterSync]{
-		OutputState: i.ToSystemClusterSyncArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemClusterSyncMapInput is an input type that accepts SystemClusterSyncMap and SystemClusterSyncMapOutput values.
@@ -233,12 +220,6 @@ func (i SystemClusterSyncMap) ToSystemClusterSyncMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncMapOutput)
 }
 
-func (i SystemClusterSyncMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemClusterSync] {
-	return pulumix.Output[map[string]*SystemClusterSync]{
-		OutputState: i.ToSystemClusterSyncMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemClusterSyncOutput struct{ *pulumi.OutputState }
 
 func (SystemClusterSyncOutput) ElementType() reflect.Type {
@@ -251,12 +232,6 @@ func (o SystemClusterSyncOutput) ToSystemClusterSyncOutput() SystemClusterSyncOu
 
 func (o SystemClusterSyncOutput) ToSystemClusterSyncOutputWithContext(ctx context.Context) SystemClusterSyncOutput {
 	return o
-}
-
-func (o SystemClusterSyncOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemClusterSync] {
-	return pulumix.Output[*SystemClusterSync]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemClusterSyncOutput) DownIntfsBeforeSessSyncs() SystemClusterSyncDownIntfsBeforeSessSyncArrayOutput {
@@ -343,12 +318,6 @@ func (o SystemClusterSyncArrayOutput) ToSystemClusterSyncArrayOutputWithContext(
 	return o
 }
 
-func (o SystemClusterSyncArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemClusterSync] {
-	return pulumix.Output[[]*SystemClusterSync]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemClusterSyncArrayOutput) Index(i pulumi.IntInput) SystemClusterSyncOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemClusterSync {
 		return vs[0].([]*SystemClusterSync)[vs[1].(int)]
@@ -367,12 +336,6 @@ func (o SystemClusterSyncMapOutput) ToSystemClusterSyncMapOutput() SystemCluster
 
 func (o SystemClusterSyncMapOutput) ToSystemClusterSyncMapOutputWithContext(ctx context.Context) SystemClusterSyncMapOutput {
 	return o
-}
-
-func (o SystemClusterSyncMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemClusterSync] {
-	return pulumix.Output[map[string]*SystemClusterSync]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemClusterSyncMapOutput) MapIndex(k pulumi.StringInput) SystemClusterSyncOutput {

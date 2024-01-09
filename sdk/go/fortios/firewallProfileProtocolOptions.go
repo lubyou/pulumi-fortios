@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallProfileProtocolOptions struct {
@@ -186,12 +185,6 @@ func (i *FirewallProfileProtocolOptions) ToFirewallProfileProtocolOptionsOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsOutput)
 }
 
-func (i *FirewallProfileProtocolOptions) ToOutput(ctx context.Context) pulumix.Output[*FirewallProfileProtocolOptions] {
-	return pulumix.Output[*FirewallProfileProtocolOptions]{
-		OutputState: i.ToFirewallProfileProtocolOptionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallProfileProtocolOptionsArrayInput is an input type that accepts FirewallProfileProtocolOptionsArray and FirewallProfileProtocolOptionsArrayOutput values.
 // You can construct a concrete instance of `FirewallProfileProtocolOptionsArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i FirewallProfileProtocolOptionsArray) ToFirewallProfileProtocolOptionsArr
 
 func (i FirewallProfileProtocolOptionsArray) ToFirewallProfileProtocolOptionsArrayOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsArrayOutput)
-}
-
-func (i FirewallProfileProtocolOptionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProfileProtocolOptions] {
-	return pulumix.Output[[]*FirewallProfileProtocolOptions]{
-		OutputState: i.ToFirewallProfileProtocolOptionsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallProfileProtocolOptionsMapInput is an input type that accepts FirewallProfileProtocolOptionsMap and FirewallProfileProtocolOptionsMapOutput values.
@@ -248,12 +235,6 @@ func (i FirewallProfileProtocolOptionsMap) ToFirewallProfileProtocolOptionsMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsMapOutput)
 }
 
-func (i FirewallProfileProtocolOptionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProfileProtocolOptions] {
-	return pulumix.Output[map[string]*FirewallProfileProtocolOptions]{
-		OutputState: i.ToFirewallProfileProtocolOptionsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallProfileProtocolOptionsOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileProtocolOptionsOutput) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o FirewallProfileProtocolOptionsOutput) ToFirewallProfileProtocolOptionsOu
 
 func (o FirewallProfileProtocolOptionsOutput) ToFirewallProfileProtocolOptionsOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsOutput {
 	return o
-}
-
-func (o FirewallProfileProtocolOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallProfileProtocolOptions] {
-	return pulumix.Output[*FirewallProfileProtocolOptions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallProfileProtocolOptionsOutput) Cifs() FirewallProfileProtocolOptionsCifsOutput {
@@ -370,12 +345,6 @@ func (o FirewallProfileProtocolOptionsArrayOutput) ToFirewallProfileProtocolOpti
 	return o
 }
 
-func (o FirewallProfileProtocolOptionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProfileProtocolOptions] {
-	return pulumix.Output[[]*FirewallProfileProtocolOptions]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallProfileProtocolOptionsArrayOutput) Index(i pulumi.IntInput) FirewallProfileProtocolOptionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProfileProtocolOptions {
 		return vs[0].([]*FirewallProfileProtocolOptions)[vs[1].(int)]
@@ -394,12 +363,6 @@ func (o FirewallProfileProtocolOptionsMapOutput) ToFirewallProfileProtocolOption
 
 func (o FirewallProfileProtocolOptionsMapOutput) ToFirewallProfileProtocolOptionsMapOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsMapOutput {
 	return o
-}
-
-func (o FirewallProfileProtocolOptionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProfileProtocolOptions] {
-	return pulumix.Output[map[string]*FirewallProfileProtocolOptions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallProfileProtocolOptionsMapOutput) MapIndex(k pulumi.StringInput) FirewallProfileProtocolOptionsOutput {

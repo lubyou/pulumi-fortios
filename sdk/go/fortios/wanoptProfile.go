@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WanoptProfile struct {
@@ -141,12 +140,6 @@ func (i *WanoptProfile) ToWanoptProfileOutputWithContext(ctx context.Context) Wa
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileOutput)
 }
 
-func (i *WanoptProfile) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfile] {
-	return pulumix.Output[*WanoptProfile]{
-		OutputState: i.ToWanoptProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WanoptProfileArrayInput is an input type that accepts WanoptProfileArray and WanoptProfileArrayOutput values.
 // You can construct a concrete instance of `WanoptProfileArrayInput` via:
 //
@@ -170,12 +163,6 @@ func (i WanoptProfileArray) ToWanoptProfileArrayOutput() WanoptProfileArrayOutpu
 
 func (i WanoptProfileArray) ToWanoptProfileArrayOutputWithContext(ctx context.Context) WanoptProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileArrayOutput)
-}
-
-func (i WanoptProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptProfile] {
-	return pulumix.Output[[]*WanoptProfile]{
-		OutputState: i.ToWanoptProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WanoptProfileMapInput is an input type that accepts WanoptProfileMap and WanoptProfileMapOutput values.
@@ -203,12 +190,6 @@ func (i WanoptProfileMap) ToWanoptProfileMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileMapOutput)
 }
 
-func (i WanoptProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptProfile] {
-	return pulumix.Output[map[string]*WanoptProfile]{
-		OutputState: i.ToWanoptProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WanoptProfileOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileOutput) ElementType() reflect.Type {
@@ -221,12 +202,6 @@ func (o WanoptProfileOutput) ToWanoptProfileOutput() WanoptProfileOutput {
 
 func (o WanoptProfileOutput) ToWanoptProfileOutputWithContext(ctx context.Context) WanoptProfileOutput {
 	return o
-}
-
-func (o WanoptProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfile] {
-	return pulumix.Output[*WanoptProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptProfileOutput) AuthGroup() pulumi.StringOutput {
@@ -287,12 +262,6 @@ func (o WanoptProfileArrayOutput) ToWanoptProfileArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o WanoptProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptProfile] {
-	return pulumix.Output[[]*WanoptProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WanoptProfileArrayOutput) Index(i pulumi.IntInput) WanoptProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptProfile {
 		return vs[0].([]*WanoptProfile)[vs[1].(int)]
@@ -311,12 +280,6 @@ func (o WanoptProfileMapOutput) ToWanoptProfileMapOutput() WanoptProfileMapOutpu
 
 func (o WanoptProfileMapOutput) ToWanoptProfileMapOutputWithContext(ctx context.Context) WanoptProfileMapOutput {
 	return o
-}
-
-func (o WanoptProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptProfile] {
-	return pulumix.Output[map[string]*WanoptProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptProfileMapOutput) MapIndex(k pulumi.StringInput) WanoptProfileOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WanoptSettings struct {
@@ -115,12 +114,6 @@ func (i *WanoptSettings) ToWanoptSettingsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsOutput)
 }
 
-func (i *WanoptSettings) ToOutput(ctx context.Context) pulumix.Output[*WanoptSettings] {
-	return pulumix.Output[*WanoptSettings]{
-		OutputState: i.ToWanoptSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WanoptSettingsArrayInput is an input type that accepts WanoptSettingsArray and WanoptSettingsArrayOutput values.
 // You can construct a concrete instance of `WanoptSettingsArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i WanoptSettingsArray) ToWanoptSettingsArrayOutput() WanoptSettingsArrayOu
 
 func (i WanoptSettingsArray) ToWanoptSettingsArrayOutputWithContext(ctx context.Context) WanoptSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsArrayOutput)
-}
-
-func (i WanoptSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptSettings] {
-	return pulumix.Output[[]*WanoptSettings]{
-		OutputState: i.ToWanoptSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WanoptSettingsMapInput is an input type that accepts WanoptSettingsMap and WanoptSettingsMapOutput values.
@@ -177,12 +164,6 @@ func (i WanoptSettingsMap) ToWanoptSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsMapOutput)
 }
 
-func (i WanoptSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptSettings] {
-	return pulumix.Output[map[string]*WanoptSettings]{
-		OutputState: i.ToWanoptSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WanoptSettingsOutput struct{ *pulumi.OutputState }
 
 func (WanoptSettingsOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o WanoptSettingsOutput) ToWanoptSettingsOutput() WanoptSettingsOutput {
 
 func (o WanoptSettingsOutput) ToWanoptSettingsOutputWithContext(ctx context.Context) WanoptSettingsOutput {
 	return o
-}
-
-func (o WanoptSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptSettings] {
-	return pulumix.Output[*WanoptSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptSettingsOutput) AutoDetectAlgorithm() pulumi.StringOutput {
@@ -237,12 +212,6 @@ func (o WanoptSettingsArrayOutput) ToWanoptSettingsArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o WanoptSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptSettings] {
-	return pulumix.Output[[]*WanoptSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WanoptSettingsArrayOutput) Index(i pulumi.IntInput) WanoptSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptSettings {
 		return vs[0].([]*WanoptSettings)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o WanoptSettingsMapOutput) ToWanoptSettingsMapOutput() WanoptSettingsMapOu
 
 func (o WanoptSettingsMapOutput) ToWanoptSettingsMapOutputWithContext(ctx context.Context) WanoptSettingsMapOutput {
 	return o
-}
-
-func (o WanoptSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptSettings] {
-	return pulumix.Output[map[string]*WanoptSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptSettingsMapOutput) MapIndex(k pulumi.StringInput) WanoptSettingsOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallVendorMac struct {
@@ -111,12 +110,6 @@ func (i *FirewallVendorMac) ToFirewallVendorMacOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacOutput)
 }
 
-func (i *FirewallVendorMac) ToOutput(ctx context.Context) pulumix.Output[*FirewallVendorMac] {
-	return pulumix.Output[*FirewallVendorMac]{
-		OutputState: i.ToFirewallVendorMacOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallVendorMacArrayInput is an input type that accepts FirewallVendorMacArray and FirewallVendorMacArrayOutput values.
 // You can construct a concrete instance of `FirewallVendorMacArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i FirewallVendorMacArray) ToFirewallVendorMacArrayOutput() FirewallVendorM
 
 func (i FirewallVendorMacArray) ToFirewallVendorMacArrayOutputWithContext(ctx context.Context) FirewallVendorMacArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacArrayOutput)
-}
-
-func (i FirewallVendorMacArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallVendorMac] {
-	return pulumix.Output[[]*FirewallVendorMac]{
-		OutputState: i.ToFirewallVendorMacArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallVendorMacMapInput is an input type that accepts FirewallVendorMacMap and FirewallVendorMacMapOutput values.
@@ -173,12 +160,6 @@ func (i FirewallVendorMacMap) ToFirewallVendorMacMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacMapOutput)
 }
 
-func (i FirewallVendorMacMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallVendorMac] {
-	return pulumix.Output[map[string]*FirewallVendorMac]{
-		OutputState: i.ToFirewallVendorMacMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallVendorMacOutput struct{ *pulumi.OutputState }
 
 func (FirewallVendorMacOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o FirewallVendorMacOutput) ToFirewallVendorMacOutput() FirewallVendorMacOu
 
 func (o FirewallVendorMacOutput) ToFirewallVendorMacOutputWithContext(ctx context.Context) FirewallVendorMacOutput {
 	return o
-}
-
-func (o FirewallVendorMacOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallVendorMac] {
-	return pulumix.Output[*FirewallVendorMac]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallVendorMacOutput) Fosid() pulumi.IntOutput {
@@ -233,12 +208,6 @@ func (o FirewallVendorMacArrayOutput) ToFirewallVendorMacArrayOutputWithContext(
 	return o
 }
 
-func (o FirewallVendorMacArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallVendorMac] {
-	return pulumix.Output[[]*FirewallVendorMac]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallVendorMacArrayOutput) Index(i pulumi.IntInput) FirewallVendorMacOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVendorMac {
 		return vs[0].([]*FirewallVendorMac)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o FirewallVendorMacMapOutput) ToFirewallVendorMacMapOutput() FirewallVendo
 
 func (o FirewallVendorMacMapOutput) ToFirewallVendorMacMapOutputWithContext(ctx context.Context) FirewallVendorMacMapOutput {
 	return o
-}
-
-func (o FirewallVendorMacMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallVendorMac] {
-	return pulumix.Output[map[string]*FirewallVendorMac]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallVendorMacMapOutput) MapIndex(k pulumi.StringInput) FirewallVendorMacOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSnmpSysinfo struct {
@@ -136,12 +135,6 @@ func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoOutput)
 }
 
-func (i *SystemSnmpSysinfo) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpSysinfo] {
-	return pulumix.Output[*SystemSnmpSysinfo]{
-		OutputState: i.ToSystemSnmpSysinfoOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSnmpSysinfoArrayInput is an input type that accepts SystemSnmpSysinfoArray and SystemSnmpSysinfoArrayOutput values.
 // You can construct a concrete instance of `SystemSnmpSysinfoArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i SystemSnmpSysinfoArray) ToSystemSnmpSysinfoArrayOutput() SystemSnmpSysin
 
 func (i SystemSnmpSysinfoArray) ToSystemSnmpSysinfoArrayOutputWithContext(ctx context.Context) SystemSnmpSysinfoArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoArrayOutput)
-}
-
-func (i SystemSnmpSysinfoArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpSysinfo] {
-	return pulumix.Output[[]*SystemSnmpSysinfo]{
-		OutputState: i.ToSystemSnmpSysinfoArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSnmpSysinfoMapInput is an input type that accepts SystemSnmpSysinfoMap and SystemSnmpSysinfoMapOutput values.
@@ -198,12 +185,6 @@ func (i SystemSnmpSysinfoMap) ToSystemSnmpSysinfoMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoMapOutput)
 }
 
-func (i SystemSnmpSysinfoMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpSysinfo] {
-	return pulumix.Output[map[string]*SystemSnmpSysinfo]{
-		OutputState: i.ToSystemSnmpSysinfoMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSnmpSysinfoOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpSysinfoOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoOutput() SystemSnmpSysinfoOu
 
 func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoOutputWithContext(ctx context.Context) SystemSnmpSysinfoOutput {
 	return o
-}
-
-func (o SystemSnmpSysinfoOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpSysinfo] {
-	return pulumix.Output[*SystemSnmpSysinfo]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSnmpSysinfoOutput) ContactInfo() pulumi.StringPtrOutput {
@@ -278,12 +253,6 @@ func (o SystemSnmpSysinfoArrayOutput) ToSystemSnmpSysinfoArrayOutputWithContext(
 	return o
 }
 
-func (o SystemSnmpSysinfoArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpSysinfo] {
-	return pulumix.Output[[]*SystemSnmpSysinfo]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSnmpSysinfoArrayOutput) Index(i pulumi.IntInput) SystemSnmpSysinfoOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpSysinfo {
 		return vs[0].([]*SystemSnmpSysinfo)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o SystemSnmpSysinfoMapOutput) ToSystemSnmpSysinfoMapOutput() SystemSnmpSys
 
 func (o SystemSnmpSysinfoMapOutput) ToSystemSnmpSysinfoMapOutputWithContext(ctx context.Context) SystemSnmpSysinfoMapOutput {
 	return o
-}
-
-func (o SystemSnmpSysinfoMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpSysinfo] {
-	return pulumix.Output[map[string]*SystemSnmpSysinfo]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSnmpSysinfoMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpSysinfoOutput {

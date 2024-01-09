@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReportSetting struct {
@@ -116,12 +115,6 @@ func (i *ReportSetting) ToReportSettingOutputWithContext(ctx context.Context) Re
 	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingOutput)
 }
 
-func (i *ReportSetting) ToOutput(ctx context.Context) pulumix.Output[*ReportSetting] {
-	return pulumix.Output[*ReportSetting]{
-		OutputState: i.ToReportSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ReportSettingArrayInput is an input type that accepts ReportSettingArray and ReportSettingArrayOutput values.
 // You can construct a concrete instance of `ReportSettingArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i ReportSettingArray) ToReportSettingArrayOutput() ReportSettingArrayOutpu
 
 func (i ReportSettingArray) ToReportSettingArrayOutputWithContext(ctx context.Context) ReportSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingArrayOutput)
-}
-
-func (i ReportSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReportSetting] {
-	return pulumix.Output[[]*ReportSetting]{
-		OutputState: i.ToReportSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ReportSettingMapInput is an input type that accepts ReportSettingMap and ReportSettingMapOutput values.
@@ -178,12 +165,6 @@ func (i ReportSettingMap) ToReportSettingMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingMapOutput)
 }
 
-func (i ReportSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportSetting] {
-	return pulumix.Output[map[string]*ReportSetting]{
-		OutputState: i.ToReportSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ReportSettingOutput struct{ *pulumi.OutputState }
 
 func (ReportSettingOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o ReportSettingOutput) ToReportSettingOutput() ReportSettingOutput {
 
 func (o ReportSettingOutput) ToReportSettingOutputWithContext(ctx context.Context) ReportSettingOutput {
 	return o
-}
-
-func (o ReportSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportSetting] {
-	return pulumix.Output[*ReportSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReportSettingOutput) Fortiview() pulumi.StringOutput {
@@ -242,12 +217,6 @@ func (o ReportSettingArrayOutput) ToReportSettingArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o ReportSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReportSetting] {
-	return pulumix.Output[[]*ReportSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ReportSettingArrayOutput) Index(i pulumi.IntInput) ReportSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportSetting {
 		return vs[0].([]*ReportSetting)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o ReportSettingMapOutput) ToReportSettingMapOutput() ReportSettingMapOutpu
 
 func (o ReportSettingMapOutput) ToReportSettingMapOutputWithContext(ctx context.Context) ReportSettingMapOutput {
 	return o
-}
-
-func (o ReportSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportSetting] {
-	return pulumix.Output[map[string]*ReportSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReportSettingMapOutput) MapIndex(k pulumi.StringInput) ReportSettingOutput {

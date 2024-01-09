@@ -54,6 +54,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
     public readonly fdsLicenseExpiringDays!: pulumi.Output<number>;
     public readonly fortiguardAnycast!: pulumi.Output<string>;
     public readonly fortiguardAnycastSource!: pulumi.Output<string>;
+    public readonly guiPromptAutoUpgrade!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
     public readonly loadBalanceServers!: pulumi.Output<number>;
@@ -132,6 +133,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["fdsLicenseExpiringDays"] = state ? state.fdsLicenseExpiringDays : undefined;
             resourceInputs["fortiguardAnycast"] = state ? state.fortiguardAnycast : undefined;
             resourceInputs["fortiguardAnycastSource"] = state ? state.fortiguardAnycastSource : undefined;
+            resourceInputs["guiPromptAutoUpgrade"] = state ? state.guiPromptAutoUpgrade : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["loadBalanceServers"] = state ? state.loadBalanceServers : undefined;
@@ -207,6 +209,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["fdsLicenseExpiringDays"] = args ? args.fdsLicenseExpiringDays : undefined;
             resourceInputs["fortiguardAnycast"] = args ? args.fortiguardAnycast : undefined;
             resourceInputs["fortiguardAnycastSource"] = args ? args.fortiguardAnycastSource : undefined;
+            resourceInputs["guiPromptAutoUpgrade"] = args ? args.guiPromptAutoUpgrade : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["loadBalanceServers"] = args ? args.loadBalanceServers : undefined;
@@ -283,6 +286,7 @@ export interface SystemFortiguardState {
     fdsLicenseExpiringDays?: pulumi.Input<number>;
     fortiguardAnycast?: pulumi.Input<string>;
     fortiguardAnycastSource?: pulumi.Input<string>;
+    guiPromptAutoUpgrade?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     loadBalanceServers?: pulumi.Input<number>;
@@ -353,6 +357,7 @@ export interface SystemFortiguardArgs {
     fdsLicenseExpiringDays?: pulumi.Input<number>;
     fortiguardAnycast?: pulumi.Input<string>;
     fortiguardAnycastSource?: pulumi.Input<string>;
+    guiPromptAutoUpgrade?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     loadBalanceServers?: pulumi.Input<number>;

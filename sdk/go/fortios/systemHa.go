@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemHa struct {
@@ -527,12 +526,6 @@ func (i *SystemHa) ToSystemHaOutputWithContext(ctx context.Context) SystemHaOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaOutput)
 }
 
-func (i *SystemHa) ToOutput(ctx context.Context) pulumix.Output[*SystemHa] {
-	return pulumix.Output[*SystemHa]{
-		OutputState: i.ToSystemHaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemHaArrayInput is an input type that accepts SystemHaArray and SystemHaArrayOutput values.
 // You can construct a concrete instance of `SystemHaArrayInput` via:
 //
@@ -556,12 +549,6 @@ func (i SystemHaArray) ToSystemHaArrayOutput() SystemHaArrayOutput {
 
 func (i SystemHaArray) ToSystemHaArrayOutputWithContext(ctx context.Context) SystemHaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaArrayOutput)
-}
-
-func (i SystemHaArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemHa] {
-	return pulumix.Output[[]*SystemHa]{
-		OutputState: i.ToSystemHaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemHaMapInput is an input type that accepts SystemHaMap and SystemHaMapOutput values.
@@ -589,12 +576,6 @@ func (i SystemHaMap) ToSystemHaMapOutputWithContext(ctx context.Context) SystemH
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMapOutput)
 }
 
-func (i SystemHaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemHa] {
-	return pulumix.Output[map[string]*SystemHa]{
-		OutputState: i.ToSystemHaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemHaOutput struct{ *pulumi.OutputState }
 
 func (SystemHaOutput) ElementType() reflect.Type {
@@ -607,12 +588,6 @@ func (o SystemHaOutput) ToSystemHaOutput() SystemHaOutput {
 
 func (o SystemHaOutput) ToSystemHaOutputWithContext(ctx context.Context) SystemHaOutput {
 	return o
-}
-
-func (o SystemHaOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemHa] {
-	return pulumix.Output[*SystemHa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemHaOutput) Arps() pulumi.IntOutput {
@@ -973,12 +948,6 @@ func (o SystemHaArrayOutput) ToSystemHaArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemHaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemHa] {
-	return pulumix.Output[[]*SystemHa]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemHaArrayOutput) Index(i pulumi.IntInput) SystemHaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemHa {
 		return vs[0].([]*SystemHa)[vs[1].(int)]
@@ -997,12 +966,6 @@ func (o SystemHaMapOutput) ToSystemHaMapOutput() SystemHaMapOutput {
 
 func (o SystemHaMapOutput) ToSystemHaMapOutputWithContext(ctx context.Context) SystemHaMapOutput {
 	return o
-}
-
-func (o SystemHaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemHa] {
-	return pulumix.Output[map[string]*SystemHa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemHaMapOutput) MapIndex(k pulumi.StringInput) SystemHaOutput {

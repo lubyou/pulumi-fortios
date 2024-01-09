@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSslSshProfile struct {
@@ -261,12 +260,6 @@ func (i *FirewallSslSshProfile) ToFirewallSslSshProfileOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfileOutput)
 }
 
-func (i *FirewallSslSshProfile) ToOutput(ctx context.Context) pulumix.Output[*FirewallSslSshProfile] {
-	return pulumix.Output[*FirewallSslSshProfile]{
-		OutputState: i.ToFirewallSslSshProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallSslSshProfileArrayInput is an input type that accepts FirewallSslSshProfileArray and FirewallSslSshProfileArrayOutput values.
 // You can construct a concrete instance of `FirewallSslSshProfileArrayInput` via:
 //
@@ -290,12 +283,6 @@ func (i FirewallSslSshProfileArray) ToFirewallSslSshProfileArrayOutput() Firewal
 
 func (i FirewallSslSshProfileArray) ToFirewallSslSshProfileArrayOutputWithContext(ctx context.Context) FirewallSslSshProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfileArrayOutput)
-}
-
-func (i FirewallSslSshProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSslSshProfile] {
-	return pulumix.Output[[]*FirewallSslSshProfile]{
-		OutputState: i.ToFirewallSslSshProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallSslSshProfileMapInput is an input type that accepts FirewallSslSshProfileMap and FirewallSslSshProfileMapOutput values.
@@ -323,12 +310,6 @@ func (i FirewallSslSshProfileMap) ToFirewallSslSshProfileMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfileMapOutput)
 }
 
-func (i FirewallSslSshProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSslSshProfile] {
-	return pulumix.Output[map[string]*FirewallSslSshProfile]{
-		OutputState: i.ToFirewallSslSshProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallSslSshProfileOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSshProfileOutput) ElementType() reflect.Type {
@@ -341,12 +322,6 @@ func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfileOutput() FirewallSsl
 
 func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfileOutputWithContext(ctx context.Context) FirewallSslSshProfileOutput {
 	return o
-}
-
-func (o FirewallSslSshProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSslSshProfile] {
-	return pulumix.Output[*FirewallSslSshProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSslSshProfileOutput) Allowlist() pulumi.StringOutput {
@@ -503,12 +478,6 @@ func (o FirewallSslSshProfileArrayOutput) ToFirewallSslSshProfileArrayOutputWith
 	return o
 }
 
-func (o FirewallSslSshProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSslSshProfile] {
-	return pulumix.Output[[]*FirewallSslSshProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallSslSshProfileArrayOutput) Index(i pulumi.IntInput) FirewallSslSshProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSslSshProfile {
 		return vs[0].([]*FirewallSslSshProfile)[vs[1].(int)]
@@ -527,12 +496,6 @@ func (o FirewallSslSshProfileMapOutput) ToFirewallSslSshProfileMapOutput() Firew
 
 func (o FirewallSslSshProfileMapOutput) ToFirewallSslSshProfileMapOutputWithContext(ctx context.Context) FirewallSslSshProfileMapOutput {
 	return o
-}
-
-func (o FirewallSslSshProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSslSshProfile] {
-	return pulumix.Output[map[string]*FirewallSslSshProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSslSshProfileMapOutput) MapIndex(k pulumi.StringInput) FirewallSslSshProfileOutput {

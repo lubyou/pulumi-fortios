@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSslSetting struct {
@@ -171,12 +170,6 @@ func (i *FirewallSslSetting) ToFirewallSslSettingOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingOutput)
 }
 
-func (i *FirewallSslSetting) ToOutput(ctx context.Context) pulumix.Output[*FirewallSslSetting] {
-	return pulumix.Output[*FirewallSslSetting]{
-		OutputState: i.ToFirewallSslSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallSslSettingArrayInput is an input type that accepts FirewallSslSettingArray and FirewallSslSettingArrayOutput values.
 // You can construct a concrete instance of `FirewallSslSettingArrayInput` via:
 //
@@ -200,12 +193,6 @@ func (i FirewallSslSettingArray) ToFirewallSslSettingArrayOutput() FirewallSslSe
 
 func (i FirewallSslSettingArray) ToFirewallSslSettingArrayOutputWithContext(ctx context.Context) FirewallSslSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingArrayOutput)
-}
-
-func (i FirewallSslSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSslSetting] {
-	return pulumix.Output[[]*FirewallSslSetting]{
-		OutputState: i.ToFirewallSslSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallSslSettingMapInput is an input type that accepts FirewallSslSettingMap and FirewallSslSettingMapOutput values.
@@ -233,12 +220,6 @@ func (i FirewallSslSettingMap) ToFirewallSslSettingMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingMapOutput)
 }
 
-func (i FirewallSslSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSslSetting] {
-	return pulumix.Output[map[string]*FirewallSslSetting]{
-		OutputState: i.ToFirewallSslSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallSslSettingOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSettingOutput) ElementType() reflect.Type {
@@ -251,12 +232,6 @@ func (o FirewallSslSettingOutput) ToFirewallSslSettingOutput() FirewallSslSettin
 
 func (o FirewallSslSettingOutput) ToFirewallSslSettingOutputWithContext(ctx context.Context) FirewallSslSettingOutput {
 	return o
-}
-
-func (o FirewallSslSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSslSetting] {
-	return pulumix.Output[*FirewallSslSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSslSettingOutput) AbbreviateHandshake() pulumi.StringOutput {
@@ -321,12 +296,6 @@ func (o FirewallSslSettingArrayOutput) ToFirewallSslSettingArrayOutputWithContex
 	return o
 }
 
-func (o FirewallSslSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSslSetting] {
-	return pulumix.Output[[]*FirewallSslSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallSslSettingArrayOutput) Index(i pulumi.IntInput) FirewallSslSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSslSetting {
 		return vs[0].([]*FirewallSslSetting)[vs[1].(int)]
@@ -345,12 +314,6 @@ func (o FirewallSslSettingMapOutput) ToFirewallSslSettingMapOutput() FirewallSsl
 
 func (o FirewallSslSettingMapOutput) ToFirewallSslSettingMapOutputWithContext(ctx context.Context) FirewallSslSettingMapOutput {
 	return o
-}
-
-func (o FirewallSslSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSslSetting] {
-	return pulumix.Output[map[string]*FirewallSslSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSslSettingMapOutput) MapIndex(k pulumi.StringInput) FirewallSslSettingOutput {

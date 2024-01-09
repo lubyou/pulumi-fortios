@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemPppoeInterfaceList(ctx *pulumi.Context, args *GetSystemPppoeInterfaceListArgs, opts ...pulumi.InvokeOption) (*GetSystemPppoeInterfaceListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemPppoeInterfaceListResultOutput) ToGetSystemPppoeInterfaceListRe
 
 func (o GetSystemPppoeInterfaceListResultOutput) ToGetSystemPppoeInterfaceListResultOutputWithContext(ctx context.Context) GetSystemPppoeInterfaceListResultOutput {
 	return o
-}
-
-func (o GetSystemPppoeInterfaceListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemPppoeInterfaceListResult] {
-	return pulumix.Output[GetSystemPppoeInterfaceListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemPppoeInterfaceListResultOutput) Filter() pulumi.StringPtrOutput {

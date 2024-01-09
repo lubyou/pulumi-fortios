@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallServiceCustom(ctx *pulumi.Context, args *LookupFirewallServiceCustomArgs, opts ...pulumi.InvokeOption) (*LookupFirewallServiceCustomResult, error) {
@@ -98,12 +97,6 @@ func (o LookupFirewallServiceCustomResultOutput) ToLookupFirewallServiceCustomRe
 
 func (o LookupFirewallServiceCustomResultOutput) ToLookupFirewallServiceCustomResultOutputWithContext(ctx context.Context) LookupFirewallServiceCustomResultOutput {
 	return o
-}
-
-func (o LookupFirewallServiceCustomResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallServiceCustomResult] {
-	return pulumix.Output[LookupFirewallServiceCustomResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFirewallServiceCustomResultOutput) AppCategories() GetFirewallServiceCustomAppCategoryArrayOutput {

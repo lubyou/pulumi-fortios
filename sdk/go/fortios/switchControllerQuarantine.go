@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerQuarantine struct {
@@ -111,12 +110,6 @@ func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantineOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantineOutput)
 }
 
-func (i *SwitchControllerQuarantine) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQuarantine] {
-	return pulumix.Output[*SwitchControllerQuarantine]{
-		OutputState: i.ToSwitchControllerQuarantineOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerQuarantineArrayInput is an input type that accepts SwitchControllerQuarantineArray and SwitchControllerQuarantineArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQuarantineArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SwitchControllerQuarantineArray) ToSwitchControllerQuarantineArrayOutput
 
 func (i SwitchControllerQuarantineArray) ToSwitchControllerQuarantineArrayOutputWithContext(ctx context.Context) SwitchControllerQuarantineArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantineArrayOutput)
-}
-
-func (i SwitchControllerQuarantineArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQuarantine] {
-	return pulumix.Output[[]*SwitchControllerQuarantine]{
-		OutputState: i.ToSwitchControllerQuarantineArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerQuarantineMapInput is an input type that accepts SwitchControllerQuarantineMap and SwitchControllerQuarantineMapOutput values.
@@ -173,12 +160,6 @@ func (i SwitchControllerQuarantineMap) ToSwitchControllerQuarantineMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantineMapOutput)
 }
 
-func (i SwitchControllerQuarantineMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQuarantine] {
-	return pulumix.Output[map[string]*SwitchControllerQuarantine]{
-		OutputState: i.ToSwitchControllerQuarantineMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerQuarantineOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQuarantineOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutput() S
 
 func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutputWithContext(ctx context.Context) SwitchControllerQuarantineOutput {
 	return o
-}
-
-func (o SwitchControllerQuarantineOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQuarantine] {
-	return pulumix.Output[*SwitchControllerQuarantine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerQuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o SwitchControllerQuarantineArrayOutput) ToSwitchControllerQuarantineArray
 	return o
 }
 
-func (o SwitchControllerQuarantineArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQuarantine] {
-	return pulumix.Output[[]*SwitchControllerQuarantine]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerQuarantineArrayOutput) Index(i pulumi.IntInput) SwitchControllerQuarantineOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQuarantine {
 		return vs[0].([]*SwitchControllerQuarantine)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SwitchControllerQuarantineMapOutput) ToSwitchControllerQuarantineMapOutp
 
 func (o SwitchControllerQuarantineMapOutput) ToSwitchControllerQuarantineMapOutputWithContext(ctx context.Context) SwitchControllerQuarantineMapOutput {
 	return o
-}
-
-func (o SwitchControllerQuarantineMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQuarantine] {
-	return pulumix.Output[map[string]*SwitchControllerQuarantine]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerQuarantineMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQuarantineOutput {

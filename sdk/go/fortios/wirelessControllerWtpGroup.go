@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerWtpGroup struct {
@@ -121,12 +120,6 @@ func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupOutput)
 }
 
-func (i *WirelessControllerWtpGroup) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpGroup] {
-	return pulumix.Output[*WirelessControllerWtpGroup]{
-		OutputState: i.ToWirelessControllerWtpGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerWtpGroupArrayInput is an input type that accepts WirelessControllerWtpGroupArray and WirelessControllerWtpGroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpGroupArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i WirelessControllerWtpGroupArray) ToWirelessControllerWtpGroupArrayOutput
 
 func (i WirelessControllerWtpGroupArray) ToWirelessControllerWtpGroupArrayOutputWithContext(ctx context.Context) WirelessControllerWtpGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupArrayOutput)
-}
-
-func (i WirelessControllerWtpGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerWtpGroup] {
-	return pulumix.Output[[]*WirelessControllerWtpGroup]{
-		OutputState: i.ToWirelessControllerWtpGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerWtpGroupMapInput is an input type that accepts WirelessControllerWtpGroupMap and WirelessControllerWtpGroupMapOutput values.
@@ -183,12 +170,6 @@ func (i WirelessControllerWtpGroupMap) ToWirelessControllerWtpGroupMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupMapOutput)
 }
 
-func (i WirelessControllerWtpGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerWtpGroup] {
-	return pulumix.Output[map[string]*WirelessControllerWtpGroup]{
-		OutputState: i.ToWirelessControllerWtpGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerWtpGroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpGroupOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutput() W
 
 func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutputWithContext(ctx context.Context) WirelessControllerWtpGroupOutput {
 	return o
-}
-
-func (o WirelessControllerWtpGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpGroup] {
-	return pulumix.Output[*WirelessControllerWtpGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerWtpGroupOutput) BleMajorId() pulumi.IntOutput {
@@ -251,12 +226,6 @@ func (o WirelessControllerWtpGroupArrayOutput) ToWirelessControllerWtpGroupArray
 	return o
 }
 
-func (o WirelessControllerWtpGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerWtpGroup] {
-	return pulumix.Output[[]*WirelessControllerWtpGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerWtpGroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWtpGroup {
 		return vs[0].([]*WirelessControllerWtpGroup)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o WirelessControllerWtpGroupMapOutput) ToWirelessControllerWtpGroupMapOutp
 
 func (o WirelessControllerWtpGroupMapOutput) ToWirelessControllerWtpGroupMapOutputWithContext(ctx context.Context) WirelessControllerWtpGroupMapOutput {
 	return o
-}
-
-func (o WirelessControllerWtpGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerWtpGroup] {
-	return pulumix.Output[map[string]*WirelessControllerWtpGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerWtpGroupMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWtpGroupOutput {

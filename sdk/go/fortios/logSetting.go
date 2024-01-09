@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogSetting struct {
@@ -226,12 +225,6 @@ func (i *LogSetting) ToLogSettingOutputWithContext(ctx context.Context) LogSetti
 	return pulumi.ToOutputWithContext(ctx, i).(LogSettingOutput)
 }
 
-func (i *LogSetting) ToOutput(ctx context.Context) pulumix.Output[*LogSetting] {
-	return pulumix.Output[*LogSetting]{
-		OutputState: i.ToLogSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogSettingArrayInput is an input type that accepts LogSettingArray and LogSettingArrayOutput values.
 // You can construct a concrete instance of `LogSettingArrayInput` via:
 //
@@ -255,12 +248,6 @@ func (i LogSettingArray) ToLogSettingArrayOutput() LogSettingArrayOutput {
 
 func (i LogSettingArray) ToLogSettingArrayOutputWithContext(ctx context.Context) LogSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSettingArrayOutput)
-}
-
-func (i LogSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogSetting] {
-	return pulumix.Output[[]*LogSetting]{
-		OutputState: i.ToLogSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogSettingMapInput is an input type that accepts LogSettingMap and LogSettingMapOutput values.
@@ -288,12 +275,6 @@ func (i LogSettingMap) ToLogSettingMapOutputWithContext(ctx context.Context) Log
 	return pulumi.ToOutputWithContext(ctx, i).(LogSettingMapOutput)
 }
 
-func (i LogSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSetting] {
-	return pulumix.Output[map[string]*LogSetting]{
-		OutputState: i.ToLogSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogSettingOutput struct{ *pulumi.OutputState }
 
 func (LogSettingOutput) ElementType() reflect.Type {
@@ -306,12 +287,6 @@ func (o LogSettingOutput) ToLogSettingOutput() LogSettingOutput {
 
 func (o LogSettingOutput) ToLogSettingOutputWithContext(ctx context.Context) LogSettingOutput {
 	return o
-}
-
-func (o LogSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogSetting] {
-	return pulumix.Output[*LogSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogSettingOutput) AnonymizationHash() pulumi.StringOutput {
@@ -440,12 +415,6 @@ func (o LogSettingArrayOutput) ToLogSettingArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LogSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogSetting] {
-	return pulumix.Output[[]*LogSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogSettingArrayOutput) Index(i pulumi.IntInput) LogSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSetting {
 		return vs[0].([]*LogSetting)[vs[1].(int)]
@@ -464,12 +433,6 @@ func (o LogSettingMapOutput) ToLogSettingMapOutput() LogSettingMapOutput {
 
 func (o LogSettingMapOutput) ToLogSettingMapOutputWithContext(ctx context.Context) LogSettingMapOutput {
 	return o
-}
-
-func (o LogSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSetting] {
-	return pulumix.Output[map[string]*LogSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogSettingMapOutput) MapIndex(k pulumi.StringInput) LogSettingOutput {

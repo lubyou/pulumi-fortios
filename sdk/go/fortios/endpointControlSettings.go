@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlSettings struct {
@@ -178,12 +177,6 @@ func (i *EndpointControlSettings) ToEndpointControlSettingsOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsOutput)
 }
 
-func (i *EndpointControlSettings) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlSettings] {
-	return pulumix.Output[*EndpointControlSettings]{
-		OutputState: i.ToEndpointControlSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EndpointControlSettingsArrayInput is an input type that accepts EndpointControlSettingsArray and EndpointControlSettingsArrayOutput values.
 // You can construct a concrete instance of `EndpointControlSettingsArrayInput` via:
 //
@@ -207,12 +200,6 @@ func (i EndpointControlSettingsArray) ToEndpointControlSettingsArrayOutput() End
 
 func (i EndpointControlSettingsArray) ToEndpointControlSettingsArrayOutputWithContext(ctx context.Context) EndpointControlSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsArrayOutput)
-}
-
-func (i EndpointControlSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlSettings] {
-	return pulumix.Output[[]*EndpointControlSettings]{
-		OutputState: i.ToEndpointControlSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EndpointControlSettingsMapInput is an input type that accepts EndpointControlSettingsMap and EndpointControlSettingsMapOutput values.
@@ -240,12 +227,6 @@ func (i EndpointControlSettingsMap) ToEndpointControlSettingsMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsMapOutput)
 }
 
-func (i EndpointControlSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlSettings] {
-	return pulumix.Output[map[string]*EndpointControlSettings]{
-		OutputState: i.ToEndpointControlSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EndpointControlSettingsOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlSettingsOutput) ElementType() reflect.Type {
@@ -258,12 +239,6 @@ func (o EndpointControlSettingsOutput) ToEndpointControlSettingsOutput() Endpoin
 
 func (o EndpointControlSettingsOutput) ToEndpointControlSettingsOutputWithContext(ctx context.Context) EndpointControlSettingsOutput {
 	return o
-}
-
-func (o EndpointControlSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlSettings] {
-	return pulumix.Output[*EndpointControlSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointControlSettingsOutput) DownloadCustomLink() pulumi.StringOutput {
@@ -348,12 +323,6 @@ func (o EndpointControlSettingsArrayOutput) ToEndpointControlSettingsArrayOutput
 	return o
 }
 
-func (o EndpointControlSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlSettings] {
-	return pulumix.Output[[]*EndpointControlSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EndpointControlSettingsArrayOutput) Index(i pulumi.IntInput) EndpointControlSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlSettings {
 		return vs[0].([]*EndpointControlSettings)[vs[1].(int)]
@@ -372,12 +341,6 @@ func (o EndpointControlSettingsMapOutput) ToEndpointControlSettingsMapOutput() E
 
 func (o EndpointControlSettingsMapOutput) ToEndpointControlSettingsMapOutputWithContext(ctx context.Context) EndpointControlSettingsMapOutput {
 	return o
-}
-
-func (o EndpointControlSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlSettings] {
-	return pulumix.Output[map[string]*EndpointControlSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointControlSettingsMapOutput) MapIndex(k pulumi.StringInput) EndpointControlSettingsOutput {

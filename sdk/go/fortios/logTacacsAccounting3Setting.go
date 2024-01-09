@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogTacacsAccounting3Setting struct {
@@ -121,12 +120,6 @@ func (i *LogTacacsAccounting3Setting) ToLogTacacsAccounting3SettingOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccounting3SettingOutput)
 }
 
-func (i *LogTacacsAccounting3Setting) ToOutput(ctx context.Context) pulumix.Output[*LogTacacsAccounting3Setting] {
-	return pulumix.Output[*LogTacacsAccounting3Setting]{
-		OutputState: i.ToLogTacacsAccounting3SettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogTacacsAccounting3SettingArrayInput is an input type that accepts LogTacacsAccounting3SettingArray and LogTacacsAccounting3SettingArrayOutput values.
 // You can construct a concrete instance of `LogTacacsAccounting3SettingArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i LogTacacsAccounting3SettingArray) ToLogTacacsAccounting3SettingArrayOutp
 
 func (i LogTacacsAccounting3SettingArray) ToLogTacacsAccounting3SettingArrayOutputWithContext(ctx context.Context) LogTacacsAccounting3SettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccounting3SettingArrayOutput)
-}
-
-func (i LogTacacsAccounting3SettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogTacacsAccounting3Setting] {
-	return pulumix.Output[[]*LogTacacsAccounting3Setting]{
-		OutputState: i.ToLogTacacsAccounting3SettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogTacacsAccounting3SettingMapInput is an input type that accepts LogTacacsAccounting3SettingMap and LogTacacsAccounting3SettingMapOutput values.
@@ -183,12 +170,6 @@ func (i LogTacacsAccounting3SettingMap) ToLogTacacsAccounting3SettingMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccounting3SettingMapOutput)
 }
 
-func (i LogTacacsAccounting3SettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogTacacsAccounting3Setting] {
-	return pulumix.Output[map[string]*LogTacacsAccounting3Setting]{
-		OutputState: i.ToLogTacacsAccounting3SettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogTacacsAccounting3SettingOutput struct{ *pulumi.OutputState }
 
 func (LogTacacsAccounting3SettingOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o LogTacacsAccounting3SettingOutput) ToLogTacacsAccounting3SettingOutput()
 
 func (o LogTacacsAccounting3SettingOutput) ToLogTacacsAccounting3SettingOutputWithContext(ctx context.Context) LogTacacsAccounting3SettingOutput {
 	return o
-}
-
-func (o LogTacacsAccounting3SettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogTacacsAccounting3Setting] {
-	return pulumix.Output[*LogTacacsAccounting3Setting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogTacacsAccounting3SettingOutput) Interface() pulumi.StringOutput {
@@ -251,12 +226,6 @@ func (o LogTacacsAccounting3SettingArrayOutput) ToLogTacacsAccounting3SettingArr
 	return o
 }
 
-func (o LogTacacsAccounting3SettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogTacacsAccounting3Setting] {
-	return pulumix.Output[[]*LogTacacsAccounting3Setting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogTacacsAccounting3SettingArrayOutput) Index(i pulumi.IntInput) LogTacacsAccounting3SettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogTacacsAccounting3Setting {
 		return vs[0].([]*LogTacacsAccounting3Setting)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o LogTacacsAccounting3SettingMapOutput) ToLogTacacsAccounting3SettingMapOu
 
 func (o LogTacacsAccounting3SettingMapOutput) ToLogTacacsAccounting3SettingMapOutputWithContext(ctx context.Context) LogTacacsAccounting3SettingMapOutput {
 	return o
-}
-
-func (o LogTacacsAccounting3SettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogTacacsAccounting3Setting] {
-	return pulumix.Output[map[string]*LogTacacsAccounting3Setting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogTacacsAccounting3SettingMapOutput) MapIndex(k pulumi.StringInput) LogTacacsAccounting3SettingOutput {

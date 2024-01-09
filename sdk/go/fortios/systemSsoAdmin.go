@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSsoAdmin struct {
@@ -125,12 +124,6 @@ func (i *SystemSsoAdmin) ToSystemSsoAdminOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminOutput)
 }
 
-func (i *SystemSsoAdmin) ToOutput(ctx context.Context) pulumix.Output[*SystemSsoAdmin] {
-	return pulumix.Output[*SystemSsoAdmin]{
-		OutputState: i.ToSystemSsoAdminOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSsoAdminArrayInput is an input type that accepts SystemSsoAdminArray and SystemSsoAdminArrayOutput values.
 // You can construct a concrete instance of `SystemSsoAdminArrayInput` via:
 //
@@ -154,12 +147,6 @@ func (i SystemSsoAdminArray) ToSystemSsoAdminArrayOutput() SystemSsoAdminArrayOu
 
 func (i SystemSsoAdminArray) ToSystemSsoAdminArrayOutputWithContext(ctx context.Context) SystemSsoAdminArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminArrayOutput)
-}
-
-func (i SystemSsoAdminArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSsoAdmin] {
-	return pulumix.Output[[]*SystemSsoAdmin]{
-		OutputState: i.ToSystemSsoAdminArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSsoAdminMapInput is an input type that accepts SystemSsoAdminMap and SystemSsoAdminMapOutput values.
@@ -187,12 +174,6 @@ func (i SystemSsoAdminMap) ToSystemSsoAdminMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminMapOutput)
 }
 
-func (i SystemSsoAdminMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSsoAdmin] {
-	return pulumix.Output[map[string]*SystemSsoAdmin]{
-		OutputState: i.ToSystemSsoAdminMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSsoAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemSsoAdminOutput) ElementType() reflect.Type {
@@ -205,12 +186,6 @@ func (o SystemSsoAdminOutput) ToSystemSsoAdminOutput() SystemSsoAdminOutput {
 
 func (o SystemSsoAdminOutput) ToSystemSsoAdminOutputWithContext(ctx context.Context) SystemSsoAdminOutput {
 	return o
-}
-
-func (o SystemSsoAdminOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSsoAdmin] {
-	return pulumix.Output[*SystemSsoAdmin]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSsoAdminOutput) Accprofile() pulumi.StringOutput {
@@ -255,12 +230,6 @@ func (o SystemSsoAdminArrayOutput) ToSystemSsoAdminArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemSsoAdminArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSsoAdmin] {
-	return pulumix.Output[[]*SystemSsoAdmin]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSsoAdminArrayOutput) Index(i pulumi.IntInput) SystemSsoAdminOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSsoAdmin {
 		return vs[0].([]*SystemSsoAdmin)[vs[1].(int)]
@@ -279,12 +248,6 @@ func (o SystemSsoAdminMapOutput) ToSystemSsoAdminMapOutput() SystemSsoAdminMapOu
 
 func (o SystemSsoAdminMapOutput) ToSystemSsoAdminMapOutputWithContext(ctx context.Context) SystemSsoAdminMapOutput {
 	return o
-}
-
-func (o SystemSsoAdminMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSsoAdmin] {
-	return pulumix.Output[map[string]*SystemSsoAdmin]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSsoAdminMapOutput) MapIndex(k pulumi.StringInput) SystemSsoAdminOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerLldpProfile struct {
@@ -191,12 +190,6 @@ func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileOutput)
 }
 
-func (i *SwitchControllerLldpProfile) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLldpProfile] {
-	return pulumix.Output[*SwitchControllerLldpProfile]{
-		OutputState: i.ToSwitchControllerLldpProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerLldpProfileArrayInput is an input type that accepts SwitchControllerLldpProfileArray and SwitchControllerLldpProfileArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpProfileArrayInput` via:
 //
@@ -220,12 +213,6 @@ func (i SwitchControllerLldpProfileArray) ToSwitchControllerLldpProfileArrayOutp
 
 func (i SwitchControllerLldpProfileArray) ToSwitchControllerLldpProfileArrayOutputWithContext(ctx context.Context) SwitchControllerLldpProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileArrayOutput)
-}
-
-func (i SwitchControllerLldpProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLldpProfile] {
-	return pulumix.Output[[]*SwitchControllerLldpProfile]{
-		OutputState: i.ToSwitchControllerLldpProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerLldpProfileMapInput is an input type that accepts SwitchControllerLldpProfileMap and SwitchControllerLldpProfileMapOutput values.
@@ -253,12 +240,6 @@ func (i SwitchControllerLldpProfileMap) ToSwitchControllerLldpProfileMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileMapOutput)
 }
 
-func (i SwitchControllerLldpProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLldpProfile] {
-	return pulumix.Output[map[string]*SwitchControllerLldpProfile]{
-		OutputState: i.ToSwitchControllerLldpProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerLldpProfileOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpProfileOutput) ElementType() reflect.Type {
@@ -271,12 +252,6 @@ func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutput()
 
 func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutputWithContext(ctx context.Context) SwitchControllerLldpProfileOutput {
 	return o
-}
-
-func (o SwitchControllerLldpProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLldpProfile] {
-	return pulumix.Output[*SwitchControllerLldpProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerLldpProfileOutput) AutoIsl() pulumi.StringOutput {
@@ -383,12 +358,6 @@ func (o SwitchControllerLldpProfileArrayOutput) ToSwitchControllerLldpProfileArr
 	return o
 }
 
-func (o SwitchControllerLldpProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLldpProfile] {
-	return pulumix.Output[[]*SwitchControllerLldpProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerLldpProfileArrayOutput) Index(i pulumi.IntInput) SwitchControllerLldpProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLldpProfile {
 		return vs[0].([]*SwitchControllerLldpProfile)[vs[1].(int)]
@@ -407,12 +376,6 @@ func (o SwitchControllerLldpProfileMapOutput) ToSwitchControllerLldpProfileMapOu
 
 func (o SwitchControllerLldpProfileMapOutput) ToSwitchControllerLldpProfileMapOutputWithContext(ctx context.Context) SwitchControllerLldpProfileMapOutput {
 	return o
-}
-
-func (o SwitchControllerLldpProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLldpProfile] {
-	return pulumix.Output[map[string]*SwitchControllerLldpProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerLldpProfileMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLldpProfileOutput {

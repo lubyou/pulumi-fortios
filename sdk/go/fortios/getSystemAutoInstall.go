@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemAutoInstall(ctx *pulumi.Context, args *LookupSystemAutoInstallArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoInstallResult, error) {
@@ -73,12 +72,6 @@ func (o LookupSystemAutoInstallResultOutput) ToLookupSystemAutoInstallResultOutp
 
 func (o LookupSystemAutoInstallResultOutput) ToLookupSystemAutoInstallResultOutputWithContext(ctx context.Context) LookupSystemAutoInstallResultOutput {
 	return o
-}
-
-func (o LookupSystemAutoInstallResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemAutoInstallResult] {
-	return pulumix.Output[LookupSystemAutoInstallResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemAutoInstallResultOutput) AutoInstallConfig() pulumi.StringOutput {

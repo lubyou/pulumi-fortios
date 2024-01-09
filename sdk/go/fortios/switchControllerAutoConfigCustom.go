@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerAutoConfigCustom struct {
@@ -111,12 +110,6 @@ func (i *SwitchControllerAutoConfigCustom) ToSwitchControllerAutoConfigCustomOut
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigCustomOutput)
 }
 
-func (i *SwitchControllerAutoConfigCustom) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerAutoConfigCustom] {
-	return pulumix.Output[*SwitchControllerAutoConfigCustom]{
-		OutputState: i.ToSwitchControllerAutoConfigCustomOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerAutoConfigCustomArrayInput is an input type that accepts SwitchControllerAutoConfigCustomArray and SwitchControllerAutoConfigCustomArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigCustomArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SwitchControllerAutoConfigCustomArray) ToSwitchControllerAutoConfigCusto
 
 func (i SwitchControllerAutoConfigCustomArray) ToSwitchControllerAutoConfigCustomArrayOutputWithContext(ctx context.Context) SwitchControllerAutoConfigCustomArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigCustomArrayOutput)
-}
-
-func (i SwitchControllerAutoConfigCustomArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerAutoConfigCustom] {
-	return pulumix.Output[[]*SwitchControllerAutoConfigCustom]{
-		OutputState: i.ToSwitchControllerAutoConfigCustomArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerAutoConfigCustomMapInput is an input type that accepts SwitchControllerAutoConfigCustomMap and SwitchControllerAutoConfigCustomMapOutput values.
@@ -173,12 +160,6 @@ func (i SwitchControllerAutoConfigCustomMap) ToSwitchControllerAutoConfigCustomM
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigCustomMapOutput)
 }
 
-func (i SwitchControllerAutoConfigCustomMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerAutoConfigCustom] {
-	return pulumix.Output[map[string]*SwitchControllerAutoConfigCustom]{
-		OutputState: i.ToSwitchControllerAutoConfigCustomMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerAutoConfigCustomOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigCustomOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SwitchControllerAutoConfigCustomOutput) ToSwitchControllerAutoConfigCust
 
 func (o SwitchControllerAutoConfigCustomOutput) ToSwitchControllerAutoConfigCustomOutputWithContext(ctx context.Context) SwitchControllerAutoConfigCustomOutput {
 	return o
-}
-
-func (o SwitchControllerAutoConfigCustomOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerAutoConfigCustom] {
-	return pulumix.Output[*SwitchControllerAutoConfigCustom]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerAutoConfigCustomOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -235,12 +210,6 @@ func (o SwitchControllerAutoConfigCustomArrayOutput) ToSwitchControllerAutoConfi
 	return o
 }
 
-func (o SwitchControllerAutoConfigCustomArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerAutoConfigCustom] {
-	return pulumix.Output[[]*SwitchControllerAutoConfigCustom]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerAutoConfigCustomArrayOutput) Index(i pulumi.IntInput) SwitchControllerAutoConfigCustomOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerAutoConfigCustom {
 		return vs[0].([]*SwitchControllerAutoConfigCustom)[vs[1].(int)]
@@ -259,12 +228,6 @@ func (o SwitchControllerAutoConfigCustomMapOutput) ToSwitchControllerAutoConfigC
 
 func (o SwitchControllerAutoConfigCustomMapOutput) ToSwitchControllerAutoConfigCustomMapOutputWithContext(ctx context.Context) SwitchControllerAutoConfigCustomMapOutput {
 	return o
-}
-
-func (o SwitchControllerAutoConfigCustomMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerAutoConfigCustom] {
-	return pulumix.Output[map[string]*SwitchControllerAutoConfigCustom]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerAutoConfigCustomMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerAutoConfigCustomOutput {

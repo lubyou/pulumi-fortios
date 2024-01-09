@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WanoptRemoteStorage struct {
@@ -111,12 +110,6 @@ func (i *WanoptRemoteStorage) ToWanoptRemoteStorageOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStorageOutput)
 }
 
-func (i *WanoptRemoteStorage) ToOutput(ctx context.Context) pulumix.Output[*WanoptRemoteStorage] {
-	return pulumix.Output[*WanoptRemoteStorage]{
-		OutputState: i.ToWanoptRemoteStorageOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WanoptRemoteStorageArrayInput is an input type that accepts WanoptRemoteStorageArray and WanoptRemoteStorageArrayOutput values.
 // You can construct a concrete instance of `WanoptRemoteStorageArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i WanoptRemoteStorageArray) ToWanoptRemoteStorageArrayOutput() WanoptRemot
 
 func (i WanoptRemoteStorageArray) ToWanoptRemoteStorageArrayOutputWithContext(ctx context.Context) WanoptRemoteStorageArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStorageArrayOutput)
-}
-
-func (i WanoptRemoteStorageArray) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptRemoteStorage] {
-	return pulumix.Output[[]*WanoptRemoteStorage]{
-		OutputState: i.ToWanoptRemoteStorageArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WanoptRemoteStorageMapInput is an input type that accepts WanoptRemoteStorageMap and WanoptRemoteStorageMapOutput values.
@@ -173,12 +160,6 @@ func (i WanoptRemoteStorageMap) ToWanoptRemoteStorageMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStorageMapOutput)
 }
 
-func (i WanoptRemoteStorageMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptRemoteStorage] {
-	return pulumix.Output[map[string]*WanoptRemoteStorage]{
-		OutputState: i.ToWanoptRemoteStorageMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WanoptRemoteStorageOutput struct{ *pulumi.OutputState }
 
 func (WanoptRemoteStorageOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o WanoptRemoteStorageOutput) ToWanoptRemoteStorageOutput() WanoptRemoteSto
 
 func (o WanoptRemoteStorageOutput) ToWanoptRemoteStorageOutputWithContext(ctx context.Context) WanoptRemoteStorageOutput {
 	return o
-}
-
-func (o WanoptRemoteStorageOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptRemoteStorage] {
-	return pulumix.Output[*WanoptRemoteStorage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptRemoteStorageOutput) LocalCacheId() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o WanoptRemoteStorageArrayOutput) ToWanoptRemoteStorageArrayOutputWithCont
 	return o
 }
 
-func (o WanoptRemoteStorageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptRemoteStorage] {
-	return pulumix.Output[[]*WanoptRemoteStorage]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WanoptRemoteStorageArrayOutput) Index(i pulumi.IntInput) WanoptRemoteStorageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptRemoteStorage {
 		return vs[0].([]*WanoptRemoteStorage)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o WanoptRemoteStorageMapOutput) ToWanoptRemoteStorageMapOutput() WanoptRem
 
 func (o WanoptRemoteStorageMapOutput) ToWanoptRemoteStorageMapOutputWithContext(ctx context.Context) WanoptRemoteStorageMapOutput {
 	return o
-}
-
-func (o WanoptRemoteStorageMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptRemoteStorage] {
-	return pulumix.Output[map[string]*WanoptRemoteStorage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptRemoteStorageMapOutput) MapIndex(k pulumi.StringInput) WanoptRemoteStorageOutput {

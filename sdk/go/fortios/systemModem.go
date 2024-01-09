@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemModem struct {
@@ -321,12 +320,6 @@ func (i *SystemModem) ToSystemModemOutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemModemOutput)
 }
 
-func (i *SystemModem) ToOutput(ctx context.Context) pulumix.Output[*SystemModem] {
-	return pulumix.Output[*SystemModem]{
-		OutputState: i.ToSystemModemOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemModemArrayInput is an input type that accepts SystemModemArray and SystemModemArrayOutput values.
 // You can construct a concrete instance of `SystemModemArrayInput` via:
 //
@@ -350,12 +343,6 @@ func (i SystemModemArray) ToSystemModemArrayOutput() SystemModemArrayOutput {
 
 func (i SystemModemArray) ToSystemModemArrayOutputWithContext(ctx context.Context) SystemModemArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemModemArrayOutput)
-}
-
-func (i SystemModemArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemModem] {
-	return pulumix.Output[[]*SystemModem]{
-		OutputState: i.ToSystemModemArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemModemMapInput is an input type that accepts SystemModemMap and SystemModemMapOutput values.
@@ -383,12 +370,6 @@ func (i SystemModemMap) ToSystemModemMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemModemMapOutput)
 }
 
-func (i SystemModemMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemModem] {
-	return pulumix.Output[map[string]*SystemModem]{
-		OutputState: i.ToSystemModemMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemModemOutput struct{ *pulumi.OutputState }
 
 func (SystemModemOutput) ElementType() reflect.Type {
@@ -401,12 +382,6 @@ func (o SystemModemOutput) ToSystemModemOutput() SystemModemOutput {
 
 func (o SystemModemOutput) ToSystemModemOutputWithContext(ctx context.Context) SystemModemOutput {
 	return o
-}
-
-func (o SystemModemOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemModem] {
-	return pulumix.Output[*SystemModem]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemModemOutput) Action() pulumi.StringOutput {
@@ -611,12 +586,6 @@ func (o SystemModemArrayOutput) ToSystemModemArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemModemArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemModem] {
-	return pulumix.Output[[]*SystemModem]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemModemArrayOutput) Index(i pulumi.IntInput) SystemModemOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemModem {
 		return vs[0].([]*SystemModem)[vs[1].(int)]
@@ -635,12 +604,6 @@ func (o SystemModemMapOutput) ToSystemModemMapOutput() SystemModemMapOutput {
 
 func (o SystemModemMapOutput) ToSystemModemMapOutputWithContext(ctx context.Context) SystemModemMapOutput {
 	return o
-}
-
-func (o SystemModemMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemModem] {
-	return pulumix.Output[map[string]*SystemModem]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemModemMapOutput) MapIndex(k pulumi.StringInput) SystemModemOutput {

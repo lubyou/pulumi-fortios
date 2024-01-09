@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemAutoScriptList(ctx *pulumi.Context, args *GetSystemAutoScriptListArgs, opts ...pulumi.InvokeOption) (*GetSystemAutoScriptListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemAutoScriptListResultOutput) ToGetSystemAutoScriptListResultOutp
 
 func (o GetSystemAutoScriptListResultOutput) ToGetSystemAutoScriptListResultOutputWithContext(ctx context.Context) GetSystemAutoScriptListResultOutput {
 	return o
-}
-
-func (o GetSystemAutoScriptListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemAutoScriptListResult] {
-	return pulumix.Output[GetSystemAutoScriptListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemAutoScriptListResultOutput) Filter() pulumi.StringPtrOutput {

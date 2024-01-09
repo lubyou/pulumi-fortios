@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogSyslogd3Filter struct {
@@ -181,12 +180,6 @@ func (i *LogSyslogd3Filter) ToLogSyslogd3FilterOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3FilterOutput)
 }
 
-func (i *LogSyslogd3Filter) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd3Filter] {
-	return pulumix.Output[*LogSyslogd3Filter]{
-		OutputState: i.ToLogSyslogd3FilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogSyslogd3FilterArrayInput is an input type that accepts LogSyslogd3FilterArray and LogSyslogd3FilterArrayOutput values.
 // You can construct a concrete instance of `LogSyslogd3FilterArrayInput` via:
 //
@@ -210,12 +203,6 @@ func (i LogSyslogd3FilterArray) ToLogSyslogd3FilterArrayOutput() LogSyslogd3Filt
 
 func (i LogSyslogd3FilterArray) ToLogSyslogd3FilterArrayOutputWithContext(ctx context.Context) LogSyslogd3FilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3FilterArrayOutput)
-}
-
-func (i LogSyslogd3FilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd3Filter] {
-	return pulumix.Output[[]*LogSyslogd3Filter]{
-		OutputState: i.ToLogSyslogd3FilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogSyslogd3FilterMapInput is an input type that accepts LogSyslogd3FilterMap and LogSyslogd3FilterMapOutput values.
@@ -243,12 +230,6 @@ func (i LogSyslogd3FilterMap) ToLogSyslogd3FilterMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3FilterMapOutput)
 }
 
-func (i LogSyslogd3FilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd3Filter] {
-	return pulumix.Output[map[string]*LogSyslogd3Filter]{
-		OutputState: i.ToLogSyslogd3FilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogSyslogd3FilterOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd3FilterOutput) ElementType() reflect.Type {
@@ -261,12 +242,6 @@ func (o LogSyslogd3FilterOutput) ToLogSyslogd3FilterOutput() LogSyslogd3FilterOu
 
 func (o LogSyslogd3FilterOutput) ToLogSyslogd3FilterOutputWithContext(ctx context.Context) LogSyslogd3FilterOutput {
 	return o
-}
-
-func (o LogSyslogd3FilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd3Filter] {
-	return pulumix.Output[*LogSyslogd3Filter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogSyslogd3FilterOutput) Anomaly() pulumi.StringOutput {
@@ -359,12 +334,6 @@ func (o LogSyslogd3FilterArrayOutput) ToLogSyslogd3FilterArrayOutputWithContext(
 	return o
 }
 
-func (o LogSyslogd3FilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd3Filter] {
-	return pulumix.Output[[]*LogSyslogd3Filter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogSyslogd3FilterArrayOutput) Index(i pulumi.IntInput) LogSyslogd3FilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogd3Filter {
 		return vs[0].([]*LogSyslogd3Filter)[vs[1].(int)]
@@ -383,12 +352,6 @@ func (o LogSyslogd3FilterMapOutput) ToLogSyslogd3FilterMapOutput() LogSyslogd3Fi
 
 func (o LogSyslogd3FilterMapOutput) ToLogSyslogd3FilterMapOutputWithContext(ctx context.Context) LogSyslogd3FilterMapOutput {
 	return o
-}
-
-func (o LogSyslogd3FilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd3Filter] {
-	return pulumix.Output[map[string]*LogSyslogd3Filter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogSyslogd3FilterMapOutput) MapIndex(k pulumi.StringInput) LogSyslogd3FilterOutput {

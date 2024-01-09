@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgAlertmail struct {
@@ -115,12 +114,6 @@ func (i *SystemReplacemsgAlertmail) ToSystemReplacemsgAlertmailOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailOutput)
 }
 
-func (i *SystemReplacemsgAlertmail) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgAlertmail] {
-	return pulumix.Output[*SystemReplacemsgAlertmail]{
-		OutputState: i.ToSystemReplacemsgAlertmailOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemReplacemsgAlertmailArrayInput is an input type that accepts SystemReplacemsgAlertmailArray and SystemReplacemsgAlertmailArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgAlertmailArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i SystemReplacemsgAlertmailArray) ToSystemReplacemsgAlertmailArrayOutput()
 
 func (i SystemReplacemsgAlertmailArray) ToSystemReplacemsgAlertmailArrayOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailArrayOutput)
-}
-
-func (i SystemReplacemsgAlertmailArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgAlertmail] {
-	return pulumix.Output[[]*SystemReplacemsgAlertmail]{
-		OutputState: i.ToSystemReplacemsgAlertmailArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemReplacemsgAlertmailMapInput is an input type that accepts SystemReplacemsgAlertmailMap and SystemReplacemsgAlertmailMapOutput values.
@@ -177,12 +164,6 @@ func (i SystemReplacemsgAlertmailMap) ToSystemReplacemsgAlertmailMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailMapOutput)
 }
 
-func (i SystemReplacemsgAlertmailMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgAlertmail] {
-	return pulumix.Output[map[string]*SystemReplacemsgAlertmail]{
-		OutputState: i.ToSystemReplacemsgAlertmailMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemReplacemsgAlertmailOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAlertmailOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o SystemReplacemsgAlertmailOutput) ToSystemReplacemsgAlertmailOutput() Sys
 
 func (o SystemReplacemsgAlertmailOutput) ToSystemReplacemsgAlertmailOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailOutput {
 	return o
-}
-
-func (o SystemReplacemsgAlertmailOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgAlertmail] {
-	return pulumix.Output[*SystemReplacemsgAlertmail]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgAlertmailOutput) Buffer() pulumi.StringPtrOutput {
@@ -237,12 +212,6 @@ func (o SystemReplacemsgAlertmailArrayOutput) ToSystemReplacemsgAlertmailArrayOu
 	return o
 }
 
-func (o SystemReplacemsgAlertmailArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgAlertmail] {
-	return pulumix.Output[[]*SystemReplacemsgAlertmail]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemReplacemsgAlertmailArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAlertmailOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAlertmail {
 		return vs[0].([]*SystemReplacemsgAlertmail)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o SystemReplacemsgAlertmailMapOutput) ToSystemReplacemsgAlertmailMapOutput
 
 func (o SystemReplacemsgAlertmailMapOutput) ToSystemReplacemsgAlertmailMapOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailMapOutput {
 	return o
-}
-
-func (o SystemReplacemsgAlertmailMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgAlertmail] {
-	return pulumix.Output[map[string]*SystemReplacemsgAlertmail]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemReplacemsgAlertmailMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAlertmailOutput {

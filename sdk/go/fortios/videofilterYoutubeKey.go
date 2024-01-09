@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VideofilterYoutubeKey struct {
@@ -101,12 +100,6 @@ func (i *VideofilterYoutubeKey) ToVideofilterYoutubeKeyOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeKeyOutput)
 }
 
-func (i *VideofilterYoutubeKey) ToOutput(ctx context.Context) pulumix.Output[*VideofilterYoutubeKey] {
-	return pulumix.Output[*VideofilterYoutubeKey]{
-		OutputState: i.ToVideofilterYoutubeKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VideofilterYoutubeKeyArrayInput is an input type that accepts VideofilterYoutubeKeyArray and VideofilterYoutubeKeyArrayOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeKeyArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i VideofilterYoutubeKeyArray) ToVideofilterYoutubeKeyArrayOutput() Videofi
 
 func (i VideofilterYoutubeKeyArray) ToVideofilterYoutubeKeyArrayOutputWithContext(ctx context.Context) VideofilterYoutubeKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeKeyArrayOutput)
-}
-
-func (i VideofilterYoutubeKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*VideofilterYoutubeKey] {
-	return pulumix.Output[[]*VideofilterYoutubeKey]{
-		OutputState: i.ToVideofilterYoutubeKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VideofilterYoutubeKeyMapInput is an input type that accepts VideofilterYoutubeKeyMap and VideofilterYoutubeKeyMapOutput values.
@@ -163,12 +150,6 @@ func (i VideofilterYoutubeKeyMap) ToVideofilterYoutubeKeyMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeKeyMapOutput)
 }
 
-func (i VideofilterYoutubeKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VideofilterYoutubeKey] {
-	return pulumix.Output[map[string]*VideofilterYoutubeKey]{
-		OutputState: i.ToVideofilterYoutubeKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VideofilterYoutubeKeyOutput struct{ *pulumi.OutputState }
 
 func (VideofilterYoutubeKeyOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o VideofilterYoutubeKeyOutput) ToVideofilterYoutubeKeyOutput() Videofilter
 
 func (o VideofilterYoutubeKeyOutput) ToVideofilterYoutubeKeyOutputWithContext(ctx context.Context) VideofilterYoutubeKeyOutput {
 	return o
-}
-
-func (o VideofilterYoutubeKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*VideofilterYoutubeKey] {
-	return pulumix.Output[*VideofilterYoutubeKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VideofilterYoutubeKeyOutput) Fosid() pulumi.IntOutput {
@@ -215,12 +190,6 @@ func (o VideofilterYoutubeKeyArrayOutput) ToVideofilterYoutubeKeyArrayOutputWith
 	return o
 }
 
-func (o VideofilterYoutubeKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VideofilterYoutubeKey] {
-	return pulumix.Output[[]*VideofilterYoutubeKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VideofilterYoutubeKeyArrayOutput) Index(i pulumi.IntInput) VideofilterYoutubeKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VideofilterYoutubeKey {
 		return vs[0].([]*VideofilterYoutubeKey)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o VideofilterYoutubeKeyMapOutput) ToVideofilterYoutubeKeyMapOutput() Video
 
 func (o VideofilterYoutubeKeyMapOutput) ToVideofilterYoutubeKeyMapOutputWithContext(ctx context.Context) VideofilterYoutubeKeyMapOutput {
 	return o
-}
-
-func (o VideofilterYoutubeKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VideofilterYoutubeKey] {
-	return pulumix.Output[map[string]*VideofilterYoutubeKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VideofilterYoutubeKeyMapOutput) MapIndex(k pulumi.StringInput) VideofilterYoutubeKeyOutput {

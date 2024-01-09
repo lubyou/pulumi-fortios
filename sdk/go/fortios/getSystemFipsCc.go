@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFipsCc(ctx *pulumi.Context, args *LookupSystemFipsCcArgs, opts ...pulumi.InvokeOption) (*LookupSystemFipsCcResult, error) {
@@ -73,12 +72,6 @@ func (o LookupSystemFipsCcResultOutput) ToLookupSystemFipsCcResultOutput() Looku
 
 func (o LookupSystemFipsCcResultOutput) ToLookupSystemFipsCcResultOutputWithContext(ctx context.Context) LookupSystemFipsCcResultOutput {
 	return o
-}
-
-func (o LookupSystemFipsCcResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFipsCcResult] {
-	return pulumix.Output[LookupSystemFipsCcResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemFipsCcResultOutput) EntropyToken() pulumi.StringOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerDVMInstallDev struct {
@@ -115,12 +114,6 @@ func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevOutput)
 }
 
-func (i *FortimanagerDVMInstallDev) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMInstallDev] {
-	return pulumix.Output[*FortimanagerDVMInstallDev]{
-		OutputState: i.ToFortimanagerDVMInstallDevOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FortimanagerDVMInstallDevArrayInput is an input type that accepts FortimanagerDVMInstallDevArray and FortimanagerDVMInstallDevArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMInstallDevArrayInput` via:
 //
@@ -144,12 +137,6 @@ func (i FortimanagerDVMInstallDevArray) ToFortimanagerDVMInstallDevArrayOutput()
 
 func (i FortimanagerDVMInstallDevArray) ToFortimanagerDVMInstallDevArrayOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevArrayOutput)
-}
-
-func (i FortimanagerDVMInstallDevArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMInstallDev] {
-	return pulumix.Output[[]*FortimanagerDVMInstallDev]{
-		OutputState: i.ToFortimanagerDVMInstallDevArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FortimanagerDVMInstallDevMapInput is an input type that accepts FortimanagerDVMInstallDevMap and FortimanagerDVMInstallDevMapOutput values.
@@ -177,12 +164,6 @@ func (i FortimanagerDVMInstallDevMap) ToFortimanagerDVMInstallDevMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevMapOutput)
 }
 
-func (i FortimanagerDVMInstallDevMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMInstallDev] {
-	return pulumix.Output[map[string]*FortimanagerDVMInstallDev]{
-		OutputState: i.ToFortimanagerDVMInstallDevMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FortimanagerDVMInstallDevOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMInstallDevOutput) ElementType() reflect.Type {
@@ -195,12 +176,6 @@ func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevOutput() For
 
 func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevOutput {
 	return o
-}
-
-func (o FortimanagerDVMInstallDevOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMInstallDev] {
-	return pulumix.Output[*FortimanagerDVMInstallDev]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerDVMInstallDevOutput) Adom() pulumi.StringPtrOutput {
@@ -234,12 +209,6 @@ func (o FortimanagerDVMInstallDevArrayOutput) ToFortimanagerDVMInstallDevArrayOu
 	return o
 }
 
-func (o FortimanagerDVMInstallDevArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMInstallDev] {
-	return pulumix.Output[[]*FortimanagerDVMInstallDev]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FortimanagerDVMInstallDevArrayOutput) Index(i pulumi.IntInput) FortimanagerDVMInstallDevOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerDVMInstallDev {
 		return vs[0].([]*FortimanagerDVMInstallDev)[vs[1].(int)]
@@ -258,12 +227,6 @@ func (o FortimanagerDVMInstallDevMapOutput) ToFortimanagerDVMInstallDevMapOutput
 
 func (o FortimanagerDVMInstallDevMapOutput) ToFortimanagerDVMInstallDevMapOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevMapOutput {
 	return o
-}
-
-func (o FortimanagerDVMInstallDevMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMInstallDev] {
-	return pulumix.Output[map[string]*FortimanagerDVMInstallDev]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FortimanagerDVMInstallDevMapOutput) MapIndex(k pulumi.StringInput) FortimanagerDVMInstallDevOutput {

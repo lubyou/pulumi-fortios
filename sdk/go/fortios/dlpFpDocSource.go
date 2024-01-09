@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpFpDocSource struct {
@@ -198,12 +197,6 @@ func (i *DlpFpDocSource) ToDlpFpDocSourceOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourceOutput)
 }
 
-func (i *DlpFpDocSource) ToOutput(ctx context.Context) pulumix.Output[*DlpFpDocSource] {
-	return pulumix.Output[*DlpFpDocSource]{
-		OutputState: i.ToDlpFpDocSourceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DlpFpDocSourceArrayInput is an input type that accepts DlpFpDocSourceArray and DlpFpDocSourceArrayOutput values.
 // You can construct a concrete instance of `DlpFpDocSourceArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i DlpFpDocSourceArray) ToDlpFpDocSourceArrayOutput() DlpFpDocSourceArrayOu
 
 func (i DlpFpDocSourceArray) ToDlpFpDocSourceArrayOutputWithContext(ctx context.Context) DlpFpDocSourceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourceArrayOutput)
-}
-
-func (i DlpFpDocSourceArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpFpDocSource] {
-	return pulumix.Output[[]*DlpFpDocSource]{
-		OutputState: i.ToDlpFpDocSourceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DlpFpDocSourceMapInput is an input type that accepts DlpFpDocSourceMap and DlpFpDocSourceMapOutput values.
@@ -260,12 +247,6 @@ func (i DlpFpDocSourceMap) ToDlpFpDocSourceMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourceMapOutput)
 }
 
-func (i DlpFpDocSourceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpFpDocSource] {
-	return pulumix.Output[map[string]*DlpFpDocSource]{
-		OutputState: i.ToDlpFpDocSourceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DlpFpDocSourceOutput struct{ *pulumi.OutputState }
 
 func (DlpFpDocSourceOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o DlpFpDocSourceOutput) ToDlpFpDocSourceOutput() DlpFpDocSourceOutput {
 
 func (o DlpFpDocSourceOutput) ToDlpFpDocSourceOutputWithContext(ctx context.Context) DlpFpDocSourceOutput {
 	return o
-}
-
-func (o DlpFpDocSourceOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpFpDocSource] {
-	return pulumix.Output[*DlpFpDocSource]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpFpDocSourceOutput) Date() pulumi.IntOutput {
@@ -376,12 +351,6 @@ func (o DlpFpDocSourceArrayOutput) ToDlpFpDocSourceArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o DlpFpDocSourceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpFpDocSource] {
-	return pulumix.Output[[]*DlpFpDocSource]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DlpFpDocSourceArrayOutput) Index(i pulumi.IntInput) DlpFpDocSourceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpFpDocSource {
 		return vs[0].([]*DlpFpDocSource)[vs[1].(int)]
@@ -400,12 +369,6 @@ func (o DlpFpDocSourceMapOutput) ToDlpFpDocSourceMapOutput() DlpFpDocSourceMapOu
 
 func (o DlpFpDocSourceMapOutput) ToDlpFpDocSourceMapOutputWithContext(ctx context.Context) DlpFpDocSourceMapOutput {
 	return o
-}
-
-func (o DlpFpDocSourceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpFpDocSource] {
-	return pulumix.Output[map[string]*DlpFpDocSource]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpFpDocSourceMapOutput) MapIndex(k pulumi.StringInput) DlpFpDocSourceOutput {

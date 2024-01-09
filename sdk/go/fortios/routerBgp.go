@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterBgp struct {
@@ -440,12 +439,6 @@ func (i *RouterBgp) ToRouterBgpOutputWithContext(ctx context.Context) RouterBgpO
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpOutput)
 }
 
-func (i *RouterBgp) ToOutput(ctx context.Context) pulumix.Output[*RouterBgp] {
-	return pulumix.Output[*RouterBgp]{
-		OutputState: i.ToRouterBgpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterBgpArrayInput is an input type that accepts RouterBgpArray and RouterBgpArrayOutput values.
 // You can construct a concrete instance of `RouterBgpArrayInput` via:
 //
@@ -469,12 +462,6 @@ func (i RouterBgpArray) ToRouterBgpArrayOutput() RouterBgpArrayOutput {
 
 func (i RouterBgpArray) ToRouterBgpArrayOutputWithContext(ctx context.Context) RouterBgpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpArrayOutput)
-}
-
-func (i RouterBgpArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterBgp] {
-	return pulumix.Output[[]*RouterBgp]{
-		OutputState: i.ToRouterBgpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterBgpMapInput is an input type that accepts RouterBgpMap and RouterBgpMapOutput values.
@@ -502,12 +489,6 @@ func (i RouterBgpMap) ToRouterBgpMapOutputWithContext(ctx context.Context) Route
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpMapOutput)
 }
 
-func (i RouterBgpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterBgp] {
-	return pulumix.Output[map[string]*RouterBgp]{
-		OutputState: i.ToRouterBgpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterBgpOutput struct{ *pulumi.OutputState }
 
 func (RouterBgpOutput) ElementType() reflect.Type {
@@ -520,12 +501,6 @@ func (o RouterBgpOutput) ToRouterBgpOutput() RouterBgpOutput {
 
 func (o RouterBgpOutput) ToRouterBgpOutputWithContext(ctx context.Context) RouterBgpOutput {
 	return o
-}
-
-func (o RouterBgpOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterBgp] {
-	return pulumix.Output[*RouterBgp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterBgpOutput) AdditionalPath() pulumi.StringOutput {
@@ -822,12 +797,6 @@ func (o RouterBgpArrayOutput) ToRouterBgpArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o RouterBgpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterBgp] {
-	return pulumix.Output[[]*RouterBgp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterBgpArrayOutput) Index(i pulumi.IntInput) RouterBgpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterBgp {
 		return vs[0].([]*RouterBgp)[vs[1].(int)]
@@ -846,12 +815,6 @@ func (o RouterBgpMapOutput) ToRouterBgpMapOutput() RouterBgpMapOutput {
 
 func (o RouterBgpMapOutput) ToRouterBgpMapOutputWithContext(ctx context.Context) RouterBgpMapOutput {
 	return o
-}
-
-func (o RouterBgpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterBgp] {
-	return pulumix.Output[map[string]*RouterBgp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterBgpMapOutput) MapIndex(k pulumi.StringInput) RouterBgpOutput {

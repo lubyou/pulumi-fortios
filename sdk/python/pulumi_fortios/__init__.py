@@ -440,6 +440,7 @@ from .get_system_zone import *
 from .get_system_zone_list import *
 from .get_user_saml import *
 from .get_user_saml_list import *
+from .get_vpn_ssl_settings import *
 from .icap_profile import *
 from .icap_server import *
 from .icap_server_group import *

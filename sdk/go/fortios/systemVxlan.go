@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVxlan struct {
@@ -161,12 +160,6 @@ func (i *SystemVxlan) ToSystemVxlanOutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanOutput)
 }
 
-func (i *SystemVxlan) ToOutput(ctx context.Context) pulumix.Output[*SystemVxlan] {
-	return pulumix.Output[*SystemVxlan]{
-		OutputState: i.ToSystemVxlanOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemVxlanArrayInput is an input type that accepts SystemVxlanArray and SystemVxlanArrayOutput values.
 // You can construct a concrete instance of `SystemVxlanArrayInput` via:
 //
@@ -190,12 +183,6 @@ func (i SystemVxlanArray) ToSystemVxlanArrayOutput() SystemVxlanArrayOutput {
 
 func (i SystemVxlanArray) ToSystemVxlanArrayOutputWithContext(ctx context.Context) SystemVxlanArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanArrayOutput)
-}
-
-func (i SystemVxlanArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVxlan] {
-	return pulumix.Output[[]*SystemVxlan]{
-		OutputState: i.ToSystemVxlanArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemVxlanMapInput is an input type that accepts SystemVxlanMap and SystemVxlanMapOutput values.
@@ -223,12 +210,6 @@ func (i SystemVxlanMap) ToSystemVxlanMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanMapOutput)
 }
 
-func (i SystemVxlanMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVxlan] {
-	return pulumix.Output[map[string]*SystemVxlan]{
-		OutputState: i.ToSystemVxlanMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemVxlanOutput struct{ *pulumi.OutputState }
 
 func (SystemVxlanOutput) ElementType() reflect.Type {
@@ -241,12 +222,6 @@ func (o SystemVxlanOutput) ToSystemVxlanOutput() SystemVxlanOutput {
 
 func (o SystemVxlanOutput) ToSystemVxlanOutputWithContext(ctx context.Context) SystemVxlanOutput {
 	return o
-}
-
-func (o SystemVxlanOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVxlan] {
-	return pulumix.Output[*SystemVxlan]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVxlanOutput) Dstport() pulumi.IntOutput {
@@ -315,12 +290,6 @@ func (o SystemVxlanArrayOutput) ToSystemVxlanArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemVxlanArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVxlan] {
-	return pulumix.Output[[]*SystemVxlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemVxlanArrayOutput) Index(i pulumi.IntInput) SystemVxlanOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVxlan {
 		return vs[0].([]*SystemVxlan)[vs[1].(int)]
@@ -339,12 +308,6 @@ func (o SystemVxlanMapOutput) ToSystemVxlanMapOutput() SystemVxlanMapOutput {
 
 func (o SystemVxlanMapOutput) ToSystemVxlanMapOutputWithContext(ctx context.Context) SystemVxlanMapOutput {
 	return o
-}
-
-func (o SystemVxlanMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVxlan] {
-	return pulumix.Output[map[string]*SystemVxlan]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemVxlanMapOutput) MapIndex(k pulumi.StringInput) SystemVxlanOutput {

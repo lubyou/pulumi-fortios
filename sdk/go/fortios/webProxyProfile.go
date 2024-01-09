@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyProfile struct {
@@ -161,12 +160,6 @@ func (i *WebProxyProfile) ToWebProxyProfileOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileOutput)
 }
 
-func (i *WebProxyProfile) ToOutput(ctx context.Context) pulumix.Output[*WebProxyProfile] {
-	return pulumix.Output[*WebProxyProfile]{
-		OutputState: i.ToWebProxyProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebProxyProfileArrayInput is an input type that accepts WebProxyProfileArray and WebProxyProfileArrayOutput values.
 // You can construct a concrete instance of `WebProxyProfileArrayInput` via:
 //
@@ -190,12 +183,6 @@ func (i WebProxyProfileArray) ToWebProxyProfileArrayOutput() WebProxyProfileArra
 
 func (i WebProxyProfileArray) ToWebProxyProfileArrayOutputWithContext(ctx context.Context) WebProxyProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileArrayOutput)
-}
-
-func (i WebProxyProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyProfile] {
-	return pulumix.Output[[]*WebProxyProfile]{
-		OutputState: i.ToWebProxyProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebProxyProfileMapInput is an input type that accepts WebProxyProfileMap and WebProxyProfileMapOutput values.
@@ -223,12 +210,6 @@ func (i WebProxyProfileMap) ToWebProxyProfileMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileMapOutput)
 }
 
-func (i WebProxyProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyProfile] {
-	return pulumix.Output[map[string]*WebProxyProfile]{
-		OutputState: i.ToWebProxyProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebProxyProfileOutput struct{ *pulumi.OutputState }
 
 func (WebProxyProfileOutput) ElementType() reflect.Type {
@@ -241,12 +222,6 @@ func (o WebProxyProfileOutput) ToWebProxyProfileOutput() WebProxyProfileOutput {
 
 func (o WebProxyProfileOutput) ToWebProxyProfileOutputWithContext(ctx context.Context) WebProxyProfileOutput {
 	return o
-}
-
-func (o WebProxyProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyProfile] {
-	return pulumix.Output[*WebProxyProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -323,12 +298,6 @@ func (o WebProxyProfileArrayOutput) ToWebProxyProfileArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o WebProxyProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyProfile] {
-	return pulumix.Output[[]*WebProxyProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebProxyProfileArrayOutput) Index(i pulumi.IntInput) WebProxyProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyProfile {
 		return vs[0].([]*WebProxyProfile)[vs[1].(int)]
@@ -347,12 +316,6 @@ func (o WebProxyProfileMapOutput) ToWebProxyProfileMapOutput() WebProxyProfileMa
 
 func (o WebProxyProfileMapOutput) ToWebProxyProfileMapOutputWithContext(ctx context.Context) WebProxyProfileMapOutput {
 	return o
-}
-
-func (o WebProxyProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyProfile] {
-	return pulumix.Output[map[string]*WebProxyProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebProxyProfileMapOutput) MapIndex(k pulumi.StringInput) WebProxyProfileOutput {

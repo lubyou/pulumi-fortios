@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsSensor struct {
@@ -146,12 +145,6 @@ func (i *IpsSensor) ToIpsSensorOutputWithContext(ctx context.Context) IpsSensorO
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSensorOutput)
 }
 
-func (i *IpsSensor) ToOutput(ctx context.Context) pulumix.Output[*IpsSensor] {
-	return pulumix.Output[*IpsSensor]{
-		OutputState: i.ToIpsSensorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IpsSensorArrayInput is an input type that accepts IpsSensorArray and IpsSensorArrayOutput values.
 // You can construct a concrete instance of `IpsSensorArrayInput` via:
 //
@@ -175,12 +168,6 @@ func (i IpsSensorArray) ToIpsSensorArrayOutput() IpsSensorArrayOutput {
 
 func (i IpsSensorArray) ToIpsSensorArrayOutputWithContext(ctx context.Context) IpsSensorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSensorArrayOutput)
-}
-
-func (i IpsSensorArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsSensor] {
-	return pulumix.Output[[]*IpsSensor]{
-		OutputState: i.ToIpsSensorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IpsSensorMapInput is an input type that accepts IpsSensorMap and IpsSensorMapOutput values.
@@ -208,12 +195,6 @@ func (i IpsSensorMap) ToIpsSensorMapOutputWithContext(ctx context.Context) IpsSe
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSensorMapOutput)
 }
 
-func (i IpsSensorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsSensor] {
-	return pulumix.Output[map[string]*IpsSensor]{
-		OutputState: i.ToIpsSensorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IpsSensorOutput struct{ *pulumi.OutputState }
 
 func (IpsSensorOutput) ElementType() reflect.Type {
@@ -226,12 +207,6 @@ func (o IpsSensorOutput) ToIpsSensorOutput() IpsSensorOutput {
 
 func (o IpsSensorOutput) ToIpsSensorOutputWithContext(ctx context.Context) IpsSensorOutput {
 	return o
-}
-
-func (o IpsSensorOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsSensor] {
-	return pulumix.Output[*IpsSensor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsSensorOutput) BlockMaliciousUrl() pulumi.StringOutput {
@@ -296,12 +271,6 @@ func (o IpsSensorArrayOutput) ToIpsSensorArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o IpsSensorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsSensor] {
-	return pulumix.Output[[]*IpsSensor]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IpsSensorArrayOutput) Index(i pulumi.IntInput) IpsSensorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsSensor {
 		return vs[0].([]*IpsSensor)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o IpsSensorMapOutput) ToIpsSensorMapOutput() IpsSensorMapOutput {
 
 func (o IpsSensorMapOutput) ToIpsSensorMapOutputWithContext(ctx context.Context) IpsSensorMapOutput {
 	return o
-}
-
-func (o IpsSensorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsSensor] {
-	return pulumix.Output[map[string]*IpsSensor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsSensorMapOutput) MapIndex(k pulumi.StringInput) IpsSensorOutput {

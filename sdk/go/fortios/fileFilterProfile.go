@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FileFilterProfile struct {
@@ -141,12 +140,6 @@ func (i *FileFilterProfile) ToFileFilterProfileOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfileOutput)
 }
 
-func (i *FileFilterProfile) ToOutput(ctx context.Context) pulumix.Output[*FileFilterProfile] {
-	return pulumix.Output[*FileFilterProfile]{
-		OutputState: i.ToFileFilterProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FileFilterProfileArrayInput is an input type that accepts FileFilterProfileArray and FileFilterProfileArrayOutput values.
 // You can construct a concrete instance of `FileFilterProfileArrayInput` via:
 //
@@ -170,12 +163,6 @@ func (i FileFilterProfileArray) ToFileFilterProfileArrayOutput() FileFilterProfi
 
 func (i FileFilterProfileArray) ToFileFilterProfileArrayOutputWithContext(ctx context.Context) FileFilterProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfileArrayOutput)
-}
-
-func (i FileFilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*FileFilterProfile] {
-	return pulumix.Output[[]*FileFilterProfile]{
-		OutputState: i.ToFileFilterProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FileFilterProfileMapInput is an input type that accepts FileFilterProfileMap and FileFilterProfileMapOutput values.
@@ -203,12 +190,6 @@ func (i FileFilterProfileMap) ToFileFilterProfileMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfileMapOutput)
 }
 
-func (i FileFilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FileFilterProfile] {
-	return pulumix.Output[map[string]*FileFilterProfile]{
-		OutputState: i.ToFileFilterProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FileFilterProfileOutput struct{ *pulumi.OutputState }
 
 func (FileFilterProfileOutput) ElementType() reflect.Type {
@@ -221,12 +202,6 @@ func (o FileFilterProfileOutput) ToFileFilterProfileOutput() FileFilterProfileOu
 
 func (o FileFilterProfileOutput) ToFileFilterProfileOutputWithContext(ctx context.Context) FileFilterProfileOutput {
 	return o
-}
-
-func (o FileFilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*FileFilterProfile] {
-	return pulumix.Output[*FileFilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FileFilterProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -287,12 +262,6 @@ func (o FileFilterProfileArrayOutput) ToFileFilterProfileArrayOutputWithContext(
 	return o
 }
 
-func (o FileFilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FileFilterProfile] {
-	return pulumix.Output[[]*FileFilterProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FileFilterProfileArrayOutput) Index(i pulumi.IntInput) FileFilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FileFilterProfile {
 		return vs[0].([]*FileFilterProfile)[vs[1].(int)]
@@ -311,12 +280,6 @@ func (o FileFilterProfileMapOutput) ToFileFilterProfileMapOutput() FileFilterPro
 
 func (o FileFilterProfileMapOutput) ToFileFilterProfileMapOutputWithContext(ctx context.Context) FileFilterProfileMapOutput {
 	return o
-}
-
-func (o FileFilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FileFilterProfile] {
-	return pulumix.Output[map[string]*FileFilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FileFilterProfileMapOutput) MapIndex(k pulumi.StringInput) FileFilterProfileOutput {

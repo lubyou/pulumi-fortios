@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFortiai struct {
@@ -111,12 +110,6 @@ func (i *SystemFortiai) ToSystemFortiaiOutputWithContext(ctx context.Context) Sy
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiaiOutput)
 }
 
-func (i *SystemFortiai) ToOutput(ctx context.Context) pulumix.Output[*SystemFortiai] {
-	return pulumix.Output[*SystemFortiai]{
-		OutputState: i.ToSystemFortiaiOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemFortiaiArrayInput is an input type that accepts SystemFortiaiArray and SystemFortiaiArrayOutput values.
 // You can construct a concrete instance of `SystemFortiaiArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SystemFortiaiArray) ToSystemFortiaiArrayOutput() SystemFortiaiArrayOutpu
 
 func (i SystemFortiaiArray) ToSystemFortiaiArrayOutputWithContext(ctx context.Context) SystemFortiaiArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiaiArrayOutput)
-}
-
-func (i SystemFortiaiArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortiai] {
-	return pulumix.Output[[]*SystemFortiai]{
-		OutputState: i.ToSystemFortiaiArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemFortiaiMapInput is an input type that accepts SystemFortiaiMap and SystemFortiaiMapOutput values.
@@ -173,12 +160,6 @@ func (i SystemFortiaiMap) ToSystemFortiaiMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiaiMapOutput)
 }
 
-func (i SystemFortiaiMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortiai] {
-	return pulumix.Output[map[string]*SystemFortiai]{
-		OutputState: i.ToSystemFortiaiMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemFortiaiOutput struct{ *pulumi.OutputState }
 
 func (SystemFortiaiOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SystemFortiaiOutput) ToSystemFortiaiOutput() SystemFortiaiOutput {
 
 func (o SystemFortiaiOutput) ToSystemFortiaiOutputWithContext(ctx context.Context) SystemFortiaiOutput {
 	return o
-}
-
-func (o SystemFortiaiOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFortiai] {
-	return pulumix.Output[*SystemFortiai]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFortiaiOutput) Interface() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o SystemFortiaiArrayOutput) ToSystemFortiaiArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemFortiaiArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortiai] {
-	return pulumix.Output[[]*SystemFortiai]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemFortiaiArrayOutput) Index(i pulumi.IntInput) SystemFortiaiOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortiai {
 		return vs[0].([]*SystemFortiai)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SystemFortiaiMapOutput) ToSystemFortiaiMapOutput() SystemFortiaiMapOutpu
 
 func (o SystemFortiaiMapOutput) ToSystemFortiaiMapOutputWithContext(ctx context.Context) SystemFortiaiMapOutput {
 	return o
-}
-
-func (o SystemFortiaiMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortiai] {
-	return pulumix.Output[map[string]*SystemFortiai]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFortiaiMapOutput) MapIndex(k pulumi.StringInput) SystemFortiaiOutput {

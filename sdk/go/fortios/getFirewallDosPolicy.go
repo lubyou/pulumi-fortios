@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallDosPolicy(ctx *pulumi.Context, args *LookupFirewallDosPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallDosPolicyResult, error) {
@@ -80,12 +79,6 @@ func (o LookupFirewallDosPolicyResultOutput) ToLookupFirewallDosPolicyResultOutp
 
 func (o LookupFirewallDosPolicyResultOutput) ToLookupFirewallDosPolicyResultOutputWithContext(ctx context.Context) LookupFirewallDosPolicyResultOutput {
 	return o
-}
-
-func (o LookupFirewallDosPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallDosPolicyResult] {
-	return pulumix.Output[LookupFirewallDosPolicyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFirewallDosPolicyResultOutput) Anomalies() GetFirewallDosPolicyAnomalyArrayOutput {

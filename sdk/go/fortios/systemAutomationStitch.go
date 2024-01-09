@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutomationStitch struct {
@@ -143,12 +142,6 @@ func (i *SystemAutomationStitch) ToSystemAutomationStitchOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchOutput)
 }
 
-func (i *SystemAutomationStitch) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationStitch] {
-	return pulumix.Output[*SystemAutomationStitch]{
-		OutputState: i.ToSystemAutomationStitchOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemAutomationStitchArrayInput is an input type that accepts SystemAutomationStitchArray and SystemAutomationStitchArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationStitchArrayInput` via:
 //
@@ -172,12 +165,6 @@ func (i SystemAutomationStitchArray) ToSystemAutomationStitchArrayOutput() Syste
 
 func (i SystemAutomationStitchArray) ToSystemAutomationStitchArrayOutputWithContext(ctx context.Context) SystemAutomationStitchArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchArrayOutput)
-}
-
-func (i SystemAutomationStitchArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationStitch] {
-	return pulumix.Output[[]*SystemAutomationStitch]{
-		OutputState: i.ToSystemAutomationStitchArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemAutomationStitchMapInput is an input type that accepts SystemAutomationStitchMap and SystemAutomationStitchMapOutput values.
@@ -205,12 +192,6 @@ func (i SystemAutomationStitchMap) ToSystemAutomationStitchMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchMapOutput)
 }
 
-func (i SystemAutomationStitchMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationStitch] {
-	return pulumix.Output[map[string]*SystemAutomationStitch]{
-		OutputState: i.ToSystemAutomationStitchMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemAutomationStitchOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationStitchOutput) ElementType() reflect.Type {
@@ -223,12 +204,6 @@ func (o SystemAutomationStitchOutput) ToSystemAutomationStitchOutput() SystemAut
 
 func (o SystemAutomationStitchOutput) ToSystemAutomationStitchOutputWithContext(ctx context.Context) SystemAutomationStitchOutput {
 	return o
-}
-
-func (o SystemAutomationStitchOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationStitch] {
-	return pulumix.Output[*SystemAutomationStitch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutomationStitchOutput) Action() SystemAutomationStitchActionArrayOutput {
@@ -285,12 +260,6 @@ func (o SystemAutomationStitchArrayOutput) ToSystemAutomationStitchArrayOutputWi
 	return o
 }
 
-func (o SystemAutomationStitchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationStitch] {
-	return pulumix.Output[[]*SystemAutomationStitch]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemAutomationStitchArrayOutput) Index(i pulumi.IntInput) SystemAutomationStitchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationStitch {
 		return vs[0].([]*SystemAutomationStitch)[vs[1].(int)]
@@ -309,12 +278,6 @@ func (o SystemAutomationStitchMapOutput) ToSystemAutomationStitchMapOutput() Sys
 
 func (o SystemAutomationStitchMapOutput) ToSystemAutomationStitchMapOutputWithContext(ctx context.Context) SystemAutomationStitchMapOutput {
 	return o
-}
-
-func (o SystemAutomationStitchMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationStitch] {
-	return pulumix.Output[map[string]*SystemAutomationStitch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemAutomationStitchMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationStitchOutput {

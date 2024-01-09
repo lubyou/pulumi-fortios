@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VirtualPatchProfile struct {
@@ -131,12 +130,6 @@ func (i *VirtualPatchProfile) ToVirtualPatchProfileOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileOutput)
 }
 
-func (i *VirtualPatchProfile) ToOutput(ctx context.Context) pulumix.Output[*VirtualPatchProfile] {
-	return pulumix.Output[*VirtualPatchProfile]{
-		OutputState: i.ToVirtualPatchProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VirtualPatchProfileArrayInput is an input type that accepts VirtualPatchProfileArray and VirtualPatchProfileArrayOutput values.
 // You can construct a concrete instance of `VirtualPatchProfileArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i VirtualPatchProfileArray) ToVirtualPatchProfileArrayOutput() VirtualPatc
 
 func (i VirtualPatchProfileArray) ToVirtualPatchProfileArrayOutputWithContext(ctx context.Context) VirtualPatchProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileArrayOutput)
-}
-
-func (i VirtualPatchProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*VirtualPatchProfile] {
-	return pulumix.Output[[]*VirtualPatchProfile]{
-		OutputState: i.ToVirtualPatchProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VirtualPatchProfileMapInput is an input type that accepts VirtualPatchProfileMap and VirtualPatchProfileMapOutput values.
@@ -193,12 +180,6 @@ func (i VirtualPatchProfileMap) ToVirtualPatchProfileMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileMapOutput)
 }
 
-func (i VirtualPatchProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VirtualPatchProfile] {
-	return pulumix.Output[map[string]*VirtualPatchProfile]{
-		OutputState: i.ToVirtualPatchProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VirtualPatchProfileOutput struct{ *pulumi.OutputState }
 
 func (VirtualPatchProfileOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o VirtualPatchProfileOutput) ToVirtualPatchProfileOutput() VirtualPatchPro
 
 func (o VirtualPatchProfileOutput) ToVirtualPatchProfileOutputWithContext(ctx context.Context) VirtualPatchProfileOutput {
 	return o
-}
-
-func (o VirtualPatchProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*VirtualPatchProfile] {
-	return pulumix.Output[*VirtualPatchProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VirtualPatchProfileOutput) Action() pulumi.StringOutput {
@@ -269,12 +244,6 @@ func (o VirtualPatchProfileArrayOutput) ToVirtualPatchProfileArrayOutputWithCont
 	return o
 }
 
-func (o VirtualPatchProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VirtualPatchProfile] {
-	return pulumix.Output[[]*VirtualPatchProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VirtualPatchProfileArrayOutput) Index(i pulumi.IntInput) VirtualPatchProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VirtualPatchProfile {
 		return vs[0].([]*VirtualPatchProfile)[vs[1].(int)]
@@ -293,12 +262,6 @@ func (o VirtualPatchProfileMapOutput) ToVirtualPatchProfileMapOutput() VirtualPa
 
 func (o VirtualPatchProfileMapOutput) ToVirtualPatchProfileMapOutputWithContext(ctx context.Context) VirtualPatchProfileMapOutput {
 	return o
-}
-
-func (o VirtualPatchProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VirtualPatchProfile] {
-	return pulumix.Output[map[string]*VirtualPatchProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VirtualPatchProfileMapOutput) MapIndex(k pulumi.StringInput) VirtualPatchProfileOutput {

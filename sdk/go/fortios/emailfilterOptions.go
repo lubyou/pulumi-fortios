@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EmailfilterOptions struct {
@@ -96,12 +95,6 @@ func (i *EmailfilterOptions) ToEmailfilterOptionsOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsOutput)
 }
 
-func (i *EmailfilterOptions) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterOptions] {
-	return pulumix.Output[*EmailfilterOptions]{
-		OutputState: i.ToEmailfilterOptionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EmailfilterOptionsArrayInput is an input type that accepts EmailfilterOptionsArray and EmailfilterOptionsArrayOutput values.
 // You can construct a concrete instance of `EmailfilterOptionsArrayInput` via:
 //
@@ -125,12 +118,6 @@ func (i EmailfilterOptionsArray) ToEmailfilterOptionsArrayOutput() EmailfilterOp
 
 func (i EmailfilterOptionsArray) ToEmailfilterOptionsArrayOutputWithContext(ctx context.Context) EmailfilterOptionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsArrayOutput)
-}
-
-func (i EmailfilterOptionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterOptions] {
-	return pulumix.Output[[]*EmailfilterOptions]{
-		OutputState: i.ToEmailfilterOptionsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EmailfilterOptionsMapInput is an input type that accepts EmailfilterOptionsMap and EmailfilterOptionsMapOutput values.
@@ -158,12 +145,6 @@ func (i EmailfilterOptionsMap) ToEmailfilterOptionsMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsMapOutput)
 }
 
-func (i EmailfilterOptionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterOptions] {
-	return pulumix.Output[map[string]*EmailfilterOptions]{
-		OutputState: i.ToEmailfilterOptionsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EmailfilterOptionsOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterOptionsOutput) ElementType() reflect.Type {
@@ -176,12 +157,6 @@ func (o EmailfilterOptionsOutput) ToEmailfilterOptionsOutput() EmailfilterOption
 
 func (o EmailfilterOptionsOutput) ToEmailfilterOptionsOutputWithContext(ctx context.Context) EmailfilterOptionsOutput {
 	return o
-}
-
-func (o EmailfilterOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterOptions] {
-	return pulumix.Output[*EmailfilterOptions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EmailfilterOptionsOutput) DnsTimeout() pulumi.IntOutput {
@@ -206,12 +181,6 @@ func (o EmailfilterOptionsArrayOutput) ToEmailfilterOptionsArrayOutputWithContex
 	return o
 }
 
-func (o EmailfilterOptionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterOptions] {
-	return pulumix.Output[[]*EmailfilterOptions]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EmailfilterOptionsArrayOutput) Index(i pulumi.IntInput) EmailfilterOptionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterOptions {
 		return vs[0].([]*EmailfilterOptions)[vs[1].(int)]
@@ -230,12 +199,6 @@ func (o EmailfilterOptionsMapOutput) ToEmailfilterOptionsMapOutput() Emailfilter
 
 func (o EmailfilterOptionsMapOutput) ToEmailfilterOptionsMapOutputWithContext(ctx context.Context) EmailfilterOptionsMapOutput {
 	return o
-}
-
-func (o EmailfilterOptionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterOptions] {
-	return pulumix.Output[map[string]*EmailfilterOptions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EmailfilterOptionsMapOutput) MapIndex(k pulumi.StringInput) EmailfilterOptionsOutput {

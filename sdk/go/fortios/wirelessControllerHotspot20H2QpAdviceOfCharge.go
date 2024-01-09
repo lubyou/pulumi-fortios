@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerHotspot20H2QpAdviceOfCharge struct {
@@ -111,12 +110,6 @@ func (i *WirelessControllerHotspot20H2QpAdviceOfCharge) ToWirelessControllerHots
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeOutput)
 }
 
-func (i *WirelessControllerHotspot20H2QpAdviceOfCharge) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20H2QpAdviceOfCharge] {
-	return pulumix.Output[*WirelessControllerHotspot20H2QpAdviceOfCharge]{
-		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerHotspot20H2QpAdviceOfChargeArrayInput is an input type that accepts WirelessControllerHotspot20H2QpAdviceOfChargeArray and WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpAdviceOfChargeArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeArray) ToWirelessController
 
 func (i WirelessControllerHotspot20H2QpAdviceOfChargeArray) ToWirelessControllerHotspot20H2QpAdviceOfChargeArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput)
-}
-
-func (i WirelessControllerHotspot20H2QpAdviceOfChargeArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20H2QpAdviceOfCharge] {
-	return pulumix.Output[[]*WirelessControllerHotspot20H2QpAdviceOfCharge]{
-		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerHotspot20H2QpAdviceOfChargeMapInput is an input type that accepts WirelessControllerHotspot20H2QpAdviceOfChargeMap and WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput values.
@@ -173,12 +160,6 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeMap) ToWirelessControllerHo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput)
 }
 
-func (i WirelessControllerHotspot20H2QpAdviceOfChargeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20H2QpAdviceOfCharge] {
-	return pulumix.Output[map[string]*WirelessControllerHotspot20H2QpAdviceOfCharge]{
-		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerHotspot20H2QpAdviceOfChargeOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpAdviceOfChargeOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) ToWirelessControlle
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeOutput {
 	return o
-}
-
-func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20H2QpAdviceOfCharge] {
-	return pulumix.Output[*WirelessControllerHotspot20H2QpAdviceOfCharge]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) AocLists() WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput {
@@ -237,12 +212,6 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput) ToWirelessCont
 	return o
 }
 
-func (o WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20H2QpAdviceOfCharge] {
-	return pulumix.Output[[]*WirelessControllerHotspot20H2QpAdviceOfCharge]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpAdviceOfChargeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20H2QpAdviceOfCharge {
 		return vs[0].([]*WirelessControllerHotspot20H2QpAdviceOfCharge)[vs[1].(int)]
@@ -261,12 +230,6 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput) ToWirelessContro
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput {
 	return o
-}
-
-func (o WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20H2QpAdviceOfCharge] {
-	return pulumix.Output[map[string]*WirelessControllerHotspot20H2QpAdviceOfCharge]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20H2QpAdviceOfChargeOutput {

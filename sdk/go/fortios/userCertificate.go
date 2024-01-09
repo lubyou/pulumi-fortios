@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserCertificate struct {
@@ -121,12 +120,6 @@ func (i *UserCertificate) ToUserCertificateOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(UserCertificateOutput)
 }
 
-func (i *UserCertificate) ToOutput(ctx context.Context) pulumix.Output[*UserCertificate] {
-	return pulumix.Output[*UserCertificate]{
-		OutputState: i.ToUserCertificateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserCertificateArrayInput is an input type that accepts UserCertificateArray and UserCertificateArrayOutput values.
 // You can construct a concrete instance of `UserCertificateArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i UserCertificateArray) ToUserCertificateArrayOutput() UserCertificateArra
 
 func (i UserCertificateArray) ToUserCertificateArrayOutputWithContext(ctx context.Context) UserCertificateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserCertificateArrayOutput)
-}
-
-func (i UserCertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserCertificate] {
-	return pulumix.Output[[]*UserCertificate]{
-		OutputState: i.ToUserCertificateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserCertificateMapInput is an input type that accepts UserCertificateMap and UserCertificateMapOutput values.
@@ -183,12 +170,6 @@ func (i UserCertificateMap) ToUserCertificateMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(UserCertificateMapOutput)
 }
 
-func (i UserCertificateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserCertificate] {
-	return pulumix.Output[map[string]*UserCertificate]{
-		OutputState: i.ToUserCertificateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserCertificateOutput struct{ *pulumi.OutputState }
 
 func (UserCertificateOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o UserCertificateOutput) ToUserCertificateOutput() UserCertificateOutput {
 
 func (o UserCertificateOutput) ToUserCertificateOutputWithContext(ctx context.Context) UserCertificateOutput {
 	return o
-}
-
-func (o UserCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[*UserCertificate] {
-	return pulumix.Output[*UserCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserCertificateOutput) CommonName() pulumi.StringOutput {
@@ -251,12 +226,6 @@ func (o UserCertificateArrayOutput) ToUserCertificateArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o UserCertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserCertificate] {
-	return pulumix.Output[[]*UserCertificate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserCertificateArrayOutput) Index(i pulumi.IntInput) UserCertificateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserCertificate {
 		return vs[0].([]*UserCertificate)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o UserCertificateMapOutput) ToUserCertificateMapOutput() UserCertificateMa
 
 func (o UserCertificateMapOutput) ToUserCertificateMapOutputWithContext(ctx context.Context) UserCertificateMapOutput {
 	return o
-}
-
-func (o UserCertificateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserCertificate] {
-	return pulumix.Output[map[string]*UserCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserCertificateMapOutput) MapIndex(k pulumi.StringInput) UserCertificateOutput {

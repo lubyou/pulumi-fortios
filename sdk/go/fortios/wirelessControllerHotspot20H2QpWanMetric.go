@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerHotspot20H2QpWanMetric struct {
@@ -136,12 +135,6 @@ func (i *WirelessControllerHotspot20H2QpWanMetric) ToWirelessControllerHotspot20
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpWanMetricOutput)
 }
 
-func (i *WirelessControllerHotspot20H2QpWanMetric) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20H2QpWanMetric] {
-	return pulumix.Output[*WirelessControllerHotspot20H2QpWanMetric]{
-		OutputState: i.ToWirelessControllerHotspot20H2QpWanMetricOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerHotspot20H2QpWanMetricArrayInput is an input type that accepts WirelessControllerHotspot20H2QpWanMetricArray and WirelessControllerHotspot20H2QpWanMetricArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpWanMetricArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i WirelessControllerHotspot20H2QpWanMetricArray) ToWirelessControllerHotsp
 
 func (i WirelessControllerHotspot20H2QpWanMetricArray) ToWirelessControllerHotspot20H2QpWanMetricArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpWanMetricArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpWanMetricArrayOutput)
-}
-
-func (i WirelessControllerHotspot20H2QpWanMetricArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20H2QpWanMetric] {
-	return pulumix.Output[[]*WirelessControllerHotspot20H2QpWanMetric]{
-		OutputState: i.ToWirelessControllerHotspot20H2QpWanMetricArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerHotspot20H2QpWanMetricMapInput is an input type that accepts WirelessControllerHotspot20H2QpWanMetricMap and WirelessControllerHotspot20H2QpWanMetricMapOutput values.
@@ -198,12 +185,6 @@ func (i WirelessControllerHotspot20H2QpWanMetricMap) ToWirelessControllerHotspot
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpWanMetricMapOutput)
 }
 
-func (i WirelessControllerHotspot20H2QpWanMetricMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20H2QpWanMetric] {
-	return pulumix.Output[map[string]*WirelessControllerHotspot20H2QpWanMetric]{
-		OutputState: i.ToWirelessControllerHotspot20H2QpWanMetricMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerHotspot20H2QpWanMetricOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpWanMetricOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o WirelessControllerHotspot20H2QpWanMetricOutput) ToWirelessControllerHots
 
 func (o WirelessControllerHotspot20H2QpWanMetricOutput) ToWirelessControllerHotspot20H2QpWanMetricOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpWanMetricOutput {
 	return o
-}
-
-func (o WirelessControllerHotspot20H2QpWanMetricOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20H2QpWanMetric] {
-	return pulumix.Output[*WirelessControllerHotspot20H2QpWanMetric]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerHotspot20H2QpWanMetricOutput) DownlinkLoad() pulumi.IntOutput {
@@ -278,12 +253,6 @@ func (o WirelessControllerHotspot20H2QpWanMetricArrayOutput) ToWirelessControlle
 	return o
 }
 
-func (o WirelessControllerHotspot20H2QpWanMetricArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20H2QpWanMetric] {
-	return pulumix.Output[[]*WirelessControllerHotspot20H2QpWanMetric]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerHotspot20H2QpWanMetricArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpWanMetricOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20H2QpWanMetric {
 		return vs[0].([]*WirelessControllerHotspot20H2QpWanMetric)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o WirelessControllerHotspot20H2QpWanMetricMapOutput) ToWirelessControllerH
 
 func (o WirelessControllerHotspot20H2QpWanMetricMapOutput) ToWirelessControllerHotspot20H2QpWanMetricMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpWanMetricMapOutput {
 	return o
-}
-
-func (o WirelessControllerHotspot20H2QpWanMetricMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20H2QpWanMetric] {
-	return pulumix.Output[map[string]*WirelessControllerHotspot20H2QpWanMetric]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerHotspot20H2QpWanMetricMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20H2QpWanMetricOutput {

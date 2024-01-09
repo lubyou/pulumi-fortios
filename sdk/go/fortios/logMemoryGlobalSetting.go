@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogMemoryGlobalSetting struct {
@@ -111,12 +110,6 @@ func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingOutput)
 }
 
-func (i *LogMemoryGlobalSetting) ToOutput(ctx context.Context) pulumix.Output[*LogMemoryGlobalSetting] {
-	return pulumix.Output[*LogMemoryGlobalSetting]{
-		OutputState: i.ToLogMemoryGlobalSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogMemoryGlobalSettingArrayInput is an input type that accepts LogMemoryGlobalSettingArray and LogMemoryGlobalSettingArrayOutput values.
 // You can construct a concrete instance of `LogMemoryGlobalSettingArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i LogMemoryGlobalSettingArray) ToLogMemoryGlobalSettingArrayOutput() LogMe
 
 func (i LogMemoryGlobalSettingArray) ToLogMemoryGlobalSettingArrayOutputWithContext(ctx context.Context) LogMemoryGlobalSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingArrayOutput)
-}
-
-func (i LogMemoryGlobalSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogMemoryGlobalSetting] {
-	return pulumix.Output[[]*LogMemoryGlobalSetting]{
-		OutputState: i.ToLogMemoryGlobalSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogMemoryGlobalSettingMapInput is an input type that accepts LogMemoryGlobalSettingMap and LogMemoryGlobalSettingMapOutput values.
@@ -173,12 +160,6 @@ func (i LogMemoryGlobalSettingMap) ToLogMemoryGlobalSettingMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingMapOutput)
 }
 
-func (i LogMemoryGlobalSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogMemoryGlobalSetting] {
-	return pulumix.Output[map[string]*LogMemoryGlobalSetting]{
-		OutputState: i.ToLogMemoryGlobalSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogMemoryGlobalSettingOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryGlobalSettingOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingOutput() LogMemory
 
 func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingOutputWithContext(ctx context.Context) LogMemoryGlobalSettingOutput {
 	return o
-}
-
-func (o LogMemoryGlobalSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogMemoryGlobalSetting] {
-	return pulumix.Output[*LogMemoryGlobalSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogMemoryGlobalSettingOutput) FullFinalWarningThreshold() pulumi.IntOutput {
@@ -233,12 +208,6 @@ func (o LogMemoryGlobalSettingArrayOutput) ToLogMemoryGlobalSettingArrayOutputWi
 	return o
 }
 
-func (o LogMemoryGlobalSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogMemoryGlobalSetting] {
-	return pulumix.Output[[]*LogMemoryGlobalSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogMemoryGlobalSettingArrayOutput) Index(i pulumi.IntInput) LogMemoryGlobalSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogMemoryGlobalSetting {
 		return vs[0].([]*LogMemoryGlobalSetting)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o LogMemoryGlobalSettingMapOutput) ToLogMemoryGlobalSettingMapOutput() Log
 
 func (o LogMemoryGlobalSettingMapOutput) ToLogMemoryGlobalSettingMapOutputWithContext(ctx context.Context) LogMemoryGlobalSettingMapOutput {
 	return o
-}
-
-func (o LogMemoryGlobalSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogMemoryGlobalSetting] {
-	return pulumix.Output[map[string]*LogMemoryGlobalSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogMemoryGlobalSettingMapOutput) MapIndex(k pulumi.StringInput) LogMemoryGlobalSettingOutput {

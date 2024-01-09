@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemSnmpCommunityList(ctx *pulumi.Context, args *GetSystemSnmpCommunityListArgs, opts ...pulumi.InvokeOption) (*GetSystemSnmpCommunityListResult, error) {
@@ -73,12 +72,6 @@ func (o GetSystemSnmpCommunityListResultOutput) ToGetSystemSnmpCommunityListResu
 
 func (o GetSystemSnmpCommunityListResultOutput) ToGetSystemSnmpCommunityListResultOutputWithContext(ctx context.Context) GetSystemSnmpCommunityListResultOutput {
 	return o
-}
-
-func (o GetSystemSnmpCommunityListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemSnmpCommunityListResult] {
-	return pulumix.Output[GetSystemSnmpCommunityListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSystemSnmpCommunityListResultOutput) Filter() pulumi.StringPtrOutput {

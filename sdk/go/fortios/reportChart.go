@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReportChart struct {
@@ -223,12 +222,6 @@ func (i *ReportChart) ToReportChartOutputWithContext(ctx context.Context) Report
 	return pulumi.ToOutputWithContext(ctx, i).(ReportChartOutput)
 }
 
-func (i *ReportChart) ToOutput(ctx context.Context) pulumix.Output[*ReportChart] {
-	return pulumix.Output[*ReportChart]{
-		OutputState: i.ToReportChartOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ReportChartArrayInput is an input type that accepts ReportChartArray and ReportChartArrayOutput values.
 // You can construct a concrete instance of `ReportChartArrayInput` via:
 //
@@ -252,12 +245,6 @@ func (i ReportChartArray) ToReportChartArrayOutput() ReportChartArrayOutput {
 
 func (i ReportChartArray) ToReportChartArrayOutputWithContext(ctx context.Context) ReportChartArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportChartArrayOutput)
-}
-
-func (i ReportChartArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReportChart] {
-	return pulumix.Output[[]*ReportChart]{
-		OutputState: i.ToReportChartArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ReportChartMapInput is an input type that accepts ReportChartMap and ReportChartMapOutput values.
@@ -285,12 +272,6 @@ func (i ReportChartMap) ToReportChartMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(ReportChartMapOutput)
 }
 
-func (i ReportChartMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportChart] {
-	return pulumix.Output[map[string]*ReportChart]{
-		OutputState: i.ToReportChartMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ReportChartOutput struct{ *pulumi.OutputState }
 
 func (ReportChartOutput) ElementType() reflect.Type {
@@ -303,12 +284,6 @@ func (o ReportChartOutput) ToReportChartOutput() ReportChartOutput {
 
 func (o ReportChartOutput) ToReportChartOutputWithContext(ctx context.Context) ReportChartOutput {
 	return o
-}
-
-func (o ReportChartOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportChart] {
-	return pulumix.Output[*ReportChart]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReportChartOutput) Background() pulumi.StringOutput {
@@ -429,12 +404,6 @@ func (o ReportChartArrayOutput) ToReportChartArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o ReportChartArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReportChart] {
-	return pulumix.Output[[]*ReportChart]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ReportChartArrayOutput) Index(i pulumi.IntInput) ReportChartOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportChart {
 		return vs[0].([]*ReportChart)[vs[1].(int)]
@@ -453,12 +422,6 @@ func (o ReportChartMapOutput) ToReportChartMapOutput() ReportChartMapOutput {
 
 func (o ReportChartMapOutput) ToReportChartMapOutputWithContext(ctx context.Context) ReportChartMapOutput {
 	return o
-}
-
-func (o ReportChartMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportChart] {
-	return pulumix.Output[map[string]*ReportChart]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReportChartMapOutput) MapIndex(k pulumi.StringInput) ReportChartOutput {

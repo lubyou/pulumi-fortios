@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemProbeResponse(ctx *pulumi.Context, args *LookupSystemProbeResponseArgs, opts ...pulumi.InvokeOption) (*LookupSystemProbeResponseResult, error) {
@@ -76,12 +75,6 @@ func (o LookupSystemProbeResponseResultOutput) ToLookupSystemProbeResponseResult
 
 func (o LookupSystemProbeResponseResultOutput) ToLookupSystemProbeResponseResultOutputWithContext(ctx context.Context) LookupSystemProbeResponseResultOutput {
 	return o
-}
-
-func (o LookupSystemProbeResponseResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemProbeResponseResult] {
-	return pulumix.Output[LookupSystemProbeResponseResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemProbeResponseResultOutput) HttpProbeValue() pulumi.StringOutput {

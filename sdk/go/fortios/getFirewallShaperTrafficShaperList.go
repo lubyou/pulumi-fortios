@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallShaperTrafficShaperList(ctx *pulumi.Context, args *GetFirewallShaperTrafficShaperListArgs, opts ...pulumi.InvokeOption) (*GetFirewallShaperTrafficShaperListResult, error) {
@@ -73,12 +72,6 @@ func (o GetFirewallShaperTrafficShaperListResultOutput) ToGetFirewallShaperTraff
 
 func (o GetFirewallShaperTrafficShaperListResultOutput) ToGetFirewallShaperTrafficShaperListResultOutputWithContext(ctx context.Context) GetFirewallShaperTrafficShaperListResultOutput {
 	return o
-}
-
-func (o GetFirewallShaperTrafficShaperListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallShaperTrafficShaperListResult] {
-	return pulumix.Output[GetFirewallShaperTrafficShaperListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetFirewallShaperTrafficShaperListResultOutput) Filter() pulumi.StringPtrOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallPolicyOldvSeq struct {
@@ -134,12 +133,6 @@ func (i *FirewallPolicyOldvSeq) ToFirewallPolicyOldvSeqOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyOldvSeqOutput)
 }
 
-func (i *FirewallPolicyOldvSeq) ToOutput(ctx context.Context) pulumix.Output[*FirewallPolicyOldvSeq] {
-	return pulumix.Output[*FirewallPolicyOldvSeq]{
-		OutputState: i.ToFirewallPolicyOldvSeqOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallPolicyOldvSeqArrayInput is an input type that accepts FirewallPolicyOldvSeqArray and FirewallPolicyOldvSeqArrayOutput values.
 // You can construct a concrete instance of `FirewallPolicyOldvSeqArrayInput` via:
 //
@@ -163,12 +156,6 @@ func (i FirewallPolicyOldvSeqArray) ToFirewallPolicyOldvSeqArrayOutput() Firewal
 
 func (i FirewallPolicyOldvSeqArray) ToFirewallPolicyOldvSeqArrayOutputWithContext(ctx context.Context) FirewallPolicyOldvSeqArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyOldvSeqArrayOutput)
-}
-
-func (i FirewallPolicyOldvSeqArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallPolicyOldvSeq] {
-	return pulumix.Output[[]*FirewallPolicyOldvSeq]{
-		OutputState: i.ToFirewallPolicyOldvSeqArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallPolicyOldvSeqMapInput is an input type that accepts FirewallPolicyOldvSeqMap and FirewallPolicyOldvSeqMapOutput values.
@@ -196,12 +183,6 @@ func (i FirewallPolicyOldvSeqMap) ToFirewallPolicyOldvSeqMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyOldvSeqMapOutput)
 }
 
-func (i FirewallPolicyOldvSeqMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallPolicyOldvSeq] {
-	return pulumix.Output[map[string]*FirewallPolicyOldvSeq]{
-		OutputState: i.ToFirewallPolicyOldvSeqMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallPolicyOldvSeqOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicyOldvSeqOutput) ElementType() reflect.Type {
@@ -214,12 +195,6 @@ func (o FirewallPolicyOldvSeqOutput) ToFirewallPolicyOldvSeqOutput() FirewallPol
 
 func (o FirewallPolicyOldvSeqOutput) ToFirewallPolicyOldvSeqOutputWithContext(ctx context.Context) FirewallPolicyOldvSeqOutput {
 	return o
-}
-
-func (o FirewallPolicyOldvSeqOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallPolicyOldvSeq] {
-	return pulumix.Output[*FirewallPolicyOldvSeq]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallPolicyOldvSeqOutput) AlterPosition() pulumi.StringOutput {
@@ -270,12 +245,6 @@ func (o FirewallPolicyOldvSeqArrayOutput) ToFirewallPolicyOldvSeqArrayOutputWith
 	return o
 }
 
-func (o FirewallPolicyOldvSeqArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallPolicyOldvSeq] {
-	return pulumix.Output[[]*FirewallPolicyOldvSeq]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallPolicyOldvSeqArrayOutput) Index(i pulumi.IntInput) FirewallPolicyOldvSeqOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallPolicyOldvSeq {
 		return vs[0].([]*FirewallPolicyOldvSeq)[vs[1].(int)]
@@ -294,12 +263,6 @@ func (o FirewallPolicyOldvSeqMapOutput) ToFirewallPolicyOldvSeqMapOutput() Firew
 
 func (o FirewallPolicyOldvSeqMapOutput) ToFirewallPolicyOldvSeqMapOutputWithContext(ctx context.Context) FirewallPolicyOldvSeqMapOutput {
 	return o
-}
-
-func (o FirewallPolicyOldvSeqMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallPolicyOldvSeq] {
-	return pulumix.Output[map[string]*FirewallPolicyOldvSeq]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallPolicyOldvSeqMapOutput) MapIndex(k pulumi.StringInput) FirewallPolicyOldvSeqOutput {

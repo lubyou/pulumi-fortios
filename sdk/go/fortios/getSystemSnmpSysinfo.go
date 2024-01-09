@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemSnmpSysinfo(ctx *pulumi.Context, args *LookupSystemSnmpSysinfoArgs, opts ...pulumi.InvokeOption) (*LookupSystemSnmpSysinfoResult, error) {
@@ -78,12 +77,6 @@ func (o LookupSystemSnmpSysinfoResultOutput) ToLookupSystemSnmpSysinfoResultOutp
 
 func (o LookupSystemSnmpSysinfoResultOutput) ToLookupSystemSnmpSysinfoResultOutputWithContext(ctx context.Context) LookupSystemSnmpSysinfoResultOutput {
 	return o
-}
-
-func (o LookupSystemSnmpSysinfoResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemSnmpSysinfoResult] {
-	return pulumix.Output[LookupSystemSnmpSysinfoResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemSnmpSysinfoResultOutput) ContactInfo() pulumi.StringOutput {

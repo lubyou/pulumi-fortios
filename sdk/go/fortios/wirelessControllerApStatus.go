@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerApStatus struct {
@@ -111,12 +110,6 @@ func (i *WirelessControllerApStatus) ToWirelessControllerApStatusOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusOutput)
 }
 
-func (i *WirelessControllerApStatus) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerApStatus] {
-	return pulumix.Output[*WirelessControllerApStatus]{
-		OutputState: i.ToWirelessControllerApStatusOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WirelessControllerApStatusArrayInput is an input type that accepts WirelessControllerApStatusArray and WirelessControllerApStatusArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerApStatusArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i WirelessControllerApStatusArray) ToWirelessControllerApStatusArrayOutput
 
 func (i WirelessControllerApStatusArray) ToWirelessControllerApStatusArrayOutputWithContext(ctx context.Context) WirelessControllerApStatusArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusArrayOutput)
-}
-
-func (i WirelessControllerApStatusArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerApStatus] {
-	return pulumix.Output[[]*WirelessControllerApStatus]{
-		OutputState: i.ToWirelessControllerApStatusArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WirelessControllerApStatusMapInput is an input type that accepts WirelessControllerApStatusMap and WirelessControllerApStatusMapOutput values.
@@ -173,12 +160,6 @@ func (i WirelessControllerApStatusMap) ToWirelessControllerApStatusMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusMapOutput)
 }
 
-func (i WirelessControllerApStatusMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerApStatus] {
-	return pulumix.Output[map[string]*WirelessControllerApStatus]{
-		OutputState: i.ToWirelessControllerApStatusMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WirelessControllerApStatusOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerApStatusOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusOutput() W
 
 func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusOutputWithContext(ctx context.Context) WirelessControllerApStatusOutput {
 	return o
-}
-
-func (o WirelessControllerApStatusOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerApStatus] {
-	return pulumix.Output[*WirelessControllerApStatus]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerApStatusOutput) Bssid() pulumi.StringOutput {
@@ -233,12 +208,6 @@ func (o WirelessControllerApStatusArrayOutput) ToWirelessControllerApStatusArray
 	return o
 }
 
-func (o WirelessControllerApStatusArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerApStatus] {
-	return pulumix.Output[[]*WirelessControllerApStatus]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WirelessControllerApStatusArrayOutput) Index(i pulumi.IntInput) WirelessControllerApStatusOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerApStatus {
 		return vs[0].([]*WirelessControllerApStatus)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o WirelessControllerApStatusMapOutput) ToWirelessControllerApStatusMapOutp
 
 func (o WirelessControllerApStatusMapOutput) ToWirelessControllerApStatusMapOutputWithContext(ctx context.Context) WirelessControllerApStatusMapOutput {
 	return o
-}
-
-func (o WirelessControllerApStatusMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerApStatus] {
-	return pulumix.Output[map[string]*WirelessControllerApStatus]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WirelessControllerApStatusMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerApStatusOutput {

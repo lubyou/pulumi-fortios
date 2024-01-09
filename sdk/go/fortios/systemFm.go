@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFm struct {
@@ -126,12 +125,6 @@ func (i *SystemFm) ToSystemFmOutputWithContext(ctx context.Context) SystemFmOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFmOutput)
 }
 
-func (i *SystemFm) ToOutput(ctx context.Context) pulumix.Output[*SystemFm] {
-	return pulumix.Output[*SystemFm]{
-		OutputState: i.ToSystemFmOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemFmArrayInput is an input type that accepts SystemFmArray and SystemFmArrayOutput values.
 // You can construct a concrete instance of `SystemFmArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i SystemFmArray) ToSystemFmArrayOutput() SystemFmArrayOutput {
 
 func (i SystemFmArray) ToSystemFmArrayOutputWithContext(ctx context.Context) SystemFmArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFmArrayOutput)
-}
-
-func (i SystemFmArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFm] {
-	return pulumix.Output[[]*SystemFm]{
-		OutputState: i.ToSystemFmArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemFmMapInput is an input type that accepts SystemFmMap and SystemFmMapOutput values.
@@ -188,12 +175,6 @@ func (i SystemFmMap) ToSystemFmMapOutputWithContext(ctx context.Context) SystemF
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFmMapOutput)
 }
 
-func (i SystemFmMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFm] {
-	return pulumix.Output[map[string]*SystemFm]{
-		OutputState: i.ToSystemFmMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemFmOutput struct{ *pulumi.OutputState }
 
 func (SystemFmOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o SystemFmOutput) ToSystemFmOutput() SystemFmOutput {
 
 func (o SystemFmOutput) ToSystemFmOutputWithContext(ctx context.Context) SystemFmOutput {
 	return o
-}
-
-func (o SystemFmOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFm] {
-	return pulumix.Output[*SystemFm]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFmOutput) AutoBackup() pulumi.StringOutput {
@@ -260,12 +235,6 @@ func (o SystemFmArrayOutput) ToSystemFmArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemFmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFm] {
-	return pulumix.Output[[]*SystemFm]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemFmArrayOutput) Index(i pulumi.IntInput) SystemFmOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFm {
 		return vs[0].([]*SystemFm)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o SystemFmMapOutput) ToSystemFmMapOutput() SystemFmMapOutput {
 
 func (o SystemFmMapOutput) ToSystemFmMapOutputWithContext(ctx context.Context) SystemFmMapOutput {
 	return o
-}
-
-func (o SystemFmMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFm] {
-	return pulumix.Output[map[string]*SystemFm]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemFmMapOutput) MapIndex(k pulumi.StringInput) SystemFmOutput {

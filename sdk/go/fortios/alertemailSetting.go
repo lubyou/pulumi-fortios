@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AlertemailSetting struct {
@@ -271,12 +270,6 @@ func (i *AlertemailSetting) ToAlertemailSettingOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingOutput)
 }
 
-func (i *AlertemailSetting) ToOutput(ctx context.Context) pulumix.Output[*AlertemailSetting] {
-	return pulumix.Output[*AlertemailSetting]{
-		OutputState: i.ToAlertemailSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AlertemailSettingArrayInput is an input type that accepts AlertemailSettingArray and AlertemailSettingArrayOutput values.
 // You can construct a concrete instance of `AlertemailSettingArrayInput` via:
 //
@@ -300,12 +293,6 @@ func (i AlertemailSettingArray) ToAlertemailSettingArrayOutput() AlertemailSetti
 
 func (i AlertemailSettingArray) ToAlertemailSettingArrayOutputWithContext(ctx context.Context) AlertemailSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingArrayOutput)
-}
-
-func (i AlertemailSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*AlertemailSetting] {
-	return pulumix.Output[[]*AlertemailSetting]{
-		OutputState: i.ToAlertemailSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AlertemailSettingMapInput is an input type that accepts AlertemailSettingMap and AlertemailSettingMapOutput values.
@@ -333,12 +320,6 @@ func (i AlertemailSettingMap) ToAlertemailSettingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingMapOutput)
 }
 
-func (i AlertemailSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AlertemailSetting] {
-	return pulumix.Output[map[string]*AlertemailSetting]{
-		OutputState: i.ToAlertemailSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AlertemailSettingOutput struct{ *pulumi.OutputState }
 
 func (AlertemailSettingOutput) ElementType() reflect.Type {
@@ -351,12 +332,6 @@ func (o AlertemailSettingOutput) ToAlertemailSettingOutput() AlertemailSettingOu
 
 func (o AlertemailSettingOutput) ToAlertemailSettingOutputWithContext(ctx context.Context) AlertemailSettingOutput {
 	return o
-}
-
-func (o AlertemailSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*AlertemailSetting] {
-	return pulumix.Output[*AlertemailSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AlertemailSettingOutput) AdminLoginLogs() pulumi.StringOutput {
@@ -521,12 +496,6 @@ func (o AlertemailSettingArrayOutput) ToAlertemailSettingArrayOutputWithContext(
 	return o
 }
 
-func (o AlertemailSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AlertemailSetting] {
-	return pulumix.Output[[]*AlertemailSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AlertemailSettingArrayOutput) Index(i pulumi.IntInput) AlertemailSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AlertemailSetting {
 		return vs[0].([]*AlertemailSetting)[vs[1].(int)]
@@ -545,12 +514,6 @@ func (o AlertemailSettingMapOutput) ToAlertemailSettingMapOutput() AlertemailSet
 
 func (o AlertemailSettingMapOutput) ToAlertemailSettingMapOutputWithContext(ctx context.Context) AlertemailSettingMapOutput {
 	return o
-}
-
-func (o AlertemailSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AlertemailSetting] {
-	return pulumix.Output[map[string]*AlertemailSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AlertemailSettingMapOutput) MapIndex(k pulumi.StringInput) AlertemailSettingOutput {

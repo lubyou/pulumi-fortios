@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallAuthPortal struct {
@@ -126,12 +125,6 @@ func (i *FirewallAuthPortal) ToFirewallAuthPortalOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAuthPortalOutput)
 }
 
-func (i *FirewallAuthPortal) ToOutput(ctx context.Context) pulumix.Output[*FirewallAuthPortal] {
-	return pulumix.Output[*FirewallAuthPortal]{
-		OutputState: i.ToFirewallAuthPortalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallAuthPortalArrayInput is an input type that accepts FirewallAuthPortalArray and FirewallAuthPortalArrayOutput values.
 // You can construct a concrete instance of `FirewallAuthPortalArrayInput` via:
 //
@@ -155,12 +148,6 @@ func (i FirewallAuthPortalArray) ToFirewallAuthPortalArrayOutput() FirewallAuthP
 
 func (i FirewallAuthPortalArray) ToFirewallAuthPortalArrayOutputWithContext(ctx context.Context) FirewallAuthPortalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAuthPortalArrayOutput)
-}
-
-func (i FirewallAuthPortalArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAuthPortal] {
-	return pulumix.Output[[]*FirewallAuthPortal]{
-		OutputState: i.ToFirewallAuthPortalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallAuthPortalMapInput is an input type that accepts FirewallAuthPortalMap and FirewallAuthPortalMapOutput values.
@@ -188,12 +175,6 @@ func (i FirewallAuthPortalMap) ToFirewallAuthPortalMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAuthPortalMapOutput)
 }
 
-func (i FirewallAuthPortalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAuthPortal] {
-	return pulumix.Output[map[string]*FirewallAuthPortal]{
-		OutputState: i.ToFirewallAuthPortalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallAuthPortalOutput struct{ *pulumi.OutputState }
 
 func (FirewallAuthPortalOutput) ElementType() reflect.Type {
@@ -206,12 +187,6 @@ func (o FirewallAuthPortalOutput) ToFirewallAuthPortalOutput() FirewallAuthPorta
 
 func (o FirewallAuthPortalOutput) ToFirewallAuthPortalOutputWithContext(ctx context.Context) FirewallAuthPortalOutput {
 	return o
-}
-
-func (o FirewallAuthPortalOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallAuthPortal] {
-	return pulumix.Output[*FirewallAuthPortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallAuthPortalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -260,12 +235,6 @@ func (o FirewallAuthPortalArrayOutput) ToFirewallAuthPortalArrayOutputWithContex
 	return o
 }
 
-func (o FirewallAuthPortalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAuthPortal] {
-	return pulumix.Output[[]*FirewallAuthPortal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallAuthPortalArrayOutput) Index(i pulumi.IntInput) FirewallAuthPortalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAuthPortal {
 		return vs[0].([]*FirewallAuthPortal)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o FirewallAuthPortalMapOutput) ToFirewallAuthPortalMapOutput() FirewallAut
 
 func (o FirewallAuthPortalMapOutput) ToFirewallAuthPortalMapOutputWithContext(ctx context.Context) FirewallAuthPortalMapOutput {
 	return o
-}
-
-func (o FirewallAuthPortalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAuthPortal] {
-	return pulumix.Output[map[string]*FirewallAuthPortal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallAuthPortalMapOutput) MapIndex(k pulumi.StringInput) FirewallAuthPortalOutput {

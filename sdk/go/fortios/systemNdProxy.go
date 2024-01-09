@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemNdProxy struct {
@@ -111,12 +110,6 @@ func (i *SystemNdProxy) ToSystemNdProxyOutputWithContext(ctx context.Context) Sy
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyOutput)
 }
 
-func (i *SystemNdProxy) ToOutput(ctx context.Context) pulumix.Output[*SystemNdProxy] {
-	return pulumix.Output[*SystemNdProxy]{
-		OutputState: i.ToSystemNdProxyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemNdProxyArrayInput is an input type that accepts SystemNdProxyArray and SystemNdProxyArrayOutput values.
 // You can construct a concrete instance of `SystemNdProxyArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i SystemNdProxyArray) ToSystemNdProxyArrayOutput() SystemNdProxyArrayOutpu
 
 func (i SystemNdProxyArray) ToSystemNdProxyArrayOutputWithContext(ctx context.Context) SystemNdProxyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyArrayOutput)
-}
-
-func (i SystemNdProxyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNdProxy] {
-	return pulumix.Output[[]*SystemNdProxy]{
-		OutputState: i.ToSystemNdProxyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemNdProxyMapInput is an input type that accepts SystemNdProxyMap and SystemNdProxyMapOutput values.
@@ -173,12 +160,6 @@ func (i SystemNdProxyMap) ToSystemNdProxyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyMapOutput)
 }
 
-func (i SystemNdProxyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNdProxy] {
-	return pulumix.Output[map[string]*SystemNdProxy]{
-		OutputState: i.ToSystemNdProxyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemNdProxyOutput struct{ *pulumi.OutputState }
 
 func (SystemNdProxyOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o SystemNdProxyOutput) ToSystemNdProxyOutput() SystemNdProxyOutput {
 
 func (o SystemNdProxyOutput) ToSystemNdProxyOutputWithContext(ctx context.Context) SystemNdProxyOutput {
 	return o
-}
-
-func (o SystemNdProxyOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemNdProxy] {
-	return pulumix.Output[*SystemNdProxy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemNdProxyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o SystemNdProxyArrayOutput) ToSystemNdProxyArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemNdProxyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNdProxy] {
-	return pulumix.Output[[]*SystemNdProxy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemNdProxyArrayOutput) Index(i pulumi.IntInput) SystemNdProxyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNdProxy {
 		return vs[0].([]*SystemNdProxy)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o SystemNdProxyMapOutput) ToSystemNdProxyMapOutput() SystemNdProxyMapOutpu
 
 func (o SystemNdProxyMapOutput) ToSystemNdProxyMapOutputWithContext(ctx context.Context) SystemNdProxyMapOutput {
 	return o
-}
-
-func (o SystemNdProxyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNdProxy] {
-	return pulumix.Output[map[string]*SystemNdProxy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemNdProxyMapOutput) MapIndex(k pulumi.StringInput) SystemNdProxyOutput {

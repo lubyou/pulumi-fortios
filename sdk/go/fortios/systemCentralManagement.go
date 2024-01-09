@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemCentralManagement struct {
@@ -211,12 +210,6 @@ func (i *SystemCentralManagement) ToSystemCentralManagementOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementOutput)
 }
 
-func (i *SystemCentralManagement) ToOutput(ctx context.Context) pulumix.Output[*SystemCentralManagement] {
-	return pulumix.Output[*SystemCentralManagement]{
-		OutputState: i.ToSystemCentralManagementOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemCentralManagementArrayInput is an input type that accepts SystemCentralManagementArray and SystemCentralManagementArrayOutput values.
 // You can construct a concrete instance of `SystemCentralManagementArrayInput` via:
 //
@@ -240,12 +233,6 @@ func (i SystemCentralManagementArray) ToSystemCentralManagementArrayOutput() Sys
 
 func (i SystemCentralManagementArray) ToSystemCentralManagementArrayOutputWithContext(ctx context.Context) SystemCentralManagementArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementArrayOutput)
-}
-
-func (i SystemCentralManagementArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemCentralManagement] {
-	return pulumix.Output[[]*SystemCentralManagement]{
-		OutputState: i.ToSystemCentralManagementArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemCentralManagementMapInput is an input type that accepts SystemCentralManagementMap and SystemCentralManagementMapOutput values.
@@ -273,12 +260,6 @@ func (i SystemCentralManagementMap) ToSystemCentralManagementMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementMapOutput)
 }
 
-func (i SystemCentralManagementMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemCentralManagement] {
-	return pulumix.Output[map[string]*SystemCentralManagement]{
-		OutputState: i.ToSystemCentralManagementMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemCentralManagementOutput struct{ *pulumi.OutputState }
 
 func (SystemCentralManagementOutput) ElementType() reflect.Type {
@@ -291,12 +272,6 @@ func (o SystemCentralManagementOutput) ToSystemCentralManagementOutput() SystemC
 
 func (o SystemCentralManagementOutput) ToSystemCentralManagementOutputWithContext(ctx context.Context) SystemCentralManagementOutput {
 	return o
-}
-
-func (o SystemCentralManagementOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemCentralManagement] {
-	return pulumix.Output[*SystemCentralManagement]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemCentralManagementOutput) AllowMonitor() pulumi.StringOutput {
@@ -413,12 +388,6 @@ func (o SystemCentralManagementArrayOutput) ToSystemCentralManagementArrayOutput
 	return o
 }
 
-func (o SystemCentralManagementArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemCentralManagement] {
-	return pulumix.Output[[]*SystemCentralManagement]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemCentralManagementArrayOutput) Index(i pulumi.IntInput) SystemCentralManagementOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemCentralManagement {
 		return vs[0].([]*SystemCentralManagement)[vs[1].(int)]
@@ -437,12 +406,6 @@ func (o SystemCentralManagementMapOutput) ToSystemCentralManagementMapOutput() S
 
 func (o SystemCentralManagementMapOutput) ToSystemCentralManagementMapOutputWithContext(ctx context.Context) SystemCentralManagementMapOutput {
 	return o
-}
-
-func (o SystemCentralManagementMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemCentralManagement] {
-	return pulumix.Output[map[string]*SystemCentralManagement]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemCentralManagementMapOutput) MapIndex(k pulumi.StringInput) SystemCentralManagementOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFtmPush(ctx *pulumi.Context, args *LookupSystemFtmPushArgs, opts ...pulumi.InvokeOption) (*LookupSystemFtmPushResult, error) {
@@ -75,12 +74,6 @@ func (o LookupSystemFtmPushResultOutput) ToLookupSystemFtmPushResultOutput() Loo
 
 func (o LookupSystemFtmPushResultOutput) ToLookupSystemFtmPushResultOutputWithContext(ctx context.Context) LookupSystemFtmPushResultOutput {
 	return o
-}
-
-func (o LookupSystemFtmPushResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFtmPushResult] {
-	return pulumix.Output[LookupSystemFtmPushResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerManagedSwitch struct {
@@ -418,12 +417,6 @@ func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchOutput)
 }
 
-func (i *SwitchControllerManagedSwitch) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerManagedSwitch] {
-	return pulumix.Output[*SwitchControllerManagedSwitch]{
-		OutputState: i.ToSwitchControllerManagedSwitchOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerManagedSwitchArrayInput is an input type that accepts SwitchControllerManagedSwitchArray and SwitchControllerManagedSwitchArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerManagedSwitchArrayInput` via:
 //
@@ -447,12 +440,6 @@ func (i SwitchControllerManagedSwitchArray) ToSwitchControllerManagedSwitchArray
 
 func (i SwitchControllerManagedSwitchArray) ToSwitchControllerManagedSwitchArrayOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchArrayOutput)
-}
-
-func (i SwitchControllerManagedSwitchArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerManagedSwitch] {
-	return pulumix.Output[[]*SwitchControllerManagedSwitch]{
-		OutputState: i.ToSwitchControllerManagedSwitchArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerManagedSwitchMapInput is an input type that accepts SwitchControllerManagedSwitchMap and SwitchControllerManagedSwitchMapOutput values.
@@ -480,12 +467,6 @@ func (i SwitchControllerManagedSwitchMap) ToSwitchControllerManagedSwitchMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchMapOutput)
 }
 
-func (i SwitchControllerManagedSwitchMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerManagedSwitch] {
-	return pulumix.Output[map[string]*SwitchControllerManagedSwitch]{
-		OutputState: i.ToSwitchControllerManagedSwitchMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerManagedSwitchOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerManagedSwitchOutput) ElementType() reflect.Type {
@@ -498,12 +479,6 @@ func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutp
 
 func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchOutput {
 	return o
-}
-
-func (o SwitchControllerManagedSwitchOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerManagedSwitch] {
-	return pulumix.Output[*SwitchControllerManagedSwitch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerManagedSwitchOutput) AccessProfile() pulumi.StringOutput {
@@ -816,12 +791,6 @@ func (o SwitchControllerManagedSwitchArrayOutput) ToSwitchControllerManagedSwitc
 	return o
 }
 
-func (o SwitchControllerManagedSwitchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerManagedSwitch] {
-	return pulumix.Output[[]*SwitchControllerManagedSwitch]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerManagedSwitchArrayOutput) Index(i pulumi.IntInput) SwitchControllerManagedSwitchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerManagedSwitch {
 		return vs[0].([]*SwitchControllerManagedSwitch)[vs[1].(int)]
@@ -840,12 +809,6 @@ func (o SwitchControllerManagedSwitchMapOutput) ToSwitchControllerManagedSwitchM
 
 func (o SwitchControllerManagedSwitchMapOutput) ToSwitchControllerManagedSwitchMapOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchMapOutput {
 	return o
-}
-
-func (o SwitchControllerManagedSwitchMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerManagedSwitch] {
-	return pulumix.Output[map[string]*SwitchControllerManagedSwitch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerManagedSwitchMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerManagedSwitchOutput {

@@ -980,6 +980,17 @@ __all__ = [
     'GetSystemZoneInterfaceResult',
     'GetSystemZoneTaggingResult',
     'GetSystemZoneTaggingTagResult',
+    'GetVpnSslSettingsAuthenticationRuleResult',
+    'GetVpnSslSettingsAuthenticationRuleGroupResult',
+    'GetVpnSslSettingsAuthenticationRuleSourceAddress6Result',
+    'GetVpnSslSettingsAuthenticationRuleSourceAddressResult',
+    'GetVpnSslSettingsAuthenticationRuleSourceInterfaceResult',
+    'GetVpnSslSettingsAuthenticationRuleUserResult',
+    'GetVpnSslSettingsSourceAddress6Result',
+    'GetVpnSslSettingsSourceAddressResult',
+    'GetVpnSslSettingsSourceInterfaceResult',
+    'GetVpnSslSettingsTunnelIpPoolResult',
+    'GetVpnSslSettingsTunnelIpv6PoolResult',
     'IcapProfileIcapHeader',
     'IcapProfileRespmodForwardRule',
     'IcapProfileRespmodForwardRuleHeaderGroup',
@@ -37123,6 +37134,229 @@ class GetSystemZoneTaggingResult(dict):
 
 @pulumi.output_type
 class GetSystemZoneTaggingTagResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsAuthenticationRuleResult(dict):
+    def __init__(__self__, *,
+                 auth: str,
+                 cipher: str,
+                 client_cert: str,
+                 groups: Sequence['outputs.GetVpnSslSettingsAuthenticationRuleGroupResult'],
+                 id: int,
+                 portal: str,
+                 realm: str,
+                 source_address6_negate: str,
+                 source_address6s: Sequence['outputs.GetVpnSslSettingsAuthenticationRuleSourceAddress6Result'],
+                 source_address_negate: str,
+                 source_addresses: Sequence['outputs.GetVpnSslSettingsAuthenticationRuleSourceAddressResult'],
+                 source_interfaces: Sequence['outputs.GetVpnSslSettingsAuthenticationRuleSourceInterfaceResult'],
+                 user_peer: str,
+                 users: Sequence['outputs.GetVpnSslSettingsAuthenticationRuleUserResult']):
+        pulumi.set(__self__, "auth", auth)
+        pulumi.set(__self__, "cipher", cipher)
+        pulumi.set(__self__, "client_cert", client_cert)
+        pulumi.set(__self__, "groups", groups)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "portal", portal)
+        pulumi.set(__self__, "realm", realm)
+        pulumi.set(__self__, "source_address6_negate", source_address6_negate)
+        pulumi.set(__self__, "source_address6s", source_address6s)
+        pulumi.set(__self__, "source_address_negate", source_address_negate)
+        pulumi.set(__self__, "source_addresses", source_addresses)
+        pulumi.set(__self__, "source_interfaces", source_interfaces)
+        pulumi.set(__self__, "user_peer", user_peer)
+        pulumi.set(__self__, "users", users)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> str:
+        return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> str:
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> str:
+        return pulumi.get(self, "client_cert")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Sequence['outputs.GetVpnSslSettingsAuthenticationRuleGroupResult']:
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def portal(self) -> str:
+        return pulumi.get(self, "portal")
+
+    @property
+    @pulumi.getter
+    def realm(self) -> str:
+        return pulumi.get(self, "realm")
+
+    @property
+    @pulumi.getter(name="sourceAddress6Negate")
+    def source_address6_negate(self) -> str:
+        return pulumi.get(self, "source_address6_negate")
+
+    @property
+    @pulumi.getter(name="sourceAddress6s")
+    def source_address6s(self) -> Sequence['outputs.GetVpnSslSettingsAuthenticationRuleSourceAddress6Result']:
+        return pulumi.get(self, "source_address6s")
+
+    @property
+    @pulumi.getter(name="sourceAddressNegate")
+    def source_address_negate(self) -> str:
+        return pulumi.get(self, "source_address_negate")
+
+    @property
+    @pulumi.getter(name="sourceAddresses")
+    def source_addresses(self) -> Sequence['outputs.GetVpnSslSettingsAuthenticationRuleSourceAddressResult']:
+        return pulumi.get(self, "source_addresses")
+
+    @property
+    @pulumi.getter(name="sourceInterfaces")
+    def source_interfaces(self) -> Sequence['outputs.GetVpnSslSettingsAuthenticationRuleSourceInterfaceResult']:
+        return pulumi.get(self, "source_interfaces")
+
+    @property
+    @pulumi.getter(name="userPeer")
+    def user_peer(self) -> str:
+        return pulumi.get(self, "user_peer")
+
+    @property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetVpnSslSettingsAuthenticationRuleUserResult']:
+        return pulumi.get(self, "users")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsAuthenticationRuleGroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsAuthenticationRuleSourceAddress6Result(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsAuthenticationRuleSourceAddressResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsAuthenticationRuleSourceInterfaceResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsAuthenticationRuleUserResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsSourceAddress6Result(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsSourceAddressResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsSourceInterfaceResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsTunnelIpPoolResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVpnSslSettingsTunnelIpv6PoolResult(dict):
     def __init__(__self__, *,
                  name: str):
         pulumi.set(__self__, "name", name)

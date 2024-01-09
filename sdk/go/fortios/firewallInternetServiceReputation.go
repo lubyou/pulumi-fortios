@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceReputation struct {
@@ -101,12 +100,6 @@ func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationO
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationOutput)
 }
 
-func (i *FirewallInternetServiceReputation) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceReputation] {
-	return pulumix.Output[*FirewallInternetServiceReputation]{
-		OutputState: i.ToFirewallInternetServiceReputationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallInternetServiceReputationArrayInput is an input type that accepts FirewallInternetServiceReputationArray and FirewallInternetServiceReputationArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceReputationArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i FirewallInternetServiceReputationArray) ToFirewallInternetServiceReputat
 
 func (i FirewallInternetServiceReputationArray) ToFirewallInternetServiceReputationArrayOutputWithContext(ctx context.Context) FirewallInternetServiceReputationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationArrayOutput)
-}
-
-func (i FirewallInternetServiceReputationArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceReputation] {
-	return pulumix.Output[[]*FirewallInternetServiceReputation]{
-		OutputState: i.ToFirewallInternetServiceReputationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallInternetServiceReputationMapInput is an input type that accepts FirewallInternetServiceReputationMap and FirewallInternetServiceReputationMapOutput values.
@@ -163,12 +150,6 @@ func (i FirewallInternetServiceReputationMap) ToFirewallInternetServiceReputatio
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationMapOutput)
 }
 
-func (i FirewallInternetServiceReputationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceReputation] {
-	return pulumix.Output[map[string]*FirewallInternetServiceReputation]{
-		OutputState: i.ToFirewallInternetServiceReputationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallInternetServiceReputationOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceReputationOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputa
 
 func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputationOutputWithContext(ctx context.Context) FirewallInternetServiceReputationOutput {
 	return o
-}
-
-func (o FirewallInternetServiceReputationOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceReputation] {
-	return pulumix.Output[*FirewallInternetServiceReputation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallInternetServiceReputationOutput) Description() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o FirewallInternetServiceReputationArrayOutput) ToFirewallInternetServiceR
 	return o
 }
 
-func (o FirewallInternetServiceReputationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceReputation] {
-	return pulumix.Output[[]*FirewallInternetServiceReputation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallInternetServiceReputationArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceReputationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceReputation {
 		return vs[0].([]*FirewallInternetServiceReputation)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o FirewallInternetServiceReputationMapOutput) ToFirewallInternetServiceRep
 
 func (o FirewallInternetServiceReputationMapOutput) ToFirewallInternetServiceReputationMapOutputWithContext(ctx context.Context) FirewallInternetServiceReputationMapOutput {
 	return o
-}
-
-func (o FirewallInternetServiceReputationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceReputation] {
-	return pulumix.Output[map[string]*FirewallInternetServiceReputation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallInternetServiceReputationMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceReputationOutput {

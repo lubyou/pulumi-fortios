@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSdnConnector struct {
@@ -437,12 +436,6 @@ func (i *SystemSdnConnector) ToSystemSdnConnectorOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorOutput)
 }
 
-func (i *SystemSdnConnector) ToOutput(ctx context.Context) pulumix.Output[*SystemSdnConnector] {
-	return pulumix.Output[*SystemSdnConnector]{
-		OutputState: i.ToSystemSdnConnectorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemSdnConnectorArrayInput is an input type that accepts SystemSdnConnectorArray and SystemSdnConnectorArrayOutput values.
 // You can construct a concrete instance of `SystemSdnConnectorArrayInput` via:
 //
@@ -466,12 +459,6 @@ func (i SystemSdnConnectorArray) ToSystemSdnConnectorArrayOutput() SystemSdnConn
 
 func (i SystemSdnConnectorArray) ToSystemSdnConnectorArrayOutputWithContext(ctx context.Context) SystemSdnConnectorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorArrayOutput)
-}
-
-func (i SystemSdnConnectorArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSdnConnector] {
-	return pulumix.Output[[]*SystemSdnConnector]{
-		OutputState: i.ToSystemSdnConnectorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemSdnConnectorMapInput is an input type that accepts SystemSdnConnectorMap and SystemSdnConnectorMapOutput values.
@@ -499,12 +486,6 @@ func (i SystemSdnConnectorMap) ToSystemSdnConnectorMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorMapOutput)
 }
 
-func (i SystemSdnConnectorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSdnConnector] {
-	return pulumix.Output[map[string]*SystemSdnConnector]{
-		OutputState: i.ToSystemSdnConnectorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemSdnConnectorOutput struct{ *pulumi.OutputState }
 
 func (SystemSdnConnectorOutput) ElementType() reflect.Type {
@@ -517,12 +498,6 @@ func (o SystemSdnConnectorOutput) ToSystemSdnConnectorOutput() SystemSdnConnecto
 
 func (o SystemSdnConnectorOutput) ToSystemSdnConnectorOutputWithContext(ctx context.Context) SystemSdnConnectorOutput {
 	return o
-}
-
-func (o SystemSdnConnectorOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSdnConnector] {
-	return pulumix.Output[*SystemSdnConnector]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSdnConnectorOutput) AccessKey() pulumi.StringOutput {
@@ -785,12 +760,6 @@ func (o SystemSdnConnectorArrayOutput) ToSystemSdnConnectorArrayOutputWithContex
 	return o
 }
 
-func (o SystemSdnConnectorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSdnConnector] {
-	return pulumix.Output[[]*SystemSdnConnector]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemSdnConnectorArrayOutput) Index(i pulumi.IntInput) SystemSdnConnectorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSdnConnector {
 		return vs[0].([]*SystemSdnConnector)[vs[1].(int)]
@@ -809,12 +778,6 @@ func (o SystemSdnConnectorMapOutput) ToSystemSdnConnectorMapOutput() SystemSdnCo
 
 func (o SystemSdnConnectorMapOutput) ToSystemSdnConnectorMapOutputWithContext(ctx context.Context) SystemSdnConnectorMapOutput {
 	return o
-}
-
-func (o SystemSdnConnectorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSdnConnector] {
-	return pulumix.Output[map[string]*SystemSdnConnector]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemSdnConnectorMapOutput) MapIndex(k pulumi.StringInput) SystemSdnConnectorOutput {

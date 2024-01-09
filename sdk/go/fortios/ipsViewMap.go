@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsViewMap struct {
@@ -116,12 +115,6 @@ func (i *IpsViewMap) ToIpsViewMapOutputWithContext(ctx context.Context) IpsViewM
 	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapOutput)
 }
 
-func (i *IpsViewMap) ToOutput(ctx context.Context) pulumix.Output[*IpsViewMap] {
-	return pulumix.Output[*IpsViewMap]{
-		OutputState: i.ToIpsViewMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IpsViewMapArrayInput is an input type that accepts IpsViewMapArray and IpsViewMapArrayOutput values.
 // You can construct a concrete instance of `IpsViewMapArrayInput` via:
 //
@@ -145,12 +138,6 @@ func (i IpsViewMapArray) ToIpsViewMapArrayOutput() IpsViewMapArrayOutput {
 
 func (i IpsViewMapArray) ToIpsViewMapArrayOutputWithContext(ctx context.Context) IpsViewMapArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapArrayOutput)
-}
-
-func (i IpsViewMapArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsViewMap] {
-	return pulumix.Output[[]*IpsViewMap]{
-		OutputState: i.ToIpsViewMapArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IpsViewMapMapInput is an input type that accepts IpsViewMapMap and IpsViewMapMapOutput values.
@@ -178,12 +165,6 @@ func (i IpsViewMapMap) ToIpsViewMapMapOutputWithContext(ctx context.Context) Ips
 	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapMapOutput)
 }
 
-func (i IpsViewMapMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsViewMap] {
-	return pulumix.Output[map[string]*IpsViewMap]{
-		OutputState: i.ToIpsViewMapMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IpsViewMapOutput struct{ *pulumi.OutputState }
 
 func (IpsViewMapOutput) ElementType() reflect.Type {
@@ -196,12 +177,6 @@ func (o IpsViewMapOutput) ToIpsViewMapOutput() IpsViewMapOutput {
 
 func (o IpsViewMapOutput) ToIpsViewMapOutputWithContext(ctx context.Context) IpsViewMapOutput {
 	return o
-}
-
-func (o IpsViewMapOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsViewMap] {
-	return pulumix.Output[*IpsViewMap]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsViewMapOutput) Fosid() pulumi.IntOutput {
@@ -242,12 +217,6 @@ func (o IpsViewMapArrayOutput) ToIpsViewMapArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o IpsViewMapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsViewMap] {
-	return pulumix.Output[[]*IpsViewMap]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IpsViewMapArrayOutput) Index(i pulumi.IntInput) IpsViewMapOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsViewMap {
 		return vs[0].([]*IpsViewMap)[vs[1].(int)]
@@ -266,12 +235,6 @@ func (o IpsViewMapMapOutput) ToIpsViewMapMapOutput() IpsViewMapMapOutput {
 
 func (o IpsViewMapMapOutput) ToIpsViewMapMapOutputWithContext(ctx context.Context) IpsViewMapMapOutput {
 	return o
-}
-
-func (o IpsViewMapMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsViewMap] {
-	return pulumix.Output[map[string]*IpsViewMap]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsViewMapMapOutput) MapIndex(k pulumi.StringInput) IpsViewMapOutput {

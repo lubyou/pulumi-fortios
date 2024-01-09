@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsDecoder struct {
@@ -111,12 +110,6 @@ func (i *IpsDecoder) ToIpsDecoderOutputWithContext(ctx context.Context) IpsDecod
 	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderOutput)
 }
 
-func (i *IpsDecoder) ToOutput(ctx context.Context) pulumix.Output[*IpsDecoder] {
-	return pulumix.Output[*IpsDecoder]{
-		OutputState: i.ToIpsDecoderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IpsDecoderArrayInput is an input type that accepts IpsDecoderArray and IpsDecoderArrayOutput values.
 // You can construct a concrete instance of `IpsDecoderArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i IpsDecoderArray) ToIpsDecoderArrayOutput() IpsDecoderArrayOutput {
 
 func (i IpsDecoderArray) ToIpsDecoderArrayOutputWithContext(ctx context.Context) IpsDecoderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderArrayOutput)
-}
-
-func (i IpsDecoderArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsDecoder] {
-	return pulumix.Output[[]*IpsDecoder]{
-		OutputState: i.ToIpsDecoderArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IpsDecoderMapInput is an input type that accepts IpsDecoderMap and IpsDecoderMapOutput values.
@@ -173,12 +160,6 @@ func (i IpsDecoderMap) ToIpsDecoderMapOutputWithContext(ctx context.Context) Ips
 	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderMapOutput)
 }
 
-func (i IpsDecoderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsDecoder] {
-	return pulumix.Output[map[string]*IpsDecoder]{
-		OutputState: i.ToIpsDecoderMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IpsDecoderOutput struct{ *pulumi.OutputState }
 
 func (IpsDecoderOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o IpsDecoderOutput) ToIpsDecoderOutput() IpsDecoderOutput {
 
 func (o IpsDecoderOutput) ToIpsDecoderOutputWithContext(ctx context.Context) IpsDecoderOutput {
 	return o
-}
-
-func (o IpsDecoderOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsDecoder] {
-	return pulumix.Output[*IpsDecoder]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsDecoderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o IpsDecoderArrayOutput) ToIpsDecoderArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o IpsDecoderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsDecoder] {
-	return pulumix.Output[[]*IpsDecoder]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IpsDecoderArrayOutput) Index(i pulumi.IntInput) IpsDecoderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsDecoder {
 		return vs[0].([]*IpsDecoder)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o IpsDecoderMapOutput) ToIpsDecoderMapOutput() IpsDecoderMapOutput {
 
 func (o IpsDecoderMapOutput) ToIpsDecoderMapOutputWithContext(ctx context.Context) IpsDecoderMapOutput {
 	return o
-}
-
-func (o IpsDecoderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsDecoder] {
-	return pulumix.Output[map[string]*IpsDecoder]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IpsDecoderMapOutput) MapIndex(k pulumi.StringInput) IpsDecoderOutput {

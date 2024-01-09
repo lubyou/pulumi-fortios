@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerVirtualPortPool struct {
@@ -101,12 +100,6 @@ func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolOutput)
 }
 
-func (i *SwitchControllerVirtualPortPool) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerVirtualPortPool] {
-	return pulumix.Output[*SwitchControllerVirtualPortPool]{
-		OutputState: i.ToSwitchControllerVirtualPortPoolOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SwitchControllerVirtualPortPoolArrayInput is an input type that accepts SwitchControllerVirtualPortPoolArray and SwitchControllerVirtualPortPoolArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerVirtualPortPoolArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i SwitchControllerVirtualPortPoolArray) ToSwitchControllerVirtualPortPoolA
 
 func (i SwitchControllerVirtualPortPoolArray) ToSwitchControllerVirtualPortPoolArrayOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolArrayOutput)
-}
-
-func (i SwitchControllerVirtualPortPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerVirtualPortPool] {
-	return pulumix.Output[[]*SwitchControllerVirtualPortPool]{
-		OutputState: i.ToSwitchControllerVirtualPortPoolArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SwitchControllerVirtualPortPoolMapInput is an input type that accepts SwitchControllerVirtualPortPoolMap and SwitchControllerVirtualPortPoolMapOutput values.
@@ -163,12 +150,6 @@ func (i SwitchControllerVirtualPortPoolMap) ToSwitchControllerVirtualPortPoolMap
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolMapOutput)
 }
 
-func (i SwitchControllerVirtualPortPoolMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerVirtualPortPool] {
-	return pulumix.Output[map[string]*SwitchControllerVirtualPortPool]{
-		OutputState: i.ToSwitchControllerVirtualPortPoolMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SwitchControllerVirtualPortPoolOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVirtualPortPoolOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPool
 
 func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPoolOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolOutput {
 	return o
-}
-
-func (o SwitchControllerVirtualPortPoolOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerVirtualPortPool] {
-	return pulumix.Output[*SwitchControllerVirtualPortPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerVirtualPortPoolOutput) Description() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o SwitchControllerVirtualPortPoolArrayOutput) ToSwitchControllerVirtualPor
 	return o
 }
 
-func (o SwitchControllerVirtualPortPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerVirtualPortPool] {
-	return pulumix.Output[[]*SwitchControllerVirtualPortPool]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SwitchControllerVirtualPortPoolArrayOutput) Index(i pulumi.IntInput) SwitchControllerVirtualPortPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerVirtualPortPool {
 		return vs[0].([]*SwitchControllerVirtualPortPool)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o SwitchControllerVirtualPortPoolMapOutput) ToSwitchControllerVirtualPortP
 
 func (o SwitchControllerVirtualPortPoolMapOutput) ToSwitchControllerVirtualPortPoolMapOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolMapOutput {
 	return o
-}
-
-func (o SwitchControllerVirtualPortPoolMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerVirtualPortPool] {
-	return pulumix.Output[map[string]*SwitchControllerVirtualPortPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SwitchControllerVirtualPortPoolMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerVirtualPortPoolOutput {

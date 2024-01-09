@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemStandaloneCluster struct {
@@ -143,12 +142,6 @@ func (i *SystemStandaloneCluster) ToSystemStandaloneClusterOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterOutput)
 }
 
-func (i *SystemStandaloneCluster) ToOutput(ctx context.Context) pulumix.Output[*SystemStandaloneCluster] {
-	return pulumix.Output[*SystemStandaloneCluster]{
-		OutputState: i.ToSystemStandaloneClusterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemStandaloneClusterArrayInput is an input type that accepts SystemStandaloneClusterArray and SystemStandaloneClusterArrayOutput values.
 // You can construct a concrete instance of `SystemStandaloneClusterArrayInput` via:
 //
@@ -172,12 +165,6 @@ func (i SystemStandaloneClusterArray) ToSystemStandaloneClusterArrayOutput() Sys
 
 func (i SystemStandaloneClusterArray) ToSystemStandaloneClusterArrayOutputWithContext(ctx context.Context) SystemStandaloneClusterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterArrayOutput)
-}
-
-func (i SystemStandaloneClusterArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemStandaloneCluster] {
-	return pulumix.Output[[]*SystemStandaloneCluster]{
-		OutputState: i.ToSystemStandaloneClusterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemStandaloneClusterMapInput is an input type that accepts SystemStandaloneClusterMap and SystemStandaloneClusterMapOutput values.
@@ -205,12 +192,6 @@ func (i SystemStandaloneClusterMap) ToSystemStandaloneClusterMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterMapOutput)
 }
 
-func (i SystemStandaloneClusterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemStandaloneCluster] {
-	return pulumix.Output[map[string]*SystemStandaloneCluster]{
-		OutputState: i.ToSystemStandaloneClusterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemStandaloneClusterOutput struct{ *pulumi.OutputState }
 
 func (SystemStandaloneClusterOutput) ElementType() reflect.Type {
@@ -223,12 +204,6 @@ func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterOutput() SystemS
 
 func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterOutputWithContext(ctx context.Context) SystemStandaloneClusterOutput {
 	return o
-}
-
-func (o SystemStandaloneClusterOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemStandaloneCluster] {
-	return pulumix.Output[*SystemStandaloneCluster]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemStandaloneClusterOutput) ClusterPeers() SystemStandaloneClusterClusterPeerArrayOutput {
@@ -285,12 +260,6 @@ func (o SystemStandaloneClusterArrayOutput) ToSystemStandaloneClusterArrayOutput
 	return o
 }
 
-func (o SystemStandaloneClusterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemStandaloneCluster] {
-	return pulumix.Output[[]*SystemStandaloneCluster]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemStandaloneClusterArrayOutput) Index(i pulumi.IntInput) SystemStandaloneClusterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemStandaloneCluster {
 		return vs[0].([]*SystemStandaloneCluster)[vs[1].(int)]
@@ -309,12 +278,6 @@ func (o SystemStandaloneClusterMapOutput) ToSystemStandaloneClusterMapOutput() S
 
 func (o SystemStandaloneClusterMapOutput) ToSystemStandaloneClusterMapOutputWithContext(ctx context.Context) SystemStandaloneClusterMapOutput {
 	return o
-}
-
-func (o SystemStandaloneClusterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemStandaloneCluster] {
-	return pulumix.Output[map[string]*SystemStandaloneCluster]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemStandaloneClusterMapOutput) MapIndex(k pulumi.StringInput) SystemStandaloneClusterOutput {

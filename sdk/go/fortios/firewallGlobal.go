@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallGlobal struct {
@@ -96,12 +95,6 @@ func (i *FirewallGlobal) ToFirewallGlobalOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallGlobalOutput)
 }
 
-func (i *FirewallGlobal) ToOutput(ctx context.Context) pulumix.Output[*FirewallGlobal] {
-	return pulumix.Output[*FirewallGlobal]{
-		OutputState: i.ToFirewallGlobalOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallGlobalArrayInput is an input type that accepts FirewallGlobalArray and FirewallGlobalArrayOutput values.
 // You can construct a concrete instance of `FirewallGlobalArrayInput` via:
 //
@@ -125,12 +118,6 @@ func (i FirewallGlobalArray) ToFirewallGlobalArrayOutput() FirewallGlobalArrayOu
 
 func (i FirewallGlobalArray) ToFirewallGlobalArrayOutputWithContext(ctx context.Context) FirewallGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallGlobalArrayOutput)
-}
-
-func (i FirewallGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallGlobal] {
-	return pulumix.Output[[]*FirewallGlobal]{
-		OutputState: i.ToFirewallGlobalArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallGlobalMapInput is an input type that accepts FirewallGlobalMap and FirewallGlobalMapOutput values.
@@ -158,12 +145,6 @@ func (i FirewallGlobalMap) ToFirewallGlobalMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallGlobalMapOutput)
 }
 
-func (i FirewallGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallGlobal] {
-	return pulumix.Output[map[string]*FirewallGlobal]{
-		OutputState: i.ToFirewallGlobalMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallGlobalOutput struct{ *pulumi.OutputState }
 
 func (FirewallGlobalOutput) ElementType() reflect.Type {
@@ -176,12 +157,6 @@ func (o FirewallGlobalOutput) ToFirewallGlobalOutput() FirewallGlobalOutput {
 
 func (o FirewallGlobalOutput) ToFirewallGlobalOutputWithContext(ctx context.Context) FirewallGlobalOutput {
 	return o
-}
-
-func (o FirewallGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallGlobal] {
-	return pulumix.Output[*FirewallGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallGlobalOutput) BannedIpPersistency() pulumi.StringOutput {
@@ -206,12 +181,6 @@ func (o FirewallGlobalArrayOutput) ToFirewallGlobalArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o FirewallGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallGlobal] {
-	return pulumix.Output[[]*FirewallGlobal]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallGlobalArrayOutput) Index(i pulumi.IntInput) FirewallGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallGlobal {
 		return vs[0].([]*FirewallGlobal)[vs[1].(int)]
@@ -230,12 +199,6 @@ func (o FirewallGlobalMapOutput) ToFirewallGlobalMapOutput() FirewallGlobalMapOu
 
 func (o FirewallGlobalMapOutput) ToFirewallGlobalMapOutputWithContext(ctx context.Context) FirewallGlobalMapOutput {
 	return o
-}
-
-func (o FirewallGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallGlobal] {
-	return pulumix.Output[map[string]*FirewallGlobal]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallGlobalMapOutput) MapIndex(k pulumi.StringInput) FirewallGlobalOutput {

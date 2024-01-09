@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSecurityPolicy1 struct {
@@ -263,12 +262,6 @@ func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1OutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1Output)
 }
 
-func (i *FirewallSecurityPolicy1) ToOutput(ctx context.Context) pulumix.Output[*FirewallSecurityPolicy1] {
-	return pulumix.Output[*FirewallSecurityPolicy1]{
-		OutputState: i.ToFirewallSecurityPolicy1OutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallSecurityPolicy1ArrayInput is an input type that accepts FirewallSecurityPolicy1Array and FirewallSecurityPolicy1ArrayOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicy1ArrayInput` via:
 //
@@ -292,12 +285,6 @@ func (i FirewallSecurityPolicy1Array) ToFirewallSecurityPolicy1ArrayOutput() Fir
 
 func (i FirewallSecurityPolicy1Array) ToFirewallSecurityPolicy1ArrayOutputWithContext(ctx context.Context) FirewallSecurityPolicy1ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1ArrayOutput)
-}
-
-func (i FirewallSecurityPolicy1Array) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSecurityPolicy1] {
-	return pulumix.Output[[]*FirewallSecurityPolicy1]{
-		OutputState: i.ToFirewallSecurityPolicy1ArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallSecurityPolicy1MapInput is an input type that accepts FirewallSecurityPolicy1Map and FirewallSecurityPolicy1MapOutput values.
@@ -325,12 +312,6 @@ func (i FirewallSecurityPolicy1Map) ToFirewallSecurityPolicy1MapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1MapOutput)
 }
 
-func (i FirewallSecurityPolicy1Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSecurityPolicy1] {
-	return pulumix.Output[map[string]*FirewallSecurityPolicy1]{
-		OutputState: i.ToFirewallSecurityPolicy1MapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallSecurityPolicy1Output struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicy1Output) ElementType() reflect.Type {
@@ -343,12 +324,6 @@ func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1Output() Firewal
 
 func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1OutputWithContext(ctx context.Context) FirewallSecurityPolicy1Output {
 	return o
-}
-
-func (o FirewallSecurityPolicy1Output) ToOutput(ctx context.Context) pulumix.Output[*FirewallSecurityPolicy1] {
-	return pulumix.Output[*FirewallSecurityPolicy1]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSecurityPolicy1Output) Action() pulumi.StringOutput {
@@ -489,12 +464,6 @@ func (o FirewallSecurityPolicy1ArrayOutput) ToFirewallSecurityPolicy1ArrayOutput
 	return o
 }
 
-func (o FirewallSecurityPolicy1ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSecurityPolicy1] {
-	return pulumix.Output[[]*FirewallSecurityPolicy1]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallSecurityPolicy1ArrayOutput) Index(i pulumi.IntInput) FirewallSecurityPolicy1Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecurityPolicy1 {
 		return vs[0].([]*FirewallSecurityPolicy1)[vs[1].(int)]
@@ -513,12 +482,6 @@ func (o FirewallSecurityPolicy1MapOutput) ToFirewallSecurityPolicy1MapOutput() F
 
 func (o FirewallSecurityPolicy1MapOutput) ToFirewallSecurityPolicy1MapOutputWithContext(ctx context.Context) FirewallSecurityPolicy1MapOutput {
 	return o
-}
-
-func (o FirewallSecurityPolicy1MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSecurityPolicy1] {
-	return pulumix.Output[map[string]*FirewallSecurityPolicy1]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallSecurityPolicy1MapOutput) MapIndex(k pulumi.StringInput) FirewallSecurityPolicy1Output {

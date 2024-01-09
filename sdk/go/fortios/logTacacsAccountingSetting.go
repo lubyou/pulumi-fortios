@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogTacacsAccountingSetting struct {
@@ -121,12 +120,6 @@ func (i *LogTacacsAccountingSetting) ToLogTacacsAccountingSettingOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccountingSettingOutput)
 }
 
-func (i *LogTacacsAccountingSetting) ToOutput(ctx context.Context) pulumix.Output[*LogTacacsAccountingSetting] {
-	return pulumix.Output[*LogTacacsAccountingSetting]{
-		OutputState: i.ToLogTacacsAccountingSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LogTacacsAccountingSettingArrayInput is an input type that accepts LogTacacsAccountingSettingArray and LogTacacsAccountingSettingArrayOutput values.
 // You can construct a concrete instance of `LogTacacsAccountingSettingArrayInput` via:
 //
@@ -150,12 +143,6 @@ func (i LogTacacsAccountingSettingArray) ToLogTacacsAccountingSettingArrayOutput
 
 func (i LogTacacsAccountingSettingArray) ToLogTacacsAccountingSettingArrayOutputWithContext(ctx context.Context) LogTacacsAccountingSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccountingSettingArrayOutput)
-}
-
-func (i LogTacacsAccountingSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogTacacsAccountingSetting] {
-	return pulumix.Output[[]*LogTacacsAccountingSetting]{
-		OutputState: i.ToLogTacacsAccountingSettingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LogTacacsAccountingSettingMapInput is an input type that accepts LogTacacsAccountingSettingMap and LogTacacsAccountingSettingMapOutput values.
@@ -183,12 +170,6 @@ func (i LogTacacsAccountingSettingMap) ToLogTacacsAccountingSettingMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccountingSettingMapOutput)
 }
 
-func (i LogTacacsAccountingSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogTacacsAccountingSetting] {
-	return pulumix.Output[map[string]*LogTacacsAccountingSetting]{
-		OutputState: i.ToLogTacacsAccountingSettingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LogTacacsAccountingSettingOutput struct{ *pulumi.OutputState }
 
 func (LogTacacsAccountingSettingOutput) ElementType() reflect.Type {
@@ -201,12 +182,6 @@ func (o LogTacacsAccountingSettingOutput) ToLogTacacsAccountingSettingOutput() L
 
 func (o LogTacacsAccountingSettingOutput) ToLogTacacsAccountingSettingOutputWithContext(ctx context.Context) LogTacacsAccountingSettingOutput {
 	return o
-}
-
-func (o LogTacacsAccountingSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogTacacsAccountingSetting] {
-	return pulumix.Output[*LogTacacsAccountingSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogTacacsAccountingSettingOutput) Interface() pulumi.StringOutput {
@@ -251,12 +226,6 @@ func (o LogTacacsAccountingSettingArrayOutput) ToLogTacacsAccountingSettingArray
 	return o
 }
 
-func (o LogTacacsAccountingSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogTacacsAccountingSetting] {
-	return pulumix.Output[[]*LogTacacsAccountingSetting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LogTacacsAccountingSettingArrayOutput) Index(i pulumi.IntInput) LogTacacsAccountingSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogTacacsAccountingSetting {
 		return vs[0].([]*LogTacacsAccountingSetting)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o LogTacacsAccountingSettingMapOutput) ToLogTacacsAccountingSettingMapOutp
 
 func (o LogTacacsAccountingSettingMapOutput) ToLogTacacsAccountingSettingMapOutputWithContext(ctx context.Context) LogTacacsAccountingSettingMapOutput {
 	return o
-}
-
-func (o LogTacacsAccountingSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogTacacsAccountingSetting] {
-	return pulumix.Output[map[string]*LogTacacsAccountingSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LogTacacsAccountingSettingMapOutput) MapIndex(k pulumi.StringInput) LogTacacsAccountingSettingOutput {

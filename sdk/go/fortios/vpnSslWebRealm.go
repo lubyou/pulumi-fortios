@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslWebRealm struct {
@@ -136,12 +135,6 @@ func (i *VpnSslWebRealm) ToVpnSslWebRealmOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmOutput)
 }
 
-func (i *VpnSslWebRealm) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebRealm] {
-	return pulumix.Output[*VpnSslWebRealm]{
-		OutputState: i.ToVpnSslWebRealmOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpnSslWebRealmArrayInput is an input type that accepts VpnSslWebRealmArray and VpnSslWebRealmArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebRealmArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i VpnSslWebRealmArray) ToVpnSslWebRealmArrayOutput() VpnSslWebRealmArrayOu
 
 func (i VpnSslWebRealmArray) ToVpnSslWebRealmArrayOutputWithContext(ctx context.Context) VpnSslWebRealmArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmArrayOutput)
-}
-
-func (i VpnSslWebRealmArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebRealm] {
-	return pulumix.Output[[]*VpnSslWebRealm]{
-		OutputState: i.ToVpnSslWebRealmArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpnSslWebRealmMapInput is an input type that accepts VpnSslWebRealmMap and VpnSslWebRealmMapOutput values.
@@ -198,12 +185,6 @@ func (i VpnSslWebRealmMap) ToVpnSslWebRealmMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmMapOutput)
 }
 
-func (i VpnSslWebRealmMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebRealm] {
-	return pulumix.Output[map[string]*VpnSslWebRealm]{
-		OutputState: i.ToVpnSslWebRealmMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpnSslWebRealmOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebRealmOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o VpnSslWebRealmOutput) ToVpnSslWebRealmOutput() VpnSslWebRealmOutput {
 
 func (o VpnSslWebRealmOutput) ToVpnSslWebRealmOutputWithContext(ctx context.Context) VpnSslWebRealmOutput {
 	return o
-}
-
-func (o VpnSslWebRealmOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebRealm] {
-	return pulumix.Output[*VpnSslWebRealm]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebRealmOutput) LoginPage() pulumi.StringPtrOutput {
@@ -278,12 +253,6 @@ func (o VpnSslWebRealmArrayOutput) ToVpnSslWebRealmArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o VpnSslWebRealmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebRealm] {
-	return pulumix.Output[[]*VpnSslWebRealm]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpnSslWebRealmArrayOutput) Index(i pulumi.IntInput) VpnSslWebRealmOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebRealm {
 		return vs[0].([]*VpnSslWebRealm)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o VpnSslWebRealmMapOutput) ToVpnSslWebRealmMapOutput() VpnSslWebRealmMapOu
 
 func (o VpnSslWebRealmMapOutput) ToVpnSslWebRealmMapOutputWithContext(ctx context.Context) VpnSslWebRealmMapOutput {
 	return o
-}
-
-func (o VpnSslWebRealmMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebRealm] {
-	return pulumix.Output[map[string]*VpnSslWebRealm]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpnSslWebRealmMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebRealmOutput {

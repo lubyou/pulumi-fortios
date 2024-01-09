@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemPasswordPolicy(ctx *pulumi.Context, args *LookupSystemPasswordPolicyArgs, opts ...pulumi.InvokeOption) (*LookupSystemPasswordPolicyResult, error) {
@@ -81,12 +80,6 @@ func (o LookupSystemPasswordPolicyResultOutput) ToLookupSystemPasswordPolicyResu
 
 func (o LookupSystemPasswordPolicyResultOutput) ToLookupSystemPasswordPolicyResultOutputWithContext(ctx context.Context) LookupSystemPasswordPolicyResultOutput {
 	return o
-}
-
-func (o LookupSystemPasswordPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemPasswordPolicyResult] {
-	return pulumix.Output[LookupSystemPasswordPolicyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemPasswordPolicyResultOutput) ApplyTo() pulumi.StringOutput {

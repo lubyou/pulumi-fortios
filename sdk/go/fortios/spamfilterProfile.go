@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SpamfilterProfile struct {
@@ -206,12 +205,6 @@ func (i *SpamfilterProfile) ToSpamfilterProfileOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfileOutput)
 }
 
-func (i *SpamfilterProfile) ToOutput(ctx context.Context) pulumix.Output[*SpamfilterProfile] {
-	return pulumix.Output[*SpamfilterProfile]{
-		OutputState: i.ToSpamfilterProfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SpamfilterProfileArrayInput is an input type that accepts SpamfilterProfileArray and SpamfilterProfileArrayOutput values.
 // You can construct a concrete instance of `SpamfilterProfileArrayInput` via:
 //
@@ -235,12 +228,6 @@ func (i SpamfilterProfileArray) ToSpamfilterProfileArrayOutput() SpamfilterProfi
 
 func (i SpamfilterProfileArray) ToSpamfilterProfileArrayOutputWithContext(ctx context.Context) SpamfilterProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfileArrayOutput)
-}
-
-func (i SpamfilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SpamfilterProfile] {
-	return pulumix.Output[[]*SpamfilterProfile]{
-		OutputState: i.ToSpamfilterProfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SpamfilterProfileMapInput is an input type that accepts SpamfilterProfileMap and SpamfilterProfileMapOutput values.
@@ -268,12 +255,6 @@ func (i SpamfilterProfileMap) ToSpamfilterProfileMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfileMapOutput)
 }
 
-func (i SpamfilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SpamfilterProfile] {
-	return pulumix.Output[map[string]*SpamfilterProfile]{
-		OutputState: i.ToSpamfilterProfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SpamfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterProfileOutput) ElementType() reflect.Type {
@@ -286,12 +267,6 @@ func (o SpamfilterProfileOutput) ToSpamfilterProfileOutput() SpamfilterProfileOu
 
 func (o SpamfilterProfileOutput) ToSpamfilterProfileOutputWithContext(ctx context.Context) SpamfilterProfileOutput {
 	return o
-}
-
-func (o SpamfilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SpamfilterProfile] {
-	return pulumix.Output[*SpamfilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SpamfilterProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -404,12 +379,6 @@ func (o SpamfilterProfileArrayOutput) ToSpamfilterProfileArrayOutputWithContext(
 	return o
 }
 
-func (o SpamfilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SpamfilterProfile] {
-	return pulumix.Output[[]*SpamfilterProfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SpamfilterProfileArrayOutput) Index(i pulumi.IntInput) SpamfilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterProfile {
 		return vs[0].([]*SpamfilterProfile)[vs[1].(int)]
@@ -428,12 +397,6 @@ func (o SpamfilterProfileMapOutput) ToSpamfilterProfileMapOutput() SpamfilterPro
 
 func (o SpamfilterProfileMapOutput) ToSpamfilterProfileMapOutputWithContext(ctx context.Context) SpamfilterProfileMapOutput {
 	return o
-}
-
-func (o SpamfilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SpamfilterProfile] {
-	return pulumix.Output[map[string]*SpamfilterProfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SpamfilterProfileMapOutput) MapIndex(k pulumi.StringInput) SpamfilterProfileOutput {

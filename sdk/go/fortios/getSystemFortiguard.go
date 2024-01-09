@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFortiguard(ctx *pulumi.Context, args *LookupSystemFortiguardArgs, opts ...pulumi.InvokeOption) (*LookupSystemFortiguardResult, error) {
@@ -51,6 +50,7 @@ type LookupSystemFortiguardResult struct {
 	FdsLicenseExpiringDays       int    `pulumi:"fdsLicenseExpiringDays"`
 	FortiguardAnycast            string `pulumi:"fortiguardAnycast"`
 	FortiguardAnycastSource      string `pulumi:"fortiguardAnycastSource"`
+	GuiPromptAutoUpgrade         string `pulumi:"guiPromptAutoUpgrade"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                               string  `pulumi:"id"`
 	Interface                        string  `pulumi:"interface"`
@@ -132,12 +132,6 @@ func (o LookupSystemFortiguardResultOutput) ToLookupSystemFortiguardResultOutput
 
 func (o LookupSystemFortiguardResultOutput) ToLookupSystemFortiguardResultOutputWithContext(ctx context.Context) LookupSystemFortiguardResultOutput {
 	return o
-}
-
-func (o LookupSystemFortiguardResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFortiguardResult] {
-	return pulumix.Output[LookupSystemFortiguardResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSystemFortiguardResultOutput) AntispamCache() pulumi.StringOutput {
@@ -226,6 +220,10 @@ func (o LookupSystemFortiguardResultOutput) FortiguardAnycast() pulumi.StringOut
 
 func (o LookupSystemFortiguardResultOutput) FortiguardAnycastSource() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.FortiguardAnycastSource }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemFortiguardResultOutput) GuiPromptAutoUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.GuiPromptAutoUpgrade }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

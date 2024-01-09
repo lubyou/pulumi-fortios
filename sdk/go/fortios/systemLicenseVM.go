@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemLicenseVM struct {
@@ -95,12 +94,6 @@ func (i *SystemLicenseVM) ToSystemLicenseVMOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMOutput)
 }
 
-func (i *SystemLicenseVM) ToOutput(ctx context.Context) pulumix.Output[*SystemLicenseVM] {
-	return pulumix.Output[*SystemLicenseVM]{
-		OutputState: i.ToSystemLicenseVMOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemLicenseVMArrayInput is an input type that accepts SystemLicenseVMArray and SystemLicenseVMArrayOutput values.
 // You can construct a concrete instance of `SystemLicenseVMArrayInput` via:
 //
@@ -124,12 +117,6 @@ func (i SystemLicenseVMArray) ToSystemLicenseVMArrayOutput() SystemLicenseVMArra
 
 func (i SystemLicenseVMArray) ToSystemLicenseVMArrayOutputWithContext(ctx context.Context) SystemLicenseVMArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMArrayOutput)
-}
-
-func (i SystemLicenseVMArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLicenseVM] {
-	return pulumix.Output[[]*SystemLicenseVM]{
-		OutputState: i.ToSystemLicenseVMArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemLicenseVMMapInput is an input type that accepts SystemLicenseVMMap and SystemLicenseVMMapOutput values.
@@ -157,12 +144,6 @@ func (i SystemLicenseVMMap) ToSystemLicenseVMMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMMapOutput)
 }
 
-func (i SystemLicenseVMMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLicenseVM] {
-	return pulumix.Output[map[string]*SystemLicenseVM]{
-		OutputState: i.ToSystemLicenseVMMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemLicenseVMOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVMOutput) ElementType() reflect.Type {
@@ -175,12 +156,6 @@ func (o SystemLicenseVMOutput) ToSystemLicenseVMOutput() SystemLicenseVMOutput {
 
 func (o SystemLicenseVMOutput) ToSystemLicenseVMOutputWithContext(ctx context.Context) SystemLicenseVMOutput {
 	return o
-}
-
-func (o SystemLicenseVMOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemLicenseVM] {
-	return pulumix.Output[*SystemLicenseVM]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemLicenseVMOutput) FileContent() pulumi.StringOutput {
@@ -201,12 +176,6 @@ func (o SystemLicenseVMArrayOutput) ToSystemLicenseVMArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemLicenseVMArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLicenseVM] {
-	return pulumix.Output[[]*SystemLicenseVM]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemLicenseVMArrayOutput) Index(i pulumi.IntInput) SystemLicenseVMOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLicenseVM {
 		return vs[0].([]*SystemLicenseVM)[vs[1].(int)]
@@ -225,12 +194,6 @@ func (o SystemLicenseVMMapOutput) ToSystemLicenseVMMapOutput() SystemLicenseVMMa
 
 func (o SystemLicenseVMMapOutput) ToSystemLicenseVMMapOutputWithContext(ctx context.Context) SystemLicenseVMMapOutput {
 	return o
-}
-
-func (o SystemLicenseVMMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLicenseVM] {
-	return pulumix.Output[map[string]*SystemLicenseVM]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemLicenseVMMapOutput) MapIndex(k pulumi.StringInput) SystemLicenseVMOutput {

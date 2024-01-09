@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterRipng struct {
@@ -176,12 +175,6 @@ func (i *RouterRipng) ToRouterRipngOutputWithContext(ctx context.Context) Router
 	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngOutput)
 }
 
-func (i *RouterRipng) ToOutput(ctx context.Context) pulumix.Output[*RouterRipng] {
-	return pulumix.Output[*RouterRipng]{
-		OutputState: i.ToRouterRipngOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RouterRipngArrayInput is an input type that accepts RouterRipngArray and RouterRipngArrayOutput values.
 // You can construct a concrete instance of `RouterRipngArrayInput` via:
 //
@@ -205,12 +198,6 @@ func (i RouterRipngArray) ToRouterRipngArrayOutput() RouterRipngArrayOutput {
 
 func (i RouterRipngArray) ToRouterRipngArrayOutputWithContext(ctx context.Context) RouterRipngArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngArrayOutput)
-}
-
-func (i RouterRipngArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterRipng] {
-	return pulumix.Output[[]*RouterRipng]{
-		OutputState: i.ToRouterRipngArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RouterRipngMapInput is an input type that accepts RouterRipngMap and RouterRipngMapOutput values.
@@ -238,12 +225,6 @@ func (i RouterRipngMap) ToRouterRipngMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngMapOutput)
 }
 
-func (i RouterRipngMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterRipng] {
-	return pulumix.Output[map[string]*RouterRipng]{
-		OutputState: i.ToRouterRipngMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RouterRipngOutput struct{ *pulumi.OutputState }
 
 func (RouterRipngOutput) ElementType() reflect.Type {
@@ -256,12 +237,6 @@ func (o RouterRipngOutput) ToRouterRipngOutput() RouterRipngOutput {
 
 func (o RouterRipngOutput) ToRouterRipngOutputWithContext(ctx context.Context) RouterRipngOutput {
 	return o
-}
-
-func (o RouterRipngOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterRipng] {
-	return pulumix.Output[*RouterRipng]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterRipngOutput) AggregateAddresses() RouterRipngAggregateAddressArrayOutput {
@@ -350,12 +325,6 @@ func (o RouterRipngArrayOutput) ToRouterRipngArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o RouterRipngArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterRipng] {
-	return pulumix.Output[[]*RouterRipng]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RouterRipngArrayOutput) Index(i pulumi.IntInput) RouterRipngOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterRipng {
 		return vs[0].([]*RouterRipng)[vs[1].(int)]
@@ -374,12 +343,6 @@ func (o RouterRipngMapOutput) ToRouterRipngMapOutput() RouterRipngMapOutput {
 
 func (o RouterRipngMapOutput) ToRouterRipngMapOutputWithContext(ctx context.Context) RouterRipngMapOutput {
 	return o
-}
-
-func (o RouterRipngMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterRipng] {
-	return pulumix.Output[map[string]*RouterRipng]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RouterRipngMapOutput) MapIndex(k pulumi.StringInput) RouterRipngOutput {

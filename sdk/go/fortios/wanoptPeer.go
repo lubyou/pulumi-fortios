@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WanoptPeer struct {
@@ -101,12 +100,6 @@ func (i *WanoptPeer) ToWanoptPeerOutputWithContext(ctx context.Context) WanoptPe
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerOutput)
 }
 
-func (i *WanoptPeer) ToOutput(ctx context.Context) pulumix.Output[*WanoptPeer] {
-	return pulumix.Output[*WanoptPeer]{
-		OutputState: i.ToWanoptPeerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WanoptPeerArrayInput is an input type that accepts WanoptPeerArray and WanoptPeerArrayOutput values.
 // You can construct a concrete instance of `WanoptPeerArrayInput` via:
 //
@@ -130,12 +123,6 @@ func (i WanoptPeerArray) ToWanoptPeerArrayOutput() WanoptPeerArrayOutput {
 
 func (i WanoptPeerArray) ToWanoptPeerArrayOutputWithContext(ctx context.Context) WanoptPeerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerArrayOutput)
-}
-
-func (i WanoptPeerArray) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptPeer] {
-	return pulumix.Output[[]*WanoptPeer]{
-		OutputState: i.ToWanoptPeerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WanoptPeerMapInput is an input type that accepts WanoptPeerMap and WanoptPeerMapOutput values.
@@ -163,12 +150,6 @@ func (i WanoptPeerMap) ToWanoptPeerMapOutputWithContext(ctx context.Context) Wan
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerMapOutput)
 }
 
-func (i WanoptPeerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptPeer] {
-	return pulumix.Output[map[string]*WanoptPeer]{
-		OutputState: i.ToWanoptPeerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WanoptPeerOutput struct{ *pulumi.OutputState }
 
 func (WanoptPeerOutput) ElementType() reflect.Type {
@@ -181,12 +162,6 @@ func (o WanoptPeerOutput) ToWanoptPeerOutput() WanoptPeerOutput {
 
 func (o WanoptPeerOutput) ToWanoptPeerOutputWithContext(ctx context.Context) WanoptPeerOutput {
 	return o
-}
-
-func (o WanoptPeerOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptPeer] {
-	return pulumix.Output[*WanoptPeer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptPeerOutput) Ip() pulumi.StringOutput {
@@ -215,12 +190,6 @@ func (o WanoptPeerArrayOutput) ToWanoptPeerArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o WanoptPeerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptPeer] {
-	return pulumix.Output[[]*WanoptPeer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WanoptPeerArrayOutput) Index(i pulumi.IntInput) WanoptPeerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptPeer {
 		return vs[0].([]*WanoptPeer)[vs[1].(int)]
@@ -239,12 +208,6 @@ func (o WanoptPeerMapOutput) ToWanoptPeerMapOutput() WanoptPeerMapOutput {
 
 func (o WanoptPeerMapOutput) ToWanoptPeerMapOutputWithContext(ctx context.Context) WanoptPeerMapOutput {
 	return o
-}
-
-func (o WanoptPeerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptPeer] {
-	return pulumix.Output[map[string]*WanoptPeer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WanoptPeerMapOutput) MapIndex(k pulumi.StringInput) WanoptPeerOutput {

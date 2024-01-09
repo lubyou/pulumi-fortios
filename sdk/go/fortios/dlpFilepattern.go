@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpFilepattern struct {
@@ -125,12 +124,6 @@ func (i *DlpFilepattern) ToDlpFilepatternOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFilepatternOutput)
 }
 
-func (i *DlpFilepattern) ToOutput(ctx context.Context) pulumix.Output[*DlpFilepattern] {
-	return pulumix.Output[*DlpFilepattern]{
-		OutputState: i.ToDlpFilepatternOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DlpFilepatternArrayInput is an input type that accepts DlpFilepatternArray and DlpFilepatternArrayOutput values.
 // You can construct a concrete instance of `DlpFilepatternArrayInput` via:
 //
@@ -154,12 +147,6 @@ func (i DlpFilepatternArray) ToDlpFilepatternArrayOutput() DlpFilepatternArrayOu
 
 func (i DlpFilepatternArray) ToDlpFilepatternArrayOutputWithContext(ctx context.Context) DlpFilepatternArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFilepatternArrayOutput)
-}
-
-func (i DlpFilepatternArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpFilepattern] {
-	return pulumix.Output[[]*DlpFilepattern]{
-		OutputState: i.ToDlpFilepatternArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DlpFilepatternMapInput is an input type that accepts DlpFilepatternMap and DlpFilepatternMapOutput values.
@@ -187,12 +174,6 @@ func (i DlpFilepatternMap) ToDlpFilepatternMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFilepatternMapOutput)
 }
 
-func (i DlpFilepatternMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpFilepattern] {
-	return pulumix.Output[map[string]*DlpFilepattern]{
-		OutputState: i.ToDlpFilepatternMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DlpFilepatternOutput struct{ *pulumi.OutputState }
 
 func (DlpFilepatternOutput) ElementType() reflect.Type {
@@ -205,12 +186,6 @@ func (o DlpFilepatternOutput) ToDlpFilepatternOutput() DlpFilepatternOutput {
 
 func (o DlpFilepatternOutput) ToDlpFilepatternOutputWithContext(ctx context.Context) DlpFilepatternOutput {
 	return o
-}
-
-func (o DlpFilepatternOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpFilepattern] {
-	return pulumix.Output[*DlpFilepattern]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpFilepatternOutput) Comment() pulumi.StringPtrOutput {
@@ -255,12 +230,6 @@ func (o DlpFilepatternArrayOutput) ToDlpFilepatternArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o DlpFilepatternArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpFilepattern] {
-	return pulumix.Output[[]*DlpFilepattern]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DlpFilepatternArrayOutput) Index(i pulumi.IntInput) DlpFilepatternOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpFilepattern {
 		return vs[0].([]*DlpFilepattern)[vs[1].(int)]
@@ -279,12 +248,6 @@ func (o DlpFilepatternMapOutput) ToDlpFilepatternMapOutput() DlpFilepatternMapOu
 
 func (o DlpFilepatternMapOutput) ToDlpFilepatternMapOutputWithContext(ctx context.Context) DlpFilepatternMapOutput {
 	return o
-}
-
-func (o DlpFilepatternMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpFilepattern] {
-	return pulumix.Output[map[string]*DlpFilepattern]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DlpFilepatternMapOutput) MapIndex(k pulumi.StringInput) DlpFilepatternOutput {

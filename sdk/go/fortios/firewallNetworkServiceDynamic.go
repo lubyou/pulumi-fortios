@@ -9,7 +9,6 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallNetworkServiceDynamic struct {
@@ -111,12 +110,6 @@ func (i *FirewallNetworkServiceDynamic) ToFirewallNetworkServiceDynamicOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallNetworkServiceDynamicOutput)
 }
 
-func (i *FirewallNetworkServiceDynamic) ToOutput(ctx context.Context) pulumix.Output[*FirewallNetworkServiceDynamic] {
-	return pulumix.Output[*FirewallNetworkServiceDynamic]{
-		OutputState: i.ToFirewallNetworkServiceDynamicOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallNetworkServiceDynamicArrayInput is an input type that accepts FirewallNetworkServiceDynamicArray and FirewallNetworkServiceDynamicArrayOutput values.
 // You can construct a concrete instance of `FirewallNetworkServiceDynamicArrayInput` via:
 //
@@ -140,12 +133,6 @@ func (i FirewallNetworkServiceDynamicArray) ToFirewallNetworkServiceDynamicArray
 
 func (i FirewallNetworkServiceDynamicArray) ToFirewallNetworkServiceDynamicArrayOutputWithContext(ctx context.Context) FirewallNetworkServiceDynamicArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallNetworkServiceDynamicArrayOutput)
-}
-
-func (i FirewallNetworkServiceDynamicArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallNetworkServiceDynamic] {
-	return pulumix.Output[[]*FirewallNetworkServiceDynamic]{
-		OutputState: i.ToFirewallNetworkServiceDynamicArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FirewallNetworkServiceDynamicMapInput is an input type that accepts FirewallNetworkServiceDynamicMap and FirewallNetworkServiceDynamicMapOutput values.
@@ -173,12 +160,6 @@ func (i FirewallNetworkServiceDynamicMap) ToFirewallNetworkServiceDynamicMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallNetworkServiceDynamicMapOutput)
 }
 
-func (i FirewallNetworkServiceDynamicMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallNetworkServiceDynamic] {
-	return pulumix.Output[map[string]*FirewallNetworkServiceDynamic]{
-		OutputState: i.ToFirewallNetworkServiceDynamicMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallNetworkServiceDynamicOutput struct{ *pulumi.OutputState }
 
 func (FirewallNetworkServiceDynamicOutput) ElementType() reflect.Type {
@@ -191,12 +172,6 @@ func (o FirewallNetworkServiceDynamicOutput) ToFirewallNetworkServiceDynamicOutp
 
 func (o FirewallNetworkServiceDynamicOutput) ToFirewallNetworkServiceDynamicOutputWithContext(ctx context.Context) FirewallNetworkServiceDynamicOutput {
 	return o
-}
-
-func (o FirewallNetworkServiceDynamicOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallNetworkServiceDynamic] {
-	return pulumix.Output[*FirewallNetworkServiceDynamic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallNetworkServiceDynamicOutput) Comment() pulumi.StringPtrOutput {
@@ -233,12 +208,6 @@ func (o FirewallNetworkServiceDynamicArrayOutput) ToFirewallNetworkServiceDynami
 	return o
 }
 
-func (o FirewallNetworkServiceDynamicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallNetworkServiceDynamic] {
-	return pulumix.Output[[]*FirewallNetworkServiceDynamic]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallNetworkServiceDynamicArrayOutput) Index(i pulumi.IntInput) FirewallNetworkServiceDynamicOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallNetworkServiceDynamic {
 		return vs[0].([]*FirewallNetworkServiceDynamic)[vs[1].(int)]
@@ -257,12 +226,6 @@ func (o FirewallNetworkServiceDynamicMapOutput) ToFirewallNetworkServiceDynamicM
 
 func (o FirewallNetworkServiceDynamicMapOutput) ToFirewallNetworkServiceDynamicMapOutputWithContext(ctx context.Context) FirewallNetworkServiceDynamicMapOutput {
 	return o
-}
-
-func (o FirewallNetworkServiceDynamicMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallNetworkServiceDynamic] {
-	return pulumix.Output[map[string]*FirewallNetworkServiceDynamic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallNetworkServiceDynamicMapOutput) MapIndex(k pulumi.StringInput) FirewallNetworkServiceDynamicOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserLdap struct {
@@ -305,12 +304,6 @@ func (i *UserLdap) ToUserLdapOutputWithContext(ctx context.Context) UserLdapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserLdapOutput)
 }
 
-func (i *UserLdap) ToOutput(ctx context.Context) pulumix.Output[*UserLdap] {
-	return pulumix.Output[*UserLdap]{
-		OutputState: i.ToUserLdapOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserLdapArrayInput is an input type that accepts UserLdapArray and UserLdapArrayOutput values.
 // You can construct a concrete instance of `UserLdapArrayInput` via:
 //
@@ -334,12 +327,6 @@ func (i UserLdapArray) ToUserLdapArrayOutput() UserLdapArrayOutput {
 
 func (i UserLdapArray) ToUserLdapArrayOutputWithContext(ctx context.Context) UserLdapArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserLdapArrayOutput)
-}
-
-func (i UserLdapArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserLdap] {
-	return pulumix.Output[[]*UserLdap]{
-		OutputState: i.ToUserLdapArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserLdapMapInput is an input type that accepts UserLdapMap and UserLdapMapOutput values.
@@ -367,12 +354,6 @@ func (i UserLdapMap) ToUserLdapMapOutputWithContext(ctx context.Context) UserLda
 	return pulumi.ToOutputWithContext(ctx, i).(UserLdapMapOutput)
 }
 
-func (i UserLdapMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserLdap] {
-	return pulumix.Output[map[string]*UserLdap]{
-		OutputState: i.ToUserLdapMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserLdapOutput struct{ *pulumi.OutputState }
 
 func (UserLdapOutput) ElementType() reflect.Type {
@@ -385,12 +366,6 @@ func (o UserLdapOutput) ToUserLdapOutput() UserLdapOutput {
 
 func (o UserLdapOutput) ToUserLdapOutputWithContext(ctx context.Context) UserLdapOutput {
 	return o
-}
-
-func (o UserLdapOutput) ToOutput(ctx context.Context) pulumix.Output[*UserLdap] {
-	return pulumix.Output[*UserLdap]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserLdapOutput) AccountKeyCertField() pulumi.StringOutput {
@@ -571,12 +546,6 @@ func (o UserLdapArrayOutput) ToUserLdapArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o UserLdapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserLdap] {
-	return pulumix.Output[[]*UserLdap]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserLdapArrayOutput) Index(i pulumi.IntInput) UserLdapOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserLdap {
 		return vs[0].([]*UserLdap)[vs[1].(int)]
@@ -595,12 +564,6 @@ func (o UserLdapMapOutput) ToUserLdapMapOutput() UserLdapMapOutput {
 
 func (o UserLdapMapOutput) ToUserLdapMapOutputWithContext(ctx context.Context) UserLdapMapOutput {
 	return o
-}
-
-func (o UserLdapMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserLdap] {
-	return pulumix.Output[map[string]*UserLdap]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserLdapMapOutput) MapIndex(k pulumi.StringInput) UserLdapOutput {

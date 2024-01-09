@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemCsf struct {
@@ -246,12 +245,6 @@ func (i *SystemCsf) ToSystemCsfOutputWithContext(ctx context.Context) SystemCsfO
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCsfOutput)
 }
 
-func (i *SystemCsf) ToOutput(ctx context.Context) pulumix.Output[*SystemCsf] {
-	return pulumix.Output[*SystemCsf]{
-		OutputState: i.ToSystemCsfOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SystemCsfArrayInput is an input type that accepts SystemCsfArray and SystemCsfArrayOutput values.
 // You can construct a concrete instance of `SystemCsfArrayInput` via:
 //
@@ -275,12 +268,6 @@ func (i SystemCsfArray) ToSystemCsfArrayOutput() SystemCsfArrayOutput {
 
 func (i SystemCsfArray) ToSystemCsfArrayOutputWithContext(ctx context.Context) SystemCsfArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCsfArrayOutput)
-}
-
-func (i SystemCsfArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemCsf] {
-	return pulumix.Output[[]*SystemCsf]{
-		OutputState: i.ToSystemCsfArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SystemCsfMapInput is an input type that accepts SystemCsfMap and SystemCsfMapOutput values.
@@ -308,12 +295,6 @@ func (i SystemCsfMap) ToSystemCsfMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCsfMapOutput)
 }
 
-func (i SystemCsfMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemCsf] {
-	return pulumix.Output[map[string]*SystemCsf]{
-		OutputState: i.ToSystemCsfMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SystemCsfOutput struct{ *pulumi.OutputState }
 
 func (SystemCsfOutput) ElementType() reflect.Type {
@@ -326,12 +307,6 @@ func (o SystemCsfOutput) ToSystemCsfOutput() SystemCsfOutput {
 
 func (o SystemCsfOutput) ToSystemCsfOutputWithContext(ctx context.Context) SystemCsfOutput {
 	return o
-}
-
-func (o SystemCsfOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemCsf] {
-	return pulumix.Output[*SystemCsf]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemCsfOutput) AcceptAuthByCert() pulumi.StringOutput {
@@ -464,12 +439,6 @@ func (o SystemCsfArrayOutput) ToSystemCsfArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemCsfArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemCsf] {
-	return pulumix.Output[[]*SystemCsf]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SystemCsfArrayOutput) Index(i pulumi.IntInput) SystemCsfOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemCsf {
 		return vs[0].([]*SystemCsf)[vs[1].(int)]
@@ -488,12 +457,6 @@ func (o SystemCsfMapOutput) ToSystemCsfMapOutput() SystemCsfMapOutput {
 
 func (o SystemCsfMapOutput) ToSystemCsfMapOutputWithContext(ctx context.Context) SystemCsfMapOutput {
 	return o
-}
-
-func (o SystemCsfMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemCsf] {
-	return pulumix.Output[map[string]*SystemCsf]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SystemCsfMapOutput) MapIndex(k pulumi.StringInput) SystemCsfOutput {
