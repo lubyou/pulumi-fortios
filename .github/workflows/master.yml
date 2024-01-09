@@ -14,7 +14,7 @@ env:
   TRAVIS_OS_NAME: linux
 
   DOTNETVERSION: 3.1.301
-  GOVERSION: 1.19.x
+  GOVERSION: 1.20.x
   JAVAVERSION: 11
   NODEVERSION: 16.x
   PYTHONVERSION: 3.9
@@ -49,18 +49,18 @@ jobs:
         if: ${{ !env.ACT }}
         run: git fetch --prune --unshallow --tags
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GOVERSION }}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.2.0
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
         uses: pulumi/setup-pulumi@v2
       - if: github.event_name == 'pull_request'
         name: Install Schema Tools
-        uses: jaxxstorm/action-install-gh-release@v1.2.0
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: mikhailshilkov/schema-tools
       - name: Build tfgen & provider binaries
@@ -108,11 +108,11 @@ jobs:
         run: git fetch --prune --unshallow --tags
       # go is always needed
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GOVERSION }}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.2.0
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
@@ -185,11 +185,11 @@ jobs:
   #   - name: Unshallow clone for tags
   #     run: git fetch --prune --unshallow --tags
   #   - name: Install Go
-  #     uses: actions/setup-go@v2
+  #     uses: actions/setup-go@v5
   #     with:
   #       go-version: ${{ env.GOVERSION }}
   #   - name: Install pulumictl
-  #     uses: jaxxstorm/action-install-gh-release@v1.2.0
+  #     uses: jaxxstorm/action-install-gh-release@v1.10.0
   #     with:
   #       repo: pulumi/pulumictl
   #   - name: Install Pulumi CLI
@@ -219,11 +219,11 @@ jobs:
   #   - name: Unshallow clone for tags
   #     run: git fetch --prune --unshallow --tags
   #   - name: Install Go
-  #     uses: actions/setup-go@v2
+  #     uses: actions/setup-go@v5
   #     with:
   #       go-version: ${{ env.GOVERSION }}
   #   - name: Install pulumictl
-  #     uses: jaxxstorm/action-install-gh-release@v1.2.0
+  #     uses: jaxxstorm/action-install-gh-release@v1.10.0
   #     with:
   #       repo: pulumi/pulumictl
   #   - name: Install Pulumi CLI
@@ -251,11 +251,11 @@ jobs:
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GOVERSION }}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.2.0
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
@@ -292,11 +292,11 @@ jobs:
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GOVERSION }}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.2.0
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
@@ -367,11 +367,11 @@ jobs:
   #   - name: Unshallow clone for tags
   #     run: git fetch --prune --unshallow --tags
   #   - name: Install Go
-  #     uses: actions/setup-go@v2
+  #     uses: actions/setup-go@v5
   #     with:
   #       go-version: ${{ env.GOVERSION }}
   #   - name: Install pulumictl
-  #     uses: jaxxstorm/action-install-gh-release@v1.2.0
+  #     uses: jaxxstorm/action-install-gh-release@v1.10.0
   #     with:
   #       repo: pulumi/pulumictl
   #   - name: Install Pulumi CLI
